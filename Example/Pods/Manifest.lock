@@ -1,0 +1,23 @@
+PODS:
+  - BigInt (5.2.0)
+  - ZKSyncSDK (0.1.0):
+    - BigInt (~> 5.2)
+
+DEPENDENCIES:
+  - ZKSyncSDK (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - BigInt
+
+EXTERNAL SOURCES:
+  ZKSyncSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BigInt: f668a80089607f521586bbe29513d708491ef2f7
+  ZKSyncSDK: cde1d7e5266ec5760df27822a8df9e37997dfa67
+
+PODFILE CHECKSUM: 60f1e768f1206f5e9135abe5526dc8bf371578f7
+
+COCOAPODS: 1.10.0

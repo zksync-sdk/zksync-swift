@@ -1,0 +1,29 @@
+{
+  "name": "ZKSyncSDK",
+  "version": "0.1.0",
+  "summary": "A short description of ZKSyncSDK.",
+  "description": "zkSync is a scaling and privacy engine for Ethereum. Its current functionality scope includes low gas transfers of ETH and ERC20 tokens in the Ethereum network",
+  "homepage": "https://github.com/zksync-sdk/zksync-sdk-swift",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "The Matter Labs team": "hello@matterlabs.dev"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "swift_versions": "5.0",
+  "source": {
+    "git": "https://github.com/zksync-sdk/zksync-sdk-swift.git",
+    "tag": "0.1.0"
+  },
+  "source_files": "ZKSyncSDK/Classes/**/*",
+  "dependencies": {
+    "BigInt": [
+      "~> 5.2"
+    ]
+  },
+  "swift_version": "5.0"
+}

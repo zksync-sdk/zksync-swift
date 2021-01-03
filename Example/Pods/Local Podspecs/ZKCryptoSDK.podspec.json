@@ -1,0 +1,33 @@
+{
+  "name": "ZKCryptoSDK",
+  "version": "0.1.0",
+  "summary": "Cryptographical primitives used in zkSync network.",
+  "description": "zkSync is a scaling and privacy engine for Ethereum. Its current functionality scope includes low gas transfers of ETH and ERC20 tokens in the Ethereum network",
+  "homepage": "https://github.com/zksync-sdk/zksync-sdk-swift",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "The Matter Labs team": "hello@matterlabs.dev"
+  },
+  "source": {
+    "git": "https://github.com/zksync-sdk/zksync-sdk-swift.git",
+    "tag": "0.1.0"
+  },
+  "source_files": "ZKCryptoSDK/Classes/**/*",
+  "public_header_files": "Example/Pods/Target Support Files/ZKCryptoSDK/*.{h}",
+  "private_header_files": "ZKCryptoSDK/libzks/*.{h}",
+  "vendored_libraries": "ZKCryptoSDK/libzks/*.{a}",
+  "preserve_paths": "Example/Pods/Target Support Files/ZKCryptoSDK/*.{modulemap,h}",
+  "module_map": "Example/Pods/Target Support Files/ZKCryptoSDK/ZKCryptoSDK.modulemap",
+  "pod_target_xcconfig": {
+    "VALID_ARCHS": "arm64 arm64e armv7 armv7s x86_64"
+  },
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

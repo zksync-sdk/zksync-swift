@@ -1,0 +1,6 @@
+framework module Pods_ZKSyncSDK_Tests {
+  umbrella header "Pods-ZKSyncSDK_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

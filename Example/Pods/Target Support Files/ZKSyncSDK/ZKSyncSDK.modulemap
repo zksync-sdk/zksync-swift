@@ -1,0 +1,6 @@
+framework module ZKSyncSDK {
+  umbrella header "ZKSyncSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
