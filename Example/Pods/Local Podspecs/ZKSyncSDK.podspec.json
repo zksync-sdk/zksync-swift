@@ -12,18 +12,39 @@
     "The Matter Labs team": "hello@matterlabs.dev"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "9.0"
   },
   "swift_versions": "5.0",
   "source": {
     "git": "https://github.com/zksync-sdk/zksync-sdk-swift.git",
     "tag": "0.1.0"
   },
-  "source_files": "ZKSyncSDK/Classes/**/*",
-  "dependencies": {
-    "BigInt": [
-      "~> 5.2"
-    ]
-  },
+  "module_map": "ZKSyncSDK/ZKSyncSDK.modulemap",
+  "vendored_libraries": "ZKSyncSDK/libzks/*.a",
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": [
+        "ZKSyncSDK/Classes/**/*",
+        "ZKSyncSDK/Headers/*.h"
+      ],
+      "dependencies": {
+        "BigInt": [
+          "~> 5.2"
+        ],
+        "ZKSyncSDK/Crypto": [
+
+        ]
+      }
+    },
+    {
+      "name": "Crypto",
+      "source_files": "ZKCryptoSDK/Classes/**/*",
+      "pod_target_xcconfig": {
+        "VALID_ARCHS": "arm64 arm64e armv7 armv7s x86_64"
+      }
+    }
+  ],
   "swift_version": "5.0"
 }

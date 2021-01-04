@@ -8,8 +8,8 @@
 import Foundation
 //import ZKCryptoSDK
 
-public class Signer {
-    var publicKeyHash: String
-//    var privateKey: ZKPrivateKey
-    
-}
+//public class Signer {
+//    var publicKeyHash: String
+////    var privateKey: ZKPrivateKey
+//
+//}

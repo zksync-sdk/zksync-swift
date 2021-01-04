@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "zks_crypto.h"
 
 FOUNDATION_EXPORT double ZKSyncSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char ZKSyncSDKVersionString[];

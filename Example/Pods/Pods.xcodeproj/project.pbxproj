@@ -7,43 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005E8295B0F6F524F6C1AFDE6A023D70 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB8BFE25526843E50441B8B3084B26B /* Request.swift */; };
 		04C4B5D00750E2E4DFD4C4C7CC47283A /* Bitwise Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786DC739597A15ACAFC770446BD7B57 /* Bitwise Ops.swift */; };
 		0DF63A4C8FA0E53FB630F5B5429FF066 /* Exponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7728A2CD9AA973F06CD7F07BE1D052 /* Exponentiation.swift */; };
+		0E7835DFB27AC049F43618EF6BAE9097 /* BigInt+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E768E71521F6241CEA08BAF3A8884BF8 /* BigInt+Extensions.swift */; };
 		16F71F20D31B7EEC6A60DB14135AB7A9 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21FA016970A9B08BCAE43BE75F69E5F /* Comparable.swift */; };
-		1EEE38F53C24EA7EAF1C3ECE78B4FA32 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC0C50ABFDD6B906269EA1734B5CA /* Types.swift */; };
+		20E88492C7B69CE52E382BEC57DCD3F7 /* ZKCryptoSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FFF748E4347E45F9C1B09BE2BA491 /* ZKCryptoSDK.swift */; };
 		2228B8549F0F5445D1B2D346E12A20CD /* Floating Point Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173576D5DD7EBFD9AF6E6A8BC2750977 /* Floating Point Conversion.swift */; };
-		367A4A7C6AE185606FEFD3AAED6AC696 /* ZKSyncSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B175602DF4FF1DE785EF33351F63B4 /* ZKSyncSDK-dummy.m */; };
+		2610E62180340F7E6C2F5E4CBB7B2AD1 /* ZKSyncError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0EE36B33C54CC045CE9A1E2748A0D1 /* ZKSyncError.swift */; };
 		39137B0D7B8FB5BF554BDE012BD85061 /* Data Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D8EDB2105060876C76BC168C1D9A9 /* Data Conversion.swift */; };
 		3B2AD3AA8E409A78EAB21A67AE7994DE /* Pods-ZKSyncSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE6FAB850172B5E092A17D4F9EFFB0D2 /* Pods-ZKSyncSDK_Example-dummy.m */; };
 		3B9A2601095A9A72843D76CA44B37782 /* Division.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A662754F67946FE36C80523F6F62A20 /* Division.swift */; };
+		413C0F420AA747F2A7A89D0C997A139C /* Provider+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1CAE4F1FB428D18F3F12802745892 /* Provider+Accounts.swift */; };
+		4344200DBAA751AE411C0380237B0610 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634392B85147ED506649F234A0D8AD9 /* Network.swift */; };
 		4362503059C68DFCDCB8621F4FD9E325 /* Square Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5028F35703F5C4B0857EA1CAE7618 /* Square Root.swift */; };
 		4A8B21596204A43258F4EC69A7AEC66E /* Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D3AD27CCE751F6D63FB7F87163613 /* Hashable.swift */; };
-		4FBCB275AF66D6BE03B72474AAE4A55C /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1293E3BD3BE1F4E44055EDE2BBA42F /* Signer.swift */; };
+		550C25BF78675B1DA00F2C83DFB2FC3E /* zks_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = A65A598E024F6E4BB7DDC696A2F5219C /* zks_crypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E2574B7162EED00A81237F56CDC0BE4 /* BigInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D295DBF64DC93E26BFEA6565901E0A12 /* BigInt.swift */; };
+		5FEAB212AF4D5BF2E31F9876E69A6059 /* Provider+ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8AB8E1C8BEE7A2FA581431F853876 /* Provider+ContractAddress.swift */; };
 		6002AD14210CBE9C34EB848031CFD7E6 /* Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E61FC2BDAE799C8D330239D18FF574 /* Addition.swift */; };
-		61F83EE744501A359E94899C01EAE92D /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436263B3F31E6048685B50CC8AD18F82 /* BigInt.framework */; };
-		622A2E3A9B3F444B73E4A189A19AAE0F /* Provider+TokenPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D574FC6F2470A042E1A96F2F050CFE7 /* Provider+TokenPrice.swift */; };
+		6AAE050887BEA69AFF4DF0A4C7BAAFEF /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13531DA4E390ECFE4DD67B0623ABC06 /* Provider.swift */; };
+		7052604324F125AF6FDB5CBBC0BFAC11 /* ZKCryptoSDK+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B1069016A6DBCEB3C23282FA50DAEA /* ZKCryptoSDK+Types.swift */; };
+		70B810108BB0AD4F00FB7F57A8214DC0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCB958C000121C4D55D6104815A28EE /* Error.swift */; };
+		7772F42B375D003E028D59F7D22B8192 /* ZKSyncSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC5770F017E7FA84E837129A9B97D1A /* ZKSyncSDK-dummy.m */; };
+		7DA0DC5546DF0779A787BFFB6339CAC5 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30912E5EE6C7FD8A37F5B9649183C9EF /* String+Extensions.swift */; };
 		7EECE9FCF5E07473E6D0FE80BFCB94C9 /* BigInt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 62F3C0C287A51DF6E535C334E2CBC3AA /* BigInt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80E51DAC32B23A160661E7DA9657F0BA /* Provider+TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49012CBC4A50986B5B4B85C0F40A5261 /* Provider+TransactionFee.swift */; };
 		8532AFAE5B4DE21DCAFB19AB0E4434EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */; };
 		8599E23B2946C6F3F6DA3D63EC82C4A3 /* Words and Bits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6DD6C0A3208287CBFAD49A720A45C5 /* Words and Bits.swift */; };
-		97FC768F481303B03E16F5780EF12810 /* Provider+TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6161B8CB96E49CBEA8EFCC849D40EBA9 /* Provider+TransactionFee.swift */; };
+		8C863E4673213014576F63A9CA166A0D /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D23324A18D2AECB0037668AA860D9 /* Transport.swift */; };
+		8F875DA617AC62C6FB22C7B586FC8E9E /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436263B3F31E6048685B50CC8AD18F82 /* BigInt.framework */; };
+		8FEC254BF3DF613184B51C37DFF794F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */; };
 		99F35D362CDAA3F01D59E05FAB02907D /* Strideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEA896AB210B97BD868FD6C04EFA831 /* Strideable.swift */; };
-		9B7584F61EC0A81E43C5806D1E6FFE31 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EA07D72E1056FA7C5EB0E111DDFD01 /* Transport.swift */; };
-		9DBE417C136E9D5151E3DBCAD84268AA /* ZKSyncSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 35DFD4416FD8B5D2D137B082FAA7E7E7 /* ZKSyncSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9FD440324F36B95707E0DFF0FB37C379 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E0EC18602BDCD4779BF980C1D6EC3B /* Response.swift */; };
 		A5169930CEFFE9968DD82EDC05DABAA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */; };
-		A75F9ED8B0C5C779EC2F66CE484C0705 /* Provider+ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE98F6913A8CE629203AECD957CF843 /* Provider+ContractAddress.swift */; };
 		A92F7126045A8624132624346389CBD2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */; };
 		AC4E061C6A2D21210122B471D8BCC81E /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B88D65E1FB896EAAC762B728A9BB5E /* Random.swift */; };
 		AC7DBF3AD44B3E7644068E6F09F9EBF2 /* BigUInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6377F6A52D57630522D67863CC476A /* BigUInt.swift */; };
+		AD70FF4267A0789168393E14E0B5111D /* ZKSyncSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9118D810E9ABA7D6B76926ECE9B15CA /* ZKSyncSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BAA052C302D45F8DAB72606E997CAD69 /* Subtraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A32D8F5937203751942B84436F0134B /* Subtraction.swift */; };
 		BE29AFA73FEDAFA471F35F8AB1C3EA99 /* Shifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ACE00CCD056C20D1BB7F94A3DC5E11 /* Shifts.swift */; };
-		C0096C9E5BE74E8DE38ED4FD6F2401B5 /* Provider+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9946821D8A2717125ED200F1A6F999B /* Provider+Accounts.swift */; };
+		CE5FD0764AE2526E0101DA9FF9D87BAE /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BCC17546D660DF950D64CD89E1C30E /* Signer.swift */; };
 		CF098CEA3330930EE29247B0FA751B16 /* Pods-ZKSyncSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89997BC1A7F3CB674EEB7A2C76E872F1 /* Pods-ZKSyncSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D48A4410A7C8CE6B6A0787A0F4999DE5 /* Multiplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0866DA6D3038DD38E5D125B7786DF9 /* Multiplication.swift */; };
+		DA5554A882D8C5B0DE99033A89BE040F /* Provider+TokenPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710A79FD242AAD07D7894E8A1651E90E /* Provider+TokenPrice.swift */; };
 		DBE9A6D9CB82D8605F4C25B9426B1557 /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169EF156A7043F57126EF1BBA75624B3 /* Codable.swift */; };
-		DC1FDB4E33684AB1167C9B7C77C702A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */; };
+		DCAF77FB571C656322E89EDD42E7041E /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4B50B4571CBB0CAE2F7BC3406C5FBC /* Types.swift */; };
 		E0B84D75D0F7E7EA2E905C05774CC361 /* Integer Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B64ABCCBE236A9ECAF99111679E5D3 /* Integer Conversion.swift */; };
-		E2282B6245EE50B4A272A4411BC8C87B /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB00C346C29C982655E0EC64864E2E2 /* Provider.swift */; };
 		E36D96FDD6C35D3437B6D5D7B5F14B5E /* Pods-ZKSyncSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C475FEB187E8A0DAA5ACC7DF46B631 /* Pods-ZKSyncSDK_Tests-dummy.m */; };
 		E5F30D43B9D01497A8C31D262D0D2CB9 /* Pods-ZKSyncSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 565EA2F8DCD7E25BC9B36F2FC0D4D554 /* Pods-ZKSyncSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8ABBB87CFEBE721FC2D14B71A719BC2 /* String Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C376D07742F7ADA01311652D6C96E1 /* String Conversion.swift */; };
@@ -53,73 +63,77 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		464BCC3F13EFA39E00E00D9923C5990E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5F7351FE31D7A471B0D918C51C14AFC;
-			remoteInfo = ZKSyncSDK;
-		};
-		A64FA59BEE2822FA0C1A40A9A8A9193C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09DD83B7D075842A3A5105AD410BD38A;
-			remoteInfo = BigInt;
-		};
-		F79B09CFD952A0E3F623F3FC0F679BDB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09DD83B7D075842A3A5105AD410BD38A;
-			remoteInfo = BigInt;
-		};
-		F817DE616F7B9B235D39BB07A59BDD76 /* PBXContainerItemProxy */ = {
+		4BAC3AC7EC9A6B01CFBC42CAB2D9F8D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EA4D8746E6CD61B8C596E1072379D51E;
 			remoteInfo = "Pods-ZKSyncSDK_Example";
 		};
+		667836A9E746B016639203552DD49182 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09DD83B7D075842A3A5105AD410BD38A;
+			remoteInfo = BigInt;
+		};
+		B8AF0FD98E8672D2D60065B80D81432F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09DD83B7D075842A3A5105AD410BD38A;
+			remoteInfo = BigInt;
+		};
+		EF56ECA774432ED7FACF16478C42FC4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5F7351FE31D7A471B0D918C51C14AFC;
+			remoteInfo = ZKSyncSDK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04E371534BCF2335892E18AD4B220E19 /* ZKSyncSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZKSyncSDK.modulemap; sourceTree = "<group>"; };
 		05326AD6125BFBE90C2C15096CEDCDEC /* Pods-ZKSyncSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZKSyncSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		054ED7D74D58C0EB31BB998CC028685A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		072B4D22AB2EEE7681A40A517F11485E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		14AB774387532837C1CF9C2E662CA1AC /* Pods-ZKSyncSDK_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZKSyncSDK_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		169EF156A7043F57126EF1BBA75624B3 /* Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Codable.swift; path = Sources/Codable.swift; sourceTree = "<group>"; };
 		173576D5DD7EBFD9AF6E6A8BC2750977 /* Floating Point Conversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Floating Point Conversion.swift"; path = "Sources/Floating Point Conversion.swift"; sourceTree = "<group>"; };
+		178ACBB538B39D11DE0DD08C3D3C568B /* ZKSyncSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZKSyncSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1922C6B5A73F74ED1A54A079DD288E47 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		1B7D0B646FA38304ED81FE07AC1CE876 /* Pods-ZKSyncSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1E891265602BA4CC491D7C743F3ACC79 /* ZKSyncSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZKSyncSDK.release.xcconfig; sourceTree = "<group>"; };
 		21ACE00CCD056C20D1BB7F94A3DC5E11 /* Shifts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shifts.swift; path = Sources/Shifts.swift; sourceTree = "<group>"; };
-		289D43440FBA1A778013C54873163204 /* Pods_ZKSyncSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		289D43440FBA1A778013C54873163204 /* Pods_ZKSyncSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZKSyncSDK_Tests.framework; path = "Pods-ZKSyncSDK_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A662754F67946FE36C80523F6F62A20 /* Division.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Division.swift; path = Sources/Division.swift; sourceTree = "<group>"; };
 		2E37C9409DCDDDE7523B26481DB4A484 /* BigInt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BigInt.modulemap; sourceTree = "<group>"; };
+		30912E5EE6C7FD8A37F5B9649183C9EF /* String+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		30E5028F35703F5C4B0857EA1CAE7618 /* Square Root.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Square Root.swift"; path = "Sources/Square Root.swift"; sourceTree = "<group>"; };
 		3185C3FF6B33C51C00B67B90C03BF5C8 /* Pods-ZKSyncSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
-		32FB037168E5E991F2E8A291B64393F1 /* ZKSyncSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZKSyncSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		35DFD4416FD8B5D2D137B082FAA7E7E7 /* ZKSyncSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZKSyncSDK-umbrella.h"; sourceTree = "<group>"; };
 		3788EF7A1EC1A51309B4A994AECDCF49 /* Pods-ZKSyncSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZKSyncSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
-		37E08982C7A92F19E096C59D671F7AD4 /* ZKSyncSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZKSyncSDK-prefix.pch"; sourceTree = "<group>"; };
-		41EA07D72E1056FA7C5EB0E111DDFD01 /* Transport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transport.swift; path = ZKSyncSDK/Classes/Transport.swift; sourceTree = "<group>"; };
 		42CD9E0FE40EAA192F4C7195A9AE1D18 /* BigInt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BigInt-Info.plist"; sourceTree = "<group>"; };
 		436263B3F31E6048685B50CC8AD18F82 /* BigInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BigInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CACB7334A90C61F9D0D67F34901DE8 /* Pods-ZKSyncSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		466D8EDB2105060876C76BC168C1D9A9 /* Data Conversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data Conversion.swift"; path = "Sources/Data Conversion.swift"; sourceTree = "<group>"; };
+		49012CBC4A50986B5B4B85C0F40A5261 /* Provider+TransactionFee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Provider+TransactionFee.swift"; sourceTree = "<group>"; };
+		4B8CB142E4C401247218908461F16B47 /* libzkscrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libzkscrypto.a; path = ZKSyncSDK/libzks/libzkscrypto.a; sourceTree = "<group>"; };
 		51F1D9413169CDC36EDC4F68C56857DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		52B175602DF4FF1DE785EF33351F63B4 /* ZKSyncSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZKSyncSDK-dummy.m"; sourceTree = "<group>"; };
 		565EA2F8DCD7E25BC9B36F2FC0D4D554 /* Pods-ZKSyncSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZKSyncSDK_Example-umbrella.h"; sourceTree = "<group>"; };
 		5BEA896AB210B97BD868FD6C04EFA831 /* Strideable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Strideable.swift; path = Sources/Strideable.swift; sourceTree = "<group>"; };
 		5D0866DA6D3038DD38E5D125B7786DF9 /* Multiplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Multiplication.swift; path = Sources/Multiplication.swift; sourceTree = "<group>"; };
-		6161B8CB96E49CBEA8EFCC849D40EBA9 /* Provider+TransactionFee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Provider+TransactionFee.swift"; path = "ZKSyncSDK/Classes/Provider+TransactionFee.swift"; sourceTree = "<group>"; };
 		62F3C0C287A51DF6E535C334E2CBC3AA /* BigInt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BigInt-umbrella.h"; sourceTree = "<group>"; };
+		63E0EC18602BDCD4779BF980C1D6EC3B /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6786DC739597A15ACAFC770446BD7B57 /* Bitwise Ops.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bitwise Ops.swift"; path = "Sources/Bitwise Ops.swift"; sourceTree = "<group>"; };
-		67EFAD0C7B94645C94FAECC5B169A0FF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6B527F453084E7506A35CA19928275D3 /* ZKSyncSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZKSyncSDK.debug.xcconfig; sourceTree = "<group>"; };
+		6BA8AB8E1C8BEE7A2FA581431F853876 /* Provider+ContractAddress.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Provider+ContractAddress.swift"; sourceTree = "<group>"; };
+		6CB8BFE25526843E50441B8B3084B26B /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		710A79FD242AAD07D7894E8A1651E90E /* Provider+TokenPrice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Provider+TokenPrice.swift"; sourceTree = "<group>"; };
 		73CE85612CF9CB0D4FD84C0F63B8AA29 /* Pods-ZKSyncSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZKSyncSDK_Example.modulemap"; sourceTree = "<group>"; };
+		74FB84DB3C1B31E2869EAD1C9E9187BF /* ZKSyncSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZKSyncSDK-Info.plist"; sourceTree = "<group>"; };
 		76B88D65E1FB896EAAC762B728A9BB5E /* Random.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Sources/Random.swift; sourceTree = "<group>"; };
+		78BCC17546D660DF950D64CD89E1C30E /* Signer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		7C475069664C80AAAB0D74D3575FFF7F /* BigInt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BigInt-prefix.pch"; sourceTree = "<group>"; };
 		7CA421DDE77C0A30E63DB6C268F8F5CC /* Pods-ZKSyncSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		7D574FC6F2470A042E1A96F2F050CFE7 /* Provider+TokenPrice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Provider+TokenPrice.swift"; path = "ZKSyncSDK/Classes/Provider+TokenPrice.swift"; sourceTree = "<group>"; };
 		7DF5F7769A0EFA2387081FB7A981FFDA /* BigInt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BigInt-dummy.m"; sourceTree = "<group>"; };
 		7E6DD6C0A3208287CBFAD49A720A45C5 /* Words and Bits.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Words and Bits.swift"; path = "Sources/Words and Bits.swift"; sourceTree = "<group>"; };
 		8188D31F68673C71B83EA3589DDC6832 /* Pods-ZKSyncSDK_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZKSyncSDK_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -127,32 +141,40 @@
 		8A09FA4367B3EE7FA256E40C87F1476E /* Pods-ZKSyncSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZKSyncSDK_Tests.modulemap"; sourceTree = "<group>"; };
 		8A55F1FD9FB05F72699586B50B91A969 /* GCD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GCD.swift; path = Sources/GCD.swift; sourceTree = "<group>"; };
 		8C790681494CDC322851D2E191A8045B /* BigInt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BigInt.debug.xcconfig; sourceTree = "<group>"; };
-		91BB24BA472AF523E913108C9AA301F2 /* BigInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BigInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4840EC5FAD90AAA606A5C60058D7F /* Pods_ZKSyncSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B1069016A6DBCEB3C23282FA50DAEA /* ZKCryptoSDK+Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ZKCryptoSDK+Types.swift"; path = "ZKCryptoSDK/Classes/ZKCryptoSDK+Types.swift"; sourceTree = "<group>"; };
+		91BB24BA472AF523E913108C9AA301F2 /* BigInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BigInt.framework; path = BigInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93036CCA4BE77DA5189E6273B847DF82 /* ZKSyncSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZKSyncSDK.release.xcconfig; sourceTree = "<group>"; };
+		93A4840EC5FAD90AAA606A5C60058D7F /* Pods_ZKSyncSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ZKSyncSDK_Example.framework; path = "Pods-ZKSyncSDK_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B64ABCCBE236A9ECAF99111679E5D3 /* Integer Conversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Integer Conversion.swift"; path = "Sources/Integer Conversion.swift"; sourceTree = "<group>"; };
+		9634392B85147ED506649F234A0D8AD9 /* Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		9A32D8F5937203751942B84436F0134B /* Subtraction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Subtraction.swift; path = Sources/Subtraction.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E1293E3BD3BE1F4E44055EDE2BBA42F /* Signer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Signer.swift; path = ZKSyncSDK/Classes/Signer.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E8FFF748E4347E45F9C1B09BE2BA491 /* ZKCryptoSDK.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZKCryptoSDK.swift; path = ZKCryptoSDK/Classes/ZKCryptoSDK.swift; sourceTree = "<group>"; };
 		A37D3AD27CCE751F6D63FB7F87163613 /* Hashable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Hashable.swift; path = Sources/Hashable.swift; sourceTree = "<group>"; };
-		A4A714C95B249EF25266442A2C8EF5B0 /* ZKSyncSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZKSyncSDK-Info.plist"; sourceTree = "<group>"; };
-		A78B28F126718E52233F8ABF08CFA869 /* ZKSyncSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZKSyncSDK.modulemap; sourceTree = "<group>"; };
+		A65A598E024F6E4BB7DDC696A2F5219C /* zks_crypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = zks_crypto.h; sourceTree = "<group>"; };
+		A80D23324A18D2AECB0037668AA860D9 /* Transport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
+		ABCB958C000121C4D55D6104815A28EE /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		AC91BE3E219BFEFE55B42B85289C60CA /* BigInt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BigInt.release.xcconfig; sourceTree = "<group>"; };
+		AEC5770F017E7FA84E837129A9B97D1A /* ZKSyncSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZKSyncSDK-dummy.m"; sourceTree = "<group>"; };
+		B13531DA4E390ECFE4DD67B0623ABC06 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		B209F7EB5FCDBF9AAF789F267FE042DF /* Pods-ZKSyncSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZKSyncSDK_Example-Info.plist"; sourceTree = "<group>"; };
-		BDE98F6913A8CE629203AECD957CF843 /* Provider+ContractAddress.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Provider+ContractAddress.swift"; path = "ZKSyncSDK/Classes/Provider+ContractAddress.swift"; sourceTree = "<group>"; };
+		B9118D810E9ABA7D6B76926ECE9B15CA /* ZKSyncSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZKSyncSDK-umbrella.h"; sourceTree = "<group>"; };
 		BE1BD392AEF01705806EF02E6AC7BE93 /* Pods-ZKSyncSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZKSyncSDK_Tests-Info.plist"; sourceTree = "<group>"; };
 		C21FA016970A9B08BCAE43BE75F69E5F /* Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Comparable.swift; path = Sources/Comparable.swift; sourceTree = "<group>"; };
-		CFB00C346C29C982655E0EC64864E2E2 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = ZKSyncSDK/Classes/Provider.swift; sourceTree = "<group>"; };
+		CD7C1BC0416693CA3E23994AA3619716 /* ZKSyncSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZKSyncSDK-prefix.pch"; sourceTree = "<group>"; };
 		D295DBF64DC93E26BFEA6565901E0A12 /* BigInt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BigInt.swift; path = Sources/BigInt.swift; sourceTree = "<group>"; };
-		D9946821D8A2717125ED200F1A6F999B /* Provider+Accounts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Provider+Accounts.swift"; path = "ZKSyncSDK/Classes/Provider+Accounts.swift"; sourceTree = "<group>"; };
+		DA4B50B4571CBB0CAE2F7BC3406C5FBC /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		E1E61FC2BDAE799C8D330239D18FF574 /* Addition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Addition.swift; path = Sources/Addition.swift; sourceTree = "<group>"; };
 		E5C475FEB187E8A0DAA5ACC7DF46B631 /* Pods-ZKSyncSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZKSyncSDK_Tests-dummy.m"; sourceTree = "<group>"; };
+		E6F1CAE4F1FB428D18F3F12802745892 /* Provider+Accounts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Provider+Accounts.swift"; sourceTree = "<group>"; };
+		E768E71521F6241CEA08BAF3A8884BF8 /* BigInt+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BigInt+Extensions.swift"; sourceTree = "<group>"; };
 		EA6377F6A52D57630522D67863CC476A /* BigUInt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BigUInt.swift; path = Sources/BigUInt.swift; sourceTree = "<group>"; };
-		EBDCC0C50ABFDD6B906269EA1734B5CA /* Types.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Types.swift; path = ZKSyncSDK/Classes/Types.swift; sourceTree = "<group>"; };
+		EAD27E3371ECDAA67BA3B0682B0D631C /* ZKSyncSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = ZKSyncSDK.modulemap; path = ZKSyncSDK/ZKSyncSDK.modulemap; sourceTree = "<group>"; };
+		EC0EE36B33C54CC045CE9A1E2748A0D1 /* ZKSyncError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZKSyncError.swift; sourceTree = "<group>"; };
 		EF5263FD0636A0D234DF68B85EB7B8A8 /* Prime Test.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Prime Test.swift"; path = "Sources/Prime Test.swift"; sourceTree = "<group>"; };
 		F2C376D07742F7ADA01311652D6C96E1 /* String Conversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String Conversion.swift"; path = "Sources/String Conversion.swift"; sourceTree = "<group>"; };
 		F2FF0B0F4AE77A62E6FDD821F86A107C /* Pods-ZKSyncSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZKSyncSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F521A4A79781273E37691E975EE854D7 /* ZKSyncSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZKSyncSDK.debug.xcconfig; sourceTree = "<group>"; };
-		FC31CD5421E3A4FE2BF3EA3F3B3CFAB0 /* ZKSyncSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZKSyncSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC31CD5421E3A4FE2BF3EA3F3B3CFAB0 /* ZKSyncSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ZKSyncSDK.framework; path = ZKSyncSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6FAB850172B5E092A17D4F9EFFB0D2 /* Pods-ZKSyncSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZKSyncSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		FE7728A2CD9AA973F06CD7F07BE1D052 /* Exponentiation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Exponentiation.swift; path = Sources/Exponentiation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,39 +204,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AC09D83E67C2DFA747DAAB034DBD2B7D /* Frameworks */ = {
+		D7DC803F53C838C3ED96AFFAC17A75FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61F83EE744501A359E94899C01EAE92D /* BigInt.framework in Frameworks */,
-				DC1FDB4E33684AB1167C9B7C77C702A1 /* Foundation.framework in Frameworks */,
+				8F875DA617AC62C6FB22C7B586FC8E9E /* BigInt.framework in Frameworks */,
+				8FEC254BF3DF613184B51C37DFF794F1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A2FD88D314859F5CD0C4DDC255BE04 /* Support Files */ = {
+		064419387D0DDE902EF7A2A9FBB90AB9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A78B28F126718E52233F8ABF08CFA869 /* ZKSyncSDK.modulemap */,
-				52B175602DF4FF1DE785EF33351F63B4 /* ZKSyncSDK-dummy.m */,
-				A4A714C95B249EF25266442A2C8EF5B0 /* ZKSyncSDK-Info.plist */,
-				37E08982C7A92F19E096C59D671F7AD4 /* ZKSyncSDK-prefix.pch */,
-				35DFD4416FD8B5D2D137B082FAA7E7E7 /* ZKSyncSDK-umbrella.h */,
-				F521A4A79781273E37691E975EE854D7 /* ZKSyncSDK.debug.xcconfig */,
-				1E891265602BA4CC491D7C743F3ACC79 /* ZKSyncSDK.release.xcconfig */,
+				75FEACA2671A4ACD2BD7CC21C657A995 /* Classes */,
+				4AB4D07A0364FC7776624CF34F0D3A1A /* Headers */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/ZKSyncSDK";
+			name = Core;
 			sourceTree = "<group>";
 		};
-		08D2DECF5B5A2E9335118373E21AAFA9 /* Development Pods */ = {
+		0B3A540B74B4F17AEC04C8B2D452E38C /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				898C73AA1BB772228C55FBF2D606CE3D /* ZKSyncSDK */,
+				9634392B85147ED506649F234A0D8AD9 /* Network.swift */,
+				EC0EE36B33C54CC045CE9A1E2748A0D1 /* ZKSyncError.swift */,
 			);
-			name = "Development Pods";
+			name = Types;
+			path = Types;
+			sourceTree = "<group>";
+		};
+		11DBA854C2DE3A2778144DEBE41E896A /* ZKSyncSDK */ = {
+			isa = PBXGroup;
+			children = (
+				064419387D0DDE902EF7A2A9FBB90AB9 /* Core */,
+				D76597E28354806B16F9E0B0FEEE44D4 /* Crypto */,
+				A1E04D6CEF355CF93D1151AB2D13A41C /* Frameworks */,
+				7B12C7CC9220A5513383D70914B92650 /* Pod */,
+				FD4A0CB625E7424C2B77AE6F82AA0917 /* Support Files */,
+			);
+			name = ZKSyncSDK;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		269FF108BBBA9B026ABDF5700F3BC31C /* Pods-ZKSyncSDK_Example */ = {
@@ -245,12 +276,35 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		469A206E18FB78AF9388735B6D01F5BB /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				B13531DA4E390ECFE4DD67B0623ABC06 /* Provider.swift */,
+				E6F1CAE4F1FB428D18F3F12802745892 /* Provider+Accounts.swift */,
+				6BA8AB8E1C8BEE7A2FA581431F853876 /* Provider+ContractAddress.swift */,
+				710A79FD242AAD07D7894E8A1651E90E /* Provider+TokenPrice.swift */,
+				49012CBC4A50986B5B4B85C0F40A5261 /* Provider+TransactionFee.swift */,
+			);
+			name = Provider;
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		4852AD1F04C8BE01C9D27A9724172EAB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				9E6A6DBB2762F621F9DF2889015B0C28 /* BigInt */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		4AB4D07A0364FC7776624CF34F0D3A1A /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				A65A598E024F6E4BB7DDC696A2F5219C /* zks_crypto.h */,
+				B9118D810E9ABA7D6B76926ECE9B15CA /* ZKSyncSDK-umbrella.h */,
+			);
+			name = Headers;
+			path = ZKSyncSDK/Headers;
 			sourceTree = "<group>";
 		};
 		67D9D0D76A6C446908C998CB2B8D2A03 /* Targets Support Files */ = {
@@ -262,32 +316,51 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		690A0976702F8720ABFCBD0592D85651 /* Pod */ = {
+		73E0BADC76CC3F4E64616ECDFD320489 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
-				054ED7D74D58C0EB31BB998CC028685A /* LICENSE */,
-				67EFAD0C7B94645C94FAECC5B169A0FF /* README.md */,
-				32FB037168E5E991F2E8A291B64393F1 /* ZKSyncSDK.podspec */,
+				ABCB958C000121C4D55D6104815A28EE /* Error.swift */,
+				6CB8BFE25526843E50441B8B3084B26B /* Request.swift */,
+				63E0EC18602BDCD4779BF980C1D6EC3B /* Response.swift */,
+				A80D23324A18D2AECB0037668AA860D9 /* Transport.swift */,
+			);
+			name = Transport;
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		75FEACA2671A4ACD2BD7CC21C657A995 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				78BCC17546D660DF950D64CD89E1C30E /* Signer.swift */,
+				DA4B50B4571CBB0CAE2F7BC3406C5FBC /* Types.swift */,
+				8B1DAAC0155639AE24BB52AF8797F9B4 /* Extensions */,
+				469A206E18FB78AF9388735B6D01F5BB /* Provider */,
+				73E0BADC76CC3F4E64616ECDFD320489 /* Transport */,
+				0B3A540B74B4F17AEC04C8B2D452E38C /* Types */,
+			);
+			name = Classes;
+			path = ZKSyncSDK/Classes;
+			sourceTree = "<group>";
+		};
+		7B12C7CC9220A5513383D70914B92650 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				1922C6B5A73F74ED1A54A079DD288E47 /* LICENSE */,
+				072B4D22AB2EEE7681A40A517F11485E /* README.md */,
+				EAD27E3371ECDAA67BA3B0682B0D631C /* ZKSyncSDK.modulemap */,
+				178ACBB538B39D11DE0DD08C3D3C568B /* ZKSyncSDK.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		898C73AA1BB772228C55FBF2D606CE3D /* ZKSyncSDK */ = {
+		8B1DAAC0155639AE24BB52AF8797F9B4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CFB00C346C29C982655E0EC64864E2E2 /* Provider.swift */,
-				D9946821D8A2717125ED200F1A6F999B /* Provider+Accounts.swift */,
-				BDE98F6913A8CE629203AECD957CF843 /* Provider+ContractAddress.swift */,
-				7D574FC6F2470A042E1A96F2F050CFE7 /* Provider+TokenPrice.swift */,
-				6161B8CB96E49CBEA8EFCC849D40EBA9 /* Provider+TransactionFee.swift */,
-				9E1293E3BD3BE1F4E44055EDE2BBA42F /* Signer.swift */,
-				41EA07D72E1056FA7C5EB0E111DDFD01 /* Transport.swift */,
-				EBDCC0C50ABFDD6B906269EA1734B5CA /* Types.swift */,
-				690A0976702F8720ABFCBD0592D85651 /* Pod */,
-				07A2FD88D314859F5CD0C4DDC255BE04 /* Support Files */,
+				E768E71521F6241CEA08BAF3A8884BF8 /* BigInt+Extensions.swift */,
+				30912E5EE6C7FD8A37F5B9649183C9EF /* String+Extensions.swift */,
 			);
-			name = ZKSyncSDK;
-			path = ../..;
+			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9E6A6DBB2762F621F9DF2889015B0C28 /* BigInt */ = {
@@ -317,14 +390,31 @@
 				7E6DD6C0A3208287CBFAD49A720A45C5 /* Words and Bits.swift */,
 				DFE9F4269B17EF9A985AAB93610874CA /* Support Files */,
 			);
+			name = BigInt;
 			path = BigInt;
+			sourceTree = "<group>";
+		};
+		A1E04D6CEF355CF93D1151AB2D13A41C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B8CB142E4C401247218908461F16B47 /* libzkscrypto.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA4304F6A810DBBA29F974A95B543D6B /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				11DBA854C2DE3A2778144DEBE41E896A /* ZKSyncSDK */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				08D2DECF5B5A2E9335118373E21AAFA9 /* Development Pods */,
+				BA4304F6A810DBBA29F974A95B543D6B /* Development Pods */,
 				D33FBE55A54B62CB404013BC0B8824E7 /* Frameworks */,
 				4852AD1F04C8BE01C9D27A9724172EAB /* Pods */,
 				33E663B4F1ED687D7A2096A3F142E781 /* Products */,
@@ -339,6 +429,15 @@
 				DB5B81CAEC393DAE300062046695D289 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D76597E28354806B16F9E0B0FEEE44D4 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				9E8FFF748E4347E45F9C1B09BE2BA491 /* ZKCryptoSDK.swift */,
+				90B1069016A6DBCEB3C23282FA50DAEA /* ZKCryptoSDK+Types.swift */,
+			);
+			name = Crypto;
 			sourceTree = "<group>";
 		};
 		DB5B81CAEC393DAE300062046695D289 /* iOS */ = {
@@ -380,6 +479,20 @@
 			path = "Target Support Files/Pods-ZKSyncSDK_Tests";
 			sourceTree = "<group>";
 		};
+		FD4A0CB625E7424C2B77AE6F82AA0917 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				04E371534BCF2335892E18AD4B220E19 /* ZKSyncSDK.modulemap */,
+				AEC5770F017E7FA84E837129A9B97D1A /* ZKSyncSDK-dummy.m */,
+				74FB84DB3C1B31E2869EAD1C9E9187BF /* ZKSyncSDK-Info.plist */,
+				CD7C1BC0416693CA3E23994AA3619716 /* ZKSyncSDK-prefix.pch */,
+				6B527F453084E7506A35CA19928275D3 /* ZKSyncSDK.debug.xcconfig */,
+				93036CCA4BE77DA5189E6273B847DF82 /* ZKSyncSDK.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ZKSyncSDK";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -399,19 +512,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B19B5542CE1F320B4962EB31FA5D8015 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				550C25BF78675B1DA00F2C83DFB2FC3E /* zks_crypto.h in Headers */,
+				AD70FF4267A0789168393E14E0B5111D /* ZKSyncSDK-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0D300FB6C20F927E84ABEC57F61A19E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CF098CEA3330930EE29247B0FA751B16 /* Pods-ZKSyncSDK_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1E15836B432234F8A7E2E90D7CCD29D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9DBE417C136E9D5151E3DBCAD84268AA /* ZKSyncSDK-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +562,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				94ECE99A8F56E540C398772CA56572F6 /* PBXTargetDependency */,
+				000A4416C636C853372330BF13957827 /* PBXTargetDependency */,
 			);
 			name = "Pods-ZKSyncSDK_Tests";
 			productName = "Pods-ZKSyncSDK_Tests";
@@ -467,8 +581,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				8E41CD7C7DEE7FA6574BC771F5E9E461 /* PBXTargetDependency */,
-				F41E90FEBAB1F666683909030B7CD701 /* PBXTargetDependency */,
+				788ABD0B162623BA2E2A98952B94D565 /* PBXTargetDependency */,
+				9192FC588B9FA338323E5C962029DC7B /* PBXTargetDependency */,
 			);
 			name = "Pods-ZKSyncSDK_Example";
 			productName = "Pods-ZKSyncSDK_Example";
@@ -477,17 +591,17 @@
 		};
 		F5F7351FE31D7A471B0D918C51C14AFC /* ZKSyncSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FEE935943F3F05FBBE4A9B9A46E7F0 /* Build configuration list for PBXNativeTarget "ZKSyncSDK" */;
+			buildConfigurationList = 01087B55B7EDE3086E0A824AF3BA83CD /* Build configuration list for PBXNativeTarget "ZKSyncSDK" */;
 			buildPhases = (
-				E1E15836B432234F8A7E2E90D7CCD29D /* Headers */,
-				EF9FBB81F596449EFC9518079B0DC693 /* Sources */,
-				AC09D83E67C2DFA747DAAB034DBD2B7D /* Frameworks */,
-				47B2D00C9A1DA57347133F29EE8C0CB4 /* Resources */,
+				B19B5542CE1F320B4962EB31FA5D8015 /* Headers */,
+				CC5286A1A447C6FDA1980B60084B901B /* Sources */,
+				D7DC803F53C838C3ED96AFFAC17A75FB /* Frameworks */,
+				00F01FA42D498864C652FCA95A5F295E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				62CC6AE6CF4259E5090000B67415F6CF /* PBXTargetDependency */,
+				7CBD4040CB94726C344098CB9161D74A /* PBXTargetDependency */,
 			);
 			name = ZKSyncSDK;
 			productName = ZKSyncSDK;
@@ -525,7 +639,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		47B2D00C9A1DA57347133F29EE8C0CB4 /* Resources */ = {
+		00F01FA42D498864C652FCA95A5F295E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -594,19 +708,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EF9FBB81F596449EFC9518079B0DC693 /* Sources */ = {
+		CC5286A1A447C6FDA1980B60084B901B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0096C9E5BE74E8DE38ED4FD6F2401B5 /* Provider+Accounts.swift in Sources */,
-				A75F9ED8B0C5C779EC2F66CE484C0705 /* Provider+ContractAddress.swift in Sources */,
-				622A2E3A9B3F444B73E4A189A19AAE0F /* Provider+TokenPrice.swift in Sources */,
-				97FC768F481303B03E16F5780EF12810 /* Provider+TransactionFee.swift in Sources */,
-				E2282B6245EE50B4A272A4411BC8C87B /* Provider.swift in Sources */,
-				4FBCB275AF66D6BE03B72474AAE4A55C /* Signer.swift in Sources */,
-				9B7584F61EC0A81E43C5806D1E6FFE31 /* Transport.swift in Sources */,
-				1EEE38F53C24EA7EAF1C3ECE78B4FA32 /* Types.swift in Sources */,
-				367A4A7C6AE185606FEFD3AAED6AC696 /* ZKSyncSDK-dummy.m in Sources */,
+				0E7835DFB27AC049F43618EF6BAE9097 /* BigInt+Extensions.swift in Sources */,
+				70B810108BB0AD4F00FB7F57A8214DC0 /* Error.swift in Sources */,
+				4344200DBAA751AE411C0380237B0610 /* Network.swift in Sources */,
+				413C0F420AA747F2A7A89D0C997A139C /* Provider+Accounts.swift in Sources */,
+				5FEAB212AF4D5BF2E31F9876E69A6059 /* Provider+ContractAddress.swift in Sources */,
+				DA5554A882D8C5B0DE99033A89BE040F /* Provider+TokenPrice.swift in Sources */,
+				80E51DAC32B23A160661E7DA9657F0BA /* Provider+TransactionFee.swift in Sources */,
+				6AAE050887BEA69AFF4DF0A4C7BAAFEF /* Provider.swift in Sources */,
+				005E8295B0F6F524F6C1AFDE6A023D70 /* Request.swift in Sources */,
+				9FD440324F36B95707E0DFF0FB37C379 /* Response.swift in Sources */,
+				CE5FD0764AE2526E0101DA9FF9D87BAE /* Signer.swift in Sources */,
+				7DA0DC5546DF0779A787BFFB6339CAC5 /* String+Extensions.swift in Sources */,
+				8C863E4673213014576F63A9CA166A0D /* Transport.swift in Sources */,
+				DCAF77FB571C656322E89EDD42E7041E /* Types.swift in Sources */,
+				7052604324F125AF6FDB5CBBC0BFAC11 /* ZKCryptoSDK+Types.swift in Sources */,
+				20E88492C7B69CE52E382BEC57DCD3F7 /* ZKCryptoSDK.swift in Sources */,
+				2610E62180340F7E6C2F5E4CBB7B2AD1 /* ZKSyncError.swift in Sources */,
+				7772F42B375D003E028D59F7D22B8192 /* ZKSyncSDK-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,29 +744,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		62CC6AE6CF4259E5090000B67415F6CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BigInt;
-			target = 09DD83B7D075842A3A5105AD410BD38A /* BigInt */;
-			targetProxy = F79B09CFD952A0E3F623F3FC0F679BDB /* PBXContainerItemProxy */;
-		};
-		8E41CD7C7DEE7FA6574BC771F5E9E461 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BigInt;
-			target = 09DD83B7D075842A3A5105AD410BD38A /* BigInt */;
-			targetProxy = A64FA59BEE2822FA0C1A40A9A8A9193C /* PBXContainerItemProxy */;
-		};
-		94ECE99A8F56E540C398772CA56572F6 /* PBXTargetDependency */ = {
+		000A4416C636C853372330BF13957827 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-ZKSyncSDK_Example";
 			target = EA4D8746E6CD61B8C596E1072379D51E /* Pods-ZKSyncSDK_Example */;
-			targetProxy = F817DE616F7B9B235D39BB07A59BDD76 /* PBXContainerItemProxy */;
+			targetProxy = 4BAC3AC7EC9A6B01CFBC42CAB2D9F8D1 /* PBXContainerItemProxy */;
 		};
-		F41E90FEBAB1F666683909030B7CD701 /* PBXTargetDependency */ = {
+		788ABD0B162623BA2E2A98952B94D565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			target = 09DD83B7D075842A3A5105AD410BD38A /* BigInt */;
+			targetProxy = B8AF0FD98E8672D2D60065B80D81432F /* PBXContainerItemProxy */;
+		};
+		7CBD4040CB94726C344098CB9161D74A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BigInt;
+			target = 09DD83B7D075842A3A5105AD410BD38A /* BigInt */;
+			targetProxy = 667836A9E746B016639203552DD49182 /* PBXContainerItemProxy */;
+		};
+		9192FC588B9FA338323E5C962029DC7B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZKSyncSDK;
 			target = F5F7351FE31D7A471B0D918C51C14AFC /* ZKSyncSDK */;
-			targetProxy = 464BCC3F13EFA39E00E00D9923C5990E /* PBXContainerItemProxy */;
+			targetProxy = EF56ECA774432ED7FACF16478C42FC4D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -779,6 +902,36 @@
 			};
 			name = Debug;
 		};
+		2AD8B0A5FB5B5DB8637730FF7BC88757 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B527F453084E7506A35CA19928275D3 /* ZKSyncSDK.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ZKSyncSDK/ZKSyncSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK.modulemap";
+				PRODUCT_MODULE_NAME = ZKSyncSDK;
+				PRODUCT_NAME = ZKSyncSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		30332AE795388FDD304210541219D1A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43CACB7334A90C61F9D0D67F34901DE8 /* Pods-ZKSyncSDK_Tests.debug.xcconfig */;
@@ -905,11 +1058,10 @@
 			};
 			name = Release;
 		};
-		B2CA533CA4B844A0AB14A990382DD7E6 /* Release */ = {
+		B6A72AAB86149864F7310584C1260DEB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E891265602BA4CC491D7C743F3ACC79 /* ZKSyncSDK.release.xcconfig */;
+			baseConfigurationReference = 93036CCA4BE77DA5189E6273B847DF82 /* ZKSyncSDK.release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -921,7 +1073,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ZKSyncSDK/ZKSyncSDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK.modulemap";
 				PRODUCT_MODULE_NAME = ZKSyncSDK;
@@ -992,60 +1144,30 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		DBA8DAFD7A5960B482F55FEA5C36E27F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F521A4A79781273E37691E975EE854D7 /* ZKSyncSDK.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ZKSyncSDK/ZKSyncSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ZKSyncSDK/ZKSyncSDK.modulemap";
-				PRODUCT_MODULE_NAME = ZKSyncSDK;
-				PRODUCT_NAME = ZKSyncSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		01087B55B7EDE3086E0A824AF3BA83CD /* Build configuration list for PBXNativeTarget "ZKSyncSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AD8B0A5FB5B5DB8637730FF7BC88757 /* Debug */,
+				B6A72AAB86149864F7310584C1260DEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		203592F5A21F25B3539AFB35BF200FE8 /* Build configuration list for PBXNativeTarget "Pods-ZKSyncSDK_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				169B4254C9086407317CADC8ECF08239 /* Debug */,
 				250BDB1D0FBE669703CF3D0585B49BE4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		30FEE935943F3F05FBBE4A9B9A46E7F0 /* Build configuration list for PBXNativeTarget "ZKSyncSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBA8DAFD7A5960B482F55FEA5C36E27F /* Debug */,
-				B2CA533CA4B844A0AB14A990382DD7E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
