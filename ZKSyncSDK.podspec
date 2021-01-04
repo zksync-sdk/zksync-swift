@@ -31,8 +31,10 @@ zkSync is a scaling and privacy engine for Ethereum. Its current functionality s
     s.subspec 'Core' do |core|
         core.source_files = 'ZKSyncSDK/Classes/**/*', 'ZKSyncSDK/Headers/*.h'
 
-        core.dependency 'BigInt', '~> 5.2'
+        core.dependency 'BigInt'
         core.dependency 'ZKSyncSDK/Crypto'
+        core.dependency 'Alamofire'
+        core.dependency 'web3swift'
     end
 
     s.subspec 'Crypto' do |crypto|

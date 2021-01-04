@@ -31,9 +31,15 @@
       ],
       "dependencies": {
         "BigInt": [
-          "~> 5.2"
+
         ],
         "ZKSyncSDK/Crypto": [
+
+        ],
+        "Alamofire": [
+
+        ],
+        "web3swift": [
 
         ]
       }

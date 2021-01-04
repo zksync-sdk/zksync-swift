@@ -6,96 +6,66 @@
 //  Copyright © 2016-2017 Károly Lőrentey.
 //
 
+import Foundation
+#if os(Linux) || os(FreeBSD)
+  import Glibc
+#endif
+
+
 extension BigUInt {
-    /// Create a big unsigned integer consisting of `width` uniformly distributed random bits.
-    ///
-    /// - Parameter width: The maximum number of one bits in the result.
-    /// - Parameter generator: The source of randomness.
-    /// - Returns: A big unsigned integer less than `1 << width`.
-    public static func randomInteger<RNG: RandomNumberGenerator>(withMaximumWidth width: Int, using generator: inout RNG) -> BigUInt {
-        var result = BigUInt.zero
-        var bitsLeft = width
-        var i = 0
-        let wordsNeeded = (width + Word.bitWidth - 1) / Word.bitWidth
-        if wordsNeeded > 2 {
-            result.reserveCapacity(wordsNeeded)
-        }
-        while bitsLeft >= Word.bitWidth {
-            result[i] = generator.next()
-            i += 1
-            bitsLeft -= Word.bitWidth
-        }
-        if bitsLeft > 0 {
-            let mask: Word = (1 << bitsLeft) - 1
-            result[i] = (generator.next() as Word) & mask
-        }
-        return result
-    }
+    //MARK: Random Integers
 
-    /// Create a big unsigned integer consisting of `width` uniformly distributed random bits.
+    /// Create a big integer consisting of `width` uniformly distributed random bits.
     ///
-    /// - Note: I use a `SystemRandomGeneratorGenerator` as the source of randomness.
-    ///
-    /// - Parameter width: The maximum number of one bits in the result.
-    /// - Returns: A big unsigned integer less than `1 << width`.
+    /// - Returns: A big integer less than `1 << width`.
+    /// - Note: This function uses `arc4random_buf` to generate random bits.
     public static func randomInteger(withMaximumWidth width: Int) -> BigUInt {
-        var rng = SystemRandomNumberGenerator()
-        return randomInteger(withMaximumWidth: width, using: &rng)
+        guard width > 0 else { return 0 }
+
+        let byteCount = (width + 7) / 8
+        assert(byteCount > 0)
+
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: byteCount)
+      #if os(Linux) || os(FreeBSD)
+        let fd = open("/dev/urandom", O_RDONLY)
+        defer {
+            close(fd)
+        }
+        let _ = read(fd, buffer, MemoryLayout<UInt8>.size * byteCount)
+      #else
+        arc4random_buf(buffer, byteCount)
+      #endif
+        if width % 8 != 0 {
+            buffer[0] &= UInt8(1 << (width % 8) - 1)
+        }
+        defer {
+            buffer.deinitialize(count: byteCount)
+            buffer.deallocate()
+        }
+        return BigUInt(Data(bytesNoCopy: buffer, count: byteCount, deallocator: .none))
     }
 
-    /// Create a big unsigned integer consisting of `width-1` uniformly distributed random bits followed by a one bit.
+    /// Create a big integer consisting of `width-1` uniformly distributed random bits followed by a one bit.
     ///
-    /// - Note: If `width` is zero, the result is zero.
-    ///
-    /// - Parameter width: The number of bits required to represent the answer.
-    /// - Parameter generator: The source of randomness.
-    /// - Returns: A random big unsigned integer whose width is `width`.
-    public static func randomInteger<RNG: RandomNumberGenerator>(withExactWidth width: Int, using generator: inout RNG) -> BigUInt {
-        // width == 0 -> return 0 because there is no room for a one bit.
-        // width == 1 -> return 1 because there is no room for any random bits.
+    /// - Returns: A random big integer whose width is `width`.
+    /// - Note: This function uses `arc4random_buf` to generate random bits.
+    public static func randomInteger(withExactWidth width: Int) -> BigUInt {
         guard width > 1 else { return BigUInt(width) }
-        var result = randomInteger(withMaximumWidth: width - 1, using: &generator)
+        var result = randomInteger(withMaximumWidth: width - 1)
         result[(width - 1) / Word.bitWidth] |= 1 << Word((width - 1) % Word.bitWidth)
         return result
     }
 
-    /// Create a big unsigned integer consisting of `width-1` uniformly distributed random bits followed by a one bit.
+    /// Create a uniformly distributed random integer that's less than the specified limit.
     ///
-    /// - Note: If `width` is zero, the result is zero.
-    /// - Note: I use a `SystemRandomGeneratorGenerator` as the source of randomness.
-    ///
-    /// - Returns: A random big unsigned integer whose width is `width`.
-    public static func randomInteger(withExactWidth width: Int) -> BigUInt {
-        var rng = SystemRandomNumberGenerator()
-        return randomInteger(withExactWidth: width, using: &rng)
-    }
-
-    /// Create a uniformly distributed random unsigned integer that's less than the specified limit.
-    ///
-    /// - Precondition: `limit > 0`.
-    ///
-    /// - Parameter limit: The upper bound on the result.
-    /// - Parameter generator: The source of randomness.
-    /// - Returns: A random big unsigned integer that is less than `limit`.
-    public static func randomInteger<RNG: RandomNumberGenerator>(lessThan limit: BigUInt, using generator: inout RNG) -> BigUInt {
-        precondition(limit > 0, "\(#function): 0 is not a valid limit")
+    /// - Returns: A random big integer that is less than `limit`.
+    /// - Note: This function uses `arc4random_buf` to generate random bits.
+    public static func randomInteger(lessThan limit: BigUInt) -> BigUInt {
         let width = limit.bitWidth
-        var random = randomInteger(withMaximumWidth: width, using: &generator)
+        var random = randomInteger(withMaximumWidth: width)
         while random >= limit {
-            random = randomInteger(withMaximumWidth: width, using: &generator)
+            random = randomInteger(withMaximumWidth: width)
         }
         return random
-    }
-
-    /// Create a uniformly distributed random unsigned integer that's less than the specified limit.
-    ///
-    /// - Precondition: `limit > 0`.
-    /// - Note: I use a `SystemRandomGeneratorGenerator` as the source of randomness.
-    ///
-    /// - Parameter limit: The upper bound on the result.
-    /// - Returns: A random big unsigned integer that is less than `limit`.
-    public static func randomInteger(lessThan limit: BigUInt) -> BigUInt {
-        var rng = SystemRandomNumberGenerator()
-        return randomInteger(lessThan: limit, using: &rng)
     }
 }
