@@ -17,6 +17,6 @@ public struct Token {
 
 extension Provider {
     public func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<BigInt>) -> Void) {
-        transport.request(method: "get_token_price", params: [token.symbol], completion: completion)
+        transport.send(method: "get_token_price", params: [token.symbol], completion: completion)
     }
 }

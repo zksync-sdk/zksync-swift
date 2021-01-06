@@ -8,7 +8,7 @@
 import Foundation
 import BigInt
 
-public typealias ZKSyncResult<T> = Result<T, ZKSyncError>
+public typealias ZKSyncResult<T> = Result<T, Error>
 
 enum VerificationMethod {
     case ECDSA, ERC1271

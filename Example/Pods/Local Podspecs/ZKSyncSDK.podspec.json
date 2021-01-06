@@ -12,7 +12,7 @@
     "The Matter Labs team": "hello@matterlabs.dev"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
   "swift_versions": "5.0",
   "source": {
@@ -37,7 +37,7 @@
 
         ],
         "Alamofire": [
-
+          "~> 5.0"
         ],
         "web3swift": [
 

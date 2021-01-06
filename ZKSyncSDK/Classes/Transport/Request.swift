@@ -21,7 +21,7 @@ struct JRPCCounter {
     }
 }
 
-struct JRPCRequest<T: Codable>: Codable {
+struct JRPCRequest<T: Encodable>: Encodable {
     /// The rpc id
     public let id: UInt64 = JRPCCounter.increment()
     

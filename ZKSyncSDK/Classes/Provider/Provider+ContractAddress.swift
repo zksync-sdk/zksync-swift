@@ -7,13 +7,8 @@
 
 import Foundation
 
-public struct ContractAddress: Codable {
-    var mainContract: String
-    var govContract: String
-}
-
 extension Provider {
     public func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void) {
-        transport.request(method: "contract_address", params: [String](), completion: completion)
+        transport.send(method: "contract_address", params: [String](), completion: completion)
     }
 }

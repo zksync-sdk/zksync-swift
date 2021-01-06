@@ -24,7 +24,7 @@ class JRPCTransport {
             completion(.failure(ZKSyncError.malformedRequest))
             return
         }
-
+        
         let url = URL(string: self.network.address)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -48,7 +48,7 @@ class JRPCTransport {
                 completion(.failure(ZKSyncError.rpcError(code: error.code, message: error.message)))
                 return
             }
-
+            
             if let data = response.result {
                 completion(.success(data))
                 return
@@ -58,4 +58,12 @@ class JRPCTransport {
         task.resume()
     }
     
+}
+
+public typealias TransportResult<T> = Result<T, Error>
+
+public protocol Transport {
+    func send<Parameters: Encodable, Response: Decodable>(method: String,
+                                                          params: Parameters?,
+                                                          completion: @escaping (TransportResult<Response>) -> Void)
 }

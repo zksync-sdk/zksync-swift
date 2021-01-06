@@ -30,6 +30,6 @@ public struct TransactionFeeDetails: Codable {
 
 extension Provider {
     public func transactionFee(request: TransactionFeeRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void) {
-        self.transport.request(method: "get_tx_fee", params: request, completion: completion)
+        self.transport.send(method: "get_tx_fee", params: request, completion: completion)
     }
 }

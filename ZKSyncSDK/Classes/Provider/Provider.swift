@@ -9,10 +9,10 @@ import Foundation
 import BigInt
 
 public class Provider {
-    let transport: JRPCTransport
+    let transport: Transport
     
-    public init(network: Network) {
-        self.transport = JRPCTransport(network: network)
+    public init(transport: Transport) {
+        self.transport = transport
     } 
 }
 

@@ -22,4 +22,8 @@ public enum Network {
             return "https://api.zksync.io/jsrpc"
         }
     }
+    
+    var url: URL {
+        return URL(string: self.address)!
+    }
 }

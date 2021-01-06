@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JRPCResponse<T: Codable>: Codable {
+struct JRPCResponse<T: Decodable>: Decodable {
     /// The rpc id
     public let id: Int
     
