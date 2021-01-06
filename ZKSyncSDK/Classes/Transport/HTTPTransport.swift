@@ -7,7 +7,7 @@
 
 import Foundation
 import Alamofire
-
+import BigInt
 
 public class HTTPTransport: Transport {
     
@@ -58,12 +58,12 @@ public class HTTPTransport: Transport {
             throw ZKSyncError.malformedRequest
         }
     }
-    
 }
 
 class JRPCDecoder: DataDecoder {
     func decode<D>(_ type: D.Type, from data: Data) throws -> D where D : Decodable {
         let decoder = JSONDecoder()
+        
         let response = try decoder.decode(JRPCResponse<D>.self, from: data)
         guard let result = response.result else {
             guard let error = response.error else {

@@ -8,15 +8,10 @@
 import Foundation
 import BigInt
 
-public struct Token {
-    var id: Int
-    var address: String
-    var symbol: String
-    var decimals: Int
-}
-
 extension Provider {
-    public func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<BigInt>) -> Void) {
-        transport.send(method: "get_token_price", params: [token.symbol], completion: completion)
+    public func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void) {
+        transport.send(method: "get_token_price", params: [token.symbol]) { (result: ZKSyncResult<String>) in
+            completion(result.map { Decimal(string: $0)! } )
+        }
     }
 }

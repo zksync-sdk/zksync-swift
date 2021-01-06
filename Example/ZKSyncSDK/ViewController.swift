@@ -26,27 +26,37 @@ class ViewController: UIViewController {
     
     private func createWallet() {
         self.ethSigner = try? EthSigner(privateKey: self.privateKey)
-
+        
         let transport = HTTPTransport(network: self.network)
-
+        
         self.wallet = DefaultWallet(ethSigner: self.ethSigner,
                                     transport: transport)
     }
     
     @IBAction func getContractAddress(_ sender: Any) {
-//        self.wallet.getContractAddress { result in
+        //        self.wallet.getContractAddress { result in
+        //            switch result {
+        //            case .success(let address):
+        //                self.display(contractAddress: address)
+        //            case .failure(let error):
+        //                self.display(error: error)
+        //            }
+        //        }
+        
+//        self.wallet.getAccountInfo { result in
 //            switch result {
-//            case .success(let address):
-//                self.display(contractAddress: address)
+//            case .success(let state):
+//                print(state)
 //            case .failure(let error):
-//                self.display(error: error)
+//                print(error)
 //            }
 //        }
         
-        self.wallet.getAccountInfo { result in
+        self.wallet.getTokenPrice {
+            result in
             switch result {
-            case .success(let state):
-                print(state)
+            case .success(let price):
+                print(price)
             case .failure(let error):
                 print(error)
             }

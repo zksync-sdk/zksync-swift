@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BigInt
 
 public class DefaultWallet: Wallet {
     
@@ -23,6 +24,10 @@ public class DefaultWallet: Wallet {
     
     public func getAccountInfo(completion: @escaping (Result<AccountState, Error>) -> Void) {
         self.provider.accountInfo(address: self.ethSigner.address, completion: completion)
+    }
+    
+    public func getTokenPrice(completion: @escaping (Result<Decimal, Error>) -> Void) {
+        self.provider.tokenPrice(token: Token.ETH, completion: completion)
     }
 
 }

@@ -114,6 +114,7 @@
 		438DAC7813FDB677252FB52A8FA3E708 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496573BFF485B7974C0F6A9B96B2138E /* Updatable.swift */; };
 		4404E5EA25A632A000181A54 /* EthSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E5E925A632A000181A54 /* EthSigner.swift */; };
 		4404E60225A6423200181A54 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E60125A6423200181A54 /* AccountState.swift */; };
+		4404E60F25A6444000181A54 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E60E25A6444000181A54 /* Token.swift */; };
 		440D71FB25A6229F00B0117F /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D71FA25A6229F00B0117F /* Wallet.swift */; };
 		440D721425A6231900B0117F /* ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D721325A6231900B0117F /* ContractAddress.swift */; };
 		440D722C25A6235C00B0117F /* DefaultWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D722B25A6235C00B0117F /* DefaultWallet.swift */; };
@@ -679,6 +680,7 @@
 		43CACB7334A90C61F9D0D67F34901DE8 /* Pods-ZKSyncSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4404E5E925A632A000181A54 /* EthSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSigner.swift; sourceTree = "<group>"; };
 		4404E60125A6423200181A54 /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
+		4404E60E25A6444000181A54 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		440D71FA25A6229F00B0117F /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		440D721325A6231900B0117F /* ContractAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractAddress.swift; sourceTree = "<group>"; };
 		440D722B25A6235C00B0117F /* DefaultWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWallet.swift; sourceTree = "<group>"; };
@@ -1313,6 +1315,7 @@
 			children = (
 				440D721325A6231900B0117F /* ContractAddress.swift */,
 				4404E60125A6423200181A54 /* AccountState.swift */,
+				4404E60E25A6444000181A54 /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2671,6 +2674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4404E60F25A6444000181A54 /* Token.swift in Sources */,
 				440D71FB25A6229F00B0117F /* Wallet.swift in Sources */,
 				E4F488A53149E24EB55E2C87950B04E7 /* BigInt+Extensions.swift in Sources */,
 				A536147C77CA39B6F95F765359EBC3C9 /* Error.swift in Sources */,
