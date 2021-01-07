@@ -10,6 +10,7 @@
 		4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63325A7812100181A54 /* WalletConsumer.swift */; };
 		4404E63825A7815300181A54 /* MethodSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */; };
 		4404E63E25A7855500181A54 /* TokenPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63D25A7855500181A54 /* TokenPriceViewController.swift */; };
+		4404E64225A7894200181A54 /* TransactionFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E64125A7894200181A54 /* TransactionFeeViewController.swift */; };
 		440D723925A6258400B0117F /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */; };
@@ -37,6 +38,7 @@
 		4404E63325A7812100181A54 /* WalletConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConsumer.swift; sourceTree = "<group>"; };
 		4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodSelectionTableViewController.swift; sourceTree = "<group>"; };
 		4404E63D25A7855500181A54 /* TokenPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPriceViewController.swift; sourceTree = "<group>"; };
+		4404E64125A7894200181A54 /* TransactionFeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewController.swift; sourceTree = "<group>"; };
 		440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */,
 				4404E63D25A7855500181A54 /* TokenPriceViewController.swift */,
 				4404E63325A7812100181A54 /* WalletConsumer.swift */,
+				4404E64125A7894200181A54 /* TransactionFeeViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -358,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */,
+				4404E64225A7894200181A54 /* TransactionFeeViewController.swift in Sources */,
 				4404E63825A7815300181A54 /* MethodSelectionTableViewController.swift in Sources */,
 				4404E63E25A7855500181A54 /* TokenPriceViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */,

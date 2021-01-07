@@ -44,7 +44,7 @@ public struct TransactionFeeRequest: Encodable {
         case .changePubKey, .changePubKeyOnchainAuth:
             try self.encodeChangePubKey(to: encoder)
         default:
-            try self.encode(to: encoder)
+            try self.encodePlain(to: encoder)
         }
     }
     
@@ -74,11 +74,11 @@ public struct TransactionFeeRequest: Encodable {
 }
 
 public struct TransactionFeeDetails: Codable {
-    var gasTxAmount: String
-    var gasPriceWei: String
-    var gasFee: String
-    var zkpFee: String
-    var totalFee: String
+   public var gasTxAmount: String
+   public var gasPriceWei: String
+   public var gasFee: String
+   public var zkpFee: String
+   public var totalFee: String
 }
 
 extension Provider {
@@ -86,7 +86,7 @@ extension Provider {
         
 //        let oa = ["onchainPubkeyAuth" : false]
 //        let a = ["ChangePubKey" : oa]
-//        
+//
 //        let params = [a, request.address, request.tokenIdentifier]
         self.transport.send(method: "get_tx_fee", params: request, completion: completion)
     }
