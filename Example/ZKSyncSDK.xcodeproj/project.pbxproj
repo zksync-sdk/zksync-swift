@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63325A7812100181A54 /* WalletConsumer.swift */; };
+		4404E63825A7815300181A54 /* MethodSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */; };
+		4404E63E25A7855500181A54 /* TokenPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E63D25A7855500181A54 /* TokenPriceViewController.swift */; };
 		440D723925A6258400B0117F /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -31,11 +34,14 @@
 /* Begin PBXFileReference section */
 		08C03432B96628F94883A164 /* Pods-ZKSyncSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-ZKSyncSDK_Example/Pods-ZKSyncSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1E49346B89C2FCB10EB6A041 /* Pods-ZKSyncSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ZKSyncSDK_Tests/Pods-ZKSyncSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4404E63325A7812100181A54 /* WalletConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConsumer.swift; sourceTree = "<group>"; };
+		4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodSelectionTableViewController.swift; sourceTree = "<group>"; };
+		4404E63D25A7855500181A54 /* TokenPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPriceViewController.swift; sourceTree = "<group>"; };
 		440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractAddressViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -107,8 +113,11 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */,
 				440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */,
+				4404E63725A7815300181A54 /* MethodSelectionTableViewController.swift */,
+				4404E63D25A7855500181A54 /* TokenPriceViewController.swift */,
+				4404E63325A7812100181A54 /* WalletConsumer.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -348,7 +357,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */,
+				4404E63825A7815300181A54 /* MethodSelectionTableViewController.swift in Sources */,
+				4404E63E25A7855500181A54 /* TokenPriceViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */,
 				440D723925A6258400B0117F /* NetworkSelectionTableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

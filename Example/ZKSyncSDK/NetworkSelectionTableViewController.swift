@@ -7,22 +7,38 @@
 //
 
 import UIKit
+import ZKSyncSDK
 
 class NetworkSelectionTableViewController: UITableViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
+    var privateKey = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        var network: Network = .localhost
         switch segue.identifier {
         case "MainnetSegue":
-            (segue.destination as? ViewController)?.network = .mainnet
+            network = .mainnet
         case "RinkebySegue":
-            (segue.destination as? ViewController)?.network = .rinkeby
+            network = .rinkeby
         case "RopsteinSegue":
-            (segue.destination as? ViewController)?.network = .ropsten
+            network = .ropsten
         default:
             break
         }
+        if var destination = segue.destination as? WalletConsumer {
+            destination.wallet = createWallet(network)
+        }
+    }
+    
+    
+    private func createWallet(_ network: Network) -> Wallet {
+        guard let ethSigner = try? EthSigner(privateKey: self.privateKey) else {
+            fatalError()
+        }
+        
+        let transport = HTTPTransport(network: network)
+        return DefaultWallet(ethSigner: ethSigner,
+                             transport: transport)
     }
 }
