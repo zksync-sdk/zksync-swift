@@ -62,7 +62,7 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
         case 1:
             return self.accountState?.verified.balances.count ?? 0
         case 2:
-            return 1//self.accountState?.depositing.balances.count ?? 0
+            return self.accountState?.depositing.balances.count ?? 0
         default:
             return 0
         }
