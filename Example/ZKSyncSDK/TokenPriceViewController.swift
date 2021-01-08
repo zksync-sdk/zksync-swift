@@ -20,7 +20,7 @@ class TokenPriceViewController: UIViewController, WalletConsumer {
             switch result {
             case .success(let price):
                 self.tokenPriceLabel.text = "\(price)"
-            case .failure(let _):
+            case .failure(_):
                 break
             }
         }
