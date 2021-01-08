@@ -10,12 +10,12 @@ import BigInt
 
 public struct AccountState: Codable {
     public struct Balance: Codable {
-        var amount: String
-        var expectedBlockNumber: BigUInt
+        public var amount: String
+        public var expectedBlockNumber: BigUInt
     }
     
     public struct Depositing: Codable {
-        var balances: [String: Balance]
+        public var balances: [String: Balance]
     }
     
     public struct State: Codable {

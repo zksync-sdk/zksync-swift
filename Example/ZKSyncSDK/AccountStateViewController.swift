@@ -44,15 +44,15 @@ class AccountStateViewController: UIViewController, WalletConsumer {
     private func update(state: AccountState) {
         self.accountState = state
         self.tableView.reloadData()
-        self.addressLabel.text = state.address
-        self.idLabel.text = "\(state.id ?? 0)"
+        self.addressLabel.text = "Address: " + state.address
+        self.idLabel.text = "ID: \(state.id ?? 0)"
     }
 }
 
 extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return accountState != nil ? 3 : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +61,8 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
             return self.accountState?.committed.balances.count ?? 0
         case 1:
             return self.accountState?.verified.balances.count ?? 0
+        case 2:
+            return 1//self.accountState?.depositing.balances.count ?? 0
         default:
             return 0
         }
@@ -75,6 +77,15 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
             cell.textLabel?.text = key
             cell.detailTextLabel?.text = balances[key]
             return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Depositing", for: indexPath) as! DepositingBalanceTableViewCell
+            let balances = self.accountState!.depositing.balances
+            let key = Array(balances)[indexPath.row].key
+            let balance = balances[key]!
+            cell.titleLabel.text = key
+            cell.amountLabel.text = "Amount: " + balance.amount
+            cell.blockNumber.text = "Block number: \(balance.expectedBlockNumber)"
+            return cell
         default:
             break
         }
@@ -82,19 +93,23 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "StateHeader") as? StateSectionHeaderView
         switch section {
-        case 0:
-            headerView?.nonceLabel.text = "\(self.accountState?.committed.nonce ?? 0)"
-            headerView?.pubKeyHashLabel.text = self.accountState?.committed.pubKeyHash
-            headerView?.nameLabel.text = "Committed"
-        case 1:
-            headerView?.nonceLabel.text = "\(self.accountState?.verified.nonce ?? 0)"
-            headerView?.pubKeyHashLabel.text = self.accountState?.verified.pubKeyHash
-            headerView?.nameLabel.text = "Verified"
+        case 0, 1:
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "StateHeader") as? StateSectionHeaderView
+            let state = section == 0 ? self.accountState?.committed : accountState?.verified
+            headerView?.nonceLabel.text = "\(state?.nonce ?? 0)"
+            headerView?.pubKeyHashLabel.text = state?.pubKeyHash
+            headerView?.nameLabel.text = section == 0 ? "Committed" : "Verified"
+            return headerView
+        case 2:
+            let label = UILabel()
+            label.textColor = .black
+            label.text = "Depositing"
+            label.textAlignment = .center
+            return label
         default:
             break
         }
-        return headerView
+        return nil
     }
 }
