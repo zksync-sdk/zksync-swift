@@ -120,6 +120,9 @@
 		4404E68925A880DE00181A54 /* TransactionFeeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E68825A880DE00181A54 /* TransactionFeeDetails.swift */; };
 		4404E69725A8811200181A54 /* TransactionFeeRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E69625A8811200181A54 /* TransactionFeeRequest+Encoding.swift */; };
 		4404E6AF25A8814400181A54 /* TransactionType+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6AE25A8814400181A54 /* TransactionType+Encoding.swift */; };
+		4404E6BC25A8893800181A54 /* TransactionFeeBatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6BB25A8893800181A54 /* TransactionFeeBatchRequest.swift */; };
+		4404E6C925A89C7A00181A54 /* TransactionTypeAddressPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6C825A89C7A00181A54 /* TransactionTypeAddressPair.swift */; };
+		4404E6D625A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6D525A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift */; };
 		440D71FB25A6229F00B0117F /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D71FA25A6229F00B0117F /* Wallet.swift */; };
 		440D721425A6231900B0117F /* ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D721325A6231900B0117F /* ContractAddress.swift */; };
 		440D722C25A6235C00B0117F /* DefaultWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D722B25A6235C00B0117F /* DefaultWallet.swift */; };
@@ -691,6 +694,9 @@
 		4404E68825A880DE00181A54 /* TransactionFeeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeDetails.swift; sourceTree = "<group>"; };
 		4404E69625A8811200181A54 /* TransactionFeeRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionFeeRequest+Encoding.swift"; sourceTree = "<group>"; };
 		4404E6AE25A8814400181A54 /* TransactionType+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionType+Encoding.swift"; sourceTree = "<group>"; };
+		4404E6BB25A8893800181A54 /* TransactionFeeBatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeeBatchRequest.swift; sourceTree = "<group>"; };
+		4404E6C825A89C7A00181A54 /* TransactionTypeAddressPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeAddressPair.swift; sourceTree = "<group>"; };
+		4404E6D525A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionFeeBatchRequest+Encoding.swift"; sourceTree = "<group>"; };
 		440D71FA25A6229F00B0117F /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		440D721325A6231900B0117F /* ContractAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractAddress.swift; sourceTree = "<group>"; };
 		440D722B25A6235C00B0117F /* DefaultWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWallet.swift; sourceTree = "<group>"; };
@@ -1316,7 +1322,9 @@
 			children = (
 				4404E66325A8803800181A54 /* TransactionType.swift */,
 				4404E67B25A8807800181A54 /* TransactionFeeRequest.swift */,
+				4404E6BB25A8893800181A54 /* TransactionFeeBatchRequest.swift */,
 				4404E68825A880DE00181A54 /* TransactionFeeDetails.swift */,
+				4404E6C825A89C7A00181A54 /* TransactionTypeAddressPair.swift */,
 			);
 			path = TransactionFee;
 			sourceTree = "<group>";
@@ -1327,6 +1335,7 @@
 				ED8829519B98130A59240E53CEEC023C /* Provider+TransactionFee.swift */,
 				4404E69625A8811200181A54 /* TransactionFeeRequest+Encoding.swift */,
 				4404E6AE25A8814400181A54 /* TransactionType+Encoding.swift */,
+				4404E6D525A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift */,
 			);
 			path = TransactionFee;
 			sourceTree = "<group>";
@@ -2715,8 +2724,10 @@
 				440D722C25A6235C00B0117F /* DefaultWallet.swift in Sources */,
 				4404E5EA25A632A000181A54 /* EthSigner.swift in Sources */,
 				7F083B68AA3BE4AADAC82CF5D98A067F /* Provider+ContractAddress.swift in Sources */,
+				4404E6C925A89C7A00181A54 /* TransactionTypeAddressPair.swift in Sources */,
 				746C4EE83C2F10982E9EBFD74A35F1A8 /* Provider+TokenPrice.swift in Sources */,
 				AAB1FE922C9F45DF6408CFE723D8BCC1 /* Provider+TransactionFee.swift in Sources */,
+				4404E6BC25A8893800181A54 /* TransactionFeeBatchRequest.swift in Sources */,
 				D47AE735AC146A73DBC6B7C369018196 /* Provider.swift in Sources */,
 				931C8D2DAB239F5572E0F8A298079901 /* Request.swift in Sources */,
 				4404E69725A8811200181A54 /* TransactionFeeRequest+Encoding.swift in Sources */,
@@ -2733,6 +2744,7 @@
 				1F6248248C73B6567DF00D6F14B5CF85 /* ZKCryptoSDK+Types.swift in Sources */,
 				4404E67C25A8807800181A54 /* TransactionFeeRequest.swift in Sources */,
 				05073E7E20083A5A4B3855E9624CC418 /* ZKCryptoSDK.swift in Sources */,
+				4404E6D625A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift in Sources */,
 				C97057264F938C3CADBD46321ACB3648 /* ZKSyncError.swift in Sources */,
 				6F3E0851F6CF55B2DC88F2EDD76604B2 /* ZKSyncSDK-dummy.m in Sources */,
 			);

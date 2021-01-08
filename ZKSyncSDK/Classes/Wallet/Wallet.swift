@@ -23,6 +23,9 @@ public protocol Wallet {
                            address: String,
                            tokenIdentifier: String,
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
+ 
+    func getTransactionFee(for batchRequest: TransactionFeeBatchRequest,
+                           completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
     
 }
 

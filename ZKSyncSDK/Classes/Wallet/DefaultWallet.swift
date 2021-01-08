@@ -48,4 +48,9 @@ public class DefaultWallet: Wallet {
                                             tokenIdentifier: tokenIdentifier)
         self.provider.transactionFee(request: request, completion: completion)
     }
+    
+    public func getTransactionFee(for batchRequest: TransactionFeeBatchRequest,
+                           completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
+        self.provider.transactionFee(request: batchRequest, completion: completion)
+    }
 }
