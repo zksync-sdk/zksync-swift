@@ -24,29 +24,6 @@ class ContractAddressViewController: UIViewController, WalletConsumer {
                 self.display(error: error)
             }
         }
-        
-        self.wallet.getAccountInfo { result in
-            switch result {
-            case .success(let state):
-                print(state)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-//        self.wallet.getTokenPrice {
-//            result in
-//            switch result {
-//            case .success(let price):
-//                print(price)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-        
-//        self.wallet.getTransactionFee(for: .changePubKeyOnchainAuth, tokenIdentifier: Token.ETH.address) { (result) in
-//            print(result)
-//        }
     }
     
     private func display(contractAddress: ContractAddress) {
