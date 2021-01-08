@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TransactionType: String, Codable {
+public enum TransactionType: String {
     case withdraw
     case transfer
     case fastWithdraw

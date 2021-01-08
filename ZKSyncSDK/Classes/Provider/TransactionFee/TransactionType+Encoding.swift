@@ -21,3 +21,25 @@ extension TransactionType {
         }
     }
 }
+
+extension TransactionType: Encodable {
+    
+    private struct ChangePubKeyIdentifier: Encodable {
+        let changePubKey: [String : Bool]
+        enum CodingKeys: String, CodingKey {
+            case changePubKey = "ChangePubKey"
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .changePubKey, .changePubKeyOnchainAuth:
+            let value = self == .changePubKeyOnchainAuth
+            let identifier = ChangePubKeyIdentifier(changePubKey: ["onchainPubkeyAuth": value])
+            try container.encode(identifier)
+        default:
+            try container.encode(feeIdentifier)
+        }
+    }
+}
