@@ -25,14 +25,14 @@ class ContractAddressViewController: UIViewController, WalletConsumer {
             }
         }
         
-//        self.wallet.getAccountInfo { result in
-//            switch result {
-//            case .success(let state):
-//                print(state)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        self.wallet.getAccountInfo { result in
+            switch result {
+            case .success(let state):
+                print(state)
+            case .failure(let error):
+                print(error)
+            }
+        }
         
 //        self.wallet.getTokenPrice {
 //            result in

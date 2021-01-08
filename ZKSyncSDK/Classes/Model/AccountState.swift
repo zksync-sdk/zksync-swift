@@ -19,15 +19,15 @@ public struct AccountState: Codable {
     }
     
     public struct State: Codable {
-        var nonce: Int
-        var pubKeyHash: String
-        var balances: [String: String]
+        public var nonce: Int
+        public var pubKeyHash: String
+        public var balances: [String: String]
     }
     
-    var address: String
-    var id: Int?
+    public var address: String
+    public var id: Int?
     
-    var depositing: Depositing
-    var committed: State
-    var verified: State
+    public var depositing: Depositing
+    public var committed: State
+    public var verified: State
 }
