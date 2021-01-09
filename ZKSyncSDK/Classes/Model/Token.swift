@@ -22,4 +22,14 @@ public struct Token {
                      symbol: "ETH",
                      decimals: 0)
     }
+    
+//    func intoDecimal(amount: BigInt) -> Decimal {
+//        Decimal(amount)
+//    }
+    
+//    public BigDecimal intoDecimal(BigInteger amount) {
+//            return new BigDecimal(amount)
+//                .setScale(decimals)
+//                .divide(BigDecimal.TEN.pow(decimals), RoundingMode.DOWN);
+//        }
 }

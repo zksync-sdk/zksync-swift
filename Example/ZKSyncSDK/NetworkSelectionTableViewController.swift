@@ -36,6 +36,11 @@ class NetworkSelectionTableViewController: UITableViewController {
         guard let ethSigner = try? EthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
+        let s = ethSigner.createChangePubKeyMessage(pubKeyHash: "sync:312467132468", nonce: 54, accountId: 23)
+        
+        let signature = try! ethSigner.sign(message: s)
+        
+        //try! s.data(using: .utf8)?.write(to: URL(fileURLWithPath: "/Users/eugene/message.txt"))
         
         let transport = HTTPTransport(network: network)
         return DefaultWallet(ethSigner: ethSigner,
