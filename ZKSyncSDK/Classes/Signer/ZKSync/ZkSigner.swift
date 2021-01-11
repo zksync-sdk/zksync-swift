@@ -14,7 +14,7 @@ enum ZkSignerError: Error {
     case invalidSignatureType(EthSignature.SignatureType)
 }
 
-class ZkSigner {
+public class ZkSigner {
     
     private static let Message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
     
@@ -22,7 +22,7 @@ class ZkSigner {
     let publicKey: ZKPackedPublicKey
     let publicKeyHash: ZKPublicHash
     
-    init(privateKey: ZKPrivateKey) throws {
+    public init(privateKey: ZKPrivateKey) throws {
         self.privateKey = privateKey
         
         switch ZKCryptoSDK.getPublicKey(privateKey: privateKey) {
@@ -40,7 +40,7 @@ class ZkSigner {
         }
     }
     
-    convenience init(seed: Data) throws {
+    public convenience init(seed: Data) throws {
         switch ZKCryptoSDK.generatePrivateKey(seed: seed) {
         case .success(let privateKey):
             try self.init(privateKey: privateKey)
@@ -49,14 +49,14 @@ class ZkSigner {
         }
     }
     
-    convenience init(rawPrivateKey: Data) throws {
+    public convenience init(rawPrivateKey: Data) throws {
         if rawPrivateKey.count != ZKPrivateKey.bytesLength {
             throw ZkSignerError.incorrectDataLength
         }
         try self.init(privateKey: ZKPrivateKey(rawPrivateKey))
     }
     
-    convenience init(ethSigner: EthSigner, chainId: ChainId) throws {
+    public convenience init(ethSigner: EthSigner, chainId: ChainId) throws {
         var message = ZkSigner.Message
         if chainId != .mainnet {
             message = "\(message)\nChain ID: \(chainId.id)."
@@ -68,5 +68,15 @@ class ZkSigner {
         }
         
         try self.init(seed: Data(hex: signature.signature))
+    }
+    
+    public func sign(message: Data) throws -> Signature {
+        switch ZKCryptoSDK.signMessage(privateKey: self.privateKey, message: message) {
+        case .success(let signature):
+            return Signature(pubKey: publicKey.hexEncodedString(),
+                             signature: signature.hexEncodedString())
+        case .error(let error):
+            throw error
+        }
     }
 }

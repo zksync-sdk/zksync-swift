@@ -130,6 +130,7 @@
 		4404E71725ACB17E00181A54 /* BinaryInteger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E71625ACB17E00181A54 /* BinaryInteger+Extensions.swift */; };
 		4404E72625ACB59800181A54 /* ZkSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E72525ACB59800181A54 /* ZkSigner.swift */; };
 		4404E73E25ACB9EA00181A54 /* ChainId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E73D25ACB9EA00181A54 /* ChainId.swift */; };
+		4404E74B25ACBEF600181A54 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E74A25ACBEF600181A54 /* Signature.swift */; };
 		440D71FB25A6229F00B0117F /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D71FA25A6229F00B0117F /* Wallet.swift */; };
 		440D721425A6231900B0117F /* ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D721325A6231900B0117F /* ContractAddress.swift */; };
 		440D722C25A6235C00B0117F /* DefaultWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D722B25A6235C00B0117F /* DefaultWallet.swift */; };
@@ -711,6 +712,7 @@
 		4404E71625ACB17E00181A54 /* BinaryInteger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extensions.swift"; sourceTree = "<group>"; };
 		4404E72525ACB59800181A54 /* ZkSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSigner.swift; sourceTree = "<group>"; };
 		4404E73D25ACB9EA00181A54 /* ChainId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainId.swift; sourceTree = "<group>"; };
+		4404E74A25ACBEF600181A54 /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		440D71FA25A6229F00B0117F /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		440D721325A6231900B0117F /* ContractAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractAddress.swift; sourceTree = "<group>"; };
 		440D722B25A6235C00B0117F /* DefaultWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWallet.swift; sourceTree = "<group>"; };
@@ -1392,6 +1394,7 @@
 				4404E60E25A6444000181A54 /* Token.swift */,
 				4404E66225A8802200181A54 /* TransactionFee */,
 				4404E73D25ACB9EA00181A54 /* ChainId.swift */,
+				4404E74A25ACBEF600181A54 /* Signature.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2781,6 +2784,7 @@
 				C2175971E9D31098F76066F139E10A69 /* Transport.swift in Sources */,
 				AC872E404FEF870A3CE3331593A8BF23 /* Types.swift in Sources */,
 				4404E66425A8803800181A54 /* TransactionType.swift in Sources */,
+				4404E74B25ACBEF600181A54 /* Signature.swift in Sources */,
 				4404E60225A6423200181A54 /* AccountState.swift in Sources */,
 				1F6248248C73B6567DF00D6F14B5CF85 /* ZKCryptoSDK+Types.swift in Sources */,
 				4404E67C25A8807800181A54 /* TransactionFeeRequest.swift in Sources */,

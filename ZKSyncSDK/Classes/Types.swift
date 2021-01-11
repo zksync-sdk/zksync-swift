@@ -24,10 +24,10 @@ enum TxEhSignature {
     case EIP1271(signature: String)
 }
 
-struct Signature {
-    var pubKey: String
-    var signature: String
-}
+//struct Signature {
+//    var pubKey: String
+//    var signature: String
+//}
 
 struct Transfer {
     var accountId: Int
