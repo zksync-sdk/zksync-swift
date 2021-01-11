@@ -8,6 +8,7 @@
 
 import UIKit
 import ZKSyncSDK
+import BigInt
 
 class NetworkSelectionTableViewController: UITableViewController {
     
@@ -36,14 +37,34 @@ class NetworkSelectionTableViewController: UITableViewController {
         guard let ethSigner = try? EthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
-        let s = ethSigner.createChangePubKeyMessage(pubKeyHash: "sync:312467132468", nonce: 54, accountId: 23)
-        
-        let signature = try! ethSigner.sign(message: s)
-        
-        //try! s.data(using: .utf8)?.write(to: URL(fileURLWithPath: "/Users/eugene/message.txt"))
-        
+
         let transport = HTTPTransport(network: network)
         return DefaultWallet(ethSigner: ethSigner,
                              transport: transport)
+
+//        let amount = BigUInt("1000000000000") * BigUInt("1000000000000000000")
+//        let fee = BigUInt("1000000") * BigUInt("1000000000000000000")
+//
+//        let s1 = try! ethSigner.createChangePubKeyMessage(pubKeyHash: "sync:18e8446d7748f2de52b28345bdbc76160e6b35eb", nonce: 13, accountId: 55)
+//
+//
+//        let s2 = try! ethSigner.createTransferMessage(to: "0x19aa2ed8712072e918632259780e587698ef58df",
+//                                                      accountId: 44,
+//                                                      nonce: 12,
+//                                                      amount: amount,
+//                                                      token: Token.ETH,
+//                                                      fee: fee)
+//
+//        let s3 = try ethSigner.createWithdrawMessage(to: "0x19aa2ed8712072e918632259780e587698ef58df",
+//                                                     accountId: 44,
+//                                                     nonce: 12,
+//                                                     amount: amount,
+//                                                     token: Token.ETH,
+//                                                     fee: fee)
+        
+//        let signature = try! ethSigner.sign(message: s3)
+        
+        //try! s.data(using: .utf8)?.write(to: URL(fileURLWithPath: "/Users/eugene/message.txt"))
+        
     }
 }

@@ -10,12 +10,6 @@ import web3swift
 import CryptoSwift
 import BigInt
 
-public enum EthSignerError: Error {
-    case invalidKey
-    case invalidMessage
-    case signingFailed
-}
-
 public class EthSigner {
     
     private let keystore: EthereumKeystoreV3
@@ -32,15 +26,15 @@ public class EthSigner {
         return keystore.getAddress()!.address
     }
     
-    public func signChangePubKey(pubKeyHash: String, nonce: Int, accountId: Int) throws -> EthSignature {
+    public func signChangePubKey(pubKeyHash: String, nonce: Int32, accountId: Int32) throws -> EthSignature {
         return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId))
     }
     
-    public func signTransfer(to: String, accountId: Int, nonce: Int, amount: Decimal, token: Token, fee: Decimal) throws -> EthSignature{
+    public func signTransfer(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
         return try self.sign(message: self.createTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
-    public func signWithdraw(to: String, accountId: Int, nonce: Int, amount: Decimal, token: Token, fee: Decimal) throws -> EthSignature{
+    public func signWithdraw(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
         return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
@@ -58,57 +52,7 @@ public class EthSigner {
             throw EthSignerError.signingFailed
         }
         
-        return EthSignature(signature: signatureData.toHexString(),
+        return EthSignature(signature: signatureData.toHexString().addHexPrefix(),
                             type: .ethereumSignature)
-    }
-}
-
-public extension EthSigner {
-    func createChangePubKeyMessage(pubKeyHash: String, nonce: Int, accountId: Int) -> String {
-        
-        let pubKeyHashStripped = pubKeyHash.deletingPrefix("sync:").lowercased()
-        
-        return """
-        Register zkSync pubkey:
-
-        \(pubKeyHashStripped)
-        nonce:\(nonce.bytes().toHexString())
-        account id: \(accountId.bytes().toHexString())
-
-        Only sign this message for a trusted client!
-        """
-    }
-    
-    func createTransferMessage(to: String, accountId: Int, nonce: Int, amount: Decimal, token: Token, fee: Decimal) -> String{
-        return """
-        Transfer \(amount) \(token.symbol)
-        To: \(to.lowercased())
-        Nonce: \(nonce)
-        Fee: \(fee) \(token.symbol)
-        Account Id: \(accountId)
-        """
-    }
-
-    func createWithdrawMessage(to: String, accountId: Int, nonce: Int, amount: Decimal, token: Token, fee: Decimal) -> String{
-        return """
-        Withdraw \(amount) \(token.symbol)
-        To: \(to.lowercased())
-        Nonce: \(nonce)
-        Fee: \(fee) \(token.symbol)
-        Account Id: \(accountId)
-        """
-    }
-}
-
-extension String {
-    func deletingPrefix(_ prefix: String) -> String {
-        guard self.hasPrefix(prefix) else { return self }
-        return String(self.dropFirst(prefix.count))
-    }
-}
-
-extension Int {
-    func bytes() -> Data {
-        return withUnsafeBytes(of: self) { Data($0) }
     }
 }

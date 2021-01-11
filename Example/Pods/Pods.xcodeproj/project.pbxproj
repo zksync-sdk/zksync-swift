@@ -124,6 +124,10 @@
 		4404E6C925A89C7A00181A54 /* TransactionTypeAddressPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6C825A89C7A00181A54 /* TransactionTypeAddressPair.swift */; };
 		4404E6D625A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6D525A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift */; };
 		4404E6E325A9BAFE00181A54 /* EthSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6E225A9BAFE00181A54 /* EthSignature.swift */; };
+		4404E6F025ACB06300181A54 /* EthSigner+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6EF25ACB06300181A54 /* EthSigner+Messages.swift */; };
+		4404E6FD25ACB08300181A54 /* EthSignerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E6FC25ACB08300181A54 /* EthSignerError.swift */; };
+		4404E70A25ACB0C600181A54 /* EthSigner+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E70925ACB0C600181A54 /* EthSigner+Utils.swift */; };
+		4404E71725ACB17E00181A54 /* BinaryInteger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E71625ACB17E00181A54 /* BinaryInteger+Extensions.swift */; };
 		440D71FB25A6229F00B0117F /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D71FA25A6229F00B0117F /* Wallet.swift */; };
 		440D721425A6231900B0117F /* ContractAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D721325A6231900B0117F /* ContractAddress.swift */; };
 		440D722C25A6235C00B0117F /* DefaultWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D722B25A6235C00B0117F /* DefaultWallet.swift */; };
@@ -699,6 +703,10 @@
 		4404E6C825A89C7A00181A54 /* TransactionTypeAddressPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeAddressPair.swift; sourceTree = "<group>"; };
 		4404E6D525A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionFeeBatchRequest+Encoding.swift"; sourceTree = "<group>"; };
 		4404E6E225A9BAFE00181A54 /* EthSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSignature.swift; sourceTree = "<group>"; };
+		4404E6EF25ACB06300181A54 /* EthSigner+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EthSigner+Messages.swift"; sourceTree = "<group>"; };
+		4404E6FC25ACB08300181A54 /* EthSignerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSignerError.swift; sourceTree = "<group>"; };
+		4404E70925ACB0C600181A54 /* EthSigner+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EthSigner+Utils.swift"; sourceTree = "<group>"; };
+		4404E71625ACB17E00181A54 /* BinaryInteger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extensions.swift"; sourceTree = "<group>"; };
 		440D71FA25A6229F00B0117F /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		440D721325A6231900B0117F /* ContractAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractAddress.swift; sourceTree = "<group>"; };
 		440D722B25A6235C00B0117F /* DefaultWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWallet.swift; sourceTree = "<group>"; };
@@ -1315,6 +1323,9 @@
 			isa = PBXGroup;
 			children = (
 				4404E5E925A632A000181A54 /* EthSigner.swift */,
+				4404E6FC25ACB08300181A54 /* EthSignerError.swift */,
+				4404E6EF25ACB06300181A54 /* EthSigner+Messages.swift */,
+				4404E70925ACB0C600181A54 /* EthSigner+Utils.swift */,
 				4404E6E225A9BAFE00181A54 /* EthSignature.swift */,
 			);
 			path = Signer;
@@ -1378,6 +1389,7 @@
 			children = (
 				D58AE8990179D3F0C46FBF4B2BA132AB /* BigInt+Extensions.swift */,
 				51AD79C0E2D3F0C8ACA695A87D31FC38 /* String+Extensions.swift */,
+				4404E71625ACB17E00181A54 /* BinaryInteger+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2719,6 +2731,7 @@
 			files = (
 				4404E60F25A6444000181A54 /* Token.swift in Sources */,
 				440D71FB25A6229F00B0117F /* Wallet.swift in Sources */,
+				4404E6FD25ACB08300181A54 /* EthSignerError.swift in Sources */,
 				E4F488A53149E24EB55E2C87950B04E7 /* BigInt+Extensions.swift in Sources */,
 				A536147C77CA39B6F95F765359EBC3C9 /* Error.swift in Sources */,
 				72F470EB962CF11E17B066BA17D69162 /* HTTPTransport.swift in Sources */,
@@ -2739,6 +2752,7 @@
 				4404E6AF25A8814400181A54 /* TransactionType+Encoding.swift in Sources */,
 				DF59444DC8A1004866B4F011B31A4088 /* Signer.swift in Sources */,
 				78A49B16039486210D3B41BDA145BE7B /* String+Extensions.swift in Sources */,
+				4404E70A25ACB0C600181A54 /* EthSigner+Utils.swift in Sources */,
 				440D721425A6231900B0117F /* ContractAddress.swift in Sources */,
 				C2175971E9D31098F76066F139E10A69 /* Transport.swift in Sources */,
 				AC872E404FEF870A3CE3331593A8BF23 /* Types.swift in Sources */,
@@ -2748,9 +2762,11 @@
 				4404E67C25A8807800181A54 /* TransactionFeeRequest.swift in Sources */,
 				05073E7E20083A5A4B3855E9624CC418 /* ZKCryptoSDK.swift in Sources */,
 				4404E6E325A9BAFE00181A54 /* EthSignature.swift in Sources */,
+				4404E6F025ACB06300181A54 /* EthSigner+Messages.swift in Sources */,
 				4404E6D625A89C9E00181A54 /* TransactionFeeBatchRequest+Encoding.swift in Sources */,
 				C97057264F938C3CADBD46321ACB3648 /* ZKSyncError.swift in Sources */,
 				6F3E0851F6CF55B2DC88F2EDD76604B2 /* ZKSyncSDK-dummy.m in Sources */,
+				4404E71725ACB17E00181A54 /* BinaryInteger+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

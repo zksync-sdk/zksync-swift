@@ -27,5 +27,6 @@ public protocol Wallet {
     func getTransactionFee(for batchRequest: TransactionFeeBatchRequest,
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
     
+//    func setSigningKey(fee: fee, nonce: Int32, onchainAuth: Bool, completion: @escaping ZKSynCompletion<Void>)
 }
 

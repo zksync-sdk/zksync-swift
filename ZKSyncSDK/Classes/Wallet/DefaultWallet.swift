@@ -53,4 +53,8 @@ public class DefaultWallet: Wallet {
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
+    
+//    public func setSigningKey(fee: Transa, nonce: Int32, onchainAuth: Bool, completion: @escaping ZKSynCompletion<Void>) {
+//        self.ethSigner.
+//    }
 }
