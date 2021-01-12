@@ -96,4 +96,22 @@ public class ZkSigner {
         mutableChangePubKey.signature = signature
         return mutableChangePubKey
     }
+    
+    public func sign(transfer: Transfer) throws -> Transfer {
+        var mutableTransfer = transfer
+        var data = Data()
+        
+        data.append(contentsOf: [0x05])
+        data.append(try Utils.accountIdToBytes(transfer.accountId))
+        data.append(try Utils.addressToBytes(transfer.from))
+        data.append(try Utils.addressToBytes(transfer.to))
+        data.append(try Utils.tokenIdToBytes(transfer.token))
+        data.append(try Utils.amountToBytes(transfer.amount))
+        data.append(try Utils.feeToBytes(transfer.feeInteger))
+        data.append(try Utils.nonceToBytes(transfer.nonce))
+        
+        let signature = try self.sign(message: data)
+        mutableTransfer.signature = signature
+        return mutableTransfer
+    }
 }

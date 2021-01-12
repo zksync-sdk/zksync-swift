@@ -23,24 +23,3 @@ enum TxEhSignature {
     case Ethereum(signature: String)
     case EIP1271(signature: String)
 }
-
-//struct Signature {
-//    var pubKey: String
-//    var signature: String
-//}
-
-struct Transfer {
-    var accountId: Int
-    var from: String
-    var to: String
-    var token: Int
-    var amount: Int
-    var fee: Int
-    var nonce: Int
-}
-
-struct Withdraw {
-    
-}
-
-
