@@ -133,28 +133,19 @@ public class ZkSigner {
         return mutableWithdraw
     }
 
-//    public Withdraw signWithdraw(Withdraw withdraw) {
-//        try {
-//            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//            outputStream.write(0x03);
-//            outputStream.write(accountIdToBytes(withdraw.getAccountId()));
-//            outputStream.write(addressToBytes(withdraw.getFrom()));
-//            outputStream.write(addressToBytes(withdraw.getTo()));
-//            outputStream.write(tokenIdToBytes(withdraw.getToken()));
-//            outputStream.write(amountFullToBytes(withdraw.getAmount()));
-//            outputStream.write(feeToBytes(withdraw.getFeeInteger()));
-//            outputStream.write(nonceToBytes(withdraw.getNonce()));
-//
-//            byte[] message = outputStream.toByteArray();
-//
-//            final Signature signature = sign(message);
-//
-//            withdraw.setSignature(signature);
-//
-//            return withdraw;
-//        } catch (IOException e) {
-//            throw new ZkSyncException(e);
-//        }
-//    }
-
+    public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
+        var mutableForcedExit = forcedExit
+        var data = Data()
+        
+        data.append(contentsOf: [0x08])
+        data.append(try Utils.accountIdToBytes(forcedExit.initiatorAccountId))
+        data.append(try Utils.addressToBytes(forcedExit.target))
+        data.append(try Utils.tokenIdToBytes(forcedExit.token))
+        data.append(try Utils.feeToBytes(forcedExit.feeInteger))
+        data.append(try Utils.nonceToBytes(forcedExit.nonce))
+        
+        let signature = try self.sign(message: data)
+        mutableForcedExit.signature = signature
+        return mutableForcedExit
+    }
 }
