@@ -11,6 +11,4 @@ public enum EthSignerError: Error {
     case invalidKey
     case invalidMessage
     case signingFailed
-    case negativeNonce
-    case accountNumberTooLarge
 }

@@ -21,4 +21,20 @@ extension BigUInt {
         var container = encoder.unkeyedContainer()
         try container.encode(String(self, radix: 16).addHexPrefix())
     }
+    
+    static var ten: BigUInt {
+        return BigUInt(10)
+    }
+    
+    static var two: BigUInt {
+        return BigUInt(2)
+    }
+
+    static var one: BigUInt {
+        return BigUInt(1)
+    }
+    
+    static var zero: BigUInt {
+        return BigUInt(0)
+    }
 }

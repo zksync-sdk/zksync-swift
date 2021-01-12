@@ -8,6 +8,11 @@
 import Foundation
 
 extension String {
+
+    func hasHexPrefix() -> Bool {
+        return self.hasPrefix("0x")
+    }
+
     func stripHexPrefix() -> String {
         if self.hasPrefix("0x") {
             let indexStart = self.index(self.startIndex, offsetBy: 2)
@@ -19,6 +24,23 @@ extension String {
     func addHexPrefix() -> String {
         if !self.hasPrefix("0x") {
             return "0x" + self
+        }
+        return self
+    }
+}
+
+extension String {
+    func hasPubKeyHashPrefix() -> Bool {
+        return self.hasPrefix("sync:")
+    }
+
+    func stripPubKeyHashPrefix() -> String {
+        return self.deletingPrefix("sync:")
+    }
+    
+    func addPubKeyHashPrefix() -> String {
+        if !self.hasPrefix("sync:") {
+            return "sync:" + self
         }
         return self
     }

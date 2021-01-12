@@ -79,4 +79,21 @@ public class ZkSigner {
             throw error
         }
     }
+    
+    public func sign(changePubKey: ChangePubKey) throws -> ChangePubKey {
+        var mutableChangePubKey = changePubKey
+        var data = Data()
+        
+        data.append(contentsOf: [0x07])
+        data.append(try Utils.accountIdToBytes(changePubKey.accountId))
+        data.append(try Utils.addressToBytes(changePubKey.account))
+        data.append(try Utils.addressToBytes(changePubKey.newPkHash))
+        data.append(try Utils.tokenIdToBytes(changePubKey.feeToken))
+        data.append(try Utils.feeToBytes(changePubKey.feeInteger))
+        data.append(try Utils.nonceToBytes(changePubKey.nonce))
+        
+        let signature = try self.sign(message: data)
+        mutableChangePubKey.signature = signature
+        return mutableChangePubKey
+    }
 }

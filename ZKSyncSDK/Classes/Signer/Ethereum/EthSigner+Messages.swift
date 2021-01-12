@@ -17,8 +17,8 @@ public extension EthSigner {
         Register zkSync pubkey:
 
         \(pubKeyHashStripped)
-        nonce: \(try nonceToBytes(nonce).toHexString().addHexPrefix())
-        account id: \(try accountIdToBytes(accountId).toHexString().addHexPrefix())
+        nonce: \(try Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
+        account id: \(try Utils.accountIdToBytes(accountId).toHexString().addHexPrefix())
 
         Only sign this message for a trusted client!
         """
@@ -26,20 +26,20 @@ public extension EthSigner {
     
     func createTransferMessage(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
-        Transfer \(format(token.intoDecimal(amount))) \(token.symbol)
+        Transfer \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())
         Nonce: \(nonce)
-        Fee: \(format(token.intoDecimal(fee))) \(token.symbol)
+        Fee: \(Utils.format(token.intoDecimal(fee))) \(token.symbol)
         Account Id: \(accountId)
         """
     }
 
     func createWithdrawMessage(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
-        Withdraw \(format(token.intoDecimal(amount))) \(token.symbol)
+        Withdraw \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())
         Nonce: \(nonce)
-        Fee: \(format(token.intoDecimal(fee))) \(token.symbol)
+        Fee: \(Utils.format(token.intoDecimal(fee))) \(token.symbol)
         Account Id: \(accountId)
         """
     }
