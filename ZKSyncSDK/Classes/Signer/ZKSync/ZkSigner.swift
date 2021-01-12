@@ -106,7 +106,7 @@ public class ZkSigner {
         data.append(try Utils.addressToBytes(transfer.from))
         data.append(try Utils.addressToBytes(transfer.to))
         data.append(try Utils.tokenIdToBytes(transfer.token))
-        data.append(try Utils.amountToBytes(transfer.amount))
+        data.append(try Utils.amountPackedToBytes(transfer.amount))
         data.append(try Utils.feeToBytes(transfer.feeInteger))
         data.append(try Utils.nonceToBytes(transfer.nonce))
         
@@ -114,4 +114,47 @@ public class ZkSigner {
         mutableTransfer.signature = signature
         return mutableTransfer
     }
+
+    public func sign(withdraw: Withdraw) throws -> Withdraw {
+        var mutableWithdraw = withdraw
+        var data = Data()
+        
+        data.append(contentsOf: [0x03])
+        data.append(try Utils.accountIdToBytes(withdraw.accountId))
+        data.append(try Utils.addressToBytes(withdraw.from))
+        data.append(try Utils.addressToBytes(withdraw.to))
+        data.append(try Utils.tokenIdToBytes(withdraw.token))
+        data.append(Utils.amountFullToBytes(withdraw.amount))
+        data.append(try Utils.feeToBytes(withdraw.feeInteger))
+        data.append(try Utils.nonceToBytes(withdraw.nonce))
+        
+        let signature = try self.sign(message: data)
+        mutableWithdraw.signature = signature
+        return mutableWithdraw
+    }
+
+//    public Withdraw signWithdraw(Withdraw withdraw) {
+//        try {
+//            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//            outputStream.write(0x03);
+//            outputStream.write(accountIdToBytes(withdraw.getAccountId()));
+//            outputStream.write(addressToBytes(withdraw.getFrom()));
+//            outputStream.write(addressToBytes(withdraw.getTo()));
+//            outputStream.write(tokenIdToBytes(withdraw.getToken()));
+//            outputStream.write(amountFullToBytes(withdraw.getAmount()));
+//            outputStream.write(feeToBytes(withdraw.getFeeInteger()));
+//            outputStream.write(nonceToBytes(withdraw.getNonce()));
+//
+//            byte[] message = outputStream.toByteArray();
+//
+//            final Signature signature = sign(message);
+//
+//            withdraw.setSignature(signature);
+//
+//            return withdraw;
+//        } catch (IOException e) {
+//            throw new ZkSyncException(e);
+//        }
+//    }
+
 }

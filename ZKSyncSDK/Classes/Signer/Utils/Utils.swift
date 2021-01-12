@@ -67,11 +67,18 @@ struct Utils {
         return tokenId.bytesBE()
     }
     
+    static func amountFullToBytes(_ amount: BigUInt) -> Data {
+        let amountData = BigInt(amount).serialize()
+        var data = Data(repeating: 0x00, count: 16 - amountData.count)
+        data.append(amountData)
+        return data
+    }
+    
     static func feeToBytes(_ fee: BigUInt) throws -> Data {
         return try packFeeChecked(fee)
     }
 
-    static func amountToBytes(_ amount: BigUInt) throws -> Data {
+    static func amountPackedToBytes(_ amount: BigUInt) throws -> Data {
         return try packAmountChecked(amount)
     }
 

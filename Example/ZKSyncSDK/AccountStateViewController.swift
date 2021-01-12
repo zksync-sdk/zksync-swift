@@ -22,11 +22,11 @@ class AccountStateViewController: UIViewController, WalletConsumer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.register(UINib(nibName: "StateSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "StateHeader")
         
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension;
         self.tableView.estimatedSectionHeaderHeight = 60;
     }
     
