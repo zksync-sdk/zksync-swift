@@ -20,14 +20,12 @@ public struct ChangePubKey {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: Int32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: Int32, signature: Signature?, ethSignature: Signature?) {
+    public init(accountId: Int32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: Int32) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash
         self.feeToken = feeToken
         self.fee = fee
         self.nonce = nonce
-        self.signature = signature
-        self.ethSignature = ethSignature
     }
 }
