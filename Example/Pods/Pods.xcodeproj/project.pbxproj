@@ -118,7 +118,6 @@
 		420C87B493B70746472899A82479242F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715C831037811F278DA95282362CB86F /* String+Extension.swift */; };
 		42495A8941D9B42B07F032390AA2389F /* UIViewPropertyAnimator+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74F903F1F80A72D9E1548AFED1532D /* UIViewPropertyAnimator+Promise.swift */; };
 		42AF8FD0370657E5356FC80CC09CB3FC /* Web3+ERC165.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C7B3E1E01649F6131557002F2315A1 /* Web3+ERC165.swift */; };
-		4343EFAF913F82AB536009B60C2A686C /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5C4506B6B66DFDB5ED41AC81D921BE /* Signer.swift */; };
 		4362503059C68DFCDCB8621F4FD9E325 /* Square Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313A072E02F5DD1F65F6802F618D40F9 /* Square Root.swift */; };
 		438DAC7813FDB677252FB52A8FA3E708 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496573BFF485B7974C0F6A9B96B2138E /* Updatable.swift */; };
 		4404E7B625AE39C600181A54 /* ForcedExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E7B525AE39C600181A54 /* ForcedExit.swift */; };
@@ -1003,7 +1002,6 @@
 		D9CB4FA402F899F2742FA87C9C42B25E /* ZeroPadding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZeroPadding.swift; path = Sources/CryptoSwift/ZeroPadding.swift; sourceTree = "<group>"; };
 		DA06F10A5E7D13535CC065379D334706 /* StringEncoding+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringEncoding+Alamofire.swift"; path = "Source/StringEncoding+Alamofire.swift"; sourceTree = "<group>"; };
 		DBBC0432EAA15B98D813BAF833F5B117 /* UInt16+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UInt16+Extension.swift"; path = "Sources/CryptoSwift/UInt16+Extension.swift"; sourceTree = "<group>"; };
-		DC5C4506B6B66DFDB5ED41AC81D921BE /* Signer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		DC7F17383554061F1D8AB431FE367322 /* PMKUIKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMKUIKit.h; path = Extensions/UIKit/Sources/PMKUIKit.h; sourceTree = "<group>"; };
 		DD4B8C3FCB0AA1B12E5C861DEF6B554E /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3CC76F80391ADA6B25DD36405EDB7D /* ComparisonExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComparisonExtensions.swift; path = Sources/web3swift/Contract/ComparisonExtensions.swift; sourceTree = "<group>"; };
@@ -1233,7 +1231,6 @@
 		1FA0AE348F1AEED381E0818684302E99 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DC5C4506B6B66DFDB5ED41AC81D921BE /* Signer.swift */,
 				7DA7BC48E2C767CDB68446D0A9FD7A6D /* Types.swift */,
 				0AC484EE5A6BB4D9B1E158F24AC6E841 /* Extensions */,
 				68CD04F40E46509EA22DC6320CC43592 /* Model */,
@@ -2558,7 +2555,6 @@
 				5701E000ABA4D89430B387E48DD81BD2 /* Request.swift in Sources */,
 				243D31D19C9B446FFAFC2F21D054276A /* Response.swift in Sources */,
 				34095212412E3313D0603475028173F1 /* Signature.swift in Sources */,
-				4343EFAF913F82AB536009B60C2A686C /* Signer.swift in Sources */,
 				5CCDB6D0A477C8633F453ACC3B6AEE97 /* String+Extensions.swift in Sources */,
 				BE84BA477B7F2094CE77E8D0787644C9 /* Token.swift in Sources */,
 				4887852AE5DA45F11089E8C71CDCD218 /* TransactionFeeBatchRequest+Encoding.swift in Sources */,
