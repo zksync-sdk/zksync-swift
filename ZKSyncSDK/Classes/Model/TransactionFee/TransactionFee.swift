@@ -9,6 +9,11 @@ import Foundation
 import BigInt
 
 public struct TransactionFee {
-    let feeToken: String
-    let fee: BigUInt
+    public let feeToken: String
+    public let fee: BigUInt
+    
+    public init(feeToken: String, fee: BigUInt) {
+        self.feeToken = feeToken
+        self.fee = fee
+    }
 }

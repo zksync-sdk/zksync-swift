@@ -33,4 +33,29 @@ public struct Transfer: ZkSyncTransaction {
         self.fee = fee
         self.nonce = nonce
     }
+ 
+    enum CodingKeys: String, CodingKey {
+        case accountId
+        case from
+        case to
+        case token
+        case amount
+        case fee
+        case nonce
+        case type
+        case signature
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(accountId, forKey: .accountId)
+        try container.encode(from, forKey: .from)
+        try container.encode(to, forKey: .to)
+        try container.encode(token, forKey: .token)
+        try container.encode(fee, forKey: .fee)
+        try container.encode(nonce, forKey: .nonce)
+        try container.encode(type, forKey: .type)
+        try container.encode(signature, forKey: .signature)
+        try container.encode(amount.description, forKey: .amount)
+    }
 }

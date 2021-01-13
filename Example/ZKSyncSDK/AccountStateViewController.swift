@@ -8,6 +8,7 @@
 
 import UIKit
 import ZKSyncSDK
+import BigInt
 
 class AccountStateViewController: UIViewController, WalletConsumer {
 
@@ -31,14 +32,42 @@ class AccountStateViewController: UIViewController, WalletConsumer {
     }
     
     @IBAction func getAccountState(_ sender: Any) {
-        wallet.getAccountState { (result) in
+        
+        wallet.getTransactionFee(for: .transfer,
+                                 address: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160",
+                                 tokenIdentifier: Token.ETH.address) { (result) in
             switch result {
-            case .success(let state):
-                self.update(state: state)
+            
+            case .success(let feeDetails):
+                
+                let totalFee = BigUInt(feeDetails.totalFee)!
+                let fee: TransactionFee = TransactionFee(feeToken: Token.ETH.address,
+                                                         fee: totalFee)
+                
+                self.wallet.transfer(to: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160",
+                                amount: 1000000000000000000,
+                                fee: fee,
+                                nonce: nil) { (res) in
+                    print(res)
+                }
+
             case .failure(_):
-                break
+                break;
+            
             }
+            
+            
         }
+        
+        
+//        wallet.getAccountState { (result) in
+//            switch result {
+//            case .success(let state):
+//                self.update(state: state)
+//            case .failure(_):
+//                break
+//            }
+//        }
     }
     
     private func update(state: AccountState) {

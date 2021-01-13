@@ -10,11 +10,14 @@ import BigInt
 
 public class DefaultWallet: Wallet {
     
+    private let group = DispatchGroup()
+    
     public let provider: Provider
     private let ethSigner: EthSigner
     private let zkSigner: ZkSigner
     
-    private let accountId: Int32 = 0
+    private let accountId: Int32 = 6338
+    private let pubKeyHash: String = ""
     
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) {
         self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
@@ -24,6 +27,10 @@ public class DefaultWallet: Wallet {
         self.provider = provider
         self.ethSigner = ethSigner
         self.zkSigner = zkSigner
+        
+//        self.getAccountState { (result) in
+//            print(result)
+//        }
     }
 
     public func getContractAddress(completion: @escaping (Result<ContractAddress, Error>) -> Void) {
