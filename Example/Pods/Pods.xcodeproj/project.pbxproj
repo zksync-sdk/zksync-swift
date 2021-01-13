@@ -122,6 +122,7 @@
 		438DAC7813FDB677252FB52A8FA3E708 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496573BFF485B7974C0F6A9B96B2138E /* Updatable.swift */; };
 		4404E7B625AE39C600181A54 /* ForcedExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E7B525AE39C600181A54 /* ForcedExit.swift */; };
 		4404E7DB25AF62CF00181A54 /* DefaultProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E7DA25AF62CF00181A54 /* DefaultProvider.swift */; };
+		4404E80925AF65DD00181A54 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E80825AF65DD00181A54 /* Tokens.swift */; };
 		4418281931C4D1176F2C541CDD770F14 /* Catchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CBE3AFA8B5DA33388F9737C65B6 /* Catchable.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
@@ -709,6 +710,7 @@
 		43CACB7334A90C61F9D0D67F34901DE8 /* Pods-ZKSyncSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZKSyncSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4404E7B525AE39C600181A54 /* ForcedExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcedExit.swift; sourceTree = "<group>"; };
 		4404E7DA25AF62CF00181A54 /* DefaultProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultProvider.swift; sourceTree = "<group>"; };
+		4404E80825AF65DD00181A54 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		441AF11920D9EFF75FD17A3969688B5B /* hash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hash.h; path = secp256k1/hash.h; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -1484,6 +1486,7 @@
 				9AF1321F87AECB2AD978F883623EFDED /* ContractAddress.swift */,
 				4AC7BED171FA0016929481AFC9223C82 /* Signature.swift */,
 				A05881A545FA508A1FDFD95BFA56C43A /* Token.swift */,
+				4404E80825AF65DD00181A54 /* Tokens.swift */,
 				1346AD39A7794F6BD15E9D2249E88EE9 /* Transfer.swift */,
 				CD4680CDDC1005F6777171E16BDEA2B0 /* Withdraw.swift */,
 				4404E7B525AE39C600181A54 /* ForcedExit.swift */,
@@ -2545,6 +2548,7 @@
 				6D8951224EB3220D17F60313BD6BE36B /* DefaultWallet.swift in Sources */,
 				0B5E79DF5BF552725C4D6C7DC70C5415 /* Error.swift in Sources */,
 				927C56D6D5E9018483DE575F3FEDD7EB /* EthSignature.swift in Sources */,
+				4404E80925AF65DD00181A54 /* Tokens.swift in Sources */,
 				CDBF835BC612FB3EC15F9EF8877469AB /* EthSigner+Messages.swift in Sources */,
 				55EFFA0040394480205AF88C6CB16B5A /* EthSigner+Utils.swift in Sources */,
 				38EA800B7486A05426D8055D215FFCF8 /* EthSigner.swift in Sources */,
