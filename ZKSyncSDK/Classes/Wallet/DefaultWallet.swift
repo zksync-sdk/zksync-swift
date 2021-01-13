@@ -10,7 +10,7 @@ import BigInt
 
 public class DefaultWallet: Wallet {
     
-    private let provider: Provider
+    public let provider: Provider
     private let ethSigner: EthSigner
     private let zkSigner: ZkSigner
     
