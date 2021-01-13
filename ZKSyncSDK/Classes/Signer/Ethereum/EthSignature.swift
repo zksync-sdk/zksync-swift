@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct EthSignature {
-    public enum SignatureType {
-        case ethereumSignature
+public struct EthSignature: Encodable {
+    public enum SignatureType: String, Encodable {
+        case ethereumSignature = "EthereumSignature"
         case EIP1271Signature
     }
     

@@ -125,6 +125,8 @@
 		4404E80925AF65DD00181A54 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E80825AF65DD00181A54 /* Tokens.swift */; };
 		4404E81625AF6AE700181A54 /* DefaultProvider+Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */; };
 		4404E82425AF726C00181A54 /* ZkSyncTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */; };
+		4404E83C25AF740F00181A54 /* DefaultProvider+Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E83B25AF740F00181A54 /* DefaultProvider+Transactions.swift */; };
+		4404E84A25AF754F00181A54 /* TransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E84925AF754F00181A54 /* TransactionRequest.swift */; };
 		4418281931C4D1176F2C541CDD770F14 /* Catchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CBE3AFA8B5DA33388F9737C65B6 /* Catchable.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
@@ -715,6 +717,8 @@
 		4404E80825AF65DD00181A54 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+Tokens.swift"; sourceTree = "<group>"; };
 		4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSyncTransaction.swift; sourceTree = "<group>"; };
+		4404E83B25AF740F00181A54 /* DefaultProvider+Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+Transactions.swift"; sourceTree = "<group>"; };
+		4404E84925AF754F00181A54 /* TransactionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		441AF11920D9EFF75FD17A3969688B5B /* hash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hash.h; path = secp256k1/hash.h; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -1376,6 +1380,7 @@
 				3F4326567620FBDB587004A4F050B10B /* DefaultProvider+ContractAddress.swift */,
 				4956CBE8537169A3308E4CBD6D74A5EE /* DefaultProvider+TokenPrice.swift */,
 				4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */,
+				4404E84825AF753B00181A54 /* Transactions */,
 				5B136113B730D21D5A7D3A287B5445CA /* TransactionFee */,
 			);
 			path = Provider;
@@ -1389,6 +1394,15 @@
 				CD4680CDDC1005F6777171E16BDEA2B0 /* Withdraw.swift */,
 				4404E7B525AE39C600181A54 /* ForcedExit.swift */,
 				4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		4404E84825AF753B00181A54 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				4404E83B25AF740F00181A54 /* DefaultProvider+Transactions.swift */,
+				4404E84925AF754F00181A54 /* TransactionRequest.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -2593,6 +2607,8 @@
 				5B7651911FEF2FA434ADA81FCDE4AE36 /* Transport.swift in Sources */,
 				AC84EF0A07745149231B1F4E7658FC40 /* Types.swift in Sources */,
 				4404E7B625AE39C600181A54 /* ForcedExit.swift in Sources */,
+				4404E84A25AF754F00181A54 /* TransactionRequest.swift in Sources */,
+				4404E83C25AF740F00181A54 /* DefaultProvider+Transactions.swift in Sources */,
 				167E1C70C11EDD604CFF441FF799D970 /* Utils.swift in Sources */,
 				0AECBCA15A41F57A7D2800E96C072E2E /* Wallet.swift in Sources */,
 				577F562042CA2823B643B5CA6CCB8C08 /* Withdraw.swift in Sources */,

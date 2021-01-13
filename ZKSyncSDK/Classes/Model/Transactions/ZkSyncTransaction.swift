@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ZkSyncTransaction: Encodable {
+public protocol ZkSyncTransaction: Encodable {
     var type: String { get }
 }

@@ -21,4 +21,13 @@ public protocol Provider {
     func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void)
     
     func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
+    
+    func submitTx<TX: ZkSyncTransaction>(_ tx: TX,
+                                         ethereumSignature: EthSignature?,
+                                         fastProcessing: Bool,
+                                         completion: @escaping (ZKSyncResult<String>) -> Void)
+    
+    func submitTx<TX: ZkSyncTransaction>(_ tx: TX,
+                                         fastProcessing: Bool,
+                                         completion: @escaping (ZKSyncResult<String>) -> Void)
 }

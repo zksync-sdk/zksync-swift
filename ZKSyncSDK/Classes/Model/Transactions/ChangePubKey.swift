@@ -10,7 +10,7 @@ import BigInt
 
 public struct ChangePubKey: ZkSyncTransaction {
     
-    let type = "ChangePubKey"
+    public let type = "ChangePubKey"
     
     let accountId: Int32
     let account: String
