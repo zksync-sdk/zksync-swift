@@ -11,7 +11,7 @@ import web3swift
 
 public struct Token: Decodable {
     
-    let id: Int
+    let id: UInt16
     public let address: String
     let symbol: String
     let decimals: Int

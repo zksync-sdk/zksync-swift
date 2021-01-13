@@ -8,9 +8,9 @@
 import Foundation
 import BigInt
 
-public struct Withdraw {
+public struct Withdraw: ZkSyncTransaction {
     
-    let type = "Withdraw"
+    public let type = "Withdraw"
     
     let accountId: Int32
     let from: String

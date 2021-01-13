@@ -8,9 +8,9 @@
 import Foundation
 import BigInt
 
-public struct ForcedExit {
+public struct ForcedExit: ZkSyncTransaction {
     
-    let type = "ForcedExit"
+    public let type = "ForcedExit"
     
     let initiatorAccountId: Int32
     let target: String

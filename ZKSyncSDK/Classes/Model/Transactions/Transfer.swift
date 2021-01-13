@@ -8,9 +8,9 @@
 import Foundation
 import BigInt
 
-public struct Transfer {
+public struct Transfer: ZkSyncTransaction {
     
-    let type = "Transfer"
+    public let type = "Transfer"
     
     let accountId: Int32
     let from: String

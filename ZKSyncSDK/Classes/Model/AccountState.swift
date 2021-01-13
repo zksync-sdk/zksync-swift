@@ -19,7 +19,7 @@ public struct AccountState: Codable {
     }
     
     public struct State: Codable {
-        public var nonce: Int
+        public var nonce: Int32
         public var pubKeyHash: String
         public var balances: [String: String]
     }
