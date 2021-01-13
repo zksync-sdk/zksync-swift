@@ -9,6 +9,9 @@ import Foundation
 import BigInt
 
 public struct Transfer {
+    
+    let type = "Transfer"
+    
     let accountId: Int32
     let from: String
     let to: String

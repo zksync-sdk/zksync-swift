@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Signature {
+public struct Signature: Encodable {
     let pubKey: String
     let signature: String
 }

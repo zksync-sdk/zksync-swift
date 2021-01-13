@@ -9,6 +9,9 @@ import Foundation
 import BigInt
 
 public struct ForcedExit {
+    
+    let type = "ForcedExit"
+    
     let initiatorAccountId: Int32
     let target: String
     let token: UInt16

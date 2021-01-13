@@ -124,6 +124,7 @@
 		4404E7DB25AF62CF00181A54 /* DefaultProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E7DA25AF62CF00181A54 /* DefaultProvider.swift */; };
 		4404E80925AF65DD00181A54 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E80825AF65DD00181A54 /* Tokens.swift */; };
 		4404E81625AF6AE700181A54 /* DefaultProvider+Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */; };
+		4404E82425AF726C00181A54 /* ZkSyncTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */; };
 		4418281931C4D1176F2C541CDD770F14 /* Catchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51CBE3AFA8B5DA33388F9737C65B6 /* Catchable.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
@@ -713,6 +714,7 @@
 		4404E7DA25AF62CF00181A54 /* DefaultProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultProvider.swift; sourceTree = "<group>"; };
 		4404E80825AF65DD00181A54 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+Tokens.swift"; sourceTree = "<group>"; };
+		4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSyncTransaction.swift; sourceTree = "<group>"; };
 		441AF11920D9EFF75FD17A3969688B5B /* hash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hash.h; path = secp256k1/hash.h; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -1379,6 +1381,18 @@
 			path = Provider;
 			sourceTree = "<group>";
 		};
+		4404E82225AF724B00181A54 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				ED273DA8903E459AFA4BC54F7A8AB762 /* ChangePubKey.swift */,
+				1346AD39A7794F6BD15E9D2249E88EE9 /* Transfer.swift */,
+				CD4680CDDC1005F6777171E16BDEA2B0 /* Withdraw.swift */,
+				4404E7B525AE39C600181A54 /* ForcedExit.swift */,
+				4404E82325AF726C00181A54 /* ZkSyncTransaction.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
 		4BB5EB61CE5B15F05541492A336AB904 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,16 +1497,13 @@
 		68CD04F40E46509EA22DC6320CC43592 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4404E82225AF724B00181A54 /* Transactions */,
 				A0783FF97AC342BF3FBE98C0BB9F7B04 /* AccountState.swift */,
 				ED003B5754C477B2D7A7923AA6948302 /* ChainId.swift */,
-				ED273DA8903E459AFA4BC54F7A8AB762 /* ChangePubKey.swift */,
 				9AF1321F87AECB2AD978F883623EFDED /* ContractAddress.swift */,
 				4AC7BED171FA0016929481AFC9223C82 /* Signature.swift */,
 				A05881A545FA508A1FDFD95BFA56C43A /* Token.swift */,
 				4404E80825AF65DD00181A54 /* Tokens.swift */,
-				1346AD39A7794F6BD15E9D2249E88EE9 /* Transfer.swift */,
-				CD4680CDDC1005F6777171E16BDEA2B0 /* Withdraw.swift */,
-				4404E7B525AE39C600181A54 /* ForcedExit.swift */,
 				E4E37CB923E3BE4D95D1EEBE52CB6DBA /* TransactionFee */,
 			);
 			path = Model;
@@ -2564,6 +2575,7 @@
 				E749DB4E48D84759D1B37D6BF04B163D /* DefaultProvider+TransactionFee.swift in Sources */,
 				5AAB8A16BD8ADD547EAF7D200648DF3D /* Provider.swift in Sources */,
 				5701E000ABA4D89430B387E48DD81BD2 /* Request.swift in Sources */,
+				4404E82425AF726C00181A54 /* ZkSyncTransaction.swift in Sources */,
 				243D31D19C9B446FFAFC2F21D054276A /* Response.swift in Sources */,
 				34095212412E3313D0603475028173F1 /* Signature.swift in Sources */,
 				5CCDB6D0A477C8633F453ACC3B6AEE97 /* String+Extensions.swift in Sources */,

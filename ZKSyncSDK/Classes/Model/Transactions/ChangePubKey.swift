@@ -8,7 +8,10 @@
 import Foundation
 import BigInt
 
-public struct ChangePubKey {
+public struct ChangePubKey: ZkSyncTransaction {
+    
+    let type = "ChangePubKey"
+    
     let accountId: Int32
     let account: String
     let newPkHash: String

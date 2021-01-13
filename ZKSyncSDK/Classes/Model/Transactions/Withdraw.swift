@@ -9,6 +9,9 @@ import Foundation
 import BigInt
 
 public struct Withdraw {
+    
+    let type = "Withdraw"
+    
     let accountId: Int32
     let from: String
     let to: String
