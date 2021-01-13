@@ -32,15 +32,34 @@ class NetworkSelectionTableViewController: UITableViewController {
         }
     }
     
-    
     private func createWallet(_ network: Network) -> Wallet {
                 
         guard let ethSigner = try? EthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
         
+        guard let zkSigner = try? ZkSigner(ethSigner: ethSigner, chainId: network.chainId) else {
+            fatalError()
+        }
+        
         let transport = HTTPTransport(network: network)
         return DefaultWallet(ethSigner: ethSigner,
+                             zkSigner: zkSigner,
                              transport: transport)
+    }
+}
+
+extension Network {
+    var chainId: ChainId {
+        switch self {
+        case .mainnet:
+            return .mainnet
+        case .localhost:
+            return .localhost
+        case .rinkeby:
+            return .rinkeby
+        case .ropsten:
+            return .ropsten
+        }
     }
 }

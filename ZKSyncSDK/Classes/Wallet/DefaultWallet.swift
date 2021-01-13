@@ -12,12 +12,18 @@ public class DefaultWallet: Wallet {
     
     private let provider: Provider
     private let ethSigner: EthSigner
+    private let zkSigner: ZkSigner
     
-    public init(ethSigner: EthSigner, transport: Transport) {
-        self.provider = Provider(transport: transport)
-        self.ethSigner = ethSigner
+    public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) {
+        self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: Provider(transport: transport))
     }
-    
+
+    public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) {
+        self.provider = provider
+        self.ethSigner = ethSigner
+        self.zkSigner = zkSigner
+    }
+
     public func getContractAddress(completion: @escaping (Result<ContractAddress, Error>) -> Void) {
         self.provider.contractAddress(completion: completion)
     }
