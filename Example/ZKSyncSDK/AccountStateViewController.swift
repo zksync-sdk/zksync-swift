@@ -31,7 +31,7 @@ class AccountStateViewController: UIViewController, WalletConsumer {
     }
     
     @IBAction func getAccountState(_ sender: Any) {
-        wallet.getAccountInfo { (result) in
+        wallet.getAccountState { (result) in
             switch result {
             case .success(let state):
                 self.update(state: state)

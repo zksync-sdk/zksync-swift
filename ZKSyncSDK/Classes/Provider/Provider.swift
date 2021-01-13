@@ -9,8 +9,8 @@ import Foundation
 import BigInt
 
 public protocol Provider {
-    func accountInfo(address: String,
-                     completion: @escaping (ZKSyncResult<AccountState>) -> Void)
+    func accountState(address: String,
+                      completion: @escaping (ZKSyncResult<AccountState>) -> Void)
     
     func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
 

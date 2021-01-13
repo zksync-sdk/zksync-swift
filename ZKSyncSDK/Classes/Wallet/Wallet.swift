@@ -12,7 +12,7 @@ public typealias ZKSyncCompletion<T> = (ZKSyncResult<T>) -> Void
 
 public protocol Wallet {
     func getContractAddress(completion: @escaping (Result<ContractAddress, Error>) -> Void)
-    func getAccountInfo(completion: @escaping (Result<AccountState, Error>) -> Void)
+    func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void)
     func getTokenPrice(completion: @escaping (Result<Decimal, Error>) -> Void)
 
     func getTransactionFee(for transactionType:TransactionType,

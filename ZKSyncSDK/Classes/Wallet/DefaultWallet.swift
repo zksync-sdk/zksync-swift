@@ -28,8 +28,8 @@ public class DefaultWallet: Wallet {
         self.provider.contractAddress(completion: completion)
     }
     
-    public func getAccountInfo(completion: @escaping (Result<AccountState, Error>) -> Void) {
-        self.provider.accountInfo(address: self.ethSigner.address, completion: completion)
+    public func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void) {
+        self.provider.accountState(address: self.ethSigner.address, completion: completion)
     }
     
     public func getTokenPrice(completion: @escaping (Result<Decimal, Error>) -> Void) {
