@@ -34,4 +34,23 @@ public struct Tokens: Decodable {
         }
         return symbol
     }
+    
+    public init(from decoder: Decoder) throws {
+        tokens = [:]
+        let container = try decoder.container(keyedBy: DynamicKey.self)
+        for key in container.allKeys {
+            tokens[key.stringValue] = try container.decode(Token.self, forKey: key)
+        }
+    }
+    
+    struct DynamicKey: CodingKey {
+        var intValue: Int?
+        init?(intValue: Int) {
+            return nil
+        }
+        var stringValue: String
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+    }
 }
