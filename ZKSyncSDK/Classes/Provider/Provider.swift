@@ -16,6 +16,8 @@ public protocol Provider {
 
     func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void)
     
+    func tokens(completion: @escaping (ZKSyncResult<Tokens>) -> Void)
+    
     func transactionFee(request: TransactionFeeRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
     
     func transactionFee(request: TransactionFeeBatchRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)

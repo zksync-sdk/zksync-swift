@@ -11,7 +11,7 @@ public enum TokensError: Error {
     case noTokenWithAddress(String)
 }
 
-public struct Tokens {
+public struct Tokens: Decodable {
     private var tokens: [String: Token]
 
     public func tokenBySymbol(_ symbol: String) -> Token? {
