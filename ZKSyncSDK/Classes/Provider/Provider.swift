@@ -8,11 +8,16 @@
 import Foundation
 import BigInt
 
-public class Provider {
-    let transport: Transport
+public protocol Provider {
+    func accountInfo(address: String,
+                     completion: @escaping (ZKSyncResult<AccountState>) -> Void)
     
-    public init(transport: Transport) {
-        self.transport = transport
-    } 
-}
+    func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
 
+    func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void)
+    
+    func transactionFee(request: TransactionFeeRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
+    
+    func transactionFee(request: TransactionFeeBatchRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
+
+}

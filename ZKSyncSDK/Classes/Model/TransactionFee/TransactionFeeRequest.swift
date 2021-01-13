@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionFeeRequest {
+public struct TransactionFeeRequest {
     var transactionType: TransactionType
     var address: String
     var tokenIdentifier: String

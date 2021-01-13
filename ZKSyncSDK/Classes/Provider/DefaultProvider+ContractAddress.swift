@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Provider {
+extension DefaultProvider {
     public func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void) {
         transport.send(method: "contract_address", params: [String](), completion: completion)
     }

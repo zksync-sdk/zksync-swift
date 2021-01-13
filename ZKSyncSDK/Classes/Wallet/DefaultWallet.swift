@@ -15,7 +15,7 @@ public class DefaultWallet: Wallet {
     private let zkSigner: ZkSigner
     
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) {
-        self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: Provider(transport: transport))
+        self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
     }
 
     public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) {
