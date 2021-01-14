@@ -43,9 +43,12 @@ class NetworkSelectionTableViewController: UITableViewController {
         }
         
         let transport = HTTPTransport(network: network)
-        return DefaultWallet(ethSigner: ethSigner,
-                             zkSigner: zkSigner,
-                             transport: transport)
+        
+        guard let wallet = try? DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, transport: transport) else {
+            fatalError()
+        }
+        
+        return wallet
     }
 }
 

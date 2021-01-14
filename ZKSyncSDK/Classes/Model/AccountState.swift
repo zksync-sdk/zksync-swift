@@ -25,7 +25,7 @@ public struct AccountState: Codable {
     }
     
     public var address: String
-    public var id: Int?
+    public var id: Int32
     
     public var depositing: Depositing
     public var committed: State

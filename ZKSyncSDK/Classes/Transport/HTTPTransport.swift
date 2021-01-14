@@ -31,13 +31,24 @@ public class HTTPTransport: Transport {
     public func send<P, R>(method: String,
                            params: P?,
                            completion: @escaping (TransportResult<R>) -> Void) where P : Encodable, R : Decodable {
+        self.send(method: method,
+                  params: params,
+                  queue: .main,
+                  completion: completion)
+    }
+
+    
+    public func send<P, R>(method: String,
+                           params: P?,
+                           queue: DispatchQueue,
+                           completion: @escaping (TransportResult<R>) -> Void) where P : Encodable, R : Decodable {
         
         self.session.request(self.networkURL,
                              method: .post,
                              parameters: JRPCRequest(method: method, params: params),
                              encoder: JSONParameterEncoder.default)
             .validate()
-            .responseDecodable(decoder: JRPCDecoder()) { [weak self] (response: DataResponse<R, AFError>) in
+            .responseDecodable(queue: queue, decoder: JRPCDecoder()) { [weak self] (response: DataResponse<R, AFError>) in
                 switch response.result {
                 case .success(let result):
                     completion(.success(result))

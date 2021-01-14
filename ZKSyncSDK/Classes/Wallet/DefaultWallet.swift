@@ -8,29 +8,35 @@
 import Foundation
 import BigInt
 
+enum DefaultWalletError: Error {
+    case internalError
+}
+
 public class DefaultWallet: Wallet {
     
     private let group = DispatchGroup()
+    private let deliveryQueue = DispatchQueue(label: "com.zksyncsdk.wallet")
     
     public let provider: Provider
     private let ethSigner: EthSigner
     private let zkSigner: ZkSigner
     
-    private let accountId: Int32 = 6338
-    private let pubKeyHash: String = ""
+    private var accountId: Int32 = 0
+    private var pubKeyHash: String = ""
     
-    public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) {
-        self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
+    public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {
+        try self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
     }
 
-    public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) {
+    public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) throws {
         self.provider = provider
         self.ethSigner = ethSigner
         self.zkSigner = zkSigner
         
-//        self.getAccountState { (result) in
-//            print(result)
-//        }
+        let accountState = try self.getAccountStateSync()
+        
+        self.accountId = accountState.id
+        self.pubKeyHash = accountState.committed.pubKeyHash
     }
 
     public func getContractAddress(completion: @escaping (Result<ContractAddress, Error>) -> Void) {
@@ -38,9 +44,13 @@ public class DefaultWallet: Wallet {
     }
     
     public func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void) {
-        self.provider.accountState(address: self.ethSigner.address, completion: completion)
+        self.getAccountState(queue: .main, completion: completion)
     }
-    
+
+    private func getAccountState(queue: DispatchQueue, completion: @escaping (Result<AccountState, Error>) -> Void) {
+        self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
+    }
+
     public func getTokenPrice(completion: @escaping (Result<Decimal, Error>) -> Void) {
         self.provider.tokenPrice(token: Token.ETH, completion: completion)
     }
@@ -68,16 +78,6 @@ public class DefaultWallet: Wallet {
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
-
-//    @Override
-//    public String syncTransfer(String to, BigInteger amount, TransactionFee fee, Integer nonce) {
-//
-//        final Integer nonceToUse = nonce == null ? getNonce() : nonce;
-//
-//        final SignedTransaction<Transfer> signedTransfer = buildSignedTransferTx(to , fee.getFeeToken(), amount, fee.getFee(), nonceToUse);
-//
-//        return submitSignedTransaction(signedTransfer.getTransaction(), signedTransfer.getEthereumSignature(), false);
-//    }
 
     public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void) {
 
@@ -131,13 +131,6 @@ public class DefaultWallet: Wallet {
         }
     }
     
-//    private String submitSignedTransaction(ZkSyncTransaction signedTransaction,
-//                                         EthSignature ethereumSignature,
-//                                         boolean fastProcessing) {
-//        return provider.submitTx(signedTransaction, ethereumSignature, fastProcessing);
-//    }
-    
-    
     private func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                                 ethereumSignature: EthSignature,
                                                                 fastProcessing: Bool,
@@ -154,6 +147,22 @@ public class DefaultWallet: Wallet {
                 try result.get().committed.nonce
             })
         }
+    }
+    
+    private func getAccountStateSync() throws -> AccountState {
+        
+        var callResult: Result<AccountState, Error>? = nil
+        self.group.enter()
+        self.getAccountState(queue: self.deliveryQueue) { (result) in
+            callResult = result
+            self.group.leave()
+        }
+        self.group.wait()
+        
+        guard let r = callResult else {
+            throw DefaultWalletError.internalError
+        }
+        return try r.get()
     }
 
 }
