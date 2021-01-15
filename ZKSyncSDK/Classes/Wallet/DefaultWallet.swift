@@ -130,6 +130,31 @@ public class DefaultWallet: Wallet {
             }
         }
     }
+    
+    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let nonceToUse = nonce else {
+            self.getNonce { (result) in
+                switch result {
+                case .success(let nonceToUse):
+                    self.forcedExit(target: target, fee: fee, nonce: nonceToUse, completion: completion)
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+            return
+        }
+        
+        buildSignedForcedExitTx(target: target, tokenIdentifier: fee.feeToken, fee: fee.fee, nonce: nonceToUse) { (result) in
+            switch result {
+            case .success(let signedTransaction):
+                self.submitSignedTransaction(signedTransaction.transaction,
+                                             ethereumSignature: signedTransaction.ethereumSignature,
+                                             fastProcessing: false, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
     func buildSignedWithdrawTx(to: String,
                                tokenIdentifier: String,
@@ -181,8 +206,29 @@ public class DefaultWallet: Wallet {
         }
     }
     
+    func buildSignedForcedExitTx(target: String,
+                                 tokenIdentifier: String,
+                                 fee: BigUInt,
+                                 nonce: Int32,
+                                 completion: @escaping (Result<SignedTransaction<ForcedExit>, Error>) -> Void) {
+        
+        provider.tokens { (result) in
+
+            completion(Result {
+                let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
+                let forcedExit = ForcedExit(initiatorAccountId: self.accountId,
+                                            target: target,
+                                            token: token.id,
+                                            fee: fee.description,
+                                            nonce: nonce)
+                let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(forcedExit: forcedExit), ethereumSignature: nil)
+                return signedTransaction
+            })
+        }
+    }
+    
     private func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
-                                                                ethereumSignature: EthSignature,
+                                                                ethereumSignature: EthSignature?,
                                                                 fastProcessing: Bool,
                                                                 completion: @escaping (ZKSyncResult<String>) -> Void) {
         provider.submitTx(transaction,

@@ -9,5 +9,5 @@ import Foundation
 
 struct SignedTransaction<T: ZkSyncTransaction> {
     let transaction: T
-    let ethereumSignature: EthSignature
+    let ethereumSignature: EthSignature?
 }
