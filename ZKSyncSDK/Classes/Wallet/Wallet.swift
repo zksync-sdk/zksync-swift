@@ -31,5 +31,6 @@ public protocol Wallet {
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
 
     func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
+    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Result<String, Error>) -> Void)
 }
 
