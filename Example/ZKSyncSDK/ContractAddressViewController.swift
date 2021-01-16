@@ -16,7 +16,7 @@ class ContractAddressViewController: UIViewController, WalletConsumer {
     @IBOutlet weak var govContractLabel: UILabel!
         
     @IBAction func getContractAddress(_ sender: Any) {
-        self.wallet.getContractAddress { result in
+        self.wallet.provider.contractAddress { result in
             switch result {
             case .success(let address):
                 self.display(contractAddress: address)

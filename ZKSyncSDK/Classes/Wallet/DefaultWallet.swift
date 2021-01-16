@@ -40,22 +40,6 @@ public class DefaultWallet: Wallet {
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
 
-    public func getContractAddress(completion: @escaping (Swift.Result<ContractAddress, Error>) -> Void) {
-        self.provider.contractAddress(completion: completion)
-    }
-    
-    public func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
-        self.getAccountState(queue: .main, completion: completion)
-    }
-
-    private func getAccountState(queue: DispatchQueue, completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
-        self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
-    }
-
-    public func getTokenPrice(completion: @escaping (Swift.Result<Decimal, Error>) -> Void) {
-        self.provider.tokenPrice(token: Token.ETH, completion: completion)
-    }
-
     public func getTransactionFee(for transactionType:TransactionType,
                                   tokenIdentifier: String,
                                   completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
@@ -91,7 +75,7 @@ public class DefaultWallet: Wallet {
     }
     
     internal func getNonce(completion: @escaping (Swift.Result<Int32, Error>) -> Void) {
-        self.getAccountState { (result) in
+        self.provider.accountState(address: ethSigner.address) { (result) in
             completion(Swift.Result {
                 try result.get().committed.nonce
             })
@@ -102,7 +86,7 @@ public class DefaultWallet: Wallet {
         
         var callResult: Swift.Result<AccountState, Error>? = nil
         self.group.enter()
-        self.getAccountState(queue: self.deliveryQueue) { (result) in
+        self.provider.accountState(address: ethSigner.address, queue: self.deliveryQueue) { (result) in
             callResult = result
             self.group.leave()
         }

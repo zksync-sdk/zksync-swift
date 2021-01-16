@@ -16,7 +16,7 @@ class TokenPriceViewController: UIViewController, WalletConsumer {
     @IBOutlet weak var tokenPriceLabel: UILabel!
     
     @IBAction func getTokenPRice(_ sender: Any) {
-        wallet.getTokenPrice { (result) in
+        wallet.provider.tokenPrice(token: Token.ETH) { (result) in
             switch result {
             case .success(let price):
                 self.tokenPriceLabel.text = "\(price)"
