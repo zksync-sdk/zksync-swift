@@ -34,4 +34,7 @@ public protocol Provider {
     func submitTx<TX: ZkSyncTransaction>(_ tx: TX,
                                          fastProcessing: Bool,
                                          completion: @escaping (ZKSyncResult<String>) -> Void)
+    
+    func transactionDetails(txHash: String,
+                            completion: @escaping (ZKSyncResult<TransactionDetails>) -> Void)
 }
