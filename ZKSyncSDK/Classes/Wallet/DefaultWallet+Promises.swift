@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    func noncePromise() -> Promise<Int32> {
+    func getNonce() -> Promise<Int32> {
         return Promise { getNonce(completion: $0.resolve )}
     }
     
@@ -19,14 +19,6 @@ extension DefaultWallet {
         return Promise { provider.tokens(completion: $0.resolve ) }
     }
     
-    func buildSignedWithdrawTx(to: String,
-                                tokenIdentifier: String,
-                                amount: BigUInt,
-                                fee: BigUInt,
-                                nonce: Int32) -> Promise<SignedTransaction<Withdraw>> {
-        return Promise { buildSignedWithdrawTx(to: to, tokenIdentifier: tokenIdentifier, amount: amount, fee: fee, nonce: nonce, completion: $0.resolve ) }
-    }
-
     func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                                 ethereumSignature: EthSignature?,
                                                                 fastProcessing: Bool) -> Promise<String> {
