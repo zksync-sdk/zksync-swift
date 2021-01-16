@@ -140,6 +140,7 @@
 		443FF8EC25B31994000CDA8D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8EB25B31994000CDA8D /* BlockInfo.swift */; };
 		443FF8F925B31B4C000CDA8D /* EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */; };
 		443FF90625B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */; };
+		443FF91325B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF91225B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
 		45746D692A8E7F09C0EED2675231EF41 /* StreamEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C4F527534F20A968AD9DF0DB255E3 /* StreamEncryptor.swift */; };
@@ -744,6 +745,7 @@
 		443FF8EB25B31994000CDA8D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
 		443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthOpInfo.swift; sourceTree = "<group>"; };
 		443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+EthOpInfo.swift"; sourceTree = "<group>"; };
+		443FF91225B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+ConfirmationsForEthOpAmount.swift"; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		46B58B165365197FCE4D70AEBA8E55DE /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
@@ -1406,6 +1408,7 @@
 				4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */,
 				443FF8D125B318CC000CDA8D /* DefaultProvider+TransactionDetails.swift */,
 				443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */,
+				443FF91225B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift */,
 				4404E84825AF753B00181A54 /* Transactions */,
 				5B136113B730D21D5A7D3A287B5445CA /* TransactionFee */,
 			);
@@ -2614,6 +2617,7 @@
 				6D8951224EB3220D17F60313BD6BE36B /* DefaultWallet.swift in Sources */,
 				0B5E79DF5BF552725C4D6C7DC70C5415 /* Error.swift in Sources */,
 				443FF89E25B3094B000CDA8D /* DefaultWallet+Withdraw.swift in Sources */,
+				443FF91325B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift in Sources */,
 				927C56D6D5E9018483DE575F3FEDD7EB /* EthSignature.swift in Sources */,
 				4404E80925AF65DD00181A54 /* Tokens.swift in Sources */,
 				CDBF835BC612FB3EC15F9EF8877469AB /* EthSigner+Messages.swift in Sources */,
