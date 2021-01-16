@@ -79,52 +79,6 @@ public class DefaultWallet: Wallet {
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
-
-    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
-        guard let nonceToUse = nonce else {
-            self.getNonce { (result) in
-                switch result {
-                case .success(let nonceToUse):
-                    self.forcedExit(target: target, fee: fee, nonce: nonceToUse, completion: completion)
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-            return
-        }
-        
-        buildSignedForcedExitTx(target: target, tokenIdentifier: fee.feeToken, fee: fee.fee, nonce: nonceToUse) { (result) in
-            switch result {
-            case .success(let signedTransaction):
-                self.submitSignedTransaction(signedTransaction.transaction,
-                                             ethereumSignature: signedTransaction.ethereumSignature,
-                                             fastProcessing: false, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func buildSignedForcedExitTx(target: String,
-                                 tokenIdentifier: String,
-                                 fee: BigUInt,
-                                 nonce: Int32,
-                                 completion: @escaping (Swift.Result<SignedTransaction<ForcedExit>, Error>) -> Void) {
-        
-        provider.tokens { (result) in
-
-            completion(Swift.Result {
-                let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
-                let forcedExit = ForcedExit(initiatorAccountId: self.accountId,
-                                            target: target,
-                                            token: token.id,
-                                            fee: fee.description,
-                                            nonce: nonce)
-                let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(forcedExit: forcedExit), ethereumSignature: nil)
-                return signedTransaction
-            })
-        }
-    }
     
     func buildSignedChangePubKeyTx(fee: TransactionFee,
                                    nonce: Int32,
