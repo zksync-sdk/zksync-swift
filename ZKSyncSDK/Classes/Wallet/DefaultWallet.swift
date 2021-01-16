@@ -80,32 +80,6 @@ public class DefaultWallet: Wallet {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
 
-    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
-
-        guard let nonceToUse = nonce else {
-            self.getNonce { (result) in
-                switch result {
-                case .success(let nonceToUse):
-                    self.transfer(to: to, amount: amount, fee: fee, nonce: nonceToUse, completion: completion)
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-            return
-        }
-        
-        buildSignedTransferTx(to: to, tokenIdentifier: fee.feeToken, amount: amount, fee: fee.fee, nonce: nonceToUse) { (result) in
-            switch result {
-            case .success(let signedTransaction):
-                self.submitSignedTransaction(signedTransaction.transaction,
-                                             ethereumSignature: signedTransaction.ethereumSignature,
-                                             fastProcessing: false, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
     public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         guard let nonceToUse = nonce else {
             self.getNonce { (result) in
@@ -128,31 +102,6 @@ public class DefaultWallet: Wallet {
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
-    }
-
-    func buildSignedTransferTx(to: String,
-                               tokenIdentifier: String,
-                               amount: BigUInt,
-                               fee: BigUInt,
-                               nonce: Int32,
-                               completion: @escaping (Swift.Result<SignedTransaction<Transfer>, Error>) -> Void) {
-        
-        provider.tokens { (result) in
-
-            completion(Swift.Result {
-                let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
-                let transfer = Transfer(accountId: self.accountId,
-                                        from: self.ethSigner.address,
-                                        to: to,
-                                        token: token.id,
-                                        amount: amount,
-                                        fee: fee.description,
-                                        nonce: nonce)
-                let ethSignature = try self.ethSigner.signTransfer(to: to, accountId: self.accountId, nonce: nonce, amount: amount, token: token, fee: fee)
-                let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(transfer: transfer), ethereumSignature: ethSignature)
-                return signedTransaction
-            })
         }
     }
     
