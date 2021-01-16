@@ -14,13 +14,7 @@ public protocol Wallet {
     
     var provider: Provider { get }
     
-    func setSigningKey(fee: TransactionFee, nonce: Int32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
-
-    func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
-    
-    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Result<String, Error>) -> Void)
-    
-    func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
+    func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void)
     
     func getTransactionFee(for transactionType:TransactionType,
                            tokenIdentifier: String,
@@ -33,5 +27,13 @@ public protocol Wallet {
  
     func getTransactionFee(for batchRequest: TransactionFeeBatchRequest,
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
+
+    func setSigningKey(fee: TransactionFee, nonce: Int32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
+
+    func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
+    
+    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Result<String, Error>) -> Void)
+    
+    func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
 }
 
