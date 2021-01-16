@@ -7,6 +7,7 @@
 
 import Foundation
 import BigInt
+import PromiseKit
 
 enum DefaultWalletError: Error {
     case internalError
@@ -39,19 +40,19 @@ public class DefaultWallet: Wallet {
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
 
-    public func getContractAddress(completion: @escaping (Result<ContractAddress, Error>) -> Void) {
+    public func getContractAddress(completion: @escaping (Swift.Result<ContractAddress, Error>) -> Void) {
         self.provider.contractAddress(completion: completion)
     }
     
-    public func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void) {
+    public func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
         self.getAccountState(queue: .main, completion: completion)
     }
 
-    private func getAccountState(queue: DispatchQueue, completion: @escaping (Result<AccountState, Error>) -> Void) {
+    private func getAccountState(queue: DispatchQueue, completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
         self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
     }
 
-    public func getTokenPrice(completion: @escaping (Result<Decimal, Error>) -> Void) {
+    public func getTokenPrice(completion: @escaping (Swift.Result<Decimal, Error>) -> Void) {
         self.provider.tokenPrice(token: Token.ETH, completion: completion)
     }
 
@@ -79,7 +80,7 @@ public class DefaultWallet: Wallet {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
 
-    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void) {
+    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
 
         guard let nonceToUse = nonce else {
             self.getNonce { (result) in
@@ -105,33 +106,26 @@ public class DefaultWallet: Wallet {
         }
     }
     
-    public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Result<String, Error>) -> Void) {
-
-        guard let nonceToUse = nonce else {
-            self.getNonce { (result) in
-                switch result {
-                case .success(let nonceToUse):
-                    self.withdraw(ethAddress: ethAddress, amount: amount, fee: fee, nonce: nonceToUse, fastProcessing: fastProcessing, completion: completion)
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-            return
-        }
+    public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
-        buildSignedWithdrawTx(to: ethAddress, tokenIdentifier: fee.feeToken, amount: amount, fee: fee.fee, nonce: nonceToUse) { (result) in
-            switch result {
-            case .success(let signedTransaction):
-                self.submitSignedTransaction(signedTransaction.transaction,
-                                             ethereumSignature: signedTransaction.ethereumSignature,
-                                             fastProcessing: fastProcessing, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        firstly {
+            return nonce != nil ? .value(nonce!) : noncePromise()
+        }.then { nonce in
+            self.buildSignedWithdrawTx(to: ethAddress,
+                                       tokenIdentifier: fee.feeToken,
+                                       amount: amount,
+                                       fee: fee.fee,
+                                       nonce: nonce)
+        }.then { signedTransaction in
+            self.submitSignedTransaction(signedTransaction.transaction,
+                                         ethereumSignature: signedTransaction.ethereumSignature,
+                                         fastProcessing: false)
+        }.pipe { result in
+            completion(result.result)
         }
     }
-    
-    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void) {
+
+    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         guard let nonceToUse = nonce else {
             self.getNonce { (result) in
                 switch result {
@@ -161,11 +155,11 @@ public class DefaultWallet: Wallet {
                                amount: BigUInt,
                                fee: BigUInt,
                                nonce: Int32,
-                               completion: @escaping (Result<SignedTransaction<Withdraw>, Error>) -> Void) {
+                               completion: @escaping (Swift.Result<SignedTransaction<Withdraw>, Error>) -> Void) {
         
         provider.tokens { (result) in
 
-            completion(Result {
+            completion(Swift.Result {
                 let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
                 let withdraw = Withdraw(accountId: self.accountId,
                                         from: self.ethSigner.address,
@@ -186,11 +180,11 @@ public class DefaultWallet: Wallet {
                                amount: BigUInt,
                                fee: BigUInt,
                                nonce: Int32,
-                               completion: @escaping (Result<SignedTransaction<Transfer>, Error>) -> Void) {
+                               completion: @escaping (Swift.Result<SignedTransaction<Transfer>, Error>) -> Void) {
         
         provider.tokens { (result) in
 
-            completion(Result {
+            completion(Swift.Result {
                 let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
                 let transfer = Transfer(accountId: self.accountId,
                                         from: self.ethSigner.address,
@@ -210,11 +204,11 @@ public class DefaultWallet: Wallet {
                                  tokenIdentifier: String,
                                  fee: BigUInt,
                                  nonce: Int32,
-                                 completion: @escaping (Result<SignedTransaction<ForcedExit>, Error>) -> Void) {
+                                 completion: @escaping (Swift.Result<SignedTransaction<ForcedExit>, Error>) -> Void) {
         
         provider.tokens { (result) in
 
-            completion(Result {
+            completion(Swift.Result {
                 let token = try result.get().tokenByTokenIdentifier(tokenIdentifier)
                 let forcedExit = ForcedExit(initiatorAccountId: self.accountId,
                                             target: target,
@@ -230,11 +224,11 @@ public class DefaultWallet: Wallet {
     func buildSignedChangePubKeyTx(fee: TransactionFee,
                                    nonce: Int32,
                                    onchainAuth: Bool,
-                                   completion: @escaping (Result<SignedTransaction<ChangePubKey>, Error>) -> Void) {
+                                   completion: @escaping (Swift.Result<SignedTransaction<ChangePubKey>, Error>) -> Void) {
         
         provider.tokens { (result) in
 
-            completion(Result {
+            completion(Swift.Result {
                 let token = try result.get().tokenByTokenIdentifier(fee.feeToken)
                 var changePubKey = ChangePubKey(accountId: self.accountId,
                                                 account: self.ethSigner.address,
@@ -256,7 +250,7 @@ public class DefaultWallet: Wallet {
         }
     }
 
-    private func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
+    internal func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                                 ethereumSignature: EthSignature?,
                                                                 fastProcessing: Bool,
                                                                 completion: @escaping (ZKSyncResult<String>) -> Void) {
@@ -266,9 +260,9 @@ public class DefaultWallet: Wallet {
                           completion: completion)
     }
     
-    private func getNonce(completion: @escaping (Result<Int32, Error>) -> Void) {
+    internal func getNonce(completion: @escaping (Swift.Result<Int32, Error>) -> Void) {
         self.getAccountState { (result) in
-            completion(Result {
+            completion(Swift.Result {
                 try result.get().committed.nonce
             })
         }
@@ -276,7 +270,7 @@ public class DefaultWallet: Wallet {
     
     private func getAccountStateSync() throws -> AccountState {
         
-        var callResult: Result<AccountState, Error>? = nil
+        var callResult: Swift.Result<AccountState, Error>? = nil
         self.group.enter()
         self.getAccountState(queue: self.deliveryQueue) { (result) in
             callResult = result
