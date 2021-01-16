@@ -12,6 +12,12 @@ import BigInt
 extension DefaultWallet {
 
     public func setSigningKey(fee: TransactionFee, nonce: Int32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+        
+        guard !isSigningKeySet else {
+            completion(.failure(WalletError.signingKeyAlreadySet))
+            return
+        }
+        
         firstly {
             return nonce != nil ? .value(nonce!) : getNonce()
         }.then { nonce in

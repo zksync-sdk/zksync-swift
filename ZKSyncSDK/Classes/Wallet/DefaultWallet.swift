@@ -48,10 +48,6 @@ public class DefaultWallet: Wallet {
         self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
     }
 
-    public func getTokenPrice(completion: @escaping (Swift.Result<Decimal, Error>) -> Void) {
-        self.provider.tokenPrice(token: Token.ETH, completion: completion)
-    }
-
     public func getTransactionFee(for transactionType:TransactionType,
                                   tokenIdentifier: String,
                                   completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
@@ -75,7 +71,11 @@ public class DefaultWallet: Wallet {
                            completion: @escaping ZKSyncCompletion<TransactionFeeDetails>) {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
-    
+
+    public var isSigningKeySet: Bool {
+        pubKeyHash == zkSigner.publicKeyHash
+    }
+
     internal func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                                 ethereumSignature: EthSignature?,
                                                                 fastProcessing: Bool,

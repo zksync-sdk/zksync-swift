@@ -10,6 +10,10 @@ import BigInt
 
 public typealias ZKSyncCompletion<T> = (ZKSyncResult<T>) -> Void
 
+public enum WalletError: Error {
+    case signingKeyAlreadySet
+}
+
 public protocol Wallet {
     
     var provider: Provider { get }
@@ -35,5 +39,7 @@ public protocol Wallet {
     func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Result<String, Error>) -> Void)
     
     func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
+    
+    var isSigningKeySet: Bool { get }
 }
 
