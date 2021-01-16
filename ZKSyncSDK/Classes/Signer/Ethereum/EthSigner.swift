@@ -12,7 +12,7 @@ import BigInt
 
 public class EthSigner {
     
-    private let keystore: EthereumKeystoreV3
+    private let keystore: AbstractKeystore
     
     public init(privateKey: String) throws {
         let privatKeyData = Data(hex: privateKey)
@@ -22,8 +22,19 @@ public class EthSigner {
         self.keystore = keystore
     }
     
+    public init(mnemonic: String) throws {
+        guard let keystore = try BIP32Keystore(mnemonics: mnemonic) else {
+            throw EthSignerError.invalidMnemonic
+        }
+        self.keystore = keystore
+    }
+    
     public var address: String {
-        return keystore.getAddress()!.address
+        return ethereumAddress.address
+    }
+    
+    private var ethereumAddress: EthereumAddress {
+        return keystore.addresses!.first!
     }
     
     public func signChangePubKey(pubKeyHash: String, nonce: Int32, accountId: Int32) throws -> EthSignature {
@@ -47,7 +58,7 @@ public class EthSigner {
         guard let signatureData =
                 try Web3Signer.signPersonalMessage(data,
                                                    keystore: self.keystore,
-                                                   account: self.keystore.getAddress()!,
+                                                   account: self.ethereumAddress,
                                                    password: "web3swift") else {
             throw EthSignerError.signingFailed
         }
