@@ -80,35 +80,6 @@ public class DefaultWallet: Wallet {
         self.provider.transactionFee(request: batchRequest, completion: completion)
     }
     
-    func buildSignedChangePubKeyTx(fee: TransactionFee,
-                                   nonce: Int32,
-                                   onchainAuth: Bool,
-                                   completion: @escaping (Swift.Result<SignedTransaction<ChangePubKey>, Error>) -> Void) {
-        
-        provider.tokens { (result) in
-
-            completion(Swift.Result {
-                let token = try result.get().tokenByTokenIdentifier(fee.feeToken)
-                var changePubKey = ChangePubKey(accountId: self.accountId,
-                                                account: self.ethSigner.address,
-                                                newPkHash: self.zkSigner.publicKeyHash,
-                                                feeToken: token.id,
-                                                fee: fee.fee.description,
-                                                nonce: nonce)
-                var ethSignature: EthSignature? = nil
-                if !onchainAuth {
-                    ethSignature = try self.ethSigner.signChangePubKey(pubKeyHash: self.zkSigner.publicKeyHash,
-                                                                       nonce: nonce,
-                                                                       accountId: self.accountId)
-                    changePubKey.ethSignature = ethSignature?.signature
-                }
-                
-                let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(changePubKey: changePubKey), ethereumSignature: ethSignature)
-                return signedTransaction
-            })
-        }
-    }
-
     internal func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                                 ethereumSignature: EthSignature?,
                                                                 fastProcessing: Bool,
