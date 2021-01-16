@@ -138,6 +138,8 @@
 		443FF8D225B318CC000CDA8D /* DefaultProvider+TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8D125B318CC000CDA8D /* DefaultProvider+TransactionDetails.swift */; };
 		443FF8DF25B3194E000CDA8D /* TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8DE25B3194E000CDA8D /* TransactionDetails.swift */; };
 		443FF8EC25B31994000CDA8D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8EB25B31994000CDA8D /* BlockInfo.swift */; };
+		443FF8F925B31B4C000CDA8D /* EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */; };
+		443FF90625B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
 		45746D692A8E7F09C0EED2675231EF41 /* StreamEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C4F527534F20A968AD9DF0DB255E3 /* StreamEncryptor.swift */; };
@@ -740,6 +742,8 @@
 		443FF8D125B318CC000CDA8D /* DefaultProvider+TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+TransactionDetails.swift"; sourceTree = "<group>"; };
 		443FF8DE25B3194E000CDA8D /* TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetails.swift; sourceTree = "<group>"; };
 		443FF8EB25B31994000CDA8D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
+		443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthOpInfo.swift; sourceTree = "<group>"; };
+		443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+EthOpInfo.swift"; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		46B58B165365197FCE4D70AEBA8E55DE /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
@@ -1401,6 +1405,7 @@
 				4956CBE8537169A3308E4CBD6D74A5EE /* DefaultProvider+TokenPrice.swift */,
 				4404E81525AF6AE700181A54 /* DefaultProvider+Tokens.swift */,
 				443FF8D125B318CC000CDA8D /* DefaultProvider+TransactionDetails.swift */,
+				443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */,
 				4404E84825AF753B00181A54 /* Transactions */,
 				5B136113B730D21D5A7D3A287B5445CA /* TransactionFee */,
 			);
@@ -1548,6 +1553,7 @@
 				E4E37CB923E3BE4D95D1EEBE52CB6DBA /* TransactionFee */,
 				443FF8DE25B3194E000CDA8D /* TransactionDetails.swift */,
 				443FF8EB25B31994000CDA8D /* BlockInfo.swift */,
+				443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2617,6 +2623,7 @@
 				653E31F75101E776CB56730E03BF174F /* HTTPTransport.swift in Sources */,
 				31AF1E672744CF7B99F736EC2D8D2553 /* Network.swift in Sources */,
 				51426442C4A1712E60C70578672524FD /* DefaultProvider+Accounts.swift in Sources */,
+				443FF8F925B31B4C000CDA8D /* EthOpInfo.swift in Sources */,
 				80D9647A97EFB6BA4A67270AB6BF3399 /* DefaultProvider+ContractAddress.swift in Sources */,
 				1470C84F6111BCF6A7AD44AA83947378 /* DefaultProvider+TokenPrice.swift in Sources */,
 				E749DB4E48D84759D1B37D6BF04B163D /* DefaultProvider+TransactionFee.swift in Sources */,
@@ -2627,6 +2634,7 @@
 				243D31D19C9B446FFAFC2F21D054276A /* Response.swift in Sources */,
 				34095212412E3313D0603475028173F1 /* Signature.swift in Sources */,
 				5CCDB6D0A477C8633F453ACC3B6AEE97 /* String+Extensions.swift in Sources */,
+				443FF90625B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift in Sources */,
 				BE84BA477B7F2094CE77E8D0787644C9 /* Token.swift in Sources */,
 				4887852AE5DA45F11089E8C71CDCD218 /* TransactionFeeBatchRequest+Encoding.swift in Sources */,
 				052CEAC7E96424D55D21441D78CF6C19 /* TransactionFeeBatchRequest.swift in Sources */,

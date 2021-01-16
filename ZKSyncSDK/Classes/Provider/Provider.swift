@@ -37,4 +37,7 @@ public protocol Provider {
     
     func transactionDetails(txHash: String,
                             completion: @escaping (ZKSyncResult<TransactionDetails>) -> Void)
+    
+    func ethOpInfo(priority: Int,
+                   completion: @escaping (ZKSyncResult<EthOpInfo>) -> Void)
 }
