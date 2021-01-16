@@ -1422,6 +1422,7 @@
 		4404E82225AF724B00181A54 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				443FF94725B3551C000CDA8D /* Batch */,
 				ED273DA8903E459AFA4BC54F7A8AB762 /* ChangePubKey.swift */,
 				1346AD39A7794F6BD15E9D2249E88EE9 /* Transfer.swift */,
 				CD4680CDDC1005F6777171E16BDEA2B0 /* Withdraw.swift */,
@@ -1438,6 +1439,40 @@
 				4404E84925AF754F00181A54 /* TransactionRequest.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		443FF93925B3545A000CDA8D /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				443FF8EB25B31994000CDA8D /* BlockInfo.swift */,
+			);
+			path = Block;
+			sourceTree = "<group>";
+		};
+		443FF93A25B3546A000CDA8D /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				9AF1321F87AECB2AD978F883623EFDED /* ContractAddress.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		443FF94625B354D5000CDA8D /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				A05881A545FA508A1FDFD95BFA56C43A /* Token.swift */,
+				4404E80825AF65DD00181A54 /* Tokens.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		443FF94725B3551C000CDA8D /* Batch */ = {
+			isa = PBXGroup;
+			children = (
+				443FF91F25B3327B000CDA8D /* TransactionSignaturePair.swift */,
+				443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */,
+			);
+			path = Batch;
 			sourceTree = "<group>";
 		};
 		4BB5EB61CE5B15F05541492A336AB904 /* Wallet */ = {
@@ -1550,19 +1585,16 @@
 		68CD04F40E46509EA22DC6320CC43592 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				443FF94625B354D5000CDA8D /* Token */,
+				443FF93A25B3546A000CDA8D /* Contract */,
+				443FF93925B3545A000CDA8D /* Block */,
 				4404E82225AF724B00181A54 /* Transactions */,
 				A0783FF97AC342BF3FBE98C0BB9F7B04 /* AccountState.swift */,
 				ED003B5754C477B2D7A7923AA6948302 /* ChainId.swift */,
-				9AF1321F87AECB2AD978F883623EFDED /* ContractAddress.swift */,
 				4AC7BED171FA0016929481AFC9223C82 /* Signature.swift */,
-				A05881A545FA508A1FDFD95BFA56C43A /* Token.swift */,
-				4404E80825AF65DD00181A54 /* Tokens.swift */,
 				E4E37CB923E3BE4D95D1EEBE52CB6DBA /* TransactionFee */,
 				443FF8DE25B3194E000CDA8D /* TransactionDetails.swift */,
-				443FF8EB25B31994000CDA8D /* BlockInfo.swift */,
 				443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */,
-				443FF91F25B3327B000CDA8D /* TransactionSignaturePair.swift */,
-				443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
