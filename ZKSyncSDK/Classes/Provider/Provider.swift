@@ -35,6 +35,13 @@ public protocol Provider {
                                          fastProcessing: Bool,
                                          completion: @escaping (ZKSyncResult<String>) -> Void)
     
+    func submitTxBatch<TX: ZkSyncTransaction>(txs: [TransactionSignaturePair<TX>],
+                                              ethereumSignature: EthSignature?,
+                                              completion: @escaping (ZKSyncResult<[String]>) -> Void)
+    
+    func submitTxBatch<TX: ZkSyncTransaction>(txs: [TransactionSignaturePair<TX>],
+                                              completion: @escaping (ZKSyncResult<[String]>) -> Void)
+    
     func transactionDetails(txHash: String,
                             completion: @escaping (ZKSyncResult<TransactionDetails>) -> Void)
     

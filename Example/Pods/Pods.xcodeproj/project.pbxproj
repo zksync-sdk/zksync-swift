@@ -141,6 +141,8 @@
 		443FF8F925B31B4C000CDA8D /* EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */; };
 		443FF90625B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */; };
 		443FF91325B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF91225B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift */; };
+		443FF92025B3327B000CDA8D /* TransactionSignaturePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF91F25B3327B000CDA8D /* TransactionSignaturePair.swift */; };
+		443FF92D25B3336E000CDA8D /* TransactionBatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
 		45746D692A8E7F09C0EED2675231EF41 /* StreamEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C4F527534F20A968AD9DF0DB255E3 /* StreamEncryptor.swift */; };
@@ -746,6 +748,8 @@
 		443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthOpInfo.swift; sourceTree = "<group>"; };
 		443FF90525B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+EthOpInfo.swift"; sourceTree = "<group>"; };
 		443FF91225B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultProvider+ConfirmationsForEthOpAmount.swift"; sourceTree = "<group>"; };
+		443FF91F25B3327B000CDA8D /* TransactionSignaturePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSignaturePair.swift; sourceTree = "<group>"; };
+		443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBatchRequest.swift; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		46B58B165365197FCE4D70AEBA8E55DE /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
@@ -1557,6 +1561,8 @@
 				443FF8DE25B3194E000CDA8D /* TransactionDetails.swift */,
 				443FF8EB25B31994000CDA8D /* BlockInfo.swift */,
 				443FF8F825B31B4C000CDA8D /* EthOpInfo.swift */,
+				443FF91F25B3327B000CDA8D /* TransactionSignaturePair.swift */,
+				443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2605,6 +2611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E228D97D06BC827EA7E3218941B72F78 /* AccountState.swift in Sources */,
+				443FF92025B3327B000CDA8D /* TransactionSignaturePair.swift in Sources */,
 				36D5234729C07C4DCB0645B33D4F342B /* BigInt+Extensions.swift in Sources */,
 				443FF8DF25B3194E000CDA8D /* TransactionDetails.swift in Sources */,
 				443FF8EC25B31994000CDA8D /* BlockInfo.swift in Sources */,
@@ -2656,6 +2663,7 @@
 				AC84EF0A07745149231B1F4E7658FC40 /* Types.swift in Sources */,
 				443FF8AB25B30B3C000CDA8D /* DefaultWallet+Transfer.swift in Sources */,
 				4404E7B625AE39C600181A54 /* ForcedExit.swift in Sources */,
+				443FF92D25B3336E000CDA8D /* TransactionBatchRequest.swift in Sources */,
 				4404E84A25AF754F00181A54 /* TransactionRequest.swift in Sources */,
 				4404E83C25AF740F00181A54 /* DefaultProvider+Transactions.swift in Sources */,
 				167E1C70C11EDD604CFF441FF799D970 /* Utils.swift in Sources */,

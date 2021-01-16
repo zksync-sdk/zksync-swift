@@ -27,4 +27,17 @@ extension DefaultProvider {
                       completion: completion)
     }
 
+    public func submitTxBatch<TX: ZkSyncTransaction>(txs: [TransactionSignaturePair<TX>],
+                                                     ethereumSignature: EthSignature?,
+                                                     completion: @escaping (ZKSyncResult<[String]>) -> Void) {
+        let request = TransactionBatchRequest(txs: txs,
+                                              ethereumSignature: ethereumSignature)
+        self.transport.send(method: "submit_txs_batch", params: request, completion: completion)
+    }
+
+    public func submitTxBatch<TX: ZkSyncTransaction>(txs: [TransactionSignaturePair<TX>],
+                                                     completion: @escaping (ZKSyncResult<[String]>) -> Void) {
+        self.submitTxBatch(txs: txs, ethereumSignature: nil, completion: completion)
+    }
 }
+
