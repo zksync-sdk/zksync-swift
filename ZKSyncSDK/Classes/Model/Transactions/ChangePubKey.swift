@@ -19,7 +19,7 @@ public struct ChangePubKey: ZkSyncTransaction {
     let fee: String
     let nonce: Int32
     var signature: Signature?
-    var ethSignature: Signature?
+    var ethSignature: String?
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
