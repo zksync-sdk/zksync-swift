@@ -23,7 +23,7 @@ extension DefaultWallet {
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
                                          ethereumSignature: signedTransaction.ethereumSignature,
-                                         fastProcessing: false)
+                                         fastProcessing: fastProcessing)
         }.pipe { result in
             completion(result.result)
         }
@@ -34,7 +34,6 @@ extension DefaultWallet {
                                 amount: BigUInt,
                                 fee: BigUInt,
                                 nonce: Int32) -> Promise<SignedTransaction<Withdraw>> {
-
         return firstly {
             self.getTokens()
         }.map { tokens in
