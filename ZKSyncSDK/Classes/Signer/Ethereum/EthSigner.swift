@@ -66,4 +66,21 @@ public class EthSigner {
         return EthSignature(signature: signatureData.toHexString().addHexPrefix(),
                             type: .ethereumSignature)
     }
+    
+    public func verifySignature(_ signature: EthSignature, message: String) throws -> Bool {
+        let signatureData = Data(hex: signature.signature)
+        guard let messageData = message.data(using: .utf8),
+              let hash = Web3Utils.hashPersonalMessage(messageData) else {
+            throw EthSignerError.invalidMessage
+        }
+        
+        let publicKeyData = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
+        
+        var privateKey = try self.keystore.UNSAFE_getPrivateKeyData(password: "web3swift", account: self.ethereumAddress)
+        defer { Data.zero(&privateKey) }
+        
+        let keystorePublicKeyData = Web3Utils.privateToPublic(privateKey)
+        
+        return publicKeyData == keystorePublicKeyData
+    }
 }
