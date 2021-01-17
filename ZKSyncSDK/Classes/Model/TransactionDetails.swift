@@ -10,6 +10,6 @@ import Foundation
 public struct TransactionDetails: Decodable {
     let executed: Bool
     let success: Bool
-    let failReason: String
-    let blockInfo: BlockInfo
+    let failReason: String?
+    let block: BlockInfo
 }
