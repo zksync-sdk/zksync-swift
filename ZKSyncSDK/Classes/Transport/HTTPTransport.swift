@@ -49,25 +49,38 @@ public class HTTPTransport: Transport {
                              encoder: JSONParameterEncoder.default)
             .validate()
             .responseDecodable(queue: queue, decoder: JRPCDecoder()) { [weak self] (response: DataResponse<R, AFError>) in
-                switch response.result {
-                case .success(let result):
-                    completion(.success(result))
-                case .failure(let afError):
-                    print(afError)
-                    break
-                }
+                guard let self = self else { return }
+                completion(response.result.mapError{ self.processAFError($0) })
+                //Can be used for debug
+//                switch response.result {
+//                case .success(let result):
+//                    completion(.success(result))
+//                case .failure(let afError):
+//                    let error = self.processAFError(afError)
+//                    completion(.failure(error))
+//                    break
+//                }
             }
     }
     
-    private func jsonData<P: Encodable>(for method: String, parameters: P?) throws -> Data {
-        
-        let jrpcRequest = JRPCRequest(method: method, params: parameters)
-        let encoder = JSONEncoder()
-        do {
-            return try encoder.encode(jrpcRequest)
-        } catch {
-            throw ZKSyncError.malformedRequest
+    private func processAFError(_ afError: AFError) -> Error {
+        if case let AFError.responseSerializationFailed(reason) = afError {
+            switch reason {
+            case .customSerializationFailed(let error),
+                 .decodingFailed(let error),
+                 .jsonSerializationFailed(let error):
+                return error
+            default:
+                return afError
+            }
+        } else if case let AFError.responseValidationFailed(reason) = afError,
+                  case let .unacceptableStatusCode(code) = reason {
+            return ZKSyncError.invalidStatusCode(code: code)
+        } else if case let AFError.sessionTaskFailed(error: taskError) = afError {
+            return taskError
         }
+        
+        return afError
     }
 }
 
