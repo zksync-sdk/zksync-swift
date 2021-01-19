@@ -12,7 +12,7 @@ import BigInt
 
 public class EthSigner {
     
-    private let keystore: AbstractKeystore
+    internal let keystore: AbstractKeystore
     
     public init(privateKey: String) throws {
         let privatKeyData = Data(hex: privateKey)
@@ -33,7 +33,7 @@ public class EthSigner {
         return ethereumAddress.address
     }
     
-    private var ethereumAddress: EthereumAddress {
+    internal var ethereumAddress: EthereumAddress {
         return keystore.addresses!.first!
     }
     

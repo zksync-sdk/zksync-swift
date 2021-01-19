@@ -8,6 +8,7 @@
 import Foundation
 import BigInt
 import PromiseKit
+import web3swift
 
 enum DefaultWalletError: Error {
     case internalError
@@ -86,4 +87,8 @@ public class DefaultWallet: Wallet {
         return try r.get()
     }
 
+    public func createEthereumProvider(web3: web3) -> EthereumProvider {
+        
+        return EthereumProvider()
+    }
 }

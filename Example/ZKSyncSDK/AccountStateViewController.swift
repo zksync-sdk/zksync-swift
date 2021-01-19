@@ -31,6 +31,12 @@ class AccountStateViewController: UIViewController, WalletConsumer {
         self.tableView.estimatedSectionHeaderHeight = 60;
     }
     
+    func getInfo(transaction: String) {
+        wallet.provider.transactionDetails(txHash: transaction) { (result) in
+            print(result)
+        }
+    }
+    
     @IBAction func getAccountState(_ sender: Any) {
         
         wallet.getTransactionFee(for: .transfer,
@@ -48,6 +54,7 @@ class AccountStateViewController: UIViewController, WalletConsumer {
                                 amount: 1000000000000000000,
                                 fee: fee,
                                 nonce: nil) { (res) in
+                    self.getInfo(transaction: try! res.get())
                     print(res)
                 }
 

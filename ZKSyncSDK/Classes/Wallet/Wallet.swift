@@ -7,6 +7,7 @@
 
 import Foundation
 import BigInt
+import web3swift
 
 public typealias ZKSyncCompletion<T> = (ZKSyncResult<T>) -> Void
 
@@ -41,5 +42,7 @@ public protocol Wallet {
     func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Result<String, Error>) -> Void)
     
     var isSigningKeySet: Bool { get }
+    
+    func createEthereumProvider(web3: web3) -> EthereumProvider
 }
 
