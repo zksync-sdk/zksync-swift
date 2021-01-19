@@ -34,7 +34,7 @@ public class ZkSigner {
         
         switch ZKCryptoSDK.getPublicKeyHash(publicKey: self.publicKey) {
         case .success(let hash):
-            self.publicKeyHash = hash.hexEncodedString()
+            self.publicKeyHash = hash.hexEncodedString().addPubKeyHashPrefix().lowercased()
         default:
             throw ZkSignerError.invalidPrivateKey
         }
