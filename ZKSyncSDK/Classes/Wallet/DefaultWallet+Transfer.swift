@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
         firstly { 
             return nonce != nil ? .value(nonce!) : getNonce()
@@ -34,7 +34,7 @@ extension DefaultWallet {
                                tokenIdentifier: String,
                                amount: BigUInt,
                                fee: BigUInt,
-                               nonce: Int32) -> Promise<SignedTransaction<Transfer>> {
+                               nonce: UInt32) -> Promise<SignedTransaction<Transfer>> {
         return firstly {
             getTokens()
         }.map { tokens in

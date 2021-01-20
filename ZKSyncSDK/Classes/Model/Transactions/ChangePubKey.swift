@@ -17,13 +17,13 @@ public struct ChangePubKey: ZkSyncTransaction {
     let newPkHash: String
     let feeToken: UInt16
     let fee: String
-    let nonce: Int32
+    let nonce: UInt32
     var signature: Signature?
     var ethSignature: String?
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: Int32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: Int32) {
+    public init(accountId: Int32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash

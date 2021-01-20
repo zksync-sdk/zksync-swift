@@ -19,13 +19,13 @@ public struct AccountState: Codable {
     }
     
     public struct State: Codable {
-        public var nonce: Int32
+        public var nonce: UInt32
         public var pubKeyHash: String
         public var balances: [String: String]
     }
     
     public var address: String
-    public var id: Int32
+    public var id: Int32?
     
     public var depositing: Depositing
     public var committed: State

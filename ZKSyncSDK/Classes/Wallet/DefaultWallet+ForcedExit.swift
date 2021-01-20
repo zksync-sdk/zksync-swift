@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             return nonce != nil ? .value(nonce!) : getNonce()
         }.then { nonce in
@@ -28,7 +28,7 @@ extension DefaultWallet {
     func buildSignedForcedExitTx(target: String,
                                  tokenIdentifier: String,
                                  fee: BigUInt,
-                                 nonce: Int32) -> Promise<SignedTransaction<ForcedExit>> {
+                                 nonce: UInt32) -> Promise<SignedTransaction<ForcedExit>> {
         return firstly {
             getTokens()
         }.map { tokens in

@@ -21,7 +21,7 @@ public class DefaultWallet: Wallet {
     
     public let provider: Provider
     internal let ethSigner: EthSigner
-    internal let zkSigner: ZkSigner
+    public let zkSigner: ZkSigner
     
     internal var accountId: Int32 = 0
     internal var pubKeyHash: String = ""
@@ -37,7 +37,7 @@ public class DefaultWallet: Wallet {
         
         let accountState = try self.getAccountStateSync()
         
-        self.accountId = accountState.id
+        self.accountId = accountState.id ?? 0
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
 
@@ -63,7 +63,7 @@ public class DefaultWallet: Wallet {
                           completion: completion)
     }
     
-    internal func getNonce(completion: @escaping (Swift.Result<Int32, Error>) -> Void) {
+    internal func getNonce(completion: @escaping (Swift.Result<UInt32, Error>) -> Void) {
         self.getAccountState { (result) in
             completion(Swift.Result {
                 try result.get().committed.nonce

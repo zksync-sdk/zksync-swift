@@ -37,10 +37,7 @@ struct Utils {
         return formatter
     }()
     
-    static func nonceToBytes(_ nonce: Int32) throws -> Data {
-        if nonce < 0 {
-            throw SignerError.negativeNonce
-        }
+    static func nonceToBytes(_ nonce: UInt32) -> Data {
         return nonce.bytesBE()
     }
     

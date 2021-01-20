@@ -18,13 +18,13 @@ public struct Transfer: ZkSyncTransaction {
     let token: UInt16
     let amount: BigUInt
     let fee: String
-    let nonce: Int32
+    let nonce: UInt32
     
     var signature: Signature?
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: Int32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: Int32) {
+    public init(accountId: Int32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: UInt32) {
         self.accountId = accountId
         self.from = from
         self.to = to

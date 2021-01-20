@@ -20,7 +20,7 @@ public class ZkSigner {
     
     let privateKey: ZKPrivateKey
     let publicKey: ZKPackedPublicKey
-    let publicKeyHash: String
+    public let publicKeyHash: String
     
     public init(privateKey: ZKPrivateKey) throws {
         self.privateKey = privateKey

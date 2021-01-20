@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
 
-    public func setSigningKey(fee: TransactionFee, nonce: Int32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
         guard !isSigningKeySet else {
             completion(.failure(WalletError.signingKeyAlreadySet))
@@ -32,7 +32,7 @@ extension DefaultWallet {
     }
     
     func buildSignedChangePubKeyTx(fee: TransactionFee,
-                                   nonce: Int32,
+                                   nonce: UInt32,
                                    onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>> {
         return firstly {
             getTokens()

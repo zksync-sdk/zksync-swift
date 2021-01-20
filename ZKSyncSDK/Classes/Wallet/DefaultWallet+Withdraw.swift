@@ -10,7 +10,7 @@ import PromiseKit
 import BigInt
 
 extension DefaultWallet {
-    public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: Int32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
         firstly {
             return nonce != nil ? .value(nonce!) : getNonce()
@@ -33,7 +33,7 @@ extension DefaultWallet {
                                 tokenIdentifier: String,
                                 amount: BigUInt,
                                 fee: BigUInt,
-                                nonce: Int32) -> Promise<SignedTransaction<Withdraw>> {
+                                nonce: UInt32) -> Promise<SignedTransaction<Withdraw>> {
         return firstly {
             self.getTokens()
         }.map { tokens in

@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    func getNonce() -> Promise<Int32> {
+    func getNonce() -> Promise<UInt32> {
         return Promise { getNonce(completion: $0.resolve )}
     }
     
