@@ -23,7 +23,7 @@ public class DefaultWallet: Wallet {
     internal let ethSigner: EthSigner
     public let zkSigner: ZkSigner
     
-    internal var accountId: Int32 = 0
+    internal var accountId: UInt32 = 0
     internal var pubKeyHash: String = ""
     
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {

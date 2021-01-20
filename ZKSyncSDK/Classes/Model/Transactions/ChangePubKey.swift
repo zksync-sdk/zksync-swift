@@ -12,7 +12,7 @@ public struct ChangePubKey: ZkSyncTransaction {
     
     public let type = "ChangePubKey"
     
-    let accountId: Int32
+    let accountId: UInt32
     let account: String
     let newPkHash: String
     let feeToken: UInt16
@@ -23,7 +23,7 @@ public struct ChangePubKey: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: Int32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32) {
+    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash

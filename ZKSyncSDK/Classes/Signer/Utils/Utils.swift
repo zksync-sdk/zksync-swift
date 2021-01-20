@@ -41,7 +41,7 @@ struct Utils {
         return nonce.bytesBE()
     }
     
-    static func accountIdToBytes(_ accountId: Int32) throws -> Data {
+    static func accountIdToBytes(_ accountId: UInt32) throws -> Data {
         if accountId > Utils.MaxNumberOfAccounts {
             throw SignerError.accountNumberTooLarge
         }

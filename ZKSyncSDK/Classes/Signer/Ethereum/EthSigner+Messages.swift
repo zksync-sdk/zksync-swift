@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 
 public extension EthSigner {
-    func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: Int32) throws -> String {
+    func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> String {
         
         let pubKeyHashStripped = pubKeyHash.deletingPrefix("sync:").lowercased()
         
@@ -24,7 +24,7 @@ public extension EthSigner {
         """
     }
     
-    func createTransferMessage(to: String, accountId: Int32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
+    func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
         Transfer \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())
@@ -34,7 +34,7 @@ public extension EthSigner {
         """
     }
 
-    func createWithdrawMessage(to: String, accountId: Int32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
+    func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
         Withdraw \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())

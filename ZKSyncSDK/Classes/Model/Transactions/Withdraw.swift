@@ -12,7 +12,7 @@ public struct Withdraw: ZkSyncTransaction {
 
     public let type = "Withdraw"
 
-    let accountId: Int32
+    let accountId: UInt32
     let from: String
     let to: String
     let token: UInt16
@@ -24,7 +24,7 @@ public struct Withdraw: ZkSyncTransaction {
 
     var feeInteger: BigUInt { BigUInt(fee)! }
 
-    public init(accountId: Int32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: UInt32) {
+    public init(accountId: UInt32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: UInt32) {
         self.accountId = accountId
         self.from = from
         self.to = to

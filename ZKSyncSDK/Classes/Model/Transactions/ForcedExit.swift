@@ -12,7 +12,7 @@ public struct ForcedExit: ZkSyncTransaction {
     
     public let type = "ForcedExit"
     
-    let initiatorAccountId: Int32
+    let initiatorAccountId: UInt32
     let target: String
     let token: UInt16
     let fee: String
@@ -22,7 +22,7 @@ public struct ForcedExit: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(initiatorAccountId: Int32, target: String, token: UInt16, fee: String, nonce: UInt32) {
+    public init(initiatorAccountId: UInt32, target: String, token: UInt16, fee: String, nonce: UInt32) {
         self.initiatorAccountId = initiatorAccountId
         self.target = target
         self.token = token

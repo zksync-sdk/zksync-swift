@@ -50,5 +50,5 @@ public protocol Provider {
     func ethOpInfo(priority: Int,
                    completion: @escaping (ZKSyncResult<EthOpInfo>) -> Void)
     
-    func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<BigUInt>) -> Void)
+    func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void)
 }
