@@ -21,7 +21,7 @@ public class DefaultWallet: Wallet {
     
     public let provider: Provider
     internal let ethSigner: EthSigner
-    public let zkSigner: ZkSigner
+    internal let zkSigner: ZkSigner
     
     internal var accountId: UInt32 = 0
     internal var pubKeyHash: String = ""

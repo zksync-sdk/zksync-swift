@@ -19,8 +19,6 @@ public protocol Wallet {
     
     var provider: Provider { get }
     
-    var zkSigner: ZkSigner { get }
-    
     func getAccountState(completion: @escaping (Result<AccountState, Error>) -> Void)
     
     func getTransactionFee(for transactionType:TransactionType,
