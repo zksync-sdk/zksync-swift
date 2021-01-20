@@ -87,8 +87,30 @@ public class DefaultWallet: Wallet {
         return try r.get()
     }
 
-    public func createEthereumProvider(web3: web3) -> EthereumProvider {
+    private func getContractAddressSync() throws -> ContractAddress {
+        var callResult: Swift.Result<ContractAddress, Error>? = nil
+        self.group.enter()
+        self.provider.contractAddress(queue: self.deliveryQueue) { (result) in
+            callResult = result
+            self.group.leave()
+        }
+        self.group.wait()
+        guard let r = callResult else {
+            throw DefaultWalletError.internalError
+        }
+        return try r.get()
+    }
+    
+    public func createEthereumProvider(web3: web3) throws -> EthereumProvider {
+        let contractAddress = try self.getContractAddressSync()
         
-        return EthereumProvider()
+        guard let address = EthereumAddress(contractAddress.mainContract) else {
+            throw DefaultWalletError.internalError
+        }
+        
+        let zkSync = ZkSync(web3: web3,
+                            contractAddress: address,
+                            walletAddress: ethSigner.ethereumAddress)
+        return EthereumProvider(web3: web3, ethSigner: ethSigner, zkSync: zkSync)
     }
 }

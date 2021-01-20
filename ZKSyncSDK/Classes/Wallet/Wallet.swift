@@ -43,6 +43,6 @@ public protocol Wallet {
     
     var isSigningKeySet: Bool { get }
     
-    func createEthereumProvider(web3: web3) -> EthereumProvider
+    func createEthereumProvider(web3: web3) throws -> EthereumProvider
 }
 

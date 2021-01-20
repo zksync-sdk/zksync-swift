@@ -145,6 +145,8 @@
 		443FF92D25B3336E000CDA8D /* TransactionBatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */; };
 		443FF94925B35583000CDA8D /* DefaultWallet+TransactionFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF94825B35583000CDA8D /* DefaultWallet+TransactionFee.swift */; };
 		443FF96F25B44B8C000CDA8D /* EthereumProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF96E25B44B8C000CDA8D /* EthereumProvider.swift */; };
+		443FF9CB25B77055000CDA8D /* ZkSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF9CA25B77055000CDA8D /* ZkSync.swift */; };
+		443FF9D825B7709E000CDA8D /* ZkSyncABI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF9D725B7709E000CDA8D /* ZkSyncABI.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
 		45746D692A8E7F09C0EED2675231EF41 /* StreamEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C4F527534F20A968AD9DF0DB255E3 /* StreamEncryptor.swift */; };
@@ -754,6 +756,8 @@
 		443FF92C25B3336E000CDA8D /* TransactionBatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBatchRequest.swift; sourceTree = "<group>"; };
 		443FF94825B35583000CDA8D /* DefaultWallet+TransactionFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultWallet+TransactionFee.swift"; sourceTree = "<group>"; };
 		443FF96E25B44B8C000CDA8D /* EthereumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumProvider.swift; sourceTree = "<group>"; };
+		443FF9CA25B77055000CDA8D /* ZkSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSync.swift; sourceTree = "<group>"; };
+		443FF9D725B7709E000CDA8D /* ZkSyncABI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSyncABI.swift; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		46B58B165365197FCE4D70AEBA8E55DE /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
@@ -1484,6 +1488,8 @@
 			isa = PBXGroup;
 			children = (
 				443FF96E25B44B8C000CDA8D /* EthereumProvider.swift */,
+				443FF9CA25B77055000CDA8D /* ZkSync.swift */,
+				443FF9D725B7709E000CDA8D /* ZkSyncABI.swift */,
 			);
 			path = Ethereum;
 			sourceTree = "<group>";
@@ -2669,6 +2675,7 @@
 				90ACDA5B650ED682BAD2756500FB59C3 /* ChangePubKey.swift in Sources */,
 				05FB0C5996D5BB9F5F9258EDD036445D /* ContractAddress.swift in Sources */,
 				6D8951224EB3220D17F60313BD6BE36B /* DefaultWallet.swift in Sources */,
+				443FF9D825B7709E000CDA8D /* ZkSyncABI.swift in Sources */,
 				0B5E79DF5BF552725C4D6C7DC70C5415 /* Error.swift in Sources */,
 				443FF89E25B3094B000CDA8D /* DefaultWallet+Withdraw.swift in Sources */,
 				443FF91325B31C82000CDA8D /* DefaultProvider+ConfirmationsForEthOpAmount.swift in Sources */,
@@ -2703,6 +2710,7 @@
 				60EEC6E30E2D90DA9CCFA63D94F074E9 /* TransactionType+Encoding.swift in Sources */,
 				24A50183607978BE1F3C1724AC51228B /* TransactionType.swift in Sources */,
 				4404E81625AF6AE700181A54 /* DefaultProvider+Tokens.swift in Sources */,
+				443FF9CB25B77055000CDA8D /* ZkSync.swift in Sources */,
 				4404E86F25AF7D4800181A54 /* SignedTransaction.swift in Sources */,
 				C11BCC4AC6BE3045F195023CF125659D /* TransactionTypeAddressPair.swift in Sources */,
 				0722457AC2613A9564334C8B7E1D1922 /* Transfer.swift in Sources */,

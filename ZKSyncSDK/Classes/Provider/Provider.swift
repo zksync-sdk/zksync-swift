@@ -26,6 +26,8 @@ public protocol Provider {
     
     func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
     
+    func contractAddress(queue: DispatchQueue, completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
+    
     func submitTx<TX: ZkSyncTransaction>(_ tx: TX,
                                          ethereumSignature: EthSignature?,
                                          fastProcessing: Bool,
