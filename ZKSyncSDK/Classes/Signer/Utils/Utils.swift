@@ -124,14 +124,14 @@ struct Utils {
         
         let bits = Bits(dataBEOrder: decimalBytes).reversed
         
-        var exponent = BigUInt.zero
-        var expPow2 = BigUInt.one
+        var exponentValue = 0
+        var expPow2 = 1
         
         for i in 0..<expBits {
-            exponent += bits[i] ? expPow2 : 0
+            exponentValue += bits[i] ? expPow2 : 0
             expPow2 *= 2
         }
-        exponent = BigUInt(expBase).power(Int(exponent))
+        let exponent = BigUInt(expBase).power(exponentValue)
         
         var mantissa = BigUInt.zero
         var mantissaPow2 = BigUInt.one
