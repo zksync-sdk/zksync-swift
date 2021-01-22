@@ -10,6 +10,8 @@ import Foundation
 public class DefaultProvider: Provider {
     let transport: Transport
     
+    internal var tokensCache: Tokens?
+    
     public init(transport: Transport) {
         self.transport = transport
     }
