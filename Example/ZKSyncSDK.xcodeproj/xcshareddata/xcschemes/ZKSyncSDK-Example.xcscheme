@@ -60,6 +60,17 @@
                BlueprintName = "ZKSyncSDK_Tests"
                ReferencedContainer = "container:ZKSyncSDK.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "IntegrationFlowTests">
+               </Test>
+               <Test
+                  Identifier = "IntegrationFlowTests/test_02_SetupPublicKey()">
+               </Test>
+               <Test
+                  Identifier = "IntegrationFlowTests/test_03_SetupPublicKeyOnChain()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

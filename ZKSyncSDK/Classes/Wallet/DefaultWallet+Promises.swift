@@ -41,13 +41,13 @@ extension Swift.Result {
     }
 }
 
-extension PromiseKit.Resolver {
+public extension PromiseKit.Resolver {
     func resolve(_ result: Swift.Result<T, Error>) {
         self.resolve(result.promiseResult)
     }
 }
 
-extension PromiseKit.Result {
+public extension PromiseKit.Result {
     var result: Swift.Result<T, Error> {
         switch self {
         case .fulfilled(let value):

@@ -149,6 +149,7 @@
 		443FF9D825B7709E000CDA8D /* ZkSyncABI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FF9D725B7709E000CDA8D /* ZkSyncABI.swift */; };
 		4473DD3B0C26468D19963CF17A48AD18 /* scalar_low_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 120F41CF872E5D1F07B5DF29E16A367E /* scalar_low_impl.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		448506F29495E3B3BAB56D093D681C1A /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFB8009EC7537B7EB6AFA9075A50B0 /* Authenticator.swift */; };
+		44E17F7325BB04A200ED4CED /* Wallet+PromiseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F7225BB04A200ED4CED /* Wallet+PromiseInterface.swift */; };
 		45746D692A8E7F09C0EED2675231EF41 /* StreamEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C4F527534F20A968AD9DF0DB255E3 /* StreamEncryptor.swift */; };
 		45B48F57B1039D463A2CB04349F22C5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41803AA172979E330482757493F3F775 /* Foundation.framework */; };
 		45B8CC1C61E7A0BB28CFA8CE7C12FEBC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73871B28CD7641C764951FE2ACF1F5F3 /* MultipartFormData.swift */; };
@@ -758,6 +759,7 @@
 		443FF96E25B44B8C000CDA8D /* EthereumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumProvider.swift; sourceTree = "<group>"; };
 		443FF9CA25B77055000CDA8D /* ZkSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSync.swift; sourceTree = "<group>"; };
 		443FF9D725B7709E000CDA8D /* ZkSyncABI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSyncABI.swift; sourceTree = "<group>"; };
+		44E17F7225BB04A200ED4CED /* Wallet+PromiseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+PromiseInterface.swift"; sourceTree = "<group>"; };
 		44FB421C79AE0CC2EBDD3B164B0DBD56 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		465A6903AB6460907AB9C86505CCF54F /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		46B58B165365197FCE4D70AEBA8E55DE /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
@@ -1505,6 +1507,7 @@
 				443FF8C425B30F05000CDA8D /* DefaultWallet+ChangePubKey.swift */,
 				443FF94825B35583000CDA8D /* DefaultWallet+TransactionFee.swift */,
 				7714994DE84EB5214A4348DC8D8A81A8 /* Wallet.swift */,
+				44E17F7225BB04A200ED4CED /* Wallet+PromiseInterface.swift */,
 				4404E86E25AF7D4800181A54 /* SignedTransaction.swift */,
 			);
 			path = Wallet;
@@ -2698,6 +2701,7 @@
 				443FF89125B2E714000CDA8D /* DefaultWallet+Promises.swift in Sources */,
 				243D31D19C9B446FFAFC2F21D054276A /* Response.swift in Sources */,
 				34095212412E3313D0603475028173F1 /* Signature.swift in Sources */,
+				44E17F7325BB04A200ED4CED /* Wallet+PromiseInterface.swift in Sources */,
 				5CCDB6D0A477C8633F453ACC3B6AEE97 /* String+Extensions.swift in Sources */,
 				443FF90625B31BB0000CDA8D /* DefaultProvider+EthOpInfo.swift in Sources */,
 				BE84BA477B7F2094CE77E8D0787644C9 /* Token.swift in Sources */,

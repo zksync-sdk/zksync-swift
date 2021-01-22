@@ -68,7 +68,7 @@ class ZkSync {
         }
         return firstly {
             tx.callPromise()
-        }.map { (result) in
+        }.map(on: web3.requestDispatcher.queue) { (result) in
             guard let data = result["0"] as? Data else {
                 throw Web3Error.processingError(desc: "Failed to get result of expected type from the Ethereum node")
             }

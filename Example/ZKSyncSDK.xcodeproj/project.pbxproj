@@ -18,6 +18,7 @@
 		440D723925A6258400B0117F /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */; };
 		443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */; };
 		443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */; };
+		44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
 		443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSignerTests.swift; sourceTree = "<group>"; };
 		443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletTests.swift; sourceTree = "<group>"; };
+		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */,
 				443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */,
+				44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -395,6 +398,7 @@
 			files = (
 				443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */,
 				443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */,
+				44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

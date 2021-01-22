@@ -146,7 +146,7 @@ public class EthereumProvider {
     public func isOnChainAuthPubkeyHashSet(nonce: UInt32) -> Promise<Bool> {
         firstly {
             zkSync.authFacts(senderAddress: ethSigner.ethereumAddress, nonce: nonce)
-        }.map { (data) in
+        }.map(on: web3.requestDispatcher.queue) { (data) in
             !data.isEmpty
         }
     }
