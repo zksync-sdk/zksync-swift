@@ -19,7 +19,7 @@ class DefaultWalletTests: XCTestCase {
     var wallet: DefaultWallet!
     
     override func setUpWithError() throws {
-        ethSigner = try EthSigner(privateKey: DefaultWalletTests.EthPrivateKey)
+        ethSigner = try DefaultEthSigner(privateKey: DefaultWalletTests.EthPrivateKey)
         zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .mainnet)
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44))
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
@@ -221,6 +221,9 @@ struct MockProvider: Provider {
     }
     
     func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void) {
+    }
+
+    func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void) {
     }
 }
 

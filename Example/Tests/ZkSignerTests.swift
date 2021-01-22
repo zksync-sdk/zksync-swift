@@ -27,7 +27,7 @@ class ZkSignerTests: XCTestCase {
     }
     
     func testCreationFromEthSigner() throws {
-        let ethSigner = try EthSigner(privateKey: ZkSignerTests.PrivateKey)
+        let ethSigner = try DefaultEthSigner(privateKey: ZkSignerTests.PrivateKey)
         let signer = try ZkSigner(ethSigner: ethSigner, chainId: .mainnet)
         XCTAssertEqual(signer.publicKeyHash, ZkSignerTests.PubKeyHashEth)
     }

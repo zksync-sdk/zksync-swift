@@ -34,7 +34,7 @@ class NetworkSelectionTableViewController: UITableViewController {
     
     private func createWallet(_ network: Network) -> Wallet {
                 
-        guard let ethSigner = try? EthSigner(privateKey: self.privateKey) else {
+        guard let ethSigner = try? DefaultEthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
         

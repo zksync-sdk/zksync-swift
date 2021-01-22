@@ -24,7 +24,7 @@ class IntegrationFlowTests: XCTestCase {
     let queue = DispatchQueue.global(qos: .default)
     
     override func setUpWithError() throws {
-        ethSigner = try EthSigner(privateKey: IntegrationFlowTests.PrivateKey)
+        ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
         zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
         
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .ropsten))
