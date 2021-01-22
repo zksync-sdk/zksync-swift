@@ -89,9 +89,10 @@ class JRPCDecoder: DataDecoder {
         let decoder = JSONDecoder()
         
         let response = try decoder.decode(JRPCResponse<D>.self, from: data)
+        
         guard let result = response.result else {
             guard let error = response.error else {
-                throw ZKSyncError.malformedResponse
+                throw ZKSyncError.emptyResponse
             }
             throw ZKSyncError.rpcError(code: error.code, message: error.message)
         }

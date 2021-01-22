@@ -9,6 +9,13 @@ import Foundation
 
 extension DefaultProvider {
     public func tokens(completion: @escaping (ZKSyncResult<Tokens>) -> Void) {
-        self.transport.send(method: "tokens", params: [String](), completion: completion)
+        if let tokens = self.tokensCache {
+            completion(.success(tokens))
+        } else {
+            self.transport.send(method: "tokens", params: [String]()) { (result: TransportResult<Tokens>) in
+                self.tokensCache = try? result.get()
+                completion(result)
+            }
+        }
     }
 }

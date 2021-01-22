@@ -51,4 +51,6 @@ public protocol Provider {
                    completion: @escaping (ZKSyncResult<EthOpInfo>) -> Void)
     
     func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void)
+
+    func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void)
 }

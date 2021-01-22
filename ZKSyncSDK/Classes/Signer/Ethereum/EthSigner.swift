@@ -10,77 +10,17 @@ import web3swift
 import CryptoSwift
 import BigInt
 
-public class EthSigner {
+public protocol EthSigner {
     
-    internal let keystore: AbstractKeystore
+    var address: String { get }
     
-    public init(privateKey: String) throws {
-        let privatKeyData = Data(hex: privateKey)
-        guard let keystore = try EthereumKeystoreV3(privateKey: privatKeyData) else {
-            throw EthSignerError.invalidKey
-        }
-        self.keystore = keystore
-    }
+    func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> EthSignature
     
-    public init(mnemonic: String) throws {
-        guard let keystore = try BIP32Keystore(mnemonics: mnemonic) else {
-            throw EthSignerError.invalidMnemonic
-        }
-        self.keystore = keystore
-    }
+    func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
     
-    public var address: String {
-        return ethereumAddress.address
-    }
-    
-    internal var ethereumAddress: EthereumAddress {
-        return keystore.addresses!.first!
-    }
-    
-    public func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> EthSignature {
-        return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId))
-    }
-    
-    public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
-        return try self.sign(message: self.createTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
-    }
-    
-    public func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
-        return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
-    }
-    
-    public func sign(message: String) throws -> EthSignature {
+    func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
         
-        guard let data = message.data(using: .utf8) else {
-            throw EthSignerError.invalidMessage
-        }
-        
-        guard let signatureData =
-                try Web3Signer.signPersonalMessage(data,
-                                                   keystore: self.keystore,
-                                                   account: self.ethereumAddress,
-                                                   password: "web3swift") else {
-            throw EthSignerError.signingFailed
-        }
-        
-        return EthSignature(signature: signatureData.toHexString().addHexPrefix(),
-                            type: .ethereumSignature)
-    }
+    func sign(message: String) throws -> EthSignature
     
-    public func verifySignature(_ signature: EthSignature, message: String) throws -> Bool {
-        let signatureData = Data(hex: signature.signature)
-        guard let messageData = message.data(using: .utf8),
-              let hash = Web3Utils.hashPersonalMessage(messageData) else {
-            throw EthSignerError.invalidMessage
-        }
-        
-        let publicKeyData = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
-        
-        var privateKey = try self.keystore.UNSAFE_getPrivateKeyData(password: "web3swift", account: self.ethereumAddress)
-        defer { Data.zero(&privateKey) }
-        
-        let keystorePublicKeyData = Web3Utils.privateToPublic(privateKey)
-        
-        return publicKeyData == keystorePublicKeyData
-    }
+    func verifySignature(_ signature: EthSignature, message: String) throws -> Bool
 }
