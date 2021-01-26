@@ -53,6 +53,7 @@
 		443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSignerTests.swift; sourceTree = "<group>"; };
 		443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletTests.swift; sourceTree = "<group>"; };
 		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
+		44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ZKSyncSwift.podspec; path = ../ZKSyncSwift.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +63,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ZKSyncSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKSyncSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E93CA0EE75C4A28F3F53F54 /* ZKSyncSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZKSyncSDK.podspec; path = ../ZKSyncSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		91797D2697ACDD86A5C5CE8E /* Pods-ZKSyncSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZKSyncSDK_Example/Pods-ZKSyncSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9745838A8B871F0B20E43417 /* Pods-ZKSyncSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-ZKSyncSDK_Tests/Pods-ZKSyncSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9960DA60E7337191C0F948BA /* Pods_ZKSyncSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +176,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				8E93CA0EE75C4A28F3F53F54 /* ZKSyncSDK.podspec */,
+				44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */,
 				EF7595A5E3B7E3D4F3A6D1D9 /* README.md */,
 				B1B192EF051D1EFCA9D66E6A /* LICENSE */,
 			);
@@ -309,6 +309,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/ZKSyncSDK/ZKSyncSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/ZKSyncSwift/ZKSyncSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.c/secp256k1.framework",
 				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
 			);
@@ -320,6 +321,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
 			);

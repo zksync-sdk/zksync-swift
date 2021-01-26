@@ -7,6 +7,7 @@
 
 import Foundation
 import CryptoSwift
+import ZKSyncSDK
 
 enum ZkSignerError: Error {
     case invalidPrivateKey
@@ -25,14 +26,14 @@ public class ZkSigner {
     public init(privateKey: ZKPrivateKey) throws {
         self.privateKey = privateKey
         
-        switch ZKCryptoSDK.getPublicKey(privateKey: privateKey) {
+        switch ZKSyncSDK.getPublicKey(privateKey: privateKey) {
         case .success(let key):
             self.publicKey = key
         default:
             throw ZkSignerError.invalidPrivateKey
         }
         
-        switch ZKCryptoSDK.getPublicKeyHash(publicKey: self.publicKey) {
+        switch ZKSyncSDK.getPublicKeyHash(publicKey: self.publicKey) {
         case .success(let hash):
             self.publicKeyHash = hash.hexEncodedString().addPubKeyHashPrefix().lowercased()
         default:
@@ -41,7 +42,7 @@ public class ZkSigner {
     }
     
     public convenience init(seed: Data) throws {
-        switch ZKCryptoSDK.generatePrivateKey(seed: seed) {
+        switch ZKSyncSDK.generatePrivateKey(seed: seed) {
         case .success(let privateKey):
             try self.init(privateKey: privateKey)
         case .error(let error):
@@ -71,7 +72,7 @@ public class ZkSigner {
     }
     
     public func sign(message: Data) throws -> Signature {
-        switch ZKCryptoSDK.signMessage(privateKey: self.privateKey, message: message) {
+        switch ZKSyncSDK.signMessage(privateKey: self.privateKey, message: message) {
         case .success(let signature):
             return Signature(pubKey: publicKey.hexEncodedString(),
                              signature: signature.hexEncodedString())

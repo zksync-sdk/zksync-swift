@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ZKSyncSDK
+import ZKSyncSwift
 
 class ContractAddressViewController: UIViewController, WalletConsumer {
     

@@ -19,17 +19,15 @@ PODS:
     - PromiseKit (~> 6.8.4)
     - secp256k1.c (~> 0.1)
     - Starscream (~> 3.1.0)
-  - ZKSyncSDK (0.1.0):
-    - ZKSyncSDK/Core (= 0.1.0)
-  - ZKSyncSDK/Core (0.1.0):
+  - ZKSyncSDK (0.0.5)
+  - ZKSyncSwift (0.1.0):
     - Alamofire (~> 5.0)
     - BigInt
     - web3swift
-    - ZKSyncSDK/Crypto
-  - ZKSyncSDK/Crypto (0.1.0)
+    - ZKSyncSDK (= 0.0.5)
 
 DEPENDENCIES:
-  - ZKSyncSDK (from `../`)
+  - ZKSyncSwift (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -40,9 +38,10 @@ SPEC REPOS:
     - secp256k1.c
     - Starscream
     - web3swift
+    - ZKSyncSDK
 
 EXTERNAL SOURCES:
-  ZKSyncSDK:
+  ZKSyncSwift:
     :path: "../"
 
 SPEC CHECKSUMS:
@@ -53,8 +52,9 @@ SPEC CHECKSUMS:
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
-  ZKSyncSDK: 8783b0ae9a8a74372d3319e0a439f63e6aadd076
+  ZKSyncSDK: 5f507d8a635c713396a612bfbb310a2cafa185e7
+  ZKSyncSwift: 2c306cd5158bc80bc14ce16af5771dfd4c6ad8be
 
-PODFILE CHECKSUM: 9b250cb78f417d701a77e31b57705581a7aca610
+PODFILE CHECKSUM: 06d5f2cda33f74315bd4b9a85064c3ab4902a8bc
 
 COCOAPODS: 1.10.1
