@@ -91,7 +91,7 @@ public class ZkSigner {
         data.append(try Utils.addressToBytes(changePubKey.newPkHash))
         data.append(try Utils.tokenIdToBytes(changePubKey.feeToken))
         data.append(try Utils.feeToBytes(changePubKey.feeInteger))
-        data.append(try Utils.nonceToBytes(changePubKey.nonce))
+        data.append(Utils.nonceToBytes(changePubKey.nonce))
         
         let signature = try self.sign(message: data)
         mutableChangePubKey.signature = signature
@@ -109,7 +109,7 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(transfer.token))
         data.append(try Utils.amountPackedToBytes(transfer.amount))
         data.append(try Utils.feeToBytes(transfer.feeInteger))
-        data.append(try Utils.nonceToBytes(transfer.nonce))
+        data.append(Utils.nonceToBytes(transfer.nonce))
         
         let signature = try self.sign(message: data)
         mutableTransfer.signature = signature
@@ -127,7 +127,7 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(withdraw.token))
         data.append(Utils.amountFullToBytes(withdraw.amount))
         data.append(try Utils.feeToBytes(withdraw.feeInteger))
-        data.append(try Utils.nonceToBytes(withdraw.nonce))
+        data.append(Utils.nonceToBytes(withdraw.nonce))
         
         let signature = try self.sign(message: data)
         mutableWithdraw.signature = signature
@@ -143,7 +143,7 @@ public class ZkSigner {
         data.append(try Utils.addressToBytes(forcedExit.target))
         data.append(try Utils.tokenIdToBytes(forcedExit.token))
         data.append(try Utils.feeToBytes(forcedExit.feeInteger))
-        data.append(try Utils.nonceToBytes(forcedExit.nonce))
+        data.append(Utils.nonceToBytes(forcedExit.nonce))
         
         let signature = try self.sign(message: data)
         mutableForcedExit.signature = signature

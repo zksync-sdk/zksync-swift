@@ -16,7 +16,7 @@ public extension DefaultEthSigner {
         Register zkSync pubkey:
 
         \(pubKeyHashStripped)
-        nonce: \(try Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
+        nonce: \(Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
         account id: \(try Utils.accountIdToBytes(accountId).toHexString().addHexPrefix())
 
         Only sign this message for a trusted client!
