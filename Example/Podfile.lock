@@ -24,7 +24,7 @@ PODS:
     - Alamofire (~> 5.0)
     - BigInt
     - web3swift
-    - ZKSyncSDK (= 0.0.5)
+    - ZKSyncSDK
 
 DEPENDENCIES:
   - ZKSyncSwift (from `../`)
@@ -53,7 +53,7 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
   ZKSyncSDK: 5f507d8a635c713396a612bfbb310a2cafa185e7
-  ZKSyncSwift: 2c306cd5158bc80bc14ce16af5771dfd4c6ad8be
+  ZKSyncSwift: 8cd853868d9de163a949dd08d88a84696a995a54
 
 PODFILE CHECKSUM: 06d5f2cda33f74315bd4b9a85064c3ab4902a8bc
 
