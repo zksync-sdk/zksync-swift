@@ -20,12 +20,12 @@ extension DefaultWallet {
     }
     
     func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
-                                                                ethereumSignature: EthSignature?,
-                                                                fastProcessing: Bool) -> Promise<String> {
+                                                        ethereumSignature: EthSignature?,
+                                                        fastProcessing: Bool) -> Promise<String> {
         return Promise { provider.submitTx(transaction,
-                          ethereumSignature: ethereumSignature,
-                          fastProcessing: fastProcessing,
-                          completion: $0.resolve )
+                                           ethereumSignature: ethereumSignature,
+                                           fastProcessing: fastProcessing,
+                                           completion: $0.resolve )
         }
     }
 }

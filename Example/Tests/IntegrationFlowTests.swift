@@ -123,7 +123,52 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test_06_Withdraw() throws {
+    func test_06_BatchTransferFunds() throws {
+        let exp = expectation(description: "transfer")
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { state -> Promise<(TransactionFeeDetails, AccountState)> in
+            let transactions = [
+                TransactionTypeAddressPair(transactionType: .transfer, address: self.ethSigner.address),
+                TransactionTypeAddressPair(transactionType: .withdraw, address: self.ethSigner.address)
+            ]
+            let request = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
+                                                     tokenIdentifier: Token.ETH.address)
+            
+            return self.wallet.getTransactionFeePromise(for: request)
+                .map(on: self.queue) { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<(SignedTransaction<Transfer>, TransactionFee, AccountState)> in
+            
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            return self.wallet.buildSignedTransferTx(to: self.ethSigner.address,
+                                                     tokenIdentifier: fee.feeToken,
+                                                     amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
+                                                     fee: fee.fee,
+                                                     nonce: state.committed.nonce)
+                .map(on: self.queue) { ($0, fee, state) }
+        }.then(on: queue) { (tx, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
+            self.wallet.buildSignedWithdrawTx(to: self.ethSigner.address,
+                                              tokenIdentifier: fee.feeToken,
+                                              amount: Web3.Utils.parseToBigUInt("2000000", units: .Gwei)!,
+                                              fee: 0,
+                                              nonce: state.committed.nonce)
+                .map(on: self.queue) { ($0, tx, fee, state) }
+        }.then(on: queue) { (tx1, tx2, fee, state) -> Promise<[String]> in
+            let t1 = TransactionSignaturePair(tx: tx1.transaction, signature: tx1.ethereumSignature)
+            let t2 = TransactionSignaturePair(tx: tx2.transaction, signature: tx2.ethereumSignature)
+            
+            return self.wallet.provider.submitTxBatchPromise(txs: [t1, t2])
+        }.done(on: queue) { (hash) in
+            exp.fulfill()
+        }.catch(on: queue) { (error) in
+            XCTFail("\(error)")
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 60, handler: nil)
+    }
+    
+    func test_07_Withdraw() throws {
         let exp = expectation(description: "withdraw")
         firstly {
             self.wallet.getAccountStatePromise()
@@ -147,7 +192,7 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
 
-    func test_07_ForcedExit() throws {
+    func test_08_ForcedExit() throws {
         let exp = expectation(description: "forcedExit")
         firstly {
             self.wallet.getAccountStatePromise()
@@ -170,7 +215,7 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
 
-    func test_08_FullExit() throws {
+    func test_09_FullExit() throws {
         let exp = expectation(description: "fullExit")
         firstly {
             self.wallet.getAccountStatePromise()
@@ -185,7 +230,7 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
         
-    func test_09_GetTransactionFeeBatch() throws {
+    func test_10_GetTransactionFeeBatch() throws {
         
         let transactions = [
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
@@ -209,7 +254,7 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
 
-    func test_10_GetTokenPrice() {
+    func test_11_GetTokenPrice() {
         let exp = expectation(description: "getTokenPrice")
         self.wallet.provider.tokenPrice(token: .ETH) { (result) in
             if case let Swift.Result<Decimal, Error>.failure(error) = result {
@@ -220,7 +265,7 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
     }
     
-    func test_11_GetConfirmationsForEthOpAmount() {
+    func test_12_GetConfirmationsForEthOpAmount() {
         let exp = expectation(description: "getConfirmationsForEthOpAmount")
         self.wallet.provider.confirmationsForEthOpAmount { (result) in
             if case let Swift.Result<UInt64, Error>.failure(error) = result {
@@ -229,5 +274,12 @@ class IntegrationFlowTests: XCTestCase {
             exp.fulfill()
         }
         waitForExpectations(timeout: 60, handler: nil)
+    }
+}
+
+
+extension Provider {
+    func submitTxBatchPromise(txs: [TransactionSignaturePair]) -> Promise<[String]> {
+        Promise { self.submitTxBatch(txs: txs, completion: $0.resolve ) }
     }
 }

@@ -29,7 +29,7 @@ public class DefaultWallet: Wallet {
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {
         try self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
     }
-
+    
     public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) throws {
         self.provider = provider
         self.ethSigner = ethSigner
@@ -40,23 +40,23 @@ public class DefaultWallet: Wallet {
         self.accountId = accountState.id ?? 0
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
-
+    
     public func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
         self.getAccountState(queue: .main, completion: completion)
     }
-
+    
     private func getAccountState(queue: DispatchQueue, completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
         self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
     }
-
+    
     public var isSigningKeySet: Bool {
         pubKeyHash == zkSigner.publicKeyHash
     }
-
-    internal func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
-                                                                ethereumSignature: EthSignature?,
-                                                                fastProcessing: Bool,
-                                                                completion: @escaping (ZKSyncResult<String>) -> Void) {
+    
+    internal func submitSignedTransaction(_ transaction: ZkSyncTransaction,
+                                          ethereumSignature: EthSignature?,
+                                          fastProcessing: Bool,
+                                          completion: @escaping (ZKSyncResult<String>) -> Void) {
         provider.submitTx(transaction,
                           ethereumSignature: ethereumSignature,
                           fastProcessing: fastProcessing,
@@ -86,7 +86,7 @@ public class DefaultWallet: Wallet {
         }
         return try r.get()
     }
-
+    
     private func getContractAddressSync() throws -> ContractAddress {
         var callResult: Swift.Result<ContractAddress, Error>? = nil
         self.group.enter()

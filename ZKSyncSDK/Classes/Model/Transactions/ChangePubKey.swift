@@ -8,9 +8,9 @@
 import Foundation
 import BigInt
 
-public struct ChangePubKey: ZkSyncTransaction {
+public class ChangePubKey: ZkSyncTransaction {
     
-    public let type = "ChangePubKey"
+    override public var type: String { "ChangePubKey" }
     
     let accountId: UInt32
     let account: String

@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol ZkSyncTransaction: Encodable {
-    var type: String { get }
+public class ZkSyncTransaction: Encodable {
+    public var type: String { fatalError("Subclasses mst override 'type' property") }
 }

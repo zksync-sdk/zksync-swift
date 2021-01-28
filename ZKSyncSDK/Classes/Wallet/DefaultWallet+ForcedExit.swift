@@ -25,7 +25,7 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedForcedExitTx(target: String,
+    public func buildSignedForcedExitTx(target: String,
                                  tokenIdentifier: String,
                                  fee: BigUInt,
                                  nonce: UInt32) -> Promise<SignedTransaction<ForcedExit>> {

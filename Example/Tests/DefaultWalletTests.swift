@@ -208,10 +208,10 @@ struct MockProvider: Provider {
         completion(.success("success:hash"))
     }
     
-    func submitTxBatch<TX>(txs: [TransactionSignaturePair<TX>], ethereumSignature: EthSignature?, completion: @escaping (ZKSyncResult<[String]>) -> Void) where TX : ZkSyncTransaction {
+    func submitTxBatch(txs: [TransactionSignaturePair], ethereumSignature: EthSignature?, completion: @escaping (ZKSyncResult<[String]>) -> Void) {
     }
     
-    func submitTxBatch<TX>(txs: [TransactionSignaturePair<TX>], completion: @escaping (ZKSyncResult<[String]>) -> Void) where TX : ZkSyncTransaction {
+    func submitTxBatch(txs: [TransactionSignaturePair], completion: @escaping (ZKSyncResult<[String]>) -> Void) {
     }
     
     func transactionDetails(txHash: String, completion: @escaping (ZKSyncResult<TransactionDetails>) -> Void) {

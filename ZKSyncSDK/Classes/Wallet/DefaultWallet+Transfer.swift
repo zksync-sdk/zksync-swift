@@ -30,11 +30,11 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedTransferTx(to: String,
-                               tokenIdentifier: String,
-                               amount: BigUInt,
-                               fee: BigUInt,
-                               nonce: UInt32) -> Promise<SignedTransaction<Transfer>> {
+    public func buildSignedTransferTx(to: String,
+                                      tokenIdentifier: String,
+                                      amount: BigUInt,
+                                      fee: BigUInt,
+                                      nonce: UInt32) -> Promise<SignedTransaction<Transfer>> {
         return firstly {
             getTokens()
         }.map { tokens in

@@ -31,7 +31,7 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedChangePubKeyTx(fee: TransactionFee,
+    public func buildSignedChangePubKeyTx(fee: TransactionFee,
                                    nonce: UInt32,
                                    onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>> {
         return firstly {

@@ -28,12 +28,12 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-        
-    func buildSignedWithdrawTx(to: String,
-                                tokenIdentifier: String,
-                                amount: BigUInt,
-                                fee: BigUInt,
-                                nonce: UInt32) -> Promise<SignedTransaction<Withdraw>> {
+    
+    public func buildSignedWithdrawTx(to: String,
+                                      tokenIdentifier: String,
+                                      amount: BigUInt,
+                                      fee: BigUInt,
+                                      nonce: UInt32) -> Promise<SignedTransaction<Withdraw>> {
         return firstly {
             self.getTokens()
         }.map { tokens in

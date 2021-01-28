@@ -8,9 +8,9 @@
 import Foundation
 import BigInt
 
-public struct Transfer: ZkSyncTransaction {
+public class Transfer: ZkSyncTransaction {
     
-    public let type = "Transfer"
+    override public var type: String { "Transfer" }
     
     let accountId: UInt32
     let from: String
@@ -46,7 +46,7 @@ public struct Transfer: ZkSyncTransaction {
         case signature
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accountId, forKey: .accountId)
         try container.encode(from, forKey: .from)
