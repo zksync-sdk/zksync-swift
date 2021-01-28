@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionBatchRequest/*<TX: ZkSyncTransaction>*/: Encodable {
+struct TransactionBatchRequest: Encodable {
     let txs: [TransactionSignaturePair]
     let ethereumSignature: EthSignature?
     

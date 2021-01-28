@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 extension DefaultProvider {
     public func submitTx(_ tx: ZkSyncTransaction,
                          ethereumSignature: EthSignature?,

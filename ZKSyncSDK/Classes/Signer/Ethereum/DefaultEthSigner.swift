@@ -47,6 +47,7 @@ public class DefaultEthSigner: EthSigner {
     }
     
     public func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
+
         return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     

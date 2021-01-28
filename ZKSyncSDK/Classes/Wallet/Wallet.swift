@@ -49,15 +49,18 @@ public protocol Wallet {
     func buildSignedChangePubKeyTx(fee: TransactionFee,
                                    nonce: UInt32,
                                    onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>>
+    
     func buildSignedForcedExitTx(target: String,
                                  tokenIdentifier: String,
                                  fee: BigUInt,
                                  nonce: UInt32) -> Promise<SignedTransaction<ForcedExit>>
+    
     func buildSignedTransferTx(to: String,
                                tokenIdentifier: String,
                                amount: BigUInt,
                                fee: BigUInt,
                                nonce: UInt32) -> Promise<SignedTransaction<Transfer>>
+    
     func buildSignedWithdrawTx(to: String,
                                 tokenIdentifier: String,
                                 amount: BigUInt,

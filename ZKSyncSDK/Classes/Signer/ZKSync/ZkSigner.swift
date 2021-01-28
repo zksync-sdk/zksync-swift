@@ -82,7 +82,7 @@ public class ZkSigner {
     }
     
     public func sign(changePubKey: ChangePubKey) throws -> ChangePubKey {
-        var mutableChangePubKey = changePubKey
+        let mutableChangePubKey = changePubKey
         var data = Data()
         
         data.append(contentsOf: [0x07])
@@ -99,7 +99,7 @@ public class ZkSigner {
     }
     
     public func sign(transfer: Transfer) throws -> Transfer {
-        var mutableTransfer = transfer
+        let mutableTransfer = transfer
         var data = Data()
         
         data.append(contentsOf: [0x05])
@@ -117,7 +117,7 @@ public class ZkSigner {
     }
 
     public func sign(withdraw: Withdraw) throws -> Withdraw {
-        var mutableWithdraw = withdraw
+        let mutableWithdraw = withdraw
         var data = Data()
         
         data.append(contentsOf: [0x03])
@@ -135,7 +135,7 @@ public class ZkSigner {
     }
 
     public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
-        var mutableForcedExit = forcedExit
+        let mutableForcedExit = forcedExit
         var data = Data()
         
         data.append(contentsOf: [0x08])

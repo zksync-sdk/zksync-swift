@@ -29,4 +29,26 @@ public class ForcedExit: ZkSyncTransaction {
         self.fee = fee
         self.nonce = nonce
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case initiatorAccountId
+        case target
+        case token
+        case fee
+        case nonce
+        case type
+        case signature
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(initiatorAccountId, forKey: .initiatorAccountId)
+        try container.encode(target, forKey: .target)
+        try container.encode(token, forKey: .token)
+        try container.encode(fee, forKey: .fee)
+        try container.encode(nonce, forKey: .nonce)
+        try container.encode(type, forKey: .type)
+        try container.encode(signature, forKey: .signature)
+    }
+    
 }

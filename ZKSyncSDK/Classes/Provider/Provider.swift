@@ -11,7 +11,6 @@ import BigInt
 public protocol Provider {
     func accountState(address: String,
                       completion: @escaping (ZKSyncResult<AccountState>) -> Void)
-    
     func accountState(address: String,
                       queue: DispatchQueue,
                       completion: @escaping (ZKSyncResult<AccountState>) -> Void)

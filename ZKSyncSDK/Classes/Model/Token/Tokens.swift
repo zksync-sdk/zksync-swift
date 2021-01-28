@@ -46,7 +46,7 @@ public struct Tokens: Decodable {
     internal init(tokens: [String: Token]) {
         self.tokens = tokens
     }
-    
+
     struct DynamicKey: CodingKey {
         var intValue: Int?
         init?(intValue: Int) {

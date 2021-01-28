@@ -29,7 +29,7 @@ public class DefaultWallet: Wallet {
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {
         try self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
     }
-    
+
     public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) throws {
         self.provider = provider
         self.ethSigner = ethSigner

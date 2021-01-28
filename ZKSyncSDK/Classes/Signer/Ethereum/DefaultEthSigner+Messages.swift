@@ -9,6 +9,7 @@ import Foundation
 import BigInt
 
 public extension DefaultEthSigner {
+
     func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> String {
         let pubKeyHashStripped = pubKeyHash.deletingPrefix("sync:").lowercased()
         
