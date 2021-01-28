@@ -1,0 +1,10 @@
+framework module ZKSyncSDK {
+  umbrella header "ZKSyncSDK-umbrella.h"
+  
+  explicit module CryptoKit {
+    header "zks_crypto.h"  
+  }
+
+  export *
+  module * { export * }
+}
