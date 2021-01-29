@@ -19,9 +19,9 @@ extension DefaultWallet {
         }
         
         firstly {
-            return nonce != nil ? .value(nonce!) : getNonce()
-        }.then { nonce in
-            self.buildSignedChangePubKeyTx(fee: fee, nonce: nonce, onchainAuth: oncahinAuth)
+            getNonceAccountIdPair(for: nonce)
+        }.then { (nonce, accountId) in
+            self.buildSignedChangePubKeyTx(fee: fee, accountId: accountId, nonce: nonce, onchainAuth: oncahinAuth)
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
                                          ethereumSignature: signedTransaction.ethereumSignature,
@@ -32,13 +32,14 @@ extension DefaultWallet {
     }
     
     public func buildSignedChangePubKeyTx(fee: TransactionFee,
-                                   nonce: UInt32,
-                                   onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>> {
+                                          accountId: UInt32,
+                                          nonce: UInt32,
+                                          onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>> {
         return firstly {
             getTokens()
         }.map { tokens in
             let token = try tokens.tokenByTokenIdentifier(fee.feeToken)
-            let changePubKey = ChangePubKey(accountId: self.accountId,
+            let changePubKey = ChangePubKey(accountId: accountId,
                                             account: self.ethSigner.address,
                                             newPkHash: self.zkSigner.publicKeyHash,
                                             feeToken: token.id,
@@ -48,7 +49,7 @@ extension DefaultWallet {
             if !onchainAuth {
                 ethSignature = try self.ethSigner.signChangePubKey(pubKeyHash: self.zkSigner.publicKeyHash,
                                                                    nonce: nonce,
-                                                                   accountId: self.accountId)
+                                                                   accountId: accountId)
                 changePubKey.ethSignature = ethSignature?.signature
             }
             

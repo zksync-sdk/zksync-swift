@@ -23,7 +23,7 @@ public class DefaultWallet: Wallet {
     internal let ethSigner: EthSigner
     internal let zkSigner: ZkSigner
     
-    internal var accountId: UInt32 = 0
+    internal var accountId: UInt32?
     internal var pubKeyHash: String = ""
     
     public var address: String { self.ethSigner.address }
@@ -39,7 +39,7 @@ public class DefaultWallet: Wallet {
         
         let accountState = try self.getAccountStateSync()
         
-        self.accountId = accountState.id ?? 0
+        self.accountId = accountState.id
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
     

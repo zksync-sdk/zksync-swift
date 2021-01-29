@@ -28,6 +28,20 @@ extension DefaultWallet {
                                            completion: $0.resolve )
         }
     }
+    
+    func getNonceAccountIdPair(for nonce: UInt32?) -> Promise<(UInt32, UInt32)> {
+        if let nonce = nonce, let accountId = self.accountId {
+            return Promise.value((nonce, accountId))
+        } else {
+            return getAccountStatePromise().map { state in
+                guard let id = state.id else {
+                    throw WalletError.accountIdIsNull
+                }
+                self.accountId = id
+                return (nonce ?? state.committed.nonce, id)
+            }
+        }
+    }
 }
 
 extension Swift.Result {

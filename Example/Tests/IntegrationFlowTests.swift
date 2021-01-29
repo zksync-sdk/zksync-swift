@@ -165,6 +165,11 @@ class IntegrationFlowTests: XCTestCase {
         
         firstly {
             self.wallet.getAccountStatePromise()
+        }.map { state -> AccountState in
+            guard state.id != nil else {
+                throw WalletError.accountIdIsNull
+            }
+            return state
         }.then(on: queue) { state -> Promise<(TransactionFeeDetails, AccountState)> in
             let transactions = [
                 TransactionTypeAddressPair(transactionType: .transfer, address: self.ethSigner.address),
@@ -183,6 +188,7 @@ class IntegrationFlowTests: XCTestCase {
                                                      tokenIdentifier: fee.feeToken,
                                                      amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                      fee: fee.fee,
+                                                     accountId: state.id!,
                                                      nonce: state.committed.nonce)
                 .map(on: self.queue) { ($0, fee, state) }
         }.then(on: queue) { (tx, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
@@ -190,6 +196,7 @@ class IntegrationFlowTests: XCTestCase {
                                               tokenIdentifier: fee.feeToken,
                                               amount: Web3.Utils.parseToBigUInt("2000000", units: .Gwei)!,
                                               fee: 0,
+                                              accountId: state.id!,
                                               nonce: state.committed.nonce)
                 .map(on: self.queue) { ($0, tx, fee, state) }
         }.then(on: queue) { (tx1, tx2, fee, state) -> Promise<[String]> in

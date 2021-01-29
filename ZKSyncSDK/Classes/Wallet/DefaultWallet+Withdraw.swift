@@ -14,12 +14,13 @@ extension DefaultWallet {
     public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
         firstly {
-            return nonce != nil ? .value(nonce!) : getNonce()
-        }.then { nonce in
+            getNonceAccountIdPair(for: nonce)
+        }.then { (nonce, accountId) in
             self.buildSignedWithdrawTx(to: ethAddress,
                                        tokenIdentifier: fee.feeToken,
                                        amount: amount,
                                        fee: fee.fee,
+                                       accountId: accountId,
                                        nonce: nonce)
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
@@ -34,20 +35,21 @@ extension DefaultWallet {
                                       tokenIdentifier: String,
                                       amount: BigUInt,
                                       fee: BigUInt,
+                                      accountId: UInt32,
                                       nonce: UInt32) -> Promise<SignedTransaction<Withdraw>> {
 
         return firstly {
             self.getTokens()
         }.map { tokens in
             let token = try tokens.tokenByTokenIdentifier(tokenIdentifier)
-            let withdraw = Withdraw(accountId: self.accountId,
+            let withdraw = Withdraw(accountId: accountId,
                                     from: self.ethSigner.address,
                                     to: to,
                                     token: token.id,
                                     amount: amount,
                                     fee: fee.description,
                                     nonce: nonce)
-            let ethSignature = try self.ethSigner.signWithdraw(to: to, accountId: self.accountId, nonce: nonce, amount: amount, token: token, fee: fee)
+            let ethSignature = try self.ethSigner.signWithdraw(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee)
             let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(withdraw: withdraw), ethereumSignature: ethSignature)
             return signedTransaction
         }
