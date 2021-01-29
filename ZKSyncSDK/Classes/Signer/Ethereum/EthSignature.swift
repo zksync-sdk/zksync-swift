@@ -15,4 +15,9 @@ public struct EthSignature: Encodable {
     
     let signature: String
     let type: SignatureType
+    
+    public init(signature: String, type: SignatureType) {
+        self.signature = signature
+        self.type = type
+    }
 }
