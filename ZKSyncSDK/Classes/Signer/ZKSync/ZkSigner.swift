@@ -12,7 +12,6 @@ import ZKSyncSDK
 enum ZkSignerError: Error {
     case invalidPrivateKey
     case incorrectDataLength
-    case invalidSignatureType(EthSignature.SignatureType)
 }
 
 public class ZkSigner {
@@ -63,10 +62,6 @@ public class ZkSigner {
             message = "\(message)\nChain ID: \(chainId.id)."
         }
         let signature = try ethSigner.sign(message: message)
-        
-        if signature.type != .ethereumSignature {
-            throw ZkSignerError.invalidSignatureType(signature.type)
-        }
         
         try self.init(seed: Data(hex: signature.signature))
     }
