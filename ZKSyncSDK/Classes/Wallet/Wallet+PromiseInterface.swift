@@ -14,17 +14,17 @@ public extension Wallet {
         return Promise { self.getAccountState(completion: $0.resolve) }
     }
     
-    func getTransactionFeePromise(for transactionType: TransactionType, tokenIdentifier: String) -> Promise<TransactionFeeDetails> {
-        return Promise { self.getTransactionFee(for: transactionType, tokenIdentifier: tokenIdentifier, completion: $0.resolve) }
-    }
-    
-    func getTransactionFeePromise(for transactionType: TransactionType, address: String, tokenIdentifier: String) -> Promise<TransactionFeeDetails> {
-        return Promise { self.getTransactionFee(for: transactionType, address: address, tokenIdentifier: tokenIdentifier, completion: $0.resolve) }
-    }
-    
-    func getTransactionFeePromise(for batchRequest: TransactionFeeBatchRequest) -> Promise<TransactionFeeDetails> {
-        return Promise { self.getTransactionFee(for: batchRequest, completion: $0.resolve) }
-    }
+//    func getTransactionFeePromise(for transactionType: TransactionType, tokenIdentifier: String) -> Promise<TransactionFeeDetails> {
+//        return Promise { self.getTransactionFee(for: transactionType, tokenIdentifier: tokenIdentifier, completion: $0.resolve) }
+//    }
+//    
+//    func getTransactionFeePromise(for transactionType: TransactionType, address: String, tokenIdentifier: String) -> Promise<TransactionFeeDetails> {
+//        return Promise { self.getTransactionFee(for: transactionType, address: address, tokenIdentifier: tokenIdentifier, completion: $0.resolve) }
+//    }
+//    
+//    func getTransactionFeePromise(for batchRequest: TransactionFeeBatchRequest) -> Promise<TransactionFeeDetails> {
+//        return Promise { self.getTransactionFee(for: batchRequest, completion: $0.resolve) }
+//    }
     
     func setSigningKeyPromise(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool) -> Promise<String> {
         return Promise { self.setSigningKey(fee: fee, nonce: nonce, oncahinAuth: oncahinAuth, completion: $0.resolve) }

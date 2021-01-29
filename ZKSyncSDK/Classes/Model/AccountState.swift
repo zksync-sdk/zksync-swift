@@ -11,7 +11,7 @@ import BigInt
 public struct AccountState: Codable {
     public struct Balance: Codable {
         public var amount: String
-        public var expectedBlockNumber: BigUInt
+        public var expectedAcceptBlock: UInt64
     }
     
     public struct Depositing: Codable {

@@ -38,7 +38,7 @@ extension DefaultWallet {
             getTokens()
         }.map { tokens in
             let token = try tokens.tokenByTokenIdentifier(fee.feeToken)
-            var changePubKey = ChangePubKey(accountId: self.accountId,
+            let changePubKey = ChangePubKey(accountId: self.accountId,
                                             account: self.ethSigner.address,
                                             newPkHash: self.zkSigner.publicKeyHash,
                                             feeToken: token.id,

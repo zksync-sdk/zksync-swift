@@ -47,66 +47,95 @@ class IntegrationFlowTests: XCTestCase {
     
     func test_02_SetupPublicKey() throws {
         let exp = expectation(description: "setPublicKey")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.getTransactionFeePromise(for: .changePubKey, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .changePubKey, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.setSigningKeyPromise(fee: fee,
                                                     nonce: state.committed.nonce,
                                                     oncahinAuth: false)
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
     
     func test_03_SetupPublicKeyOnChain() throws {
         let exp = expectation(description: "setPublicKeyOnChain")
+        
+        var finalResult: PromiseKit.Result<TransactionSendingResult>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state -> Promise<TransactionSendingResult> in
             let hash = self.zkSigner.publicKeyHash
             let pureHash = String(hash.suffix(from: hash.index(hash.startIndex, offsetBy: 5)))
             return self.ethereum.setAuthPubkeyHash(pubKeyhash: pureHash, nonce: state.committed.nonce)
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
-        waitForExpectations(timeout: 60, handler: nil)
-    }
         
+        waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+    
     func test_04_IsPublicKeyIsSetOnChain() throws {
         let exp = expectation(description: "isPublicKeySetOnChain")
+        
+        var finalResult: PromiseKit.Result<Bool>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
             self.ethereum.isOnChainAuthPubkeyHashSet(nonce: state.committed.nonce)
-        }.done { (value) in
-            XCTAssertTrue(value)
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
     
     func test_05_TransferFunds() throws {
         let exp = expectation(description: "transfer")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.getTransactionFeePromise(for: .transfer,
-                                                 address: self.ethSigner.address,
-                                                 tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .transfer,
+                                                       address: self.ethSigner.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -114,17 +143,26 @@ class IntegrationFlowTests: XCTestCase {
                                                amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                fee: fee,
                                                nonce: nil)
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
     
     func test_06_BatchTransferFunds() throws {
         let exp = expectation(description: "transfer")
+        
+        var finalResult: PromiseKit.Result<[String]>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state -> Promise<(TransactionFeeDetails, AccountState)> in
@@ -135,7 +173,7 @@ class IntegrationFlowTests: XCTestCase {
             let request = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
                                                      tokenIdentifier: Token.ETH.address)
             
-            return self.wallet.getTransactionFeePromise(for: request)
+            return self.wallet.provider.transactionFeePromise(request: request)
                 .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<(SignedTransaction<Transfer>, TransactionFee, AccountState)> in
             
@@ -159,22 +197,31 @@ class IntegrationFlowTests: XCTestCase {
             let t2 = TransactionSignaturePair(tx: tx2.transaction, signature: tx2.ethereumSignature)
             
             return self.wallet.provider.submitTxBatchPromise(txs: [t1, t2])
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
     
     func test_07_Withdraw() throws {
         let exp = expectation(description: "withdraw")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.getTransactionFeePromise(for: .withdraw,
-                                                 tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .withdraw, address: self.wallet.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -183,53 +230,77 @@ class IntegrationFlowTests: XCTestCase {
                                                fee: fee,
                                                nonce: state.committed.nonce,
                                                fastProcessing: false)
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
-
+    
     func test_08_ForcedExit() throws {
         let exp = expectation(description: "forcedExit")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.getTransactionFeePromise(for: .forcedExit,
-                                                 address: self.ethSigner.address,
-                                                 tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .forcedExit,
+                                                       address: self.ethSigner.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.forcedExitPromise(target: state.address,
                                                  fee: fee,
                                                  nonce: state.committed.nonce)
-        }.done(on: queue) { (hash) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
+        
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
-
+    
     func test_09_FullExit() throws {
         let exp = expectation(description: "fullExit")
+        
+        var finalResult: PromiseKit.Result<TransactionSendingResult>? = nil
+        
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
             self.ethereum.fullExit(token: .ETH, accountId: state.id!)
-        }.done(on: queue) { (value) in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+        }.pipe {
+            finalResult = $0
             exp.fulfill()
         }
-        waitForExpectations(timeout: 60, handler: nil)
-    }
         
+        waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+    
     func test_10_GetTransactionFeeBatch() throws {
         
         let transactions = [
@@ -239,47 +310,60 @@ class IntegrationFlowTests: XCTestCase {
             TransactionTypeAddressPair(transactionType: .changePubKey, address: ethSigner.address)
         ]
         let batch = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
-        tokenIdentifier: Token.ETH.address)
-
+                                               tokenIdentifier: Token.ETH.address)
+        
         let exp = expectation(description: "transactionFeeBatch")
         
+        var finalResult: PromiseKit.Result<TransactionFeeDetails>? = nil
+        
         firstly {
-            self.wallet.getTransactionFeePromise(for: batch)
-        }.done(on: queue) { details in
-            exp.fulfill()
-        }.catch(on: queue) { (error) in
-            XCTFail("\(error)")
+            self.wallet.provider.transactionFeePromise(request: batch)
+        }.pipe { (result) in
+            finalResult = result
             exp.fulfill()
         }
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
-
+    
     func test_11_GetTokenPrice() {
         let exp = expectation(description: "getTokenPrice")
+        
+        var finalResult: Swift.Result<Decimal, Error>? = nil
         self.wallet.provider.tokenPrice(token: .ETH) { (result) in
-            if case let Swift.Result<Decimal, Error>.failure(error) = result {
-                XCTFail("\(error)")
-            }
+            finalResult = result
             exp.fulfill()
         }
         waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .failure(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
     
     func test_12_GetConfirmationsForEthOpAmount() {
         let exp = expectation(description: "getConfirmationsForEthOpAmount")
+        var finalResult: Swift.Result<UInt64, Error>? = nil
         self.wallet.provider.confirmationsForEthOpAmount { (result) in
-            if case let Swift.Result<UInt64, Error>.failure(error) = result {
-                XCTFail("\(error)")
-            }
+            finalResult = result
             exp.fulfill()
         }
         waitForExpectations(timeout: 60, handler: nil)
-    }
-}
-
-
-extension Provider {
-    func submitTxBatchPromise(txs: [TransactionSignaturePair]) -> Promise<[String]> {
-        Promise { self.submitTxBatch(txs: txs, completion: $0.resolve ) }
+        
+        switch finalResult {
+        case .failure(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
     }
 }

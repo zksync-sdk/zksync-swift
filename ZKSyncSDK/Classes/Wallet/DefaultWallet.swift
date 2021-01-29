@@ -26,6 +26,8 @@ public class DefaultWallet: Wallet {
     internal var accountId: UInt32 = 0
     internal var pubKeyHash: String = ""
     
+    public var address: String { self.ethSigner.address }
+    
     public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {
         try self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
     }

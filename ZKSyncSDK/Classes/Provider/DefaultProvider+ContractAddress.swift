@@ -8,10 +8,6 @@
 import Foundation
 
 extension DefaultProvider {
-    public func contractAddress(completion: @escaping (ZKSyncResult<ContractAddress>) -> Void) {
-        self.contractAddress(queue: .main, completion: completion)
-    }
-    
     public func contractAddress(queue: DispatchQueue, completion: @escaping (ZKSyncResult<ContractAddress>) -> Void) {
         transport.send(method: "contract_address", params: [String](), queue: queue, completion: completion)
     }

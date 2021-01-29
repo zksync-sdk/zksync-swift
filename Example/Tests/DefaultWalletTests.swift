@@ -124,7 +124,7 @@ class DefaultWalletTests: XCTestCase {
     }
 
     private func defaultDepositingState() -> AccountState.Depositing {
-        let balance = AccountState.Balance(amount: "10", expectedBlockNumber: 12345)
+        let balance = AccountState.Balance(amount: "10", expectedAcceptBlock: 12345)
         return AccountState.Depositing(balances: ["ETH" : balance])
     }
     
@@ -246,7 +246,7 @@ extension AccountState.Depositing: Equatable {
 extension AccountState.Balance: Equatable {
     public static func == (lhs: AccountState.Balance, rhs: AccountState.Balance) -> Bool {
         return lhs.amount == rhs.amount &&
-            lhs.expectedBlockNumber == rhs.expectedBlockNumber
+            lhs.expectedAcceptBlock == rhs.expectedAcceptBlock
     }
 }
 

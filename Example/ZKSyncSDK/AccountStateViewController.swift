@@ -93,7 +93,7 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
             let balance = balances[key]!
             cell.titleLabel.text = key
             cell.amountLabel.text = "Amount: " + balance.amount
-            cell.blockNumber.text = "Block number: \(balance.expectedBlockNumber)"
+            cell.blockNumber.text = "Block number: \(balance.expectedAcceptBlock)"
             return cell
         default:
             break

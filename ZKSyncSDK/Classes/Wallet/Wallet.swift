@@ -20,20 +20,10 @@ public protocol Wallet {
     
     var provider: Provider { get }
     
+    var address: String { get }
+    
     func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void)
     
-    func getTransactionFee(for transactionType:TransactionType,
-                           tokenIdentifier: String,
-                           completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
-
-    func getTransactionFee(for transactionType:TransactionType,
-                           address: String,
-                           tokenIdentifier: String,
-                           completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
- 
-    func getTransactionFee(for batchRequest: TransactionFeeBatchRequest,
-                           completion: @escaping ZKSyncCompletion<TransactionFeeDetails>)
-
     func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
 
     func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
