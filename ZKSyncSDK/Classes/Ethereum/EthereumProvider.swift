@@ -39,7 +39,7 @@ public class EthereumProvider {
         }
     }
     
-    func approveDeposits(token: Token, limit: BigUInt?) -> Promise<TransactionSendingResult> {
+    public func approveDeposits(token: Token, limit: BigUInt?) -> Promise<TransactionSendingResult> {
         guard let erc20ContractAddress = EthereumAddress(token.address) else {
             return .init(error: EthereumProviderError.invalidTokenAddress)
         }
@@ -56,7 +56,7 @@ public class EthereumProvider {
         }
     }
     
-    func transfer(token: Token, amount: BigUInt, to: String) -> Promise<TransactionSendingResult> {
+    public func transfer(token: Token, amount: BigUInt, to: String) -> Promise<TransactionSendingResult> {
         
         let tx: WriteTransaction
         do {
