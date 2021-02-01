@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct TransactionBatchRequest<TX: ZkSyncTransaction>: Encodable {
-    let txs: [TransactionSignaturePair<TX>]
+struct TransactionBatchRequest: Encodable {
+    let txs: [TransactionSignaturePair]
     let ethereumSignature: EthSignature?
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
-        try container.encode(txs.map { $0.transaction })
-        try container.encode(txs.map { $0.signature })
+        try container.encode(txs)
         try container.encode(ethereumSignature)
     }
 }

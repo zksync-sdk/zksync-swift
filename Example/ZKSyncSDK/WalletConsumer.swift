@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ZKSyncSDK
+import ZKSyncSwift
 
 protocol WalletConsumer {
     var wallet: Wallet! { get set }

@@ -14,12 +14,16 @@ public protocol EthSigner {
     
     var address: String { get }
     
-    func signChangePubKey(pubKeyHash: String, nonce: Int32, accountId: Int32) throws -> EthSignature
+    var ethereumAddress: EthereumAddress { get }
+
+    var keystore: AbstractKeystore { get }
     
-    func signTransfer(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
+    func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> EthSignature
     
-    func signWithdraw(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
+    func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
     
+    func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
+        
     func sign(message: String) throws -> EthSignature
     
     func verifySignature(_ signature: EthSignature, message: String) throws -> Bool

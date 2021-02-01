@@ -11,11 +11,11 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func forcedExit(target: String, fee: TransactionFee, nonce: Int32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
-            return nonce != nil ? .value(nonce!) : getNonce()
-        }.then { nonce in
-            self.buildSignedForcedExitTx(target: target, tokenIdentifier: fee.feeToken, fee: fee.fee, nonce: nonce)
+            getNonceAccountIdPair(for: nonce)
+        }.then { (nonce, accountId: UInt32)  in
+            self.buildSignedForcedExitTx(target: target, tokenIdentifier: fee.feeToken, fee: fee.fee, accountId: accountId, nonce: nonce)
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
                                          ethereumSignature: signedTransaction.ethereumSignature,
@@ -25,15 +25,16 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedForcedExitTx(target: String,
-                                 tokenIdentifier: String,
-                                 fee: BigUInt,
-                                 nonce: Int32) -> Promise<SignedTransaction<ForcedExit>> {
+    public func buildSignedForcedExitTx(target: String,
+                                        tokenIdentifier: String,
+                                        fee: BigUInt,
+                                        accountId: UInt32,
+                                        nonce: UInt32) -> Promise<SignedTransaction<ForcedExit>> {
         return firstly {
             getTokens()
         }.map { tokens in
             let token = try tokens.tokenByTokenIdentifier(tokenIdentifier)
-            let forcedExit = ForcedExit(initiatorAccountId: self.accountId,
+            let forcedExit = ForcedExit(initiatorAccountId: accountId,
                                         target: target,
                                         token: token.id,
                                         fee: fee.description,

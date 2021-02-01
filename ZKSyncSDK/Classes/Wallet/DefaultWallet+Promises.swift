@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    func getNonce() -> Promise<Int32> {
+    func getNonce() -> Promise<UInt32> {
         return Promise { getNonce(completion: $0.resolve )}
     }
     
@@ -20,12 +20,26 @@ extension DefaultWallet {
     }
     
     func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
-                                                                ethereumSignature: EthSignature?,
-                                                                fastProcessing: Bool) -> Promise<String> {
+                                                        ethereumSignature: EthSignature?,
+                                                        fastProcessing: Bool) -> Promise<String> {
         return Promise { provider.submitTx(transaction,
-                          ethereumSignature: ethereumSignature,
-                          fastProcessing: fastProcessing,
-                          completion: $0.resolve )
+                                           ethereumSignature: ethereumSignature,
+                                           fastProcessing: fastProcessing,
+                                           completion: $0.resolve )
+        }
+    }
+    
+    func getNonceAccountIdPair(for nonce: UInt32?) -> Promise<(UInt32, UInt32)> {
+        if let nonce = nonce, let accountId = self.accountId {
+            return Promise.value((nonce, accountId))
+        } else {
+            return getAccountStatePromise().map { state in
+                guard let id = state.id else {
+                    throw WalletError.accountIdIsNull
+                }
+                self.accountId = id
+                return (nonce ?? state.committed.nonce, id)
+            }
         }
     }
 }
@@ -41,13 +55,13 @@ extension Swift.Result {
     }
 }
 
-extension PromiseKit.Resolver {
+public extension PromiseKit.Resolver {
     func resolve(_ result: Swift.Result<T, Error>) {
         self.resolve(result.promiseResult)
     }
 }
 
-extension PromiseKit.Result {
+public extension PromiseKit.Result {
     var result: Swift.Result<T, Error> {
         switch self {
         case .fulfilled(let value):

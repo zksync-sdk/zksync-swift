@@ -15,4 +15,17 @@ public class DefaultProvider: Provider {
     public init(transport: Transport) {
         self.transport = transport
     }
+    
+    public convenience init(chainId: ChainId) {
+        switch chainId {
+        case .mainnet:
+            self.init(transport: HTTPTransport(network: .mainnet))
+        case .localhost:
+            self.init(transport: HTTPTransport(network: .localhost))
+        case .rinkeby:
+            self.init(transport: HTTPTransport(network: .rinkeby))
+        case .ropsten:
+            self.init(transport: HTTPTransport(network: .ropsten))
+        }
+    }
 }

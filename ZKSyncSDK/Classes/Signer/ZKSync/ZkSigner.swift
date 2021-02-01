@@ -7,11 +7,11 @@
 
 import Foundation
 import CryptoSwift
+import ZKSyncSDK
 
 enum ZkSignerError: Error {
     case invalidPrivateKey
     case incorrectDataLength
-    case invalidSignatureType(EthSignature.SignatureType)
 }
 
 public class ZkSigner {
@@ -20,19 +20,19 @@ public class ZkSigner {
     
     let privateKey: ZKPrivateKey
     let publicKey: ZKPackedPublicKey
-    let publicKeyHash: String
+    public let publicKeyHash: String
     
     public init(privateKey: ZKPrivateKey) throws {
         self.privateKey = privateKey
         
-        switch ZKCryptoSDK.getPublicKey(privateKey: privateKey) {
+        switch ZKSyncSDK.getPublicKey(privateKey: privateKey) {
         case .success(let key):
             self.publicKey = key
         default:
             throw ZkSignerError.invalidPrivateKey
         }
         
-        switch ZKCryptoSDK.getPublicKeyHash(publicKey: self.publicKey) {
+        switch ZKSyncSDK.getPublicKeyHash(publicKey: self.publicKey) {
         case .success(let hash):
             self.publicKeyHash = hash.hexEncodedString().addPubKeyHashPrefix().lowercased()
         default:
@@ -41,7 +41,7 @@ public class ZkSigner {
     }
     
     public convenience init(seed: Data) throws {
-        switch ZKCryptoSDK.generatePrivateKey(seed: seed) {
+        switch ZKSyncSDK.generatePrivateKey(seed: seed) {
         case .success(let privateKey):
             try self.init(privateKey: privateKey)
         case .error(let error):
@@ -63,15 +63,11 @@ public class ZkSigner {
         }
         let signature = try ethSigner.sign(message: message)
         
-        if signature.type != .ethereumSignature {
-            throw ZkSignerError.invalidSignatureType(signature.type)
-        }
-        
         try self.init(seed: Data(hex: signature.signature))
     }
     
     public func sign(message: Data) throws -> Signature {
-        switch ZKCryptoSDK.signMessage(privateKey: self.privateKey, message: message) {
+        switch ZKSyncSDK.signMessage(privateKey: self.privateKey, message: message) {
         case .success(let signature):
             return Signature(pubKey: publicKey.hexEncodedString(),
                              signature: signature.hexEncodedString())
@@ -81,7 +77,7 @@ public class ZkSigner {
     }
     
     public func sign(changePubKey: ChangePubKey) throws -> ChangePubKey {
-        var mutableChangePubKey = changePubKey
+        let mutableChangePubKey = changePubKey
         var data = Data()
         
         data.append(contentsOf: [0x07])
@@ -90,7 +86,7 @@ public class ZkSigner {
         data.append(try Utils.addressToBytes(changePubKey.newPkHash))
         data.append(try Utils.tokenIdToBytes(changePubKey.feeToken))
         data.append(try Utils.feeToBytes(changePubKey.feeInteger))
-        data.append(try Utils.nonceToBytes(changePubKey.nonce))
+        data.append(Utils.nonceToBytes(changePubKey.nonce))
         
         let signature = try self.sign(message: data)
         mutableChangePubKey.signature = signature
@@ -98,7 +94,7 @@ public class ZkSigner {
     }
     
     public func sign(transfer: Transfer) throws -> Transfer {
-        var mutableTransfer = transfer
+        let mutableTransfer = transfer
         var data = Data()
         
         data.append(contentsOf: [0x05])
@@ -108,7 +104,7 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(transfer.token))
         data.append(try Utils.amountPackedToBytes(transfer.amount))
         data.append(try Utils.feeToBytes(transfer.feeInteger))
-        data.append(try Utils.nonceToBytes(transfer.nonce))
+        data.append(Utils.nonceToBytes(transfer.nonce))
         
         let signature = try self.sign(message: data)
         mutableTransfer.signature = signature
@@ -116,7 +112,7 @@ public class ZkSigner {
     }
 
     public func sign(withdraw: Withdraw) throws -> Withdraw {
-        var mutableWithdraw = withdraw
+        let mutableWithdraw = withdraw
         var data = Data()
         
         data.append(contentsOf: [0x03])
@@ -126,7 +122,7 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(withdraw.token))
         data.append(Utils.amountFullToBytes(withdraw.amount))
         data.append(try Utils.feeToBytes(withdraw.feeInteger))
-        data.append(try Utils.nonceToBytes(withdraw.nonce))
+        data.append(Utils.nonceToBytes(withdraw.nonce))
         
         let signature = try self.sign(message: data)
         mutableWithdraw.signature = signature
@@ -134,7 +130,7 @@ public class ZkSigner {
     }
 
     public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
-        var mutableForcedExit = forcedExit
+        let mutableForcedExit = forcedExit
         var data = Data()
         
         data.append(contentsOf: [0x08])
@@ -142,7 +138,7 @@ public class ZkSigner {
         data.append(try Utils.addressToBytes(forcedExit.target))
         data.append(try Utils.tokenIdToBytes(forcedExit.token))
         data.append(try Utils.feeToBytes(forcedExit.feeInteger))
-        data.append(try Utils.nonceToBytes(forcedExit.nonce))
+        data.append(Utils.nonceToBytes(forcedExit.nonce))
         
         let signature = try self.sign(message: data)
         mutableForcedExit.signature = signature

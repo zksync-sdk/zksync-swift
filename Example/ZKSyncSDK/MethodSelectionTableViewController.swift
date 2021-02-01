@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZKSyncSDK
+import ZKSyncSwift
 
 class MethodSelectionTableViewController: UITableViewController, WalletConsumer {
     var wallet: Wallet!

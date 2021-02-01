@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct SignedTransaction<T: ZkSyncTransaction> {
-    let transaction: T
-    let ethereumSignature: EthSignature?
+public struct SignedTransaction<T> where T: ZkSyncTransaction {
+    public let transaction: T
+    public let ethereumSignature: EthSignature?
+}
+
+extension SignedTransaction: Encodable {
+    
+    enum CodingKeys: String, CodingKey {
+        case transaction = "tx"
+        case ethereumSignature = "signature"
+    }
 }

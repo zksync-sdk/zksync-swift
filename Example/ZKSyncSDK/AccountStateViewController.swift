@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZKSyncSwift
 import ZKSyncSDK
 import BigInt
 
@@ -31,43 +32,22 @@ class AccountStateViewController: UIViewController, WalletConsumer {
         self.tableView.estimatedSectionHeaderHeight = 60;
     }
     
+    func getInfo(transaction: String) {
+        wallet.provider.transactionDetails(txHash: transaction) { (result) in
+            print(result)
+        }
+    }
+    
     @IBAction func getAccountState(_ sender: Any) {
         
-        wallet.getTransactionFee(for: .transfer,
-                                 address: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160",
-                                 tokenIdentifier: Token.ETH.address) { (result) in
+        wallet.getAccountState { (result) in
             switch result {
-            
-            case .success(let feeDetails):
-                
-                let totalFee = BigUInt(feeDetails.totalFee)!
-                let fee: TransactionFee = TransactionFee(feeToken: Token.ETH.address,
-                                                         fee: totalFee)
-                
-                self.wallet.transfer(to: "0x46a23e25df9a0f6c18729dda9ad1af3b6a131160",
-                                amount: 1000000000000000000,
-                                fee: fee,
-                                nonce: nil) { (res) in
-                    print(res)
-                }
-
+            case .success(let state):
+                self.update(state: state)
             case .failure(_):
-                break;
-            
+                break
             }
-            
-            
         }
-        
-        
-//        wallet.getAccountState { (result) in
-//            switch result {
-//            case .success(let state):
-//                self.update(state: state)
-//            case .failure(_):
-//                break
-//            }
-//        }
     }
     
     private func update(state: AccountState) {
@@ -113,7 +93,7 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
             let balance = balances[key]!
             cell.titleLabel.text = key
             cell.amountLabel.text = "Amount: " + balance.amount
-            cell.blockNumber.text = "Block number: \(balance.expectedBlockNumber)"
+            cell.blockNumber.text = "Block number: \(balance.expectedAcceptBlock)"
             return cell
         default:
             break

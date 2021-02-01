@@ -9,22 +9,22 @@ import Foundation
 import BigInt
 
 public extension DefaultEthSigner {
-    func createChangePubKeyMessage(pubKeyHash: String, nonce: Int32, accountId: Int32) throws -> String {
-        
+
+    func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> String {
         let pubKeyHashStripped = pubKeyHash.deletingPrefix("sync:").lowercased()
         
         return """
         Register zkSync pubkey:
 
         \(pubKeyHashStripped)
-        nonce: \(try Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
+        nonce: \(Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
         account id: \(try Utils.accountIdToBytes(accountId).toHexString().addHexPrefix())
 
         Only sign this message for a trusted client!
         """
     }
     
-    func createTransferMessage(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
+    func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
         Transfer \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())
@@ -34,7 +34,7 @@ public extension DefaultEthSigner {
         """
     }
 
-    func createWithdrawMessage(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
+    func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
         return """
         Withdraw \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
         To: \(to.lowercased())

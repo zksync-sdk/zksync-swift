@@ -13,7 +13,7 @@ import BigInt
 
 public class DefaultEthSigner: EthSigner {
     
-    private let keystore: AbstractKeystore
+    public let keystore: AbstractKeystore
     
     public init(privateKey: String) throws {
         let privatKeyData = Data(hex: privateKey)
@@ -34,19 +34,20 @@ public class DefaultEthSigner: EthSigner {
         return ethereumAddress.address
     }
     
-    private var ethereumAddress: EthereumAddress {
+    public var ethereumAddress: EthereumAddress {
         return keystore.addresses!.first!
     }
     
-    public func signChangePubKey(pubKeyHash: String, nonce: Int32, accountId: Int32) throws -> EthSignature {
+    public func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> EthSignature {
         return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId))
     }
     
-    public func signTransfer(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
+    public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
         return try self.sign(message: self.createTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
-    public func signWithdraw(to: String, accountId: Int32, nonce: Int32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
+    public func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
+
         return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     

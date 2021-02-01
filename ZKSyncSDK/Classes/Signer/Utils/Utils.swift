@@ -37,14 +37,11 @@ struct Utils {
         return formatter
     }()
     
-    static func nonceToBytes(_ nonce: Int32) throws -> Data {
-        if nonce < 0 {
-            throw SignerError.negativeNonce
-        }
+    static func nonceToBytes(_ nonce: UInt32) -> Data {
         return nonce.bytesBE()
     }
     
-    static func accountIdToBytes(_ accountId: Int32) throws -> Data {
+    static func accountIdToBytes(_ accountId: UInt32) throws -> Data {
         if accountId > Utils.MaxNumberOfAccounts {
             throw SignerError.accountNumberTooLarge
         }
