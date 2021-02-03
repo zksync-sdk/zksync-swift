@@ -21,6 +21,7 @@
 		448D90C525CB01580007D540 /* DepositViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D90C425CB01580007D540 /* DepositViewController.swift */; };
 		448D90C925CB08EF0007D540 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D90C825CB08EF0007D540 /* WithdrawViewController.swift */; };
 		448D90CD25CB0E230007D540 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D90CC25CB0E230007D540 /* TransferViewController.swift */; };
+		448D90D125CB19800007D540 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D90D025CB19800007D540 /* UIAlertController+Extensions.swift */; };
 		44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */; };
@@ -58,6 +59,7 @@
 		448D90C425CB01580007D540 /* DepositViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewController.swift; sourceTree = "<group>"; };
 		448D90C825CB08EF0007D540 /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		448D90CC25CB0E230007D540 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		448D90D025CB19800007D540 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
 		44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ZKSyncSwift.podspec; path = ../ZKSyncSwift.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +163,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				4404E63325A7812100181A54 /* WalletConsumer.swift */,
+				448D90D025CB19800007D540 /* UIAlertController+Extensions.swift */,
 				448D90C225CB00EF0007D540 /* ViewControllers */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -410,6 +413,7 @@
 				448D90C525CB01580007D540 /* DepositViewController.swift in Sources */,
 				4404E64625A79D6300181A54 /* AccountStateViewController.swift in Sources */,
 				4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */,
+				448D90D125CB19800007D540 /* UIAlertController+Extensions.swift in Sources */,
 				4404E64225A7894200181A54 /* TransactionFeeViewController.swift in Sources */,
 				448D90C925CB08EF0007D540 /* WithdrawViewController.swift in Sources */,
 				4404E63825A7815300181A54 /* MethodSelectionTableViewController.swift in Sources */,

@@ -24,6 +24,7 @@ class DepositViewController: UIViewController, WalletConsumer {
         guard let amountText = amountTextField.text,
               let amount = Web3.Utils.parseToBigUInt(amountText, units: .eth),
               amount > 0 else {
+            
             self.showAmountError()
             return
         }
@@ -35,16 +36,14 @@ class DepositViewController: UIViewController, WalletConsumer {
                                      amount: amount,
                                      userAddress: wallet.address)
         }.done { (result) in
-            print("Successfully deposited")
+            self.present(UIAlertController.for(message: "Successfully deposited"), animated: true, completion: nil)
         }.catch { (error) in
-            print((error as NSError).localizedDescription)
+            self.present(UIAlertController.for(error: error), animated: true, completion: nil)
         }
     }
     
     func showAmountError() {
-        let alert = UIAlertController(title: "Error", message: "Incorrect amount", preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(UIAlertController.forIncorrectAmount(), animated: true, completion: nil)
     }
 }
 

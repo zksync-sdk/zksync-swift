@@ -32,6 +32,7 @@ class TransferViewController: UIViewController, WalletConsumer {
         }
 
         guard let address = addressTextField.text, !address.isEmpty else {
+            self.showAddressError()
             return
         }
 
@@ -49,15 +50,17 @@ class TransferViewController: UIViewController, WalletConsumer {
                                                fee: fee,
                                                nonce: nil)
         }.done { (result) in
-            print("Successfully transferred")
+            self.present(UIAlertController.for(message: "Successfully transferred"), animated: true, completion: nil)
         }.catch { (error) in
-            print((error as NSError).localizedDescription)
+            self.present(UIAlertController.for(error: error), animated: true, completion: nil)
         }
     }
     
     func showAmountError() {
-        let alert = UIAlertController(title: "Error", message: "Incorrect amount", preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(UIAlertController.forIncorrectAmount(), animated: true, completion: nil)
+    }
+    
+    func showAddressError() {
+        self.present(UIAlertController.forIncorrectAddress(), animated: true, completion: nil)
     }
 }

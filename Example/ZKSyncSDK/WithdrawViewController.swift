@@ -45,15 +45,13 @@ class WithdrawViewController: UIViewController, WalletConsumer {
                                                nonce: state.committed.nonce,
                                                fastProcessing: false)
         }.done { (result) in
-            print("Successfully withdrawn")
+            self.present(UIAlertController.for(message: "Successfully withdrawn"), animated: true, completion: nil)
         }.catch { (error) in
-            print((error as NSError).localizedDescription)
+            self.present(UIAlertController.for(error: error), animated: true, completion: nil)
         }
     }
     
     func showAmountError() {
-        let alert = UIAlertController(title: "Error", message: "Incorrect amount", preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.present(UIAlertController.forIncorrectAmount(), animated: true, completion: nil)
     }
 }
