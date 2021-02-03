@@ -18,6 +18,7 @@
 		440D723925A6258400B0117F /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */; };
 		443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */; };
 		443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */; };
+		448D90C525CB01580007D540 /* DepositViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448D90C425CB01580007D540 /* DepositViewController.swift */; };
 		44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ContractAddressViewController.swift */; };
@@ -52,6 +53,7 @@
 		440D723825A6258400B0117F /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
 		443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSignerTests.swift; sourceTree = "<group>"; };
 		443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletTests.swift; sourceTree = "<group>"; };
+		448D90C425CB01580007D540 /* DepositViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewController.swift; sourceTree = "<group>"; };
 		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
 		44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ZKSyncSwift.podspec; path = ../ZKSyncSwift.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				4404E63D25A7855500181A54 /* TokenPriceViewController.swift */,
 				4404E64125A7894200181A54 /* TransactionFeeViewController.swift */,
 				448D90C325CB01060007D540 /* AccountState */,
+				448D90C425CB01580007D540 /* DepositViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				448D90C525CB01580007D540 /* DepositViewController.swift in Sources */,
 				4404E64625A79D6300181A54 /* AccountStateViewController.swift in Sources */,
 				4404E63425A7812200181A54 /* WalletConsumer.swift in Sources */,
 				4404E64225A7894200181A54 /* TransactionFeeViewController.swift in Sources */,
