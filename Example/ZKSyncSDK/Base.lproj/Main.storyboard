@@ -175,7 +175,7 @@
             </objects>
             <point key="canvasLocation" x="1532" y="-119"/>
         </scene>
-        <!--Deposit View Controller-->
+        <!--Send Deposit-->
         <scene sceneID="tiU-zp-RzI">
             <objects>
                 <viewController id="0Gp-My-hdg" customClass="DepositViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,7 +220,7 @@
                             <constraint firstItem="JR0-Bz-dZ5" firstAttribute="top" secondItem="i9H-uP-bCd" secondAttribute="bottom" constant="44" id="oyF-Th-KvD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="x9e-hm-EH7"/>
+                    <navigationItem key="navigationItem" title="Send Deposit" id="x9e-hm-EH7"/>
                     <connections>
                         <outlet property="amountTextField" destination="AM6-Cc-Xl9" id="ILM-ek-siM"/>
                     </connections>
@@ -338,6 +338,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="0Gp-My-hdg" kind="show" id="wCN-Ng-ygK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="FII-fj-wIM" style="IBUITableViewCellStyleDefault" id="4X5-2P-FEe">
+                                        <rect key="frame" x="0.0" y="245.5" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4X5-2P-FEe" id="zRS-1N-wD4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Withdraw" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FII-fj-wIM">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="aRk-Cc-Ibr" kind="show" id="7uz-2N-Yxv"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -707,6 +727,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xvY-04-LqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1833" y="644"/>
+        </scene>
+        <!--Send Withdraw-->
+        <scene sceneID="Sak-ay-G9z">
+            <objects>
+                <viewController id="aRk-Cc-Ibr" customClass="WithdrawViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DDI-2W-9p7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yjv-SF-feQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ED6-oo-hob">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DEv-rD-kxt">
+                                <rect key="frame" x="36" y="64" width="303" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ide-hO-Zzc">
+                                        <rect key="frame" x="0.0" y="0.0" width="254.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="send" smartDashesType="no"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEP-Dd-GR0">
+                                        <rect key="frame" x="270.5" y="0.0" width="32.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a70-oB-Uad">
+                                <rect key="frame" x="154.5" y="142" width="66" height="30"/>
+                                <state key="normal" title="Withdraw"/>
+                                <connections>
+                                    <action selector="withdraw:" destination="aRk-Cc-Ibr" eventType="touchUpInside" id="epq-eo-Mfv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a70-oB-Uad" firstAttribute="top" secondItem="DEv-rD-kxt" secondAttribute="bottom" constant="44" id="UWc-aq-gyB"/>
+                            <constraint firstItem="a70-oB-Uad" firstAttribute="centerX" secondItem="ED6-oo-hob" secondAttribute="centerX" id="ftp-5j-fdB"/>
+                            <constraint firstItem="DEv-rD-kxt" firstAttribute="leading" secondItem="ED6-oo-hob" secondAttribute="leadingMargin" constant="20" id="gQ7-Q9-nOp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DEv-rD-kxt" secondAttribute="trailing" constant="20" id="jN3-XL-Igz"/>
+                            <constraint firstItem="DEv-rD-kxt" firstAttribute="top" secondItem="DDI-2W-9p7" secondAttribute="bottom" constant="20" id="y4r-kI-dPi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Send Withdraw" id="YuP-vU-b7N"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="ide-hO-Zzc" id="bAO-6N-9pd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5M-76-AtE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3173.5999999999999" y="-119.1904047976012"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
