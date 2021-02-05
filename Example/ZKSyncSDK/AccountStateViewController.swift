@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ZKSyncSwift
-import ZKSyncSDK
+import ZKSync
+import ZKSyncCrypto
 import BigInt
 
 class AccountStateViewController: UIViewController, WalletConsumer {

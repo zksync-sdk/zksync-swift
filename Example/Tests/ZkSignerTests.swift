@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ZKSyncSwift
+@testable import ZKSync
 
 class ZkSignerTests: XCTestCase {
     
