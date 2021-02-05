@@ -7,7 +7,7 @@
 
 import Foundation
 import CryptoSwift
-import ZKSyncSDK
+import ZKSyncCrypto
 
 enum ZkSignerError: Error {
     case invalidPrivateKey

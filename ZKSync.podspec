@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-    s.name             = 'ZKSyncSwift'
-    s.version          = '0.1.0'
-    s.summary          = 'A short description of ZKSyncSwift.'
+    s.name             = 'ZKSync'
+    s.version          = '0.0.1'
+    s.summary          = 'Swift SDK for zkSync'
 
     s.description      = <<-DESC
-zkSync is a scaling and privacy engine for Ethereum. Its current functionality scope includes low gas transfers of ETH and ERC20 tokens in the Ethereum network
+zkSync is a scaling and privacy engine for Ethereum. Its current functionality scope includes low gas transfers of ETH and ERC20 tokens in the Ethereum network.
     DESC
 
     s.homepage         = "https://github.com/zksync-sdk/zksync-sdk-swift"
@@ -19,7 +19,7 @@ zkSync is a scaling and privacy engine for Ethereum. Its current functionality s
     
 
     s.dependency 'BigInt'
-    s.dependency 'ZKSyncSDK'
+    s.dependency 'ZKSyncCrypto'
     s.dependency 'Alamofire', '~> 5.0'
     s.dependency 'web3swift'
     s.source_files = 'ZKSyncSDK/Classes/**/*', 'ZKSyncSDK/Headers/*.h'

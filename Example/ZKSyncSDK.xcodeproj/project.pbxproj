@@ -61,7 +61,7 @@
 		448D90CC25CB0E230007D540 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
 		448D90D025CB19800007D540 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
-		44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ZKSyncSwift.podspec; path = ../ZKSyncSwift.podspec; sourceTree = "<group>"; };
+		44E180CA25C03DF100ED4CED /* ZKSync.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = ZKSync.podspec; path = ../ZKSync.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZKSyncSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				44E180CA25C03DF100ED4CED /* ZKSyncSwift.podspec */,
+				44E180CA25C03DF100ED4CED /* ZKSync.podspec */,
 				EF7595A5E3B7E3D4F3A6D1D9 /* README.md */,
 				B1B192EF051D1EFCA9D66E6A /* LICENSE */,
 			);
@@ -336,8 +336,8 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-				"${BUILT_PRODUCTS_DIR}/ZKSyncSDK/ZKSyncSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/ZKSyncSwift/ZKSyncSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ZKSync/ZKSync.framework",
+				"${BUILT_PRODUCTS_DIR}/ZKSyncCrypto/ZKSyncCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.c/secp256k1.framework",
 				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
 			);
@@ -348,8 +348,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
 			);

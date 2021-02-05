@@ -8,7 +8,7 @@
 
 import XCTest
 import BigInt
-@testable import ZKSyncSwift
+@testable import ZKSync
 
 class DefaultWalletTests: XCTestCase {
 

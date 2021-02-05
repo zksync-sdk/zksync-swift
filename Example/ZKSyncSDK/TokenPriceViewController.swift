@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZKSyncSwift
+import ZKSync
 
 class TokenPriceViewController: UIViewController, WalletConsumer {
 

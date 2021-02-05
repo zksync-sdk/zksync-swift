@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZKSyncSwift
+import ZKSync
 import PromiseKit
 import web3swift
 

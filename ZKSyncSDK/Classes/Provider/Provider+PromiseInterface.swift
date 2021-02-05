@@ -1,6 +1,6 @@
 //
 //  Provider+PromiseInterface.swift
-//  ZKSyncSwift
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 29/01/2021.
 //
