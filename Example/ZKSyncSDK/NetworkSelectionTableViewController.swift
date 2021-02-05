@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZKSyncSwift
+import ZKSync
 import BigInt
 
 class NetworkSelectionTableViewController: UITableViewController {

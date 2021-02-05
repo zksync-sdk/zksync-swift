@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ZKSyncSwift
+import ZKSync
 import web3swift
 import PromiseKit
 import BigInt

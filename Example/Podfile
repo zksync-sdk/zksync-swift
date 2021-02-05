@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '11.0'
 
 target 'ZKSyncSDK_Example' do
-  pod 'ZKSyncSwift', :path => '../'
+  pod 'ZKSync', :path => '../'
 
   target 'ZKSyncSDK_Tests' do
     inherit! :search_paths
