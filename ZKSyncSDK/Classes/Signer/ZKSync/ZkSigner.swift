@@ -44,7 +44,7 @@ public class ZkSigner {
         switch ZKSyncSDK.generatePrivateKey(seed: seed) {
         case .success(let privateKey):
             try self.init(privateKey: privateKey)
-        case .error(let error):
+        case .failure(let error):
             throw error
         }
     }
@@ -71,7 +71,7 @@ public class ZkSigner {
         case .success(let signature):
             return Signature(pubKey: publicKey.hexEncodedString(),
                              signature: signature.hexEncodedString())
-        case .error(let error):
+        case .failure(let error):
             throw error
         }
     }
