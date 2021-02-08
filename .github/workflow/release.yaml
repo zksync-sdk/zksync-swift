@@ -3,7 +3,7 @@ name: Release Swift library
 on:
   push:
     tags:
-      - "v*"
+      - "*"
 
 env:
   GITHUB_REF: "${{ github.ref }}"
