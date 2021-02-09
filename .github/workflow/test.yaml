@@ -1,0 +1,28 @@
+name: Test Swift library
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  test:
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install Cocoapods
+      run: gem install cocoapods
+
+    - name: Install deps
+      working-directory: ./Example
+      run: pod install
+
+    - name: Run tests
+      working-directory: ./Example
+      run: xcodebuild -workspace ZKSyncSDK.xcworkspace -scheme ZKSyncSDK-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' test
