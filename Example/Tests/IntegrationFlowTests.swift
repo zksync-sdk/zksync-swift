@@ -269,7 +269,8 @@ class IntegrationFlowTests: XCTestCase {
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.forcedExitPromise(target: state.address,
                                                  fee: fee,
-                                                 nonce: state.committed.nonce)
+                                                 nonce: state.committed.nonce,
+                                                 timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.pipe {
             finalResult = $0
             exp.fulfill()

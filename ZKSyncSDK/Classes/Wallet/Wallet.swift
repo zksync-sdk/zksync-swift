@@ -31,7 +31,7 @@ public protocol Wallet {
     
     func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
     var isSigningKeySet: Bool { get }
     
@@ -51,7 +51,8 @@ public protocol Wallet {
                                  tokenIdentifier: String,
                                  fee: BigUInt,
                                  accountId: UInt32,
-                                 nonce: UInt32) -> Promise<SignedTransaction<ForcedExit>>
+                                 nonce: UInt32,
+                                 timeRange: TimeRange) -> Promise<SignedTransaction<ForcedExit>>
     
     func buildSignedTransferTx(to: String,
                                tokenIdentifier: String,

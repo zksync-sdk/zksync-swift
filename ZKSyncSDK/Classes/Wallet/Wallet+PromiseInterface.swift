@@ -26,7 +26,7 @@ public extension Wallet {
         return Promise { self.withdraw(ethAddress: ethAddress, amount: amount, fee: fee, nonce: nonce, fastProcessing: fastProcessing, completion: $0.resolve ) }
     }
     
-    func forcedExitPromise(target: String, fee: TransactionFee, nonce: UInt32?) -> Promise<String> {
-        return Promise { self.forcedExit(target: target, fee: fee, nonce: nonce, completion: $0.resolve) }
+    func forcedExitPromise(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange) -> Promise<String> {
+        return Promise { self.forcedExit(target: target, fee: fee, nonce: nonce, timeRange: timeRange, completion: $0.resolve) }
     }
 }

@@ -18,10 +18,10 @@ public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
     let feeToken: UInt16
     let fee: String
     let nonce: UInt32
+    let timeRange: TimeRange
+    
     var signature: Signature?
     var ethAuthData: T?
-    
-    var timeRange: TimeRange
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     

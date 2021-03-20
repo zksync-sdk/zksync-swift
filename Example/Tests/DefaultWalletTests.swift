@@ -98,7 +98,8 @@ class DefaultWalletTests: XCTestCase {
 
         wallet.forcedExit(target: "0x19aa2ed8712072e918632259780e587698ef58df",
                           fee: defaultTransactionFee(amount: 1000000),
-                          nonce: 12) {
+                          nonce: 12,
+                          timeRange: TimeRange(validFrom: 0, validUntil: 4294967295)) {
             result = $0
             exp.fulfill()
         }
