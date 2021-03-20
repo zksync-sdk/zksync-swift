@@ -143,7 +143,8 @@ class IntegrationFlowTests: XCTestCase {
             return self.wallet.transferPromise(to: self.ethSigner.address,
                                                amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                fee: fee,
-                                               nonce: nil)
+                                               nonce: nil,
+                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -190,7 +191,8 @@ class IntegrationFlowTests: XCTestCase {
                                                      amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                      fee: fee.fee,
                                                      accountId: state.id!,
-                                                     nonce: state.committed.nonce)
+                                                     nonce: state.committed.nonce,
+                                                     timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
                 .map(on: self.queue) { ($0, fee, state) }
         }.then(on: queue) { (tx, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
             self.wallet.buildSignedWithdrawTx(to: self.ethSigner.address,

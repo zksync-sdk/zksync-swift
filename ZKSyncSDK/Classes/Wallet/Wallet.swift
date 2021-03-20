@@ -26,8 +26,8 @@ public protocol Wallet {
     func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void)
     
     func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
-    
-    func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
+
+    func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
     func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
@@ -59,8 +59,9 @@ public protocol Wallet {
                                amount: BigUInt,
                                fee: BigUInt,
                                accountId: UInt32,
-                               nonce: UInt32) -> Promise<SignedTransaction<Transfer>>
-    
+                               nonce: UInt32,
+                               timeRange: TimeRange) -> Promise<SignedTransaction<Transfer>>
+
     func buildSignedWithdrawTx(to: String,
                                tokenIdentifier: String,
                                amount: BigUInt,

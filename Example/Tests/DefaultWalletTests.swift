@@ -61,7 +61,8 @@ class DefaultWalletTests: XCTestCase {
         wallet.transfer(to: "0x19aa2ed8712072e918632259780e587698ef58df",
                         amount: 1000000000000,
                         fee: defaultTransactionFee(amount: 1000000),
-                        nonce: 12) {
+                        nonce: 12,
+                        timeRange: TimeRange(validFrom: 0, validUntil: 4294967295)) {
             result = $0
             exp.fulfill()
         }
