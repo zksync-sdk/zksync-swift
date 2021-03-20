@@ -26,5 +26,5 @@ public protocol EthSigner {
         
     func sign(message: Data) throws -> EthSignature
     
-    func verifySignature(_ signature: EthSignature, message: String) throws -> Bool
+    func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool
 }

@@ -65,10 +65,9 @@ public class DefaultEthSigner: EthSigner {
                             type: .ethereumSignature)
     }
     
-    public func verifySignature(_ signature: EthSignature, message: String) throws -> Bool {
+    public func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool {
         let signatureData = Data(hex: signature.signature)
-        guard let messageData = message.data(using: .utf8),
-              let hash = Web3Utils.hashPersonalMessage(messageData) else {
+        guard let hash = Web3Utils.hashPersonalMessage(message) else {
             throw EthSignerError.invalidMessage
         }
         
