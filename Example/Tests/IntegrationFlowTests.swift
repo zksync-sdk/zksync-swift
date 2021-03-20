@@ -59,7 +59,8 @@ class IntegrationFlowTests: XCTestCase {
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.setSigningKeyPromise(fee: fee,
                                                     nonce: state.committed.nonce,
-                                                    oncahinAuth: false)
+                                                    oncahinAuth: false,
+                                                    timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.pipe {
             finalResult = $0
             exp.fulfill()

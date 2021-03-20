@@ -14,8 +14,8 @@ public extension Wallet {
         return Promise { self.getAccountState(completion: $0.resolve) }
     }
     
-    func setSigningKeyPromise(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool) -> Promise<String> {
-        return Promise { self.setSigningKey(fee: fee, nonce: nonce, oncahinAuth: oncahinAuth, completion: $0.resolve) }
+    func setSigningKeyPromise(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange) -> Promise<String> {
+        return Promise { self.setSigningKey(fee: fee, nonce: nonce, oncahinAuth: oncahinAuth, timeRange: timeRange, completion: $0.resolve) }
     }
     
     func transferPromise(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?) -> Promise<String> {

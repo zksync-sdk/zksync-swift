@@ -38,8 +38,8 @@ public class DefaultEthSigner: EthSigner {
         return keystore.addresses!.first!
     }
     
-    public func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> EthSignature {
-        return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId))
+    public func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32, changePubKeyVariant: ChangePubKeyVariant) throws -> EthSignature {
+        return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId, changePubKeyVariant: changePubKeyVariant))
     }
     
     public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature{
@@ -51,14 +51,10 @@ public class DefaultEthSigner: EthSigner {
         return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
-    public func sign(message: String) throws -> EthSignature {
-        
-        guard let data = message.data(using: .utf8) else {
-            throw EthSignerError.invalidMessage
-        }
+    public func sign(message: Data) throws -> EthSignature {
         
         guard let signatureData =
-                try Web3Signer.signPersonalMessage(data,
+                try Web3Signer.signPersonalMessage(message,
                                                    keystore: self.keystore,
                                                    account: self.ethereumAddress,
                                                    password: "web3swift") else {

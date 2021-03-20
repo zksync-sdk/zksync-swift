@@ -25,8 +25,8 @@ public protocol Wallet {
     
     func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void)
     
-    func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
-
+    func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    
     func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
     func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
@@ -37,10 +37,15 @@ public protocol Wallet {
     
     func createEthereumProvider(web3: web3) throws -> EthereumProvider
     
-    func buildSignedChangePubKeyTx(fee: TransactionFee,
-                                   accountId: UInt32,
-                                   nonce: UInt32,
-                                   onchainAuth: Bool) -> Promise<SignedTransaction<ChangePubKey>>
+    func buildSignedChangePubKeyTxOnchain(fee: TransactionFee,
+                                          accountId: UInt32,
+                                          nonce: UInt32,
+                                          timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyOnchain>>>
+    
+    func buildSignedChangePubKeyTxSigned(fee: TransactionFee,
+                                          accountId: UInt32,
+                                          nonce: UInt32,
+                                          timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyECDSA>>>
     
     func buildSignedForcedExitTx(target: String,
                                  tokenIdentifier: String,

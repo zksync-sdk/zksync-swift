@@ -11,7 +11,7 @@ public struct ChangePubKeyECDSA: ChangePubKeyVariant {
     
     public let type: ChangePubKeyAuthType = .ECDSA
     
-    public var ethSignature: String
+    public var ethSignature: String?
     public var batchHash: String
 
     public var bytes: Data {

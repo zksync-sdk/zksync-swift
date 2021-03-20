@@ -61,7 +61,7 @@ public class ZkSigner {
         if chainId != .mainnet {
             message = "\(message)\nChain ID: \(chainId.id)."
         }
-        let signature = try ethSigner.sign(message: message)
+        let signature = try ethSigner.sign(message: message.data(using: .utf8)!)
         
         try self.init(seed: Data(hex: signature.signature))
     }
@@ -76,7 +76,7 @@ public class ZkSigner {
         }
     }
     
-    public func sign(changePubKey: ChangePubKey) throws -> ChangePubKey {
+    public func sign<T: ChangePubKeyVariant>(changePubKey: ChangePubKey<T>) throws -> ChangePubKey<T> {
         let mutableChangePubKey = changePubKey
         var data = Data()
         

@@ -40,7 +40,7 @@ class DefaultWalletTests: XCTestCase {
         
         let exp = expectation(description: "setSigningKey")
         var result: Result<String, Error>?
-        wallet.setSigningKey(fee: defaultTransactionFee(amount: 1000000000), nonce: 13, oncahinAuth: false) {
+        wallet.setSigningKey(fee: defaultTransactionFee(amount: 1000000000), nonce: 13, oncahinAuth: false, timeRange: TimeRange(validFrom: 0, validUntil: 4294967295)) {
             result = $0
             exp.fulfill()
         }

@@ -10,37 +10,31 @@ import BigInt
 
 public extension DefaultEthSigner {
 
-    func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: UInt32) throws -> String {
-        let pubKeyHashStripped = pubKeyHash.deletingPrefix("sync:").lowercased()
-        
-        return """
-        Register zkSync pubkey:
-
-        \(pubKeyHashStripped)
-        nonce: \(Utils.nonceToBytes(nonce).toHexString().addHexPrefix())
-        account id: \(try Utils.accountIdToBytes(accountId).toHexString().addHexPrefix())
-
-        Only sign this message for a trusted client!
-        """
+    func createChangePubKeyMessage(pubKeyHash: String, nonce: UInt32, accountId: UInt32, changePubKeyVariant: ChangePubKeyVariant) throws -> Data {
+        var data = Data()
+        data.append(try Utils.addressToBytes(pubKeyHash))
+        data.append(Utils.nonceToBytes(nonce))
+        data.append(try Utils.accountIdToBytes(accountId))
+        data.append(changePubKeyVariant.bytes)
+        return data
     }
     
-    func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
-        return """
-        Transfer \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
-        To: \(to.lowercased())
-        Nonce: \(nonce)
-        Fee: \(Utils.format(token.intoDecimal(fee))) \(token.symbol)
-        Account Id: \(accountId)
-        """
+    func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
+        var result = String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
+        if fee > 0 {
+            result += String(format: "\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol)
+        }
+        result += String(format:"\nNonce: %@", nonce)
+        return result.data(using: .utf8)!
     }
 
-    func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
-        return """
-        Withdraw \(Utils.format(token.intoDecimal(amount))) \(token.symbol)
-        To: \(to.lowercased())
-        Nonce: \(nonce)
-        Fee: \(Utils.format(token.intoDecimal(fee))) \(token.symbol)
-        Account Id: \(accountId)
-        """
+    func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
+        
+        var result = String(format:"Withdraw %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased());
+        if (fee > 0) {
+            result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
+        }
+        result += String(format: "\nNonce: %@", nonce)
+        return result.data(using: .utf8)!
     }
 }
