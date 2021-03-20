@@ -317,6 +317,7 @@ extension Web3.Utils {
             }
           ],
           "stateMutability": "nonpayable",
+          "payable": false,
           "type": "function"
         },
         {
@@ -329,6 +330,7 @@ extension Web3.Utils {
               "type": "bool"
             }
           ],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -353,6 +355,7 @@ extension Web3.Utils {
               "type": "bytes32"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -371,6 +374,7 @@ extension Web3.Utils {
           ],
           "name": "cancelOutstandingDepositsForExodusMode",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -465,6 +469,7 @@ extension Web3.Utils {
           ],
           "name": "commitBlocks",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -487,6 +492,7 @@ extension Web3.Utils {
             }
           ],
           "name": "depositERC20",
+          "payable": false,
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"
@@ -501,6 +507,7 @@ extension Web3.Utils {
           ],
           "name": "depositETH",
           "outputs": [],
+          "payable": true,
           "stateMutability": "payable",
           "type": "function"
         },
@@ -558,6 +565,7 @@ extension Web3.Utils {
           ],
           "name": "executeBlocks",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -571,6 +579,7 @@ extension Web3.Utils {
               "type": "bool"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -584,6 +593,7 @@ extension Web3.Utils {
               "type": "uint64"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -597,6 +607,7 @@ extension Web3.Utils {
               "type": "uint256"
             }
           ],
+          "payable": false,
           "stateMutability": "pure",
           "type": "function"
         },
@@ -621,6 +632,7 @@ extension Web3.Utils {
               "type": "uint128"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -634,6 +646,7 @@ extension Web3.Utils {
               "type": "address"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -647,6 +660,7 @@ extension Web3.Utils {
           ],
           "name": "initialize",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -660,6 +674,7 @@ extension Web3.Utils {
               "type": "bool"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -730,6 +745,7 @@ extension Web3.Utils {
           ],
           "name": "performExodus",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -754,6 +770,7 @@ extension Web3.Utils {
               "type": "bool"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -831,6 +848,7 @@ extension Web3.Utils {
           ],
           "name": "proveBlocks",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -849,6 +867,7 @@ extension Web3.Utils {
           ],
           "name": "requestFullExit",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -894,6 +913,7 @@ extension Web3.Utils {
           ],
           "name": "revertBlocks",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -912,6 +932,7 @@ extension Web3.Utils {
           ],
           "name": "setAuthPubkeyHash",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -925,6 +946,7 @@ extension Web3.Utils {
               "type": "uint32"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -938,6 +960,7 @@ extension Web3.Utils {
               "type": "uint32"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -951,6 +974,7 @@ extension Web3.Utils {
               "type": "uint32"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -964,6 +988,7 @@ extension Web3.Utils {
               "type": "uint64"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -977,6 +1002,7 @@ extension Web3.Utils {
               "type": "uint64"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -990,6 +1016,7 @@ extension Web3.Utils {
           ],
           "name": "upgrade",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -997,6 +1024,7 @@ extension Web3.Utils {
           "inputs": [],
           "name": "upgradeCanceled",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -1004,6 +1032,7 @@ extension Web3.Utils {
           "inputs": [],
           "name": "upgradeFinishes",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -1011,6 +1040,7 @@ extension Web3.Utils {
           "inputs": [],
           "name": "upgradeNoticePeriodStarted",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -1018,6 +1048,7 @@ extension Web3.Utils {
           "inputs": [],
           "name": "upgradePreparationStarted",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         },
@@ -1031,6 +1062,7 @@ extension Web3.Utils {
               "type": "address"
             }
           ],
+          "payable": false,
           "stateMutability": "view",
           "type": "function"
         },
@@ -1054,6 +1086,7 @@ extension Web3.Utils {
           ],
           "name": "withdrawPendingBalance",
           "outputs": [],
+          "payable": false,
           "stateMutability": "nonpayable",
           "type": "function"
         }
