@@ -145,7 +145,9 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(forcedExit.token))
         data.append(try Utils.feeToBytes(forcedExit.feeInteger))
         data.append(Utils.nonceToBytes(forcedExit.nonce))
-        
+        data.append(Utils.numberToBytesBE(forcedExit.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(forcedExit.timeRange.validUntil, numBytes: 8))
+
         let signature = try self.sign(message: data)
         mutableForcedExit.signature = signature
         return mutableForcedExit
