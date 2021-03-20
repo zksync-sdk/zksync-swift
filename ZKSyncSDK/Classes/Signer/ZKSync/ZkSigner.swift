@@ -107,8 +107,8 @@ public class ZkSigner {
         data.append(try Utils.amountPackedToBytes(transfer.amount))
         data.append(try Utils.feeToBytes(transfer.feeInteger))
         data.append(Utils.nonceToBytes(transfer.nonce))
-        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validUntil, numBytes: 8))
+        data.append(Utils.numberToBytesBE(transfer.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(transfer.timeRange.validUntil, numBytes: 8))
 
         let signature = try self.sign(message: data)
         mutableTransfer.signature = signature
