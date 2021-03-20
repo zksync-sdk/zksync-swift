@@ -127,7 +127,9 @@ public class ZkSigner {
         data.append(Utils.amountFullToBytes(withdraw.amount))
         data.append(try Utils.feeToBytes(withdraw.feeInteger))
         data.append(Utils.nonceToBytes(withdraw.nonce))
-        
+        data.append(Utils.numberToBytesBE(withdraw.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(withdraw.timeRange.validUntil, numBytes: 8))
+
         let signature = try self.sign(message: data)
         mutableWithdraw.signature = signature
         return mutableWithdraw
