@@ -69,8 +69,8 @@ public class ZkSigner {
     public func sign(message: Data) throws -> Signature {
         switch ZKSyncSDK.signMessage(privateKey: self.privateKey, message: message) {
         case .success(let signature):
-            return Signature(pubKey: publicKey.hexEncodedString(),
-                             signature: signature.hexEncodedString())
+            return Signature(pubKey: publicKey.hexEncodedString().lowercased(),
+                             signature: signature.hexEncodedString().lowercased())
         case .failure(let error):
             throw error
         }

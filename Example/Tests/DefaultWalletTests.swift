@@ -11,7 +11,7 @@ import BigInt
 @testable import ZKSync
 
 class DefaultWalletTests: XCTestCase {
-
+    
     static let EthPrivateKey = "0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f";
     
     var zkSigner: ZkSigner!
@@ -24,34 +24,34 @@ class DefaultWalletTests: XCTestCase {
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44))
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
     }
-
+    
     override func tearDownWithError() throws {
         zkSigner = nil
         ethSigner = nil
         wallet = nil
     }
-
+    
     func testSetSigningKey() throws {
-        let ethSignature = EthSignature(signature: "0xe062aca0dd8438174f424a26f3dd528ca9bd98366b2dafd6c6735eeaccd9e787245ac7dbbe2a37e3a74f168e723c5a2c613de25795a056bc81ff4c8d4106e56f1c", type: .ethereumSignature)
-
+        let ethSignature = EthSignature(signature: "0x3c206b2d9b6dc055aba53ccbeca6c1620a42fc45bdd66282618fd1f055fdf90c00101973507694fb66edaa5d4591a2b4f56bbab876dc7579a17c7fe309c80301", type: .ethereumSignature)
+        
         let provider = MockProvider(accountState: defaultAccountState(accountId: 55),
                                     expectedSignature: ethSignature)
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         
         let exp = expectation(description: "setSigningKey")
-        var result: Result<String, Error>?
-        wallet.setSigningKey(fee: defaultTransactionFee(amount: 1000000000), nonce: 13, oncahinAuth: false, timeRange: TimeRange(validFrom: 0, validUntil: 4294967295)) {
-            result = $0
+        wallet.setSigningKey(fee: defaultTransactionFee(amount: 1000000000), nonce: 13, oncahinAuth: true, timeRange: TimeRange(validFrom: 0, validUntil: 4294967295)) { (_) in
             exp.fulfill()
         }
         
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? ChangePubKey<ChangePubKeyOnchain>
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, ChangePubKey<ChangePubKeyOnchain>.defaultTX)
     }
-
+    
     func testTransfer() throws {
-        let ethSignature = EthSignature(signature: "0x6f7e631024b648e8d3984f84aa14d4f1b1013191042ef51b6443e3f25b075a0346988ab824687041ce699a91ed6e20bedff7c730aac3d8c7a111dd408c1862e41c", type: .ethereumSignature)
-
+        let ethSignature = EthSignature(signature: "0x4684a8f03c5da84676ff4eae89984f20057ce288b3a072605cbf93ef4bcc8a021306b13a88c6d3adc68347f4b68b1cbdf967861005e934afa50ce2e0c5bced791b", type: .ethereumSignature)
+        
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44),
                                     expectedSignature: ethSignature)
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
@@ -70,10 +70,10 @@ class DefaultWalletTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
     }
-
+    
     func testWithdraw() throws {
-        let ethSignature = EthSignature(signature: "0xaa6ea9d9b06457c2652f80707b7ab35ba3b5b4ef593624773d00660dd5f9174215b327be358c9bd2ae539ae5220d47033d252506119a46cd898b42ae2bb366891c", type: .ethereumSignature)
-
+        let ethSignature = EthSignature(signature: "0xa87d458c96f2b78c8b615c7703540d5af0c0b5266b12dbd648d8f6824958ed907f40cae683fa77e7a8a5780381cae30a94acf67f880ed30483c5a8480816fc9d1c", type: .ethereumSignature)
+        
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44),
                                     expectedSignature: ethSignature)
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
@@ -93,11 +93,11 @@ class DefaultWalletTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
     }
-
+    
     func testForcedExit() throws {
         let exp = expectation(description: "forcedExit")
         var result: Result<String, Error>?
-
+        
         wallet.forcedExit(target: "0x19aa2ed8712072e918632259780e587698ef58df",
                           fee: defaultTransactionFee(amount: 1000000),
                           nonce: 12,
@@ -109,14 +109,14 @@ class DefaultWalletTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
     }
-
+    
     func testGetState() throws {
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44))
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         
         let exp = expectation(description: "getState")
         var result: Result<AccountState, Error>?
-
+        
         wallet.getAccountState {
             result = $0
             exp.fulfill()
@@ -125,7 +125,7 @@ class DefaultWalletTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), defaultAccountState(accountId: 44))
     }
-
+    
     private func defaultDepositingState() -> AccountState.Depositing {
         let balance = AccountState.Balance(amount: "10", expectedAcceptBlock: 12345)
         return AccountState.Depositing(balances: ["ETH" : balance])
@@ -143,7 +143,7 @@ class DefaultWalletTests: XCTestCase {
                             committed: defaultState(),
                             verified: defaultState())
     }
-
+    
     private func defaultTransactionFee(amount: BigUInt) -> TransactionFee {
         return TransactionFee(feeToken: "0x0000000000000000000000000000000000000000",
                               fee: amount)
@@ -154,10 +154,11 @@ enum MockProviderError: Error {
     case error
 }
 
-struct MockProvider: Provider {
+class MockProvider: Provider {
     
     let accountState: AccountState
     let expectedSignature: EthSignature?
+    var received: ZkSyncTransaction?
     
     init(accountState: AccountState, expectedSignature: EthSignature? = nil) {
         self.accountState = accountState
@@ -170,7 +171,7 @@ struct MockProvider: Provider {
     
     func accountState(address: String, queue: DispatchQueue, completion: @escaping (ZKSyncResult<AccountState>) -> Void) {
         queue.async {
-            completion(.success(accountState))
+            completion(.success(self.accountState))
         }
     }
     
@@ -199,6 +200,7 @@ struct MockProvider: Provider {
     }
     
     func submitTx<TX>(_ tx: TX, ethereumSignature: EthSignature?, fastProcessing: Bool, completion: @escaping (ZKSyncResult<String>) -> Void) where TX : ZkSyncTransaction {
+        received = tx
         if ethereumSignature?.signature == self.expectedSignature?.signature,
            ethereumSignature?.type == self.expectedSignature?.type {
             completion(.success("success:hash"))
@@ -225,7 +227,7 @@ struct MockProvider: Provider {
     
     func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void) {
     }
-
+    
     func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void) {
     }
 }
@@ -258,5 +260,34 @@ extension AccountState.State: Equatable {
         return lhs.nonce == rhs.nonce &&
             lhs.pubKeyHash == rhs.pubKeyHash &&
             lhs.balances == rhs.balances
+    }
+}
+
+
+extension ChangePubKey: Equatable where T == ChangePubKeyOnchain{
+    public static func == (lhs: ChangePubKey<T>, rhs: ChangePubKey<T>) -> Bool {
+        return lhs.accountId == rhs.accountId &&
+            lhs.account == rhs.account &&
+            lhs.newPkHash == rhs.newPkHash &&
+            lhs.feeToken == rhs.feeToken &&
+            lhs.fee == rhs.fee &&
+            lhs.nonce == rhs.nonce &&
+            lhs.timeRange.validFrom == rhs.timeRange.validFrom &&
+            lhs.timeRange.validUntil == rhs.timeRange.validUntil &&
+            lhs.signature?.pubKey == rhs.signature?.pubKey &&
+            lhs.signature?.signature == rhs.signature?.signature
+    }
+    
+    static var defaultTX: ChangePubKey<ChangePubKeyOnchain> {
+        let tx = ChangePubKey<ChangePubKeyOnchain>(accountId: 55,
+                                                   account: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                                                   newPkHash: "sync:18e8446d7748f2de52b28345bdbc76160e6b35eb",
+                                                   feeToken: 0,
+                                                   fee: "1000000000",
+                                                   nonce: 13,
+                                                   timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490", signature: "3c206b2d9b6dc055aba53ccbeca6c1620a42fc45bdd66282618fd1f055fdf90c00101973507694fb66edaa5d4591a2b4f56bbab876dc7579a17c7fe309c80301")
+        tx.ethAuthData = ChangePubKeyOnchain()
+        return tx
     }
 }

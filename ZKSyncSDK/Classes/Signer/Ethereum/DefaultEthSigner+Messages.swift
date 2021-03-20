@@ -24,7 +24,7 @@ public extension DefaultEthSigner {
         if fee > 0 {
             result += String(format: "\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol)
         }
-        result += String(format:"\nNonce: %@", nonce)
+        result += String(format:"\nNonce: %d", nonce)
         return result.data(using: .utf8)!
     }
 
@@ -34,7 +34,7 @@ public extension DefaultEthSigner {
         if (fee > 0) {
             result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
         }
-        result += String(format: "\nNonce: %@", nonce)
+        result += String(format: "\nNonce: %d", nonce)
         return result.data(using: .utf8)!
     }
 }

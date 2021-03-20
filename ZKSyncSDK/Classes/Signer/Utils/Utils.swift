@@ -82,7 +82,7 @@ struct Utils {
     static func numberToBytesBE<T: BinaryInteger>(_ number: T, numBytes: Int) -> Data {
         var result = Data(repeating: 0, count: numBytes)
         var numberToPack = number
-        for i in (numBytes - 1)...0 {
+        for i in (0...(numBytes - 1)).reversed() {
             result[i] = UInt8((numberToPack & 0xff))
             numberToPack >>= 8
         }

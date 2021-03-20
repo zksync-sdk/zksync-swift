@@ -31,7 +31,7 @@ public class DefaultEthSigner: EthSigner {
     }
     
     public var address: String {
-        return ethereumAddress.address
+        return ethereumAddress.address.lowercased()
     }
     
     public var ethereumAddress: EthereumAddress {
