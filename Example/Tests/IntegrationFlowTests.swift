@@ -200,7 +200,8 @@ class IntegrationFlowTests: XCTestCase {
                                               amount: Web3.Utils.parseToBigUInt("2000000", units: .Gwei)!,
                                               fee: 0,
                                               accountId: state.id!,
-                                              nonce: state.committed.nonce)
+                                              nonce: state.committed.nonce,
+                                              timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
                 .map(on: self.queue) { ($0, tx, fee, state) }
         }.then(on: queue) { (tx1, tx2, fee, state) -> Promise<[String]> in
             let t1 = TransactionSignaturePair(tx: tx1.transaction, signature: tx1.ethereumSignature)
@@ -239,7 +240,8 @@ class IntegrationFlowTests: XCTestCase {
                                                amount: Web3.Utils.parseToBigUInt("1000", units: .Gwei)!,
                                                fee: fee,
                                                nonce: state.committed.nonce,
-                                               fastProcessing: false)
+                                               fastProcessing: false,
+                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.pipe {
             finalResult = $0
             exp.fulfill()

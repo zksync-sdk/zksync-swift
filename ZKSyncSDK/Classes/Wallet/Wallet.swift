@@ -29,7 +29,7 @@ public protocol Wallet {
 
     func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
     func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
@@ -67,6 +67,7 @@ public protocol Wallet {
                                amount: BigUInt,
                                fee: BigUInt,
                                accountId: UInt32,
-                               nonce: UInt32) -> Promise<SignedTransaction<Withdraw>>
+                               nonce: UInt32,
+                               timeRange: TimeRange) -> Promise<SignedTransaction<Withdraw>>
 }
 
