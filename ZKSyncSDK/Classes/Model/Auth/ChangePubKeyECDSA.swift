@@ -17,4 +17,10 @@ public struct ChangePubKeyECDSA: ChangePubKeyVariant {
     public var bytes: Data {
         return Data(hex: batchHash)
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case type
+        case ethSignature
+        case batchHash
+    }
 }

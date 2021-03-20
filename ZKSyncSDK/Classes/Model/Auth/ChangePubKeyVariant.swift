@@ -7,13 +7,13 @@
 
 import Foundation
 
-public enum ChangePubKeyAuthType {
+public enum ChangePubKeyAuthType: String, Encodable {
     case onchain
     case ECDSA
     case CREATE2
 }
 
-public protocol ChangePubKeyVariant {
+public protocol ChangePubKeyVariant: Encodable {
     var type: ChangePubKeyAuthType { get }
     var bytes: Data { get }
 }
