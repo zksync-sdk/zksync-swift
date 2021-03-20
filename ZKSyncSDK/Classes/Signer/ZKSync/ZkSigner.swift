@@ -87,6 +87,8 @@ public class ZkSigner {
         data.append(try Utils.tokenIdToBytes(changePubKey.feeToken))
         data.append(try Utils.feeToBytes(changePubKey.feeInteger))
         data.append(Utils.nonceToBytes(changePubKey.nonce))
+        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validUntil, numBytes: 8))
         
         let signature = try self.sign(message: data)
         mutableChangePubKey.signature = signature
