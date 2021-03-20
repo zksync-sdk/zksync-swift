@@ -47,8 +47,8 @@ class ZkSync {
         return tx.sendPromise()
     }
 
-    func fullExit(tokenAddress: EthereumAddress, accountId: UInt32) -> Promise<TransactionSendingResult> {
-        guard let tx = self.contract.write("fullExit", parameters: [accountId, tokenAddress] as [AnyObject], transactionOptions: createOptions()) else {
+    func requestFullExit(tokenAddress: EthereumAddress, accountId: UInt32) -> Promise<TransactionSendingResult> {
+        guard let tx = self.contract.write("requestFullExit", parameters: [accountId, tokenAddress] as [AnyObject], transactionOptions: createOptions()) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
         return tx.sendPromise()

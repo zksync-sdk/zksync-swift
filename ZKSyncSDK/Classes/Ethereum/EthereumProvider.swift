@@ -118,7 +118,7 @@ public class EthereumProvider {
         guard let tokenAddress = EthereumAddress(token.address) else {
             return .init(error: EthereumProviderError.invalidTokenAddress)
         }
-        return zkSync.fullExit(tokenAddress: tokenAddress, accountId: accountId)
+        return zkSync.requestFullExit(tokenAddress: tokenAddress, accountId: accountId)
     }
 
     public func setAuthPubkeyHash(pubKeyhash: String, nonce: UInt32) -> Promise<TransactionSendingResult> {
