@@ -24,6 +24,8 @@ public protocol EthSigner {
     
     func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature
         
+    func signForcedExit(to: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
+    
     func sign(message: Data) throws -> EthSignature
     
     func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool

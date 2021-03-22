@@ -41,7 +41,8 @@ extension DefaultWallet {
                                         fee: fee.description,
                                         nonce: nonce,
                                         timeRange: timeRange)
-            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(forcedExit: forcedExit), ethereumSignature: nil)
+            let ethSignature = try self.ethSigner.signForcedExit(to: target, nonce: nonce, token: token, fee: fee)
+            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(forcedExit: forcedExit), ethereumSignature: ethSignature)
             return signedTransaction
         }
     }
