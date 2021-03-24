@@ -95,6 +95,12 @@ class DefaultWalletTests: XCTestCase {
     }
     
     func testForcedExit() throws {
+        let ethSignature = EthSignature(signature: "0x4db4eaa3ca3c1b750bc95361847c7dcda5bcc08644f5a80590c604d728f5a01f52bc767a15e8d6fc8293c3ac46f8fbb3ae4aa4bd3db7db1b0ec8959e63b1861e1c", type: .ethereumSignature)
+        
+        let provider = MockProvider(accountState: defaultAccountState(accountId: 44),
+                                    expectedSignature: ethSignature)
+        let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+
         let exp = expectation(description: "forcedExit")
         var result: Result<String, Error>?
         
