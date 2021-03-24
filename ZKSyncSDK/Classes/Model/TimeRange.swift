@@ -15,4 +15,6 @@ public struct TimeRange: Decodable {
         self.validFrom = validFrom
         self.validUntil = validUntil
     }
+    
+    public static var max: TimeRange { TimeRange(validFrom: 0, validUntil: 4294967295) }
 }

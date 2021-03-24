@@ -13,8 +13,8 @@ import PromiseKit
 import BigInt
 
 class IntegrationFlowTests: XCTestCase {
-    static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
-    
+    static let PrivateKey = "0x543b4b129b397dd460fe417276a0f6b83ae65f0d6d747ec1ea310e7adca2dc49";
+    //static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
     var wallet: Wallet!
     var ethereum: EthereumProvider!
     
@@ -25,10 +25,10 @@ class IntegrationFlowTests: XCTestCase {
     
     override func setUpWithError() throws {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
-        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
+        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .rinkeby)
         
-        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .ropsten))
-        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
+        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .rinkeby))
+        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRinkebyWeb3())
     }
     
     override func tearDownWithError() throws {
@@ -59,8 +59,7 @@ class IntegrationFlowTests: XCTestCase {
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.setSigningKeyPromise(fee: fee,
                                                     nonce: state.committed.nonce,
-                                                    oncahinAuth: false,
-                                                    timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+                                                    oncahinAuth: false)
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -143,8 +142,7 @@ class IntegrationFlowTests: XCTestCase {
             return self.wallet.transferPromise(to: self.ethSigner.address,
                                                amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                fee: fee,
-                                               nonce: nil,
-                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+                                               nonce: nil)
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -240,8 +238,7 @@ class IntegrationFlowTests: XCTestCase {
                                                amount: Web3.Utils.parseToBigUInt("1000", units: .Gwei)!,
                                                fee: fee,
                                                nonce: state.committed.nonce,
-                                               fastProcessing: false,
-                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+                                               fastProcessing: false)
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -273,8 +270,7 @@ class IntegrationFlowTests: XCTestCase {
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.forcedExitPromise(target: state.address,
                                                  fee: fee,
-                                                 nonce: state.committed.nonce,
-                                                 timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+                                                 nonce: state.committed.nonce)
         }.pipe {
             finalResult = $0
             exp.fulfill()
