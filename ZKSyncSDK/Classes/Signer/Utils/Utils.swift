@@ -78,6 +78,16 @@ struct Utils {
     static func amountPackedToBytes(_ amount: BigUInt) throws -> Data {
         return try packAmountChecked(amount)
     }
+    
+    static func numberToBytesBE<T: BinaryInteger>(_ number: T, numBytes: Int) -> Data {
+        var result = Data(repeating: 0, count: numBytes)
+        var numberToPack = number
+        for i in (0...(numBytes - 1)).reversed() {
+            result[i] = UInt8((numberToPack & 0xff))
+            numberToPack >>= 8
+        }
+        return result
+    }
 
     static func packFeeChecked(_ fee: BigUInt) throws -> Data {
         if try closestPackableTransactionFee(fee).description != fee.description {

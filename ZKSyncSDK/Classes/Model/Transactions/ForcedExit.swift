@@ -17,17 +17,19 @@ public class ForcedExit: ZkSyncTransaction {
     let token: UInt16
     let fee: String
     let nonce: UInt32
+    let timeRange: TimeRange
 
     var signature: Signature?
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(initiatorAccountId: UInt32, target: String, token: UInt16, fee: String, nonce: UInt32) {
+    public init(initiatorAccountId: UInt32, target: String, token: UInt16, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.initiatorAccountId = initiatorAccountId
         self.target = target
         self.token = token
         self.fee = fee
         self.nonce = nonce
+        self.timeRange = timeRange
     }
     
     enum CodingKeys: String, CodingKey {
@@ -38,6 +40,8 @@ public class ForcedExit: ZkSyncTransaction {
         case nonce
         case type
         case signature
+        case validFrom
+        case validUntil
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -49,6 +53,8 @@ public class ForcedExit: ZkSyncTransaction {
         try container.encode(nonce, forKey: .nonce)
         try container.encode(type, forKey: .type)
         try container.encode(signature, forKey: .signature)
+        try container.encode(timeRange.validFrom, forKey: .validFrom)
+        try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
     
 }

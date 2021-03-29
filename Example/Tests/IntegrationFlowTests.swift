@@ -13,8 +13,8 @@ import PromiseKit
 import BigInt
 
 class IntegrationFlowTests: XCTestCase {
-    static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
-    
+    static let PrivateKey = "0x543b4b129b397dd460fe417276a0f6b83ae65f0d6d747ec1ea310e7adca2dc49";
+    //static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
     var wallet: Wallet!
     var ethereum: EthereumProvider!
     
@@ -25,10 +25,10 @@ class IntegrationFlowTests: XCTestCase {
     
     override func setUpWithError() throws {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
-        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
+        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .rinkeby)
         
-        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .ropsten))
-        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
+        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .rinkeby))
+        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRinkebyWeb3())
     }
     
     override func tearDownWithError() throws {
@@ -189,7 +189,8 @@ class IntegrationFlowTests: XCTestCase {
                                                      amount: Web3.Utils.parseToBigUInt("1000000", units: .Gwei)!,
                                                      fee: fee.fee,
                                                      accountId: state.id!,
-                                                     nonce: state.committed.nonce)
+                                                     nonce: state.committed.nonce,
+                                                     timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
                 .map(on: self.queue) { ($0, fee, state) }
         }.then(on: queue) { (tx, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
             self.wallet.buildSignedWithdrawTx(to: self.ethSigner.address,
@@ -197,7 +198,8 @@ class IntegrationFlowTests: XCTestCase {
                                               amount: Web3.Utils.parseToBigUInt("2000000", units: .Gwei)!,
                                               fee: 0,
                                               accountId: state.id!,
-                                              nonce: state.committed.nonce)
+                                              nonce: state.committed.nonce,
+                                              timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
                 .map(on: self.queue) { ($0, tx, fee, state) }
         }.then(on: queue) { (tx1, tx2, fee, state) -> Promise<[String]> in
             let t1 = TransactionSignaturePair(tx: tx1.transaction, signature: tx1.ethereumSignature)

@@ -8,7 +8,7 @@
 import Foundation
 import BigInt
 
-public class ChangePubKey: ZkSyncTransaction {
+public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
     
     override public var type: String { "ChangePubKey" }
     
@@ -18,18 +18,21 @@ public class ChangePubKey: ZkSyncTransaction {
     let feeToken: UInt16
     let fee: String
     let nonce: UInt32
+    let timeRange: TimeRange
+    
     var signature: Signature?
-    var ethSignature: String?
+    var ethAuthData: T?
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32) {
+    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash
         self.feeToken = feeToken
         self.fee = fee
         self.nonce = nonce
+        self.timeRange = timeRange
     }
     
     enum CodingKeys: String, CodingKey {
@@ -41,7 +44,9 @@ public class ChangePubKey: ZkSyncTransaction {
         case nonce
         case type
         case signature
-        case ethSignature
+        case ethAuthData
+        case validFrom
+        case validUntil
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -54,6 +59,8 @@ public class ChangePubKey: ZkSyncTransaction {
         try container.encode(nonce, forKey: .nonce)
         try container.encode(type, forKey: .type)
         try container.encode(signature, forKey: .signature)
-        try container.encode(ethSignature, forKey: .ethSignature)
+        try container.encode(ethAuthData, forKey: .ethAuthData)
+        try container.encode(timeRange.validFrom, forKey: .validFrom)
+        try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
 }

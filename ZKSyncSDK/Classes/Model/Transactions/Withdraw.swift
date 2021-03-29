@@ -19,12 +19,13 @@ public class Withdraw: ZkSyncTransaction {
     let amount: BigUInt
     let fee: String
     let nonce: UInt32
+    let timeRange: TimeRange
 
     var signature: Signature?
 
     var feeInteger: BigUInt { BigUInt(fee)! }
 
-    public init(accountId: UInt32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: UInt32) {
+    public init(accountId: UInt32, from: String, to: String, token: UInt16, amount: BigUInt, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.accountId = accountId
         self.from = from
         self.to = to
@@ -32,6 +33,7 @@ public class Withdraw: ZkSyncTransaction {
         self.amount = amount
         self.fee = fee
         self.nonce = nonce
+        self.timeRange = timeRange
     }
     
     enum CodingKeys: String, CodingKey {
@@ -44,6 +46,8 @@ public class Withdraw: ZkSyncTransaction {
         case nonce
         case type
         case signature
+        case validFrom
+        case validUntil
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -57,6 +61,8 @@ public class Withdraw: ZkSyncTransaction {
         try container.encode(type, forKey: .type)
         try container.encode(signature, forKey: .signature)
         try container.encode(amount.description, forKey: .amount)
+        try container.encode(timeRange.validFrom, forKey: .validFrom)
+        try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
 }
 

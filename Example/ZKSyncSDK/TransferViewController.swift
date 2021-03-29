@@ -48,7 +48,8 @@ class TransferViewController: UIViewController, WalletConsumer {
             return self.wallet.transferPromise(to: address,
                                                amount: amount,
                                                fee: fee,
-                                               nonce: nil)
+                                               nonce: nil,
+                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.done { (result) in
             self.present(UIAlertController.for(message: "Successfully transferred"), animated: true, completion: nil)
         }.catch { (error) in

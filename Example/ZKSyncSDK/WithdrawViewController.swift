@@ -43,7 +43,8 @@ class WithdrawViewController: UIViewController, WalletConsumer {
                                                amount: amount,
                                                fee: fee,
                                                nonce: state.committed.nonce,
-                                               fastProcessing: false)
+                                               fastProcessing: false,
+                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         }.done { (result) in
             self.present(UIAlertController.for(message: "Successfully withdrawn"), animated: true, completion: nil)
         }.catch { (error) in

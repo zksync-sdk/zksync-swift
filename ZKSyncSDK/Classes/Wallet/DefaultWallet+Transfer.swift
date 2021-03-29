@@ -11,7 +11,7 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         
         firstly {
             getNonceAccountIdPair(for: nonce)
@@ -21,7 +21,8 @@ extension DefaultWallet {
                                        amount: amount,
                                        fee: fee.fee,
                                        accountId: accountId,
-                                       nonce: nonce)
+                                       nonce: nonce,
+                                       timeRange: timeRange)
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
                                          ethereumSignature: signedTransaction.ethereumSignature,
@@ -36,7 +37,8 @@ extension DefaultWallet {
                                       amount: BigUInt,
                                       fee: BigUInt,
                                       accountId: UInt32,
-                                      nonce: UInt32) -> Promise<SignedTransaction<Transfer>> {
+                                      nonce: UInt32,
+                                      timeRange: TimeRange) -> Promise<SignedTransaction<Transfer>> {
         return firstly {
             getTokens()
         }.map { tokens in
@@ -47,7 +49,8 @@ extension DefaultWallet {
                                     token: token.id,
                                     amount: amount,
                                     fee: fee.description,
-                                    nonce: nonce)
+                                    nonce: nonce,
+                                    timeRange: timeRange)
             let ethSignature = try self.ethSigner.signTransfer(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee)
             let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(transfer: transfer), ethereumSignature: ethSignature)
             return signedTransaction
