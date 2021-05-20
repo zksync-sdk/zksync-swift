@@ -11,7 +11,14 @@ public enum TransactionType: String {
     case withdraw
     case transfer
     case fastWithdraw
-    case changePubKey
-    case changePubKeyOnchainAuth
+    case changePubKeyOnchain
+    case changePubKeyECDSA
+    case changePubKeyCREATE2
+    case legacyChangePubKey
+    case legacyChangePubKeyOnchainAuth
     case forcedExit
+    case swap
+    case mintNFT
+    case withdrawNFT
+    case fastWithdrawNFT
 }

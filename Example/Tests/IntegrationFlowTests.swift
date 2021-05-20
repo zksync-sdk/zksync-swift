@@ -53,7 +53,7 @@ class IntegrationFlowTests: XCTestCase {
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.provider.transactionFeePromise(for: .changePubKey, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .legacyChangePubKey, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -316,7 +316,7 @@ class IntegrationFlowTests: XCTestCase {
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0xC8568F373484Cd51FDc1FE3675E46D8C0dc7D246"),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0x98122427eE193fAcbb9Fbdbf6BDE7d9042A95a0f"),
-            TransactionTypeAddressPair(transactionType: .changePubKey, address: ethSigner.address)
+            TransactionTypeAddressPair(transactionType: .legacyChangePubKey, address: ethSigner.address)
         ]
         let batch = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
                                                tokenIdentifier: Token.ETH.address)

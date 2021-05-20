@@ -16,8 +16,22 @@ extension TransactionType {
             return "Transfer"
         case .fastWithdraw:
             return "FastWithdraw"
-        case .changePubKey, .changePubKeyOnchainAuth:
+        case .legacyChangePubKey, .legacyChangePubKeyOnchainAuth:
             return  "ChangePubKey"
+        case .changePubKeyOnchain:
+            return "Onchain"
+        case .changePubKeyECDSA:
+            return "ECDSA"
+        case .changePubKeyCREATE2:
+            return "CREATE2"
+        case .swap:
+            return "Swap"
+        case .mintNFT:
+            return "MintNFT"
+        case .withdrawNFT:
+            return "WithdrawNFT"
+        case .fastWithdrawNFT:
+            return "FastWithdrawNFT"
         }
     }
 }
@@ -34,10 +48,12 @@ extension TransactionType: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .changePubKey, .changePubKeyOnchainAuth:
-            let value = self == .changePubKeyOnchainAuth
+        case .legacyChangePubKey, .legacyChangePubKeyOnchainAuth:
+            let value = self == .legacyChangePubKeyOnchainAuth
             let identifier = ChangePubKeyIdentifier(changePubKey: ["onchainPubkeyAuth": value])
             try container.encode(identifier)
+        case .changePubKeyOnchain, .changePubKeyECDSA, .changePubKeyCREATE2:
+            try container.encode(["ChangePubKey" : feeIdentifier])
         default:
             try container.encode(feeIdentifier)
         }
