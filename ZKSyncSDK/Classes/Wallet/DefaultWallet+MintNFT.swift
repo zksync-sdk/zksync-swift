@@ -44,20 +44,6 @@ extension DefaultWallet {
             let ethSignature = try self.ethSigner.signMintNFT(contentHash: contentHash, recepient: recepient, nonce: nonce, token: token, fee: fee.fee)
             let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(mintNFT: mintNFT), ethereumSignature: ethSignature)
             return signedTransaction
-            //SignedTransaction(
-//            let token = try tokens.tokenByTokenIdentifier(tokenIdentifier)
-//            let withdraw = Withdraw(accountId: accountId,
-//                                    from: self.ethSigner.address,
-//                                    to: to,
-//                                    token: token.id,
-//                                    amount: amount,
-//                                    fee: fee.description,
-//                                    nonce: nonce,
-//                                    timeRange: timeRange)
-//            let ethSignature = try self.ethSigner.signWithdraw(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee)
-//            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(withdraw: withdraw), ethereumSignature: ethSignature)
-//            return signedTransaction
         }
-
     }
 }
