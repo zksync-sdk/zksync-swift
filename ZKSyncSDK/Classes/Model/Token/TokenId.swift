@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 
 protocol TokenId {
-    var id: UInt16 { get }
+    var id: UInt32 { get }
     var symbol: String { get }
     
     func intoDecimal(_ amount: BigUInt) -> Decimal

@@ -14,7 +14,7 @@ public class ForcedExit: ZkSyncTransaction {
     
     let initiatorAccountId: UInt32
     let target: String
-    let token: UInt16
+    let token: UInt32
     let fee: String
     let nonce: UInt32
     let timeRange: TimeRange
@@ -23,7 +23,7 @@ public class ForcedExit: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(initiatorAccountId: UInt32, target: String, token: UInt16, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(initiatorAccountId: UInt32, target: String, token: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.initiatorAccountId = initiatorAccountId
         self.target = target
         self.token = token

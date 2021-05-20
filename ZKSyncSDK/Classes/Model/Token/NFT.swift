@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 
 public struct NFT: TokenId, Decodable {
-    let id: UInt16
+    let id: UInt32
     let symbol: String
     let creatorId: String
     let contentHash: String

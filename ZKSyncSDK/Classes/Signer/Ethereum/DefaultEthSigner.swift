@@ -58,7 +58,7 @@ public class DefaultEthSigner: EthSigner {
         return try self.sign(message: self.createMintNFTMessage(contentHash: contentHash, recepient: recepient, nonce: nonce, token: token, fee: fee))
     }
     
-    public func signWithdrawNFT(to: String, tokenId: UInt16, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
+    public func signWithdrawNFT(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
         return try self.sign(message: self.createWithdrawNFTMessage(to: to, tokenId: tokenId, nonce: nonce, token: token, fee: fee))
     }
     

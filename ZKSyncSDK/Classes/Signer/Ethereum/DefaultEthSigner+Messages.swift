@@ -47,7 +47,7 @@ public extension DefaultEthSigner {
             .data(using: .utf8)!
     }
 
-    func createWithdrawNFTMessage(to: String, tokenId: UInt16, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+    func createWithdrawNFTMessage(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
         return String(format: "WithdrawNFT %d to: %@", tokenId, to.lowercased())
             .attaching(fee: fee, with: token)
             .attaching(nonce: nonce)

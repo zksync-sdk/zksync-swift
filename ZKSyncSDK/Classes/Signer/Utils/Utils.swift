@@ -22,7 +22,7 @@ public enum SignerError: Error {
 struct Utils {
 
     private static let MaxNumberOfAccounts: Int = 1 << 24
-    private static let MaxNumberOfTokens = 128
+    private static let MaxNumberOfTokens = UInt32.max
     
     private static let FeeExponentBitWidth = 5;
     private static let FeeMantissaBitWidth = 11;
@@ -57,7 +57,7 @@ struct Utils {
         return addressData
     }
 
-    static func tokenIdToBytes(_ tokenId: UInt16) throws -> Data {
+    static func tokenIdToBytes(_ tokenId: UInt32) throws -> Data {
         if tokenId >= Utils.MaxNumberOfTokens {
             throw SignerError.tokenIdTooBig
         }
