@@ -139,7 +139,8 @@ class DefaultWalletTests: XCTestCase {
     
     private func defaultState() -> AccountState.State {
         return AccountState.State(nonce: UInt32.max,
-                                  pubKeyHash: "17f3708f5e2b2c39c640def0cf0010fd9dd9219650e389114ea9da47f5874184", balances: ["ETH" : "10"])
+                                  pubKeyHash: "17f3708f5e2b2c39c640def0cf0010fd9dd9219650e389114ea9da47f5874184", balances: ["ETH" : "10"],
+                                  nfts: [:])
     }
     
     private func defaultAccountState(accountId: UInt32) -> AccountState {

@@ -8,7 +8,7 @@
 import Foundation
 import BigInt
 
-struct NFT: TokenId, Decodable {
+public struct NFT: TokenId, Decodable {
     let id: UInt16
     let symbol: String
     let creatorId: String
