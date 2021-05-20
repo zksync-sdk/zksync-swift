@@ -138,6 +138,29 @@ class DefaultWalletTests: XCTestCase {
         XCTAssertEqual(try result?.get(), "success:hash")
     }
     
+    func testWithdrawNFT() throws {
+        let ethSignature = EthSignature(signature: "0x4a50341da6d2b1f0b64a4e37f753c02c43623e89cb0a291026c37fdcc723da9665453ce622f4dd6237bd98430ef0d75755694b1968f3b2d0ea8598f8bc43accf1b", type: .ethereumSignature)
+        
+        let provider = MockProvider(accountState: defaultAccountState(accountId: 44),
+                                    expectedSignature: ethSignature)
+        let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+
+        let exp = expectation(description: "withdrawNFT")
+        var result: Result<String, Error>?
+
+        let nft = NFT(id: 100000, symbol: "NFT-100000", creatorId: "0x19aa2ed8712072e918632259780e587698ef58df", contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123")
+        
+        wallet.withdrawNFT(to: "0x19aa2ed8712072e918632259780e587698ef58df",
+                           token: nft,
+                           fee: defaultTransactionFee(amount: 1000000),
+                           nonce: 12) {
+            result = $0
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertEqual(try result?.get(), "success:hash")
+    }
+
     func testGetState() throws {
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44))
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
