@@ -16,53 +16,38 @@ class NetworkSelectionTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        var network: Network = .localhost
+        var chainId: ChainId = .localhost
         switch segue.identifier {
         case "MainnetSegue":
-            network = .mainnet
+            chainId = .mainnet
         case "RinkebySegue":
-            network = .rinkeby
+            chainId = .rinkeby
         case "RopsteinSegue":
-            network = .ropsten
+            chainId = .ropsten
         default:
             break
         }
         if var destination = segue.destination as? WalletConsumer {
-            destination.wallet = createWallet(network)
+            destination.wallet = createWallet(chainId)
         }
     }
     
-    private func createWallet(_ network: Network) -> Wallet {
+    private func createWallet(_ chainId: ChainId) -> Wallet {
                 
         guard let ethSigner = try? DefaultEthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
         
-        guard let zkSigner = try? ZkSigner(ethSigner: ethSigner, chainId: network.chainId) else {
+        guard let zkSigner = try? ZkSigner(ethSigner: ethSigner, chainId: chainId) else {
             fatalError()
         }
         
-        let transport = HTTPTransport(network: network)
+        let provider = DefaultProvider(chainId: chainId)
         
-        guard let wallet = try? DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, transport: transport) else {
+        guard let wallet = try? DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider) else {
             fatalError()
         }
         
         return wallet
-    }
-}
-
-extension Network {
-    var chainId: ChainId {
-        switch self {
-        case .mainnet:
-            return .mainnet
-        case .localhost:
-            return .localhost
-        case .rinkeby:
-            return .rinkeby
-        case .ropsten:
-            return .ropsten
-        }
     }
 }

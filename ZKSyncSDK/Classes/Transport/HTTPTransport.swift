@@ -24,10 +24,6 @@ public class HTTPTransport: Transport {
         self.session = Session(configuration: configuration)
     }
     
-    public convenience init(network: Network)  {
-        self.init(networkURL: network.url)
-    }
-    
     public func send<P, R>(method: String,
                            params: P?,
                            completion: @escaping (TransportResult<R>) -> Void) where P : Encodable, R : Decodable {
