@@ -37,6 +37,10 @@ extension BigUInt {
     static var zero: BigUInt {
         return BigUInt(0)
     }
+    
+    var isZero: Bool {
+        return self == BigUInt.zero
+    }
 }
 
 extension BigInt {

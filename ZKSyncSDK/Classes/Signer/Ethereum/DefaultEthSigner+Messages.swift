@@ -20,7 +20,10 @@ public extension DefaultEthSigner {
     }
     
     func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
-        return String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
+        
+        let message = !amount.isZero ? String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased()) : ""
+        
+        return message
             .attaching(fee: fee, with: token)
             .attaching(nonce: nonce)
             .data(using: .utf8)!
@@ -58,7 +61,8 @@ public extension DefaultEthSigner {
 fileprivate extension String {
     func attaching(fee: BigUInt, with token: Token) -> String {
         if fee > 0 {
-            return self + String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
+            let separator = self.isEmpty ? "" : "\n"
+            return self + separator + String(format:"Fee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
         } else {
             return self
         }
