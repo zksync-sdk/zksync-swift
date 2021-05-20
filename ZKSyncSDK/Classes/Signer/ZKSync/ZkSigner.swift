@@ -170,4 +170,24 @@ public class ZkSigner {
         mutableMintNFT.signature = signature
         return mutableMintNFT
     }
+    
+    public func sign(withdrawNFT: WithdrawNFT) throws -> WithdrawNFT {
+        let mutableWithdrawNFT = withdrawNFT
+        var data = Data()
+        
+        data.append(contentsOf: [0x0a])
+        data.append(try Utils.accountIdToBytes(withdrawNFT.accountId))
+        data.append(try Utils.addressToBytes(withdrawNFT.from))
+        data.append(try Utils.addressToBytes(withdrawNFT.to))
+        data.append(try Utils.tokenIdToBytes(withdrawNFT.token))
+        data.append(try Utils.tokenIdToBytes(withdrawNFT.feeToken))
+        data.append(try Utils.feeToBytes(withdrawNFT.feeInteger))
+        data.append(Utils.nonceToBytes(withdrawNFT.nonce))
+        data.append(Utils.numberToBytesBE(withdrawNFT.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(withdrawNFT.timeRange.validUntil, numBytes: 8))
+
+        let signature = try self.sign(message: data)
+        mutableWithdrawNFT.signature = signature
+        return mutableWithdrawNFT
+    }
 }

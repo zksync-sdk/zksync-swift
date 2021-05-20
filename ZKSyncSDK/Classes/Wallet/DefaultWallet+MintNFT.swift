@@ -29,7 +29,7 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedMintNFTTx(recepient: String, contentHash: String, fee: TransactionFee, accountId: UInt32, nonce: UInt32) -> Promise<SignedTransaction<MintNFT>>{
+    func buildSignedMintNFTTx(recepient: String, contentHash: String, fee: TransactionFee, accountId: UInt32, nonce: UInt32) -> Promise<SignedTransaction<MintNFT>> {
         return firstly {
             self.getTokens()
         }.map { tokens in

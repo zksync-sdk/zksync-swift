@@ -28,6 +28,8 @@ public protocol EthSigner {
     
     func signMintNFT(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
 
+    func signWithdrawNFT(to: String, tokenId: UInt16, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
+    
     func sign(message: Data) throws -> EthSignature
     
     func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool
