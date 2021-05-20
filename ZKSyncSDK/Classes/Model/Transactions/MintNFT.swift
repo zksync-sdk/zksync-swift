@@ -43,6 +43,7 @@ public class MintNFT: ZkSyncTransaction {
         case fee
         case feeToken
         case nonce
+        case type
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -54,5 +55,6 @@ public class MintNFT: ZkSyncTransaction {
         try container.encode(fee, forKey: .fee)
         try container.encode(feeToken, forKey: .feeToken)
         try container.encode(nonce, forKey: .nonce)
+        try container.encode(type, forKey: .type)
     }
 }
