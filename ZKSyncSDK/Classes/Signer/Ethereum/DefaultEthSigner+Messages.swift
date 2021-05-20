@@ -20,39 +20,44 @@ public extension DefaultEthSigner {
     }
     
     func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
-        var result = String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
-        if fee > 0 {
-            result += String(format: "\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol)
-        }
-        result += String(format:"\nNonce: %d", nonce)
-        return result.data(using: .utf8)!
+        return String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
+            .attaching(fee: fee, with: token)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
     }
 
     func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
-        
-        var result = String(format:"Withdraw %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased());
-        if (fee > 0) {
-            result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
-        }
-        result += String(format: "\nNonce: %d", nonce)
-        return result.data(using: .utf8)!
+        return String(format:"Withdraw %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
+            .attaching(fee: fee, with: token)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
     }
 
     func createForcedExitMessage(to: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
-        var result = String(format: "ForcedExit %@ to: %@", token.symbol, to.lowercased())
-        if fee > 0 {
-            result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
-        }
-        result += String(format: "\nNonce: %d", nonce)
-        return result.data(using: .utf8)!
+        return String(format: "ForcedExit %@ to: %@", token.symbol, to.lowercased())
+            .attaching(fee: fee, with: token)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
     }
     
     func createMintNFTMessage(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
-        var result = String(format: "MintNFT %@ for: %@", contentHash, recepient.lowercased())
+        return String(format: "MintNFT %@ for: %@", contentHash, recepient.lowercased())
+            .attaching(fee: fee, with: token)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
+    }
+}
+
+fileprivate extension String {
+    func attaching(fee: BigUInt, with token: Token) -> String {
         if fee > 0 {
-            result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
+            return self + String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
+        } else {
+            return self
         }
-        result += String(format: "\nNonce: %d", nonce)
-        return result.data(using: .utf8)!
+    }
+    
+    func attaching(nonce: UInt32) -> String {
+        return self + String(format: "\nNonce: %d", nonce)
     }
 }
