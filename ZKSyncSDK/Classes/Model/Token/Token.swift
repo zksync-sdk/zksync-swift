@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 import web3swift
 
-public struct Token: Decodable {
+public struct Token: TokenId, Decodable {
     
     private static let DefaultAddress = "0x0000000000000000000000000000000000000000"
     
