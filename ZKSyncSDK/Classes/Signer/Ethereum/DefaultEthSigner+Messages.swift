@@ -46,4 +46,13 @@ public extension DefaultEthSigner {
         result += String(format: "\nNonce: %d", nonce)
         return result.data(using: .utf8)!
     }
+    
+    func createMintNFTMessage(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+        var result = String(format: "MintNFT %@ for: %@", contentHash, recepient.lowercased())
+        if fee > 0 {
+            result += String(format:"\nFee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
+        }
+        result += String(format: "\nNonce: %d", nonce)
+        return result.data(using: .utf8)!
+    }
 }

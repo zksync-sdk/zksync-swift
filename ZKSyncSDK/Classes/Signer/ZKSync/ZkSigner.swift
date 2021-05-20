@@ -152,4 +152,22 @@ public class ZkSigner {
         mutableForcedExit.signature = signature
         return mutableForcedExit
     }
+    
+    public func sign(mintNFT: MintNFT) throws -> MintNFT {
+        let mutableMintNFT = mintNFT
+        var data = Data()
+        
+        data.append(contentsOf: [0x09])
+        data.append(try Utils.accountIdToBytes(mintNFT.creatorId))
+        data.append(try Utils.addressToBytes(mintNFT.creatorAddress))
+        data.append(Data.fromHex(mintNFT.contentHash)!)
+        data.append(try Utils.addressToBytes(mintNFT.recipient))
+        data.append(try Utils.tokenIdToBytes(mintNFT.feeToken))
+        data.append(try Utils.feeToBytes(mintNFT.feeInteger))
+        data.append(Utils.nonceToBytes(mintNFT.nonce))
+        
+        let signature = try self.sign(message: data)
+        mutableMintNFT.signature = signature
+        return mutableMintNFT
+    }
 }

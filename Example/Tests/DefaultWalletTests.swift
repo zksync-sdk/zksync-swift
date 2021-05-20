@@ -116,6 +116,28 @@ class DefaultWalletTests: XCTestCase {
         XCTAssertEqual(try result?.get(), "success:hash")
     }
     
+    func testMintNFT() throws {
+        let ethSignature = EthSignature(signature: "0xac4f8b1ad65ea143dd2a940c72dd778ba3e07ee766355ed237a89a0b7e925fe76ead0a04e23db1cc1593399ee69faeb31b2e7e0c6fbec70d5061d6fbc431d64a1b", type: .ethereumSignature)
+        
+        let provider = MockProvider(accountState: defaultAccountState(accountId: 44),
+                                    expectedSignature: ethSignature)
+        let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+
+        let exp = expectation(description: "mintNFT")
+        var result: Result<String, Error>?
+        
+        wallet.mintNFT(recepient: "0x19aa2ed8712072e918632259780e587698ef58df",
+                       contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123",
+                       fee: defaultTransactionFee(amount: 1000000),
+                       nonce: 12) {
+            result = $0
+            exp.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertEqual(try result?.get(), "success:hash")
+    }
+    
     func testGetState() throws {
         let provider = MockProvider(accountState: defaultAccountState(accountId: 44))
         let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)

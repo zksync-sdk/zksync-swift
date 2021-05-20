@@ -33,6 +33,8 @@ public protocol Wallet {
     
     func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
+    func mintNFT(recepient: String, contentHash: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    
     var isSigningKeySet: Bool { get }
     
     func createEthereumProvider(web3: web3) throws -> EthereumProvider

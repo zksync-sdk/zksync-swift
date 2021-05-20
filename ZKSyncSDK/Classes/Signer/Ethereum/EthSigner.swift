@@ -26,6 +26,8 @@ public protocol EthSigner {
         
     func signForcedExit(to: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
     
+    func signMintNFT(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
+
     func sign(message: Data) throws -> EthSignature
     
     func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool
