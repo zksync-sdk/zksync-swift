@@ -13,9 +13,9 @@ public struct Token: TokenId, Decodable {
     
     private static let DefaultAddress = "0x0000000000000000000000000000000000000000"
     
-    let id: UInt32
+    public let id: UInt32
     public let address: String
-    let symbol: String
+    public let symbol: String
     let decimals: Int
     
     public static var ETH: Token {
@@ -25,7 +25,7 @@ public struct Token: TokenId, Decodable {
                      decimals: 18)
     }
     
-    func intoDecimal(_ amount: BigUInt) -> Decimal {
+    public func intoDecimal(_ amount: BigUInt) -> Decimal {
         let sourceDecimal = Decimal(string: "\(amount)")!
         return  sourceDecimal / pow(Decimal(10), decimals)
     }

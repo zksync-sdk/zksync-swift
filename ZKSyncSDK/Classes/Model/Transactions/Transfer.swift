@@ -20,12 +20,15 @@ public class Transfer: ZkSyncTransaction {
     let fee: String
     let nonce: UInt32
     let timeRange: TimeRange
-    
+        
     var signature: Signature?
-    
+
+    // Ignored when generating JSON
+    let tokenId: TokenId?
+
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: UInt32, from: String, to: String, token: UInt32, amount: BigUInt, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(accountId: UInt32, from: String, to: String, token: UInt32, amount: BigUInt, fee: String, nonce: UInt32, tokenId: TokenId? = nil, timeRange: TimeRange) {
         self.accountId = accountId
         self.from = from
         self.to = to
@@ -34,6 +37,7 @@ public class Transfer: ZkSyncTransaction {
         self.fee = fee
         self.nonce = nonce
         self.timeRange = timeRange
+        self.tokenId = tokenId
     }
  
     enum CodingKeys: String, CodingKey {
