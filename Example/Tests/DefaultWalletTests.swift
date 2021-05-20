@@ -338,7 +338,7 @@ extension ChangePubKey: Equatable where T == ChangePubKeyOnchain{
                                                    fee: "1000000000",
                                                    nonce: 13,
                                                    timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490", signature: "3c206b2d9b6dc055aba53ccbeca6c1620a42fc45bdd66282618fd1f055fdf90c00101973507694fb66edaa5d4591a2b4f56bbab876dc7579a17c7fe309c80301")
+        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490", signature: "31a6be992eeb311623eb466a49d54cb1e5b3d44e7ccc27d55f82969fe04824aa92107fefa6b0a2d7a07581ace7f6366a5904176fae4aadec24d75d3d76028500")
         tx.ethAuthData = ChangePubKeyOnchain()
         return tx
     }
