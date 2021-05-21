@@ -29,6 +29,13 @@ extension DefaultWallet {
         }
     }
     
+    func submitSignedBatch(transactions: [ZkSyncTransaction],
+                                    ethereumSignature: EthSignature) -> Promise<[String]> {
+        return Promise {
+            self.submitSignedBatch(transactions: transactions, ethereumSignature: ethereumSignature, completion: $0.resolve)
+        }
+    }
+    
     func getNonceAccountIdPair(for nonce: UInt32?) -> Promise<(UInt32, UInt32)> {
         if let nonce = nonce, let accountId = self.accountId {
             return Promise.value((nonce, accountId))

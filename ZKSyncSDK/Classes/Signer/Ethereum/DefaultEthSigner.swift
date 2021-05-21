@@ -42,25 +42,54 @@ public class DefaultEthSigner: EthSigner {
         return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId, changePubKeyVariant: changePubKeyVariant))
     }
     
-    public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
+    public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: TokenId, fee: BigUInt) throws -> EthSignature {
+        return try self.sign(message: self.createFullTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
     public func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
+        return try self.sign(message: self.createFullWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
     }
     
     public func signForcedExit(to: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createForcedExitMessage(to: to, nonce: nonce, token: token, fee: fee))
+        return try self.sign(message: self.createFullForcedExitMessage(to: to, nonce: nonce, token: token, fee: fee))
     }
     
     public func signMintNFT(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createMintNFTMessage(contentHash: contentHash, recepient: recepient, nonce: nonce, token: token, fee: fee))
+        return try self.sign(message: self.createFullMintNFTMessage(contentHash: contentHash, recepient: recepient, nonce: nonce, token: token, fee: fee))
     }
     
     public func signWithdrawNFT(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createWithdrawNFTMessage(to: to, tokenId: tokenId, nonce: nonce, token: token, fee: fee))
+        return try self.sign(message: self.createFullWithdrawNFTMessage(to: to, tokenId: tokenId, nonce: nonce, token: token, fee: fee))
     }
+    
+    public func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
+        
+        let message =
+            try transactions.map { (tx) -> String in
+                switch tx {
+                case let forcedExitTx as ForcedExit:
+                    return self.createForcedExitMessagePart(to: forcedExitTx.target, token: token, fee: fee)
+                case let mintNFTTx as MintNFT:
+                    return self.createMintNFTMessagePart(contentHash: mintNFTTx.contentHash, recepient: mintNFTTx.recipient, token: token, fee: fee)
+                case let transferTx as Transfer:
+                    let tokenId = transferTx.tokenId ?? token
+                    return self.createTransferMessagePart(to: transferTx.to, accountId: transferTx.accountId, amount: transferTx.amount, token: tokenId, fee: BigUInt(stringLiteral: transferTx.fee))
+                case let withdrawTx as Withdraw:
+                    return self.createWithdrawMessagePart(to: withdrawTx.to, accountId: withdrawTx.accountId, amount: withdrawTx.amount, token: token, fee: fee)
+                case let withdrawNFTTx as WithdrawNFT:
+                    return self.createWithdrawNFTMessagePart(to: withdrawNFTTx.to, tokenId: withdrawNFTTx.token, token: token, fee: fee)
+                //            case "Swap":
+                default:
+                    throw EthSignerError.invalidTransactionType("Transaction type \(tx.type) is not supported by batch")
+                }
+            }
+            .joined(separator: "\n")
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
+        
+        return try self.sign(message: message)
+    }
+    
     
     public func sign(message: Data) throws -> EthSignature {
         

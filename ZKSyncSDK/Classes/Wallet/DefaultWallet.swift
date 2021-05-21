@@ -65,6 +65,13 @@ public class DefaultWallet: Wallet {
                           completion: completion)
     }
     
+    internal func submitSignedBatch(transactions: [ZkSyncTransaction],
+                                    ethereumSignature: EthSignature,
+                                    completion: @escaping (ZKSyncResult<[String]>) -> Void) {
+        let pairs = transactions.map { TransactionSignaturePair(tx: $0, signature: nil) }
+        self.provider.submitTxBatch(txs: pairs, ethereumSignature: ethereumSignature, completion: completion)
+    }
+    
     internal func getNonce(completion: @escaping (Swift.Result<UInt32, Error>) -> Void) {
         self.getAccountState { (result) in
             completion(Swift.Result {

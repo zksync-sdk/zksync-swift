@@ -37,6 +37,8 @@ public protocol Wallet {
     
     func withdrawNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
+    func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<[String], Error>) -> Void)
+    
     var isSigningKeySet: Bool { get }
     
     func createEthereumProvider(web3: web3) throws -> EthereumProvider

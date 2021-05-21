@@ -19,47 +19,66 @@ public extension DefaultEthSigner {
         return data
     }
     
-    func createTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
+    func createFullTransferMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: TokenId, fee: BigUInt) -> Data {
         
-        let message = !amount.isZero ? String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased()) : ""
-        
-        return message
-            .attaching(fee: fee, with: token)
-            .attaching(nonce: nonce)
-            .data(using: .utf8)!
-    }
-
-    func createWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
-        return String(format:"Withdraw %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
-            .attaching(fee: fee, with: token)
-            .attaching(nonce: nonce)
-            .data(using: .utf8)!
-    }
-
-    func createForcedExitMessage(to: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
-        return String(format: "ForcedExit %@ to: %@", token.symbol, to.lowercased())
-            .attaching(fee: fee, with: token)
+        return self.createTransferMessagePart(to: to, accountId: accountId, amount: amount, token: token, fee: fee)
             .attaching(nonce: nonce)
             .data(using: .utf8)!
     }
     
-    func createMintNFTMessage(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
-        return String(format: "MintNFT %@ for: %@", contentHash, recepient.lowercased())
+    func createTransferMessagePart(to: String, accountId: UInt32, amount: BigUInt, token: TokenId, fee: BigUInt) -> String {
+        let message = !amount.isZero ? String(format: "Transfer %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased()) : ""
+        return message
             .attaching(fee: fee, with: token)
+    }
+
+    func createFullWithdrawMessage(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> Data {
+        return self.createWithdrawMessagePart(to: to, accountId: accountId, amount: amount, token: token, fee: fee)
             .attaching(nonce: nonce)
             .data(using: .utf8)!
     }
 
-    func createWithdrawNFTMessage(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
-        return String(format: "WithdrawNFT %d to: %@", tokenId, to.lowercased())
+    func createWithdrawMessagePart(to: String, accountId: UInt32, amount: BigUInt, token: Token, fee: BigUInt) -> String {
+        return String(format:"Withdraw %@ %@ to: %@", Utils.format(token.intoDecimal(amount)), token.symbol, to.lowercased())
             .attaching(fee: fee, with: token)
+    }
+    
+    func createFullForcedExitMessage(to: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+        return self.createForcedExitMessagePart(to: to, token: token, fee: fee)
             .attaching(nonce: nonce)
             .data(using: .utf8)!
+    }
+
+    func createForcedExitMessagePart(to: String, token: Token, fee: BigUInt) -> String {
+        return String(format: "ForcedExit %@ to: %@", token.symbol, to.lowercased())
+            .attaching(fee: fee, with: token)
+    }
+
+    func createFullMintNFTMessage(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+        return self.createMintNFTMessagePart(contentHash: contentHash, recepient: recepient, token: token, fee: fee)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
+    }
+
+    func createMintNFTMessagePart(contentHash: String, recepient: String, token: Token, fee: BigUInt) -> String {
+        return String(format: "MintNFT %@ for: %@", contentHash, recepient.lowercased())
+            .attaching(fee: fee, with: token)
+    }
+
+    func createFullWithdrawNFTMessage(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+        return self.createWithdrawNFTMessagePart(to: to, tokenId: tokenId, token: token, fee: fee)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
+    }
+
+    func createWithdrawNFTMessagePart(to: String, tokenId: UInt32, token: Token, fee: BigUInt) -> String {
+        return String(format: "WithdrawNFT %d to: %@", tokenId, to.lowercased())
+            .attaching(fee: fee, with: token)
     }
 }
 
-fileprivate extension String {
-    func attaching(fee: BigUInt, with token: Token) -> String {
+internal extension String {
+    func attaching(fee: BigUInt, with token: TokenId) -> String {
         if fee > 0 {
             let separator = self.isEmpty ? "" : "\n"
             return self + separator + String(format:"Fee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol);
