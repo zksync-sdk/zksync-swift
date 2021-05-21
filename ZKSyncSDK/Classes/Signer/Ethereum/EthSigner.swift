@@ -30,6 +30,8 @@ public protocol EthSigner {
 
     func signWithdrawNFT(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
     
+    func signSwap(nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
+    
     func sign(message: Data) throws -> EthSignature
 
     func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature

@@ -75,6 +75,16 @@ public extension DefaultEthSigner {
         return String(format: "WithdrawNFT %d to: %@", tokenId, to.lowercased())
             .attaching(fee: fee, with: token)
     }
+    
+    func createFullSwapMessage(nonce: UInt32, token: Token, fee: BigUInt) -> Data {
+        return self.createSwapMessagePart(token: token, fee: fee)
+            .attaching(nonce: nonce)
+            .data(using: .utf8)!
+    }
+    
+    func createSwapMessagePart(token: Token, fee: BigUInt) -> String {
+        return String(format: "Swap fee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol)
+    }
 }
 
 internal extension String {

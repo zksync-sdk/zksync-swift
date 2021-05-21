@@ -62,6 +62,10 @@ public class DefaultEthSigner: EthSigner {
         return try self.sign(message: self.createFullWithdrawNFTMessage(to: to, tokenId: tokenId, nonce: nonce, token: token, fee: fee))
     }
     
+    public func signSwap(nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
+        return try self.sign(message: self.createFullSwapMessage(nonce: nonce, token: token, fee: fee))
+    }
+    
     public func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
         
         let message =
@@ -78,7 +82,8 @@ public class DefaultEthSigner: EthSigner {
                     return self.createWithdrawMessagePart(to: withdrawTx.to, accountId: withdrawTx.accountId, amount: withdrawTx.amount, token: token, fee: fee)
                 case let withdrawNFTTx as WithdrawNFT:
                     return self.createWithdrawNFTMessagePart(to: withdrawNFTTx.to, tokenId: withdrawNFTTx.token, token: token, fee: fee)
-                //            case "Swap":
+                case is Swap:
+                    return self.createSwapMessagePart(token: token, fee: fee)
                 default:
                     throw EthSignerError.invalidTransactionType("Transaction type \(tx.type) is not supported by batch")
                 }
