@@ -43,6 +43,7 @@ public class MintNFT: ZkSyncTransaction {
         case fee
         case feeToken
         case nonce
+        case signature
         case type
     }
     
@@ -55,6 +56,7 @@ public class MintNFT: ZkSyncTransaction {
         try container.encode(fee, forKey: .fee)
         try container.encode(feeToken, forKey: .feeToken)
         try container.encode(nonce, forKey: .nonce)
+        try container.encode(signature, forKey: .signature)
         try container.encode(type, forKey: .type)
     }
 }
