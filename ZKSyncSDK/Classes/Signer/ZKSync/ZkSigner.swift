@@ -77,7 +77,6 @@ public class ZkSigner {
     }
     
     public func sign<T: ChangePubKeyVariant>(changePubKey: ChangePubKey<T>) throws -> ChangePubKey<T> {
-        let mutableChangePubKey = changePubKey
         var data = Data()
         
         data.append(contentsOf: [0x07])
@@ -91,12 +90,11 @@ public class ZkSigner {
         data.append(Utils.numberToBytesBE(changePubKey.timeRange.validUntil, numBytes: 8))
         
         let signature = try self.sign(message: data)
-        mutableChangePubKey.signature = signature
-        return mutableChangePubKey
+        changePubKey.signature = signature
+        return changePubKey
     }
     
     public func sign(transfer: Transfer) throws -> Transfer {
-        let mutableTransfer = transfer
         var data = Data()
         
         data.append(contentsOf: [0x05])
@@ -111,12 +109,11 @@ public class ZkSigner {
         data.append(Utils.numberToBytesBE(transfer.timeRange.validUntil, numBytes: 8))
 
         let signature = try self.sign(message: data)
-        mutableTransfer.signature = signature
-        return mutableTransfer
+        transfer.signature = signature
+        return transfer
     }
 
     public func sign(withdraw: Withdraw) throws -> Withdraw {
-        let mutableWithdraw = withdraw
         var data = Data()
         
         data.append(contentsOf: [0x03])
@@ -131,12 +128,11 @@ public class ZkSigner {
         data.append(Utils.numberToBytesBE(withdraw.timeRange.validUntil, numBytes: 8))
 
         let signature = try self.sign(message: data)
-        mutableWithdraw.signature = signature
-        return mutableWithdraw
+        withdraw.signature = signature
+        return withdraw
     }
 
     public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
-        let mutableForcedExit = forcedExit
         var data = Data()
         
         data.append(contentsOf: [0x08])
@@ -149,12 +145,11 @@ public class ZkSigner {
         data.append(Utils.numberToBytesBE(forcedExit.timeRange.validUntil, numBytes: 8))
 
         let signature = try self.sign(message: data)
-        mutableForcedExit.signature = signature
-        return mutableForcedExit
+        forcedExit.signature = signature
+        return forcedExit
     }
     
     public func sign(mintNFT: MintNFT) throws -> MintNFT {
-        let mutableMintNFT = mintNFT
         var data = Data()
         
         data.append(contentsOf: [0x09])
@@ -167,12 +162,12 @@ public class ZkSigner {
         data.append(Utils.nonceToBytes(mintNFT.nonce))
         
         let signature = try self.sign(message: data)
-        mutableMintNFT.signature = signature
-        return mutableMintNFT
+        mintNFT.signature = signature
+        return mintNFT
     }
     
     public func sign(withdrawNFT: WithdrawNFT) throws -> WithdrawNFT {
-        let mutableWithdrawNFT = withdrawNFT
+        //let mutableWithdrawNFT = withdrawNFT
         var data = Data()
         
         data.append(contentsOf: [0x0a])
@@ -187,7 +182,52 @@ public class ZkSigner {
         data.append(Utils.numberToBytesBE(withdrawNFT.timeRange.validUntil, numBytes: 8))
 
         let signature = try self.sign(message: data)
-        mutableWithdrawNFT.signature = signature
-        return mutableWithdrawNFT
+        withdrawNFT.signature = signature
+        return withdrawNFT
+    }
+    
+    public func sign(swap: Swap) throws -> Swap {
+        
+        var data = Data()
+        
+        let order1Data = try self.data(from: swap.orders.0)
+        let order2Data = try self.data(from: swap.orders.1)
+        
+        data.append(contentsOf: [0x0b])
+        data.append(try Utils.accountIdToBytes(swap.submitterId))
+        data.append(try Utils.addressToBytes(swap.submitterAddress))
+        data.append(Utils.nonceToBytes(swap.nonce))
+        data.append(order1Data)
+        data.append(order2Data)
+        data.append(try Utils.tokenIdToBytes(swap.feeToken))
+        data.append(try Utils.amountPackedToBytes(swap.amounts.0))
+        data.append(try Utils.amountPackedToBytes(swap.amounts.1))
+        data.append(try Utils.feeToBytes(swap.feeInteger))
+        
+        let signature = try sign(message: data)
+        
+        swap.orders.0.signature = try sign(message: order1Data)
+        swap.orders.1.signature = try sign(message: order2Data)
+        swap.signature = signature
+        
+        return swap
+    }
+    
+    func data(from order: Order) throws -> Data {
+        var data = Data()
+
+        data.append(contentsOf: [0x30])
+        data.append(try Utils.accountIdToBytes(order.accountId))
+        data.append(try Utils.addressToBytes(order.recepientAddress))
+        data.append(Utils.nonceToBytes(order.nonce))
+        data.append(try Utils.tokenIdToBytes(order.tokenSell))
+        data.append(try Utils.tokenIdToBytes(order.tokenBuy))
+        data.append(Utils.numberToBytesBE(order.ratio.0, numBytes: 15))
+        data.append(Utils.numberToBytesBE(order.ratio.1, numBytes: 15))
+        data.append(Utils.amountFullToBytes(order.amount))
+        data.append(Utils.numberToBytesBE(order.timeRange.validFrom, numBytes: 8))
+        data.append(Utils.numberToBytesBE(order.timeRange.validUntil, numBytes: 8))
+
+        return data
     }
 }

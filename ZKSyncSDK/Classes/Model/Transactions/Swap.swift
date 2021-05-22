@@ -15,7 +15,7 @@ public class Swap: ZkSyncTransaction {
     let submitterId: UInt32
     let submitterAddress: String
     let nonce: UInt32
-    let orders: (Order, Order)
+    var orders: (Order, Order)
     let amounts: (BigUInt, BigUInt)
     let fee: String
     let feeToken: UInt32
