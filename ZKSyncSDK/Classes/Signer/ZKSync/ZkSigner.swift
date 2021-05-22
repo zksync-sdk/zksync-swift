@@ -77,157 +77,159 @@ public class ZkSigner {
     }
     
     public func sign<T: ChangePubKeyVariant>(changePubKey: ChangePubKey<T>) throws -> ChangePubKey<T> {
-        var data = Data()
-        
-        data.append(contentsOf: [0x07])
-        data.append(try Utils.accountIdToBytes(changePubKey.accountId))
-        data.append(try Utils.addressToBytes(changePubKey.account))
-        data.append(try Utils.addressToBytes(changePubKey.newPkHash))
-        data.append(try Utils.tokenIdToBytes(changePubKey.feeToken))
-        data.append(try Utils.feeToBytes(changePubKey.feeInteger))
-        data.append(Utils.nonceToBytes(changePubKey.nonce))
-        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(changePubKey.timeRange.validUntil, numBytes: 8))
-        
-        let signature = try self.sign(message: data)
-        changePubKey.signature = signature
+        changePubKey.signature = try compileSignature {
+            0x07
+            try Utils.accountIdToBytes(changePubKey.accountId)
+            try Utils.addressToBytes(changePubKey.account)
+            try Utils.addressToBytes(changePubKey.newPkHash)
+            try Utils.tokenIdToBytes(changePubKey.feeToken)
+            try Utils.feeToBytes(changePubKey.feeInteger)
+            Utils.nonceToBytes(changePubKey.nonce)
+            Utils.numberToBytesBE(changePubKey.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(changePubKey.timeRange.validUntil, numBytes: 8)
+        }
         return changePubKey
     }
     
     public func sign(transfer: Transfer) throws -> Transfer {
-        var data = Data()
-        
-        data.append(contentsOf: [0x05])
-        data.append(try Utils.accountIdToBytes(transfer.accountId))
-        data.append(try Utils.addressToBytes(transfer.from))
-        data.append(try Utils.addressToBytes(transfer.to))
-        data.append(try Utils.tokenIdToBytes(transfer.token))
-        data.append(try Utils.amountPackedToBytes(transfer.amount))
-        data.append(try Utils.feeToBytes(transfer.feeInteger))
-        data.append(Utils.nonceToBytes(transfer.nonce))
-        data.append(Utils.numberToBytesBE(transfer.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(transfer.timeRange.validUntil, numBytes: 8))
-
-        let signature = try self.sign(message: data)
-        transfer.signature = signature
+        transfer.signature = try compileSignature {
+            0x05
+            try Utils.accountIdToBytes(transfer.accountId)
+            try Utils.addressToBytes(transfer.from)
+            try Utils.addressToBytes(transfer.to)
+            try Utils.tokenIdToBytes(transfer.token)
+            try Utils.amountPackedToBytes(transfer.amount)
+            try Utils.feeToBytes(transfer.feeInteger)
+            Utils.nonceToBytes(transfer.nonce)
+            Utils.numberToBytesBE(transfer.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(transfer.timeRange.validUntil, numBytes: 8)
+        }
         return transfer
     }
 
     public func sign(withdraw: Withdraw) throws -> Withdraw {
-        var data = Data()
-        
-        data.append(contentsOf: [0x03])
-        data.append(try Utils.accountIdToBytes(withdraw.accountId))
-        data.append(try Utils.addressToBytes(withdraw.from))
-        data.append(try Utils.addressToBytes(withdraw.to))
-        data.append(try Utils.tokenIdToBytes(withdraw.token))
-        data.append(Utils.amountFullToBytes(withdraw.amount))
-        data.append(try Utils.feeToBytes(withdraw.feeInteger))
-        data.append(Utils.nonceToBytes(withdraw.nonce))
-        data.append(Utils.numberToBytesBE(withdraw.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(withdraw.timeRange.validUntil, numBytes: 8))
-
-        let signature = try self.sign(message: data)
-        withdraw.signature = signature
+        withdraw.signature = try self.compileSignature {
+            0x03
+            try Utils.accountIdToBytes(withdraw.accountId)
+            try Utils.addressToBytes(withdraw.from)
+            try Utils.addressToBytes(withdraw.to)
+            try Utils.tokenIdToBytes(withdraw.token)
+            Utils.amountFullToBytes(withdraw.amount)
+            try Utils.feeToBytes(withdraw.feeInteger)
+            Utils.nonceToBytes(withdraw.nonce)
+            Utils.numberToBytesBE(withdraw.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(withdraw.timeRange.validUntil, numBytes: 8)
+        }
         return withdraw
     }
 
     public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
-        var data = Data()
-        
-        data.append(contentsOf: [0x08])
-        data.append(try Utils.accountIdToBytes(forcedExit.initiatorAccountId))
-        data.append(try Utils.addressToBytes(forcedExit.target))
-        data.append(try Utils.tokenIdToBytes(forcedExit.token))
-        data.append(try Utils.feeToBytes(forcedExit.feeInteger))
-        data.append(Utils.nonceToBytes(forcedExit.nonce))
-        data.append(Utils.numberToBytesBE(forcedExit.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(forcedExit.timeRange.validUntil, numBytes: 8))
-
-        let signature = try self.sign(message: data)
-        forcedExit.signature = signature
+        forcedExit.signature = try compileSignature {
+            0x08
+            try Utils.accountIdToBytes(forcedExit.initiatorAccountId)
+            try Utils.addressToBytes(forcedExit.target)
+            try Utils.tokenIdToBytes(forcedExit.token)
+            try Utils.feeToBytes(forcedExit.feeInteger)
+            Utils.nonceToBytes(forcedExit.nonce)
+            Utils.numberToBytesBE(forcedExit.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(forcedExit.timeRange.validUntil, numBytes: 8)
+        }
         return forcedExit
     }
     
     public func sign(mintNFT: MintNFT) throws -> MintNFT {
-        var data = Data()
-        
-        data.append(contentsOf: [0x09])
-        data.append(try Utils.accountIdToBytes(mintNFT.creatorId))
-        data.append(try Utils.addressToBytes(mintNFT.creatorAddress))
-        data.append(Data.fromHex(mintNFT.contentHash)!)
-        data.append(try Utils.addressToBytes(mintNFT.recipient))
-        data.append(try Utils.tokenIdToBytes(mintNFT.feeToken))
-        data.append(try Utils.feeToBytes(mintNFT.feeInteger))
-        data.append(Utils.nonceToBytes(mintNFT.nonce))
-        
-        let signature = try self.sign(message: data)
-        mintNFT.signature = signature
+        mintNFT.signature = try compileSignature {
+            0x09
+            try Utils.accountIdToBytes(mintNFT.creatorId)
+            try Utils.addressToBytes(mintNFT.creatorAddress)
+            Data.fromHex(mintNFT.contentHash)!
+            try Utils.addressToBytes(mintNFT.recipient)
+            try Utils.tokenIdToBytes(mintNFT.feeToken)
+            try Utils.feeToBytes(mintNFT.feeInteger)
+            Utils.nonceToBytes(mintNFT.nonce)
+        }
         return mintNFT
     }
     
     public func sign(withdrawNFT: WithdrawNFT) throws -> WithdrawNFT {
-        //let mutableWithdrawNFT = withdrawNFT
-        var data = Data()
-        
-        data.append(contentsOf: [0x0a])
-        data.append(try Utils.accountIdToBytes(withdrawNFT.accountId))
-        data.append(try Utils.addressToBytes(withdrawNFT.from))
-        data.append(try Utils.addressToBytes(withdrawNFT.to))
-        data.append(try Utils.tokenIdToBytes(withdrawNFT.token))
-        data.append(try Utils.tokenIdToBytes(withdrawNFT.feeToken))
-        data.append(try Utils.feeToBytes(withdrawNFT.feeInteger))
-        data.append(Utils.nonceToBytes(withdrawNFT.nonce))
-        data.append(Utils.numberToBytesBE(withdrawNFT.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(withdrawNFT.timeRange.validUntil, numBytes: 8))
-
-        let signature = try self.sign(message: data)
-        withdrawNFT.signature = signature
+        withdrawNFT.signature = try compileSignature {
+            0x0a
+            try Utils.accountIdToBytes(withdrawNFT.accountId)
+            try Utils.addressToBytes(withdrawNFT.from)
+            try Utils.addressToBytes(withdrawNFT.to)
+            try Utils.tokenIdToBytes(withdrawNFT.token)
+            try Utils.tokenIdToBytes(withdrawNFT.feeToken)
+            try Utils.feeToBytes(withdrawNFT.feeInteger)
+            Utils.nonceToBytes(withdrawNFT.nonce)
+            Utils.numberToBytesBE(withdrawNFT.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(withdrawNFT.timeRange.validUntil, numBytes: 8)
+        }
         return withdrawNFT
     }
     
     public func sign(swap: Swap) throws -> Swap {
         
-        var data = Data()
-        
         let order1Data = try self.data(from: swap.orders.0)
         let order2Data = try self.data(from: swap.orders.1)
         
-        data.append(contentsOf: [0x0b])
-        data.append(try Utils.accountIdToBytes(swap.submitterId))
-        data.append(try Utils.addressToBytes(swap.submitterAddress))
-        data.append(Utils.nonceToBytes(swap.nonce))
-        data.append(order1Data)
-        data.append(order2Data)
-        data.append(try Utils.tokenIdToBytes(swap.feeToken))
-        data.append(try Utils.amountPackedToBytes(swap.amounts.0))
-        data.append(try Utils.amountPackedToBytes(swap.amounts.1))
-        data.append(try Utils.feeToBytes(swap.feeInteger))
-        
-        let signature = try sign(message: data)
-        
+        swap.signature = try compileSignature {
+            0x0b
+            try Utils.accountIdToBytes(swap.submitterId)
+            try Utils.addressToBytes(swap.submitterAddress)
+            Utils.nonceToBytes(swap.nonce)
+            order1Data
+            order2Data
+            try Utils.tokenIdToBytes(swap.feeToken)
+            try Utils.amountPackedToBytes(swap.amounts.0)
+            try Utils.amountPackedToBytes(swap.amounts.1)
+            try Utils.feeToBytes(swap.feeInteger)
+        }
+            
         swap.orders.0.signature = try sign(message: order1Data)
         swap.orders.1.signature = try sign(message: order2Data)
-        swap.signature = signature
         
         return swap
     }
     
     func data(from order: Order) throws -> Data {
-        var data = Data()
+        return try compileMessage {
+            0x30
+            try Utils.accountIdToBytes(order.accountId)
+            try Utils.addressToBytes(order.recepientAddress)
+            Utils.nonceToBytes(order.nonce)
+            try Utils.tokenIdToBytes(order.tokenSell)
+            try Utils.tokenIdToBytes(order.tokenBuy)
+            Utils.numberToBytesBE(order.ratio.0, numBytes: 15)
+            Utils.numberToBytesBE(order.ratio.1, numBytes: 15)
+            Utils.amountFullToBytes(order.amount)
+            Utils.numberToBytesBE(order.timeRange.validFrom, numBytes: 8)
+            Utils.numberToBytesBE(order.timeRange.validUntil, numBytes: 8)
+        }
+    }
+    
+    func compileMessage(@MessageBuilder content: () throws -> Data) rethrows -> Data {
+        return try content()
+    }
+    
+    func compileSignature(@MessageBuilder content: () throws -> Data) throws -> Signature {
+        return try self.sign(message: try content())
+    }
+}
 
-        data.append(contentsOf: [0x30])
-        data.append(try Utils.accountIdToBytes(order.accountId))
-        data.append(try Utils.addressToBytes(order.recepientAddress))
-        data.append(Utils.nonceToBytes(order.nonce))
-        data.append(try Utils.tokenIdToBytes(order.tokenSell))
-        data.append(try Utils.tokenIdToBytes(order.tokenBuy))
-        data.append(Utils.numberToBytesBE(order.ratio.0, numBytes: 15))
-        data.append(Utils.numberToBytesBE(order.ratio.1, numBytes: 15))
-        data.append(Utils.amountFullToBytes(order.amount))
-        data.append(Utils.numberToBytesBE(order.timeRange.validFrom, numBytes: 8))
-        data.append(Utils.numberToBytesBE(order.timeRange.validUntil, numBytes: 8))
 
-        return data
+@_functionBuilder
+struct MessageBuilder {
+    static func buildBlock(_ components: Data...) -> Data {
+        components.reduce(into: Data()) { (result, data) in
+            result.append(data)
+        }
+    }
+    
+    static func buildExpression(_ element: UInt8) -> Data {
+        return Data([element])
+    }
+    
+    static func buildExpression(_ element: Data) -> Data {
+        return element
     }
 }
