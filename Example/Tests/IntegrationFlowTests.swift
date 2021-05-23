@@ -423,7 +423,7 @@ class IntegrationFlowTests: XCTestCase {
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0xC8568F373484Cd51FDc1FE3675E46D8C0dc7D246"),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0x98122427eE193fAcbb9Fbdbf6BDE7d9042A95a0f"),
-            TransactionTypeAddressPair(transactionType: .legacyChangePubKey, address: ethSigner.address)
+            TransactionTypeAddressPair(transactionType: .changePubKeyECDSA, address: ethSigner.address)
         ]
         let batch = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
                                                tokenIdentifier: Token.ETH.address)
