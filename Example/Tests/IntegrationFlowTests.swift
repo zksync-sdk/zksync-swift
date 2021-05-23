@@ -285,8 +285,44 @@ class IntegrationFlowTests: XCTestCase {
             break
         }
     }
-    
-    func test_09_FullExit() throws {
+  
+    func test_09_MintNFT() throws {
+        let exp = expectation(description: "mintNFT")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { state in
+            self.wallet.provider.transactionFeePromise(for: .mintNFT,
+                                                       address: state.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<String> in
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            
+            var bytes = [UInt8](repeating: 0, count: 32)
+            let _ = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
+            return self.wallet.mintNFT(recepient: state.address,
+                                       contentHash: "0x" + bytes.toHexString(),
+                                       fee: fee,
+                                       nonce: state.committed.nonce)
+        }.pipe {
+            finalResult = $0
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+
+    func test_12_FullExit() throws {
         let exp = expectation(description: "fullExit")
         
         var finalResult: PromiseKit.Result<TransactionSendingResult>? = nil
@@ -310,7 +346,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_10_GetTransactionFeeBatch() throws {
+    func test_13_GetTransactionFeeBatch() throws {
         
         let transactions = [
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
@@ -341,7 +377,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_11_GetTokenPrice() {
+    func test_14_GetTokenPrice() {
         let exp = expectation(description: "getTokenPrice")
         
         var finalResult: Swift.Result<Decimal, Error>? = nil
@@ -359,7 +395,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_12_GetConfirmationsForEthOpAmount() {
+    func test_15_GetConfirmationsForEthOpAmount() {
         let exp = expectation(description: "getConfirmationsForEthOpAmount")
         var finalResult: Swift.Result<UInt64, Error>? = nil
         self.wallet.provider.confirmationsForEthOpAmount { (result) in
