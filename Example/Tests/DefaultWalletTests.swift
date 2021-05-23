@@ -114,6 +114,9 @@ class DefaultWalletTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? ForcedExit
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, ForcedExit.defaultTX)
     }
     
     func testMintNFT() throws {
@@ -316,7 +319,7 @@ extension AccountState.State: Equatable {
 }
 
 
-extension ChangePubKey: Equatable where T == ChangePubKeyOnchain{
+extension ChangePubKey: Equatable where T == ChangePubKeyOnchain {
     public static func == (lhs: ChangePubKey<T>, rhs: ChangePubKey<T>) -> Bool {
         return lhs.accountId == rhs.accountId &&
             lhs.account == rhs.account &&
@@ -340,6 +343,32 @@ extension ChangePubKey: Equatable where T == ChangePubKeyOnchain{
                                                    timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
         tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490", signature: "31a6be992eeb311623eb466a49d54cb1e5b3d44e7ccc27d55f82969fe04824aa92107fefa6b0a2d7a07581ace7f6366a5904176fae4aadec24d75d3d76028500")
         tx.ethAuthData = ChangePubKeyOnchain()
+        return tx
+    }
+}
+
+extension ForcedExit: Equatable {
+    public static func == (lhs: ForcedExit, rhs: ForcedExit) -> Bool {
+        return lhs.initiatorAccountId == rhs.initiatorAccountId &&
+            lhs.target == rhs.target &&
+            lhs.token == rhs.token &&
+            lhs.fee == rhs.fee &&
+            lhs.nonce == rhs.nonce &&
+            lhs.timeRange.validFrom == rhs.timeRange.validFrom &&
+            lhs.timeRange.validUntil == rhs.timeRange.validUntil &&
+            lhs.signature?.pubKey == rhs.signature?.pubKey &&
+            lhs.signature?.signature == rhs.signature?.signature
+    }
+
+    static var defaultTX: ForcedExit {
+        let tx = ForcedExit(initiatorAccountId: 44,
+                            target: "0x19aa2ed8712072e918632259780e587698ef58df",
+                            token: 0,
+                            fee: "1000000",
+                            nonce: 12,
+                            timeRange: .max)
+        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                 signature: "50a9b498ffb54a24ba77fca2d9a72f4d906464d14c73c8f3b4a457e9149ba0885c6de37706ced49ae8401fb59000d4bcf9f37bcdaeab20a87476c3e08088b702")
         return tx
     }
 }
