@@ -69,6 +69,9 @@ class DefaultWalletTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? Transfer
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, Transfer.defaultTX)
     }
     
     func testWithdraw() throws {
@@ -369,6 +372,36 @@ extension ForcedExit: Equatable {
                             timeRange: .max)
         tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
                                  signature: "50a9b498ffb54a24ba77fca2d9a72f4d906464d14c73c8f3b4a457e9149ba0885c6de37706ced49ae8401fb59000d4bcf9f37bcdaeab20a87476c3e08088b702")
+        return tx
+    }
+}
+
+extension Transfer: Equatable {
+    public static func == (lhs: Transfer, rhs: Transfer) -> Bool {
+        return lhs.accountId == rhs.accountId &&
+            lhs.from == rhs.from &&
+            lhs.to == rhs.to &&
+            lhs.token == rhs.token &&
+            lhs.amount == rhs.amount &&
+            lhs.fee == rhs.fee &&
+            lhs.nonce == rhs.nonce &&
+            lhs.timeRange.validFrom == rhs.timeRange.validFrom &&
+            lhs.timeRange.validUntil == rhs.timeRange.validUntil &&
+            lhs.signature?.pubKey == rhs.signature?.pubKey &&
+            lhs.signature?.signature == rhs.signature?.signature
+    }
+
+    static var defaultTX: Transfer {
+        let tx = Transfer(accountId: 44,
+                          from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                          to: "0x19aa2ed8712072e918632259780e587698ef58df",
+                          token: 0,
+                          amount: 1000000000000,
+                          fee: "1000000",
+                          nonce: 12,
+                          timeRange: .max)
+        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                 signature: "5c3304c8d1a8917580c9a3f8edb9d8698cbe9e6e084af93c13ac3564fa052588b93830785b3d0f60a1a193ec4fff61f81b95f0d16bf128ee21a6ceb09ef88602")
         return tx
     }
 }
