@@ -322,6 +322,39 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
 
+    func test_10_WithdrawNFT() throws {
+        let exp = expectation(description: "withdrawNFT")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { state in
+            self.wallet.provider.transactionFeePromise(for: .withdrawNFT,
+                                                       address: state.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<String> in
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            return self.wallet.withdrawNFT(to: state.address,
+                                           token: state.committed.nfts!.first!.value,
+                                           fee: fee,
+                                           nonce: nil)
+        }.pipe {
+            finalResult = $0
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+
     func test_12_FullExit() throws {
         let exp = expectation(description: "fullExit")
         
