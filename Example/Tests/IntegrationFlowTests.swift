@@ -53,7 +53,7 @@ class IntegrationFlowTests: XCTestCase {
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.provider.transactionFeePromise(for: .legacyChangePubKey, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .changePubKeyECDSA, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
