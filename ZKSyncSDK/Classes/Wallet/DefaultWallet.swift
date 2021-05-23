@@ -12,6 +12,7 @@ import web3swift
 
 enum DefaultWalletError: Error {
     case internalError
+    case unsupportedOperation
 }
 
 public class DefaultWallet: Wallet {
