@@ -39,7 +39,7 @@ public extension Wallet {
         return Promise { self.withdrawNFT(to: to, token: token, fee: fee, nonce: nonce, timeRange: timeRange, completion: $0.resolve) }
     }
     
-    func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange) -> Promise<[String]> {
+    func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange = .max) -> Promise<[String]> {
         return Promise { self.transferNFT(to: to, token: token, fee: fee, nonce: nonce, timeRange: timeRange, completion: $0.resolve) }
     }
     
