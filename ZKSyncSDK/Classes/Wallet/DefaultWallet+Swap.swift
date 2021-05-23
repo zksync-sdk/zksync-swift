@@ -10,7 +10,7 @@ import BigInt
 import PromiseKit
 
 extension DefaultWallet {
-    public func swap(fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<[String], Error>) -> Void) {
+    public func swap(fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         completion(.failure(DefaultWalletError.unsupportedOperation))
     }
 }
