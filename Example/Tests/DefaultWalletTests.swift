@@ -95,6 +95,9 @@ class DefaultWalletTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? Withdraw
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, Withdraw.defaultTX)
     }
     
     func testForcedExit() throws {
@@ -142,6 +145,9 @@ class DefaultWalletTests: XCTestCase {
 
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? MintNFT
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, MintNFT.defaultTX)
     }
     
     func testWithdrawNFT() throws {
@@ -433,6 +439,34 @@ extension Withdraw: Equatable {
                           timeRange: .max)
         tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
                                  signature: "3e2866bb00f892170cc3592d48aec7eb4afba75bdd0a530780fa1dcbdf857d07d75deb774142a93e3d1ca3be29e614e50892b95702b6461f86ddf78b9ab11a01")
+        return tx
+    }
+}
+
+extension MintNFT: Equatable {
+    
+    public static func == (lhs: MintNFT, rhs: MintNFT) -> Bool {
+        return lhs.creatorId == rhs.creatorId &&
+            lhs.creatorAddress == rhs.creatorAddress &&
+            lhs.contentHash == rhs.contentHash &&
+            lhs.recipient == rhs.recipient &&
+            lhs.fee == rhs.fee &&
+            lhs.feeToken == rhs.feeToken &&
+            lhs.nonce == rhs.nonce &&
+            lhs.signature?.pubKey == rhs.signature?.pubKey &&
+            lhs.signature?.signature == rhs.signature?.signature
+    }
+
+    static var defaultTX: MintNFT {
+        let tx = MintNFT(creatorId: 44,
+                         creatorAddress: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                         contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123",
+                         recipient: "0x19aa2ed8712072e918632259780e587698ef58df",
+                         fee: "1000000",
+                         feeToken: 0,
+                         nonce: 12)
+        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                 signature: "8c119b01ff8ae75ba5aabaa4ad480690e6a56d6e99d430ecac3bc3beacbaba28b3740cb20574d130281874fc70daaab884ee8e03a510e9ca9c1c677a2412cf03")
         return tx
     }
 }
