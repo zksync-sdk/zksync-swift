@@ -23,6 +23,7 @@ public struct AccountState: Decodable {
         public var pubKeyHash: String
         public var balances: [String: String]
         public var nfts: [String: NFT]?
+        public var mintedNfts: [String: NFT]?
     }
     
     public var address: String

@@ -160,7 +160,13 @@ class DefaultWalletTests: XCTestCase {
         let exp = expectation(description: "withdrawNFT")
         var result: Result<String, Error>?
 
-        let nft = NFT(id: 100000, symbol: "NFT-100000", creatorId: "0x19aa2ed8712072e918632259780e587698ef58df", contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123")
+        let nft = NFT(id: 100000,
+                      symbol: "NFT-100000",
+                      creatorId: 3,
+                      contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123",
+                      creatorAddress: "0x19aa2ed8712072e918632259780e587698ef58df",
+                      serialId: 1,
+                      address: "0x7059cafb9878ac3c95daa5bc33a5728c678d28b3")
         
         wallet.withdrawNFT(to: "0x19aa2ed8712072e918632259780e587698ef58df",
                            token: nft,
