@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ZKSync'
-    s.version          = '0.0.2'
+    s.version          = '0.0.3'
     s.summary          = 'Swift SDK for zkSync'
 
     s.description      = <<-DESC
