@@ -25,10 +25,11 @@ class IntegrationFlowTests: XCTestCase {
     
     override func setUpWithError() throws {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
-        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .rinkeby)
+        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
         
-        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .rinkeby))
-        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRinkebyWeb3())
+        let provider = DefaultProvider(chainId: .ropsten)
+        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
     }
     
     override func tearDownWithError() throws {

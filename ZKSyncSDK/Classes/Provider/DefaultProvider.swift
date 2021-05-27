@@ -30,7 +30,7 @@ public class DefaultProvider: Provider {
         }
     }
     
-    static func betaProvider(chainId: ChainId) -> Provider {
+    public static func betaProvider(chainId: ChainId) -> Provider {
         switch chainId {
         case .rinkeby:
             return DefaultProvider(transport: HTTPTransport(networkURL: URL(string: "https://rinkeby-beta-api.zksync.io/jsrpc")!))
