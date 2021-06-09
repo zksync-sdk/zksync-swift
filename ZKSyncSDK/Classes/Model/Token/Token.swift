@@ -11,7 +11,7 @@ import web3swift
 
 public struct Token: TokenId, Decodable {
     
-    private static let DefaultAddress = "0x0000000000000000000000000000000000000000"
+    public static let DefaultAddress = "0x0000000000000000000000000000000000000000"
     
     public let id: UInt32
     public let address: String

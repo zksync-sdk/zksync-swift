@@ -41,7 +41,7 @@ public protocol Wallet {
     
     func swap(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func buildSignedOrder(recepient: String, sell: Token, buy: Token, ratio: (BigUInt, BigUInt), amount: BigUInt, accountId: UInt32, nonce: UInt32, timeRange: TimeRange) throws -> Order
+    func buildSignedOrder(recepient: String, sell: Token, buy: Token, ratio: (BigUInt, BigUInt), amount: BigUInt, nonce: UInt32, timeRange: TimeRange) throws -> Order
     
     var isSigningKeySet: Bool { get }
     

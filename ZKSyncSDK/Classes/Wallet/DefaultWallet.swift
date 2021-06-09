@@ -13,6 +13,7 @@ import web3swift
 enum DefaultWalletError: Error {
     case internalError
     case unsupportedOperation
+    case noAccountId
 }
 
 public class DefaultWallet: Wallet {

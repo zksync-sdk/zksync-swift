@@ -10,7 +10,11 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func buildSignedOrder(recepient: String, sell: Token, buy: Token, ratio: (BigUInt, BigUInt), amount: BigUInt, accountId: UInt32, nonce: UInt32, timeRange: TimeRange) throws -> Order {
+    public func buildSignedOrder(recepient: String, sell: Token, buy: Token, ratio: (BigUInt, BigUInt), amount: BigUInt, nonce: UInt32, timeRange: TimeRange) throws -> Order {
+        
+        guard let accountId = self.accountId else {
+            throw DefaultWalletError.noAccountId
+        }
         
         var order = Order(accountId: accountId,
                           recepientAddress: recepient,

@@ -96,7 +96,7 @@ public extension DefaultEthSigner {
                             tokenSell.symbol,
                             tokenBuy.symbol)
         }
-        result += String(format: "\nRatio: %@:%@\nAddress: %@\n", ratio.0.description, ratio.1.description, recepient.lowercased())
+        result += String(format: "\nRatio: %@:%@\nAddress: %@", ratio.0.description, ratio.1.description, recepient.lowercased())
         return result.attaching(nonce: nonce).data(using: .utf8)!
     }
 }
