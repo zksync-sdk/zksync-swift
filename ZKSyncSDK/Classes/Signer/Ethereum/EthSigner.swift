@@ -32,6 +32,8 @@ public protocol EthSigner {
     
     func signSwap(nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
     
+    func signOrder(_ order: Order, tokenSell: Token, tokenBuy: Token) throws -> EthSignature
+    
     func sign(message: Data) throws -> EthSignature
 
     func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature

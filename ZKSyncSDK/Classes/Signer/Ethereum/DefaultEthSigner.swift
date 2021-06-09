@@ -66,6 +66,16 @@ public class DefaultEthSigner: EthSigner {
         return try self.sign(message: self.createFullSwapMessage(nonce: nonce, token: token, fee: fee))
     }
     
+    public func signOrder(_ order: Order, tokenSell: Token, tokenBuy: Token) throws -> EthSignature {
+        let message = self.createFullOrderMessage(recepient: order.recepientAddress,
+                                                  amount: order.amount,
+                                                  tokenSell: tokenSell,
+                                                  tokenBuy: tokenBuy,
+                                                  ratio: order.ratio,
+                                                  nonce: order.nonce)
+        return try self.sign(message: message)
+    }
+    
     public func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
         
         let message =

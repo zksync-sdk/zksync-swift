@@ -85,6 +85,20 @@ public extension DefaultEthSigner {
     func createSwapMessagePart(token: Token, fee: BigUInt) -> String {
         return String(format: "Swap fee: %@ %@", Utils.format(token.intoDecimal(fee)), token.symbol)
     }
+    
+    func createFullOrderMessage(recepient: String, amount: BigUInt, tokenSell: Token, tokenBuy: Token, ratio: (BigUInt, BigUInt), nonce: UInt32) -> Data {
+        var result = ""
+        if amount == .zero {
+            result = String(format: "Limit order for %@ -> %@", tokenSell.symbol, tokenBuy.symbol)
+        } else {
+            result = String(format: "Order for %@ %@ -> %@",
+                            Utils.format(tokenSell.intoDecimal(amount)),
+                            tokenSell.symbol,
+                            tokenBuy.symbol)
+        }
+        result += String(format: "\nRatio: %@:%@\nAddress: %@\n", ratio.0.description, ratio.1.description, recepient.lowercased())
+        return result.attaching(nonce: nonce).data(using: .utf8)!
+    }
 }
 
 internal extension String {
