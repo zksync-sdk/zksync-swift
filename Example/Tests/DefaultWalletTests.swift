@@ -209,6 +209,36 @@ class DefaultWalletTests: XCTestCase {
         
         XCTAssertEqual(result, Order.defaultOrder)
     }
+
+    func testSyncSwap() throws {
+        let ethSignature = EthSignature(signature: "0x3a459b40838e9445adc59e0cba4bf769b68deda8dadfedfe415f9e8be1c55443090f66cfbd13d96019b9faafb996a5a69d1bc0d1061f08ebf7cb8a1687e09a0f1c", type: .ethereumSignature)
+        
+        let token = Token(id: 3, address: Token.DefaultAddress, symbol: "USDT", decimals: 1)
+
+        let provider = MockProvider(accountState: defaultAccountState(accountId: 5),
+                                    expectedSignature: ethSignature,
+                                    tokens: Tokens(tokens: [token.address: token]))
+        let wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+
+        let exp = expectation(description: "swap")
+        var result: Result<String, Error>?
+        
+        wallet.swap(order1: Order.defaultOrderA,
+                    order2: Order.defaultOrderB,
+                    amount1: 1000000,
+                    amount2: 2500000,
+                    fee: defaultTransactionFee(amount: 123),
+                    nonce: 1) {
+            result = $0
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 120, handler: nil)
+        
+        XCTAssertEqual(try result?.get(), "success:hash")
+        let receivedTX = provider.received as? Swap
+        XCTAssertNotNil(receivedTX)
+        XCTAssertEqual(receivedTX, Swap.defaultTX)
+    }
     
     private func defaultDepositingState() -> AccountState.Depositing {
         let balance = AccountState.Balance(amount: "10", expectedAcceptBlock: 12345)
@@ -244,10 +274,12 @@ class MockProvider: Provider {
     let accountState: AccountState
     let expectedSignature: EthSignature?
     var received: ZkSyncTransaction?
+    let tokens: Tokens?
     
-    init(accountState: AccountState, expectedSignature: EthSignature? = nil) {
+    init(accountState: AccountState, expectedSignature: EthSignature? = nil, tokens: Tokens? = nil) {
         self.accountState = accountState
         self.expectedSignature = expectedSignature
+        self.tokens = tokens
     }
     
     func accountState(address: String, completion: @escaping (ZKSyncResult<AccountState>) -> Void) {
@@ -267,11 +299,15 @@ class MockProvider: Provider {
     }
     
     func tokens(completion: @escaping (ZKSyncResult<Tokens>) -> Void) {
-        let token = Token(id: 0,
-                          address: "0x0000000000000000000000000000000000000000",
-                          symbol: "ETH",
-                          decimals: 0)
-        let tokens = Tokens(tokens: [token.address : token])
+        guard let tokens = self.tokens else {
+            let token = Token(id: 0,
+                              address: "0x0000000000000000000000000000000000000000",
+                              symbol: "ETH",
+                              decimals: 0)
+            let tokens = Tokens(tokens: [token.address : token])
+            completion(.success(tokens))
+            return
+        }
         completion(.success(tokens))
     }
     
@@ -293,11 +329,7 @@ class MockProvider: Provider {
             completion(.failure(MockProviderError.error))
         }
     }
-    
-    func submitTx<TX>(_ tx: TX, fastProcessing: Bool, completion: @escaping (ZKSyncResult<String>) -> Void) where TX : ZkSyncTransaction {
-        completion(.success("success:hash"))
-    }
-    
+        
     func submitTxBatch(txs: [TransactionSignaturePair], ethereumSignature: EthSignature?, completion: @escaping (ZKSyncResult<[String]>) -> Void) {
     }
     
@@ -523,6 +555,30 @@ extension WithdrawNFT: Equatable {
     }
 }
 
+extension Swap: Equatable {
+    
+    public static func == (lhs: Swap, rhs: Swap) -> Bool {
+        return lhs.submitterId == rhs.submitterId &&
+            lhs.submitterAddress == rhs.submitterAddress &&
+            lhs.nonce == rhs.nonce &&
+            lhs.orders == rhs.orders &&
+            lhs.amounts == rhs.amounts &&
+            lhs.fee == rhs.fee &&
+            lhs.feeToken == rhs.feeToken &&
+            lhs.signature?.pubKey == rhs.signature?.pubKey &&
+            lhs.signature?.signature == rhs.signature?.signature
+    }
+    static var defaultTX: Swap {
+        return Swap(submitterId: 5,
+                    submitterAddress: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                    nonce: 1,
+                    orders: (Order.defaultOrderA, Order.defaultOrderB),
+                    amounts: (1000000, 2500000),
+                    fee: "123",
+                    feeToken: 3,
+                    signature: Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490", signature: "c13aabacf96448efb47763554753bfe2acc303a8297c8af59e718d685d422a901a43c42448f95cca632821df1ccb754950196e8444c0acef253c42c1578b5401"))
+    }
+}
 
 extension Order: Equatable {
     
@@ -573,7 +629,7 @@ extension Order: Equatable {
                      tokenBuy: 1,
                      tokenSell: 2,
                      ratio: (3, 1),
-                     amount: 1000000,
+                     amount: 2500000,
                      timeRange: .max)
     }
 }
