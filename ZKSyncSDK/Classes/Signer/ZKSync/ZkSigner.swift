@@ -201,6 +201,13 @@ public class ZkSigner {
         return swap
     }
     
+    func sign(order: Order) throws -> Order {
+        var mutableOrder = order
+        let message = try self.data(from: order)
+        mutableOrder.signature = try self.sign(message: message)
+        return mutableOrder
+    }
+    
     func data(from order: Order) throws -> Data {
         return try compileMessage {
             0x6f
