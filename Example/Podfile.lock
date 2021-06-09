@@ -23,8 +23,8 @@ PODS:
     - Alamofire (~> 5.0)
     - BigInt
     - web3swift
-    - ZKSyncCrypto (= 0.0.8)
-  - ZKSyncCrypto (0.0.8)
+    - ZKSyncCrypto (= 0.0.9)
+  - ZKSyncCrypto (0.0.9)
 
 DEPENDENCIES:
   - ZKSync (from `../`)
@@ -52,8 +52,8 @@ SPEC CHECKSUMS:
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
-  ZKSync: 35d473c73d849d5672447a978666b7958f59af7c
-  ZKSyncCrypto: cd6c4ade32c77a1a0af3ba370c1deb6b75e9a513
+  ZKSync: e39b3625e89e4fbccbf69461de02970cc12f0e03
+  ZKSyncCrypto: c81c4fb9a1d643062110c2101c069e709855b367
 
 PODFILE CHECKSUM: 02a053c65648c1505585f5173e731705bfaf9706
 
