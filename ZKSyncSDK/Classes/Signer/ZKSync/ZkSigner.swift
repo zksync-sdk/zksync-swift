@@ -179,22 +179,24 @@ public class ZkSigner {
         let order1Data = try self.data(from: swap.orders.0)
         let order2Data = try self.data(from: swap.orders.1)
         
+        var orderMessage = Data()
+        orderMessage.append(order1Data)
+        orderMessage.append(order2Data)
+        
+        let rescueHash = ZKSyncSDK.rescueHashOrdres(message: orderMessage)
+        
         swap.signature = try compileSignature {
             0xff - 0x0b
             ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(swap.submitterId)
             try Utils.addressToBytes(swap.submitterAddress)
             Utils.nonceToBytes(swap.nonce)
-            order1Data
-            order2Data
+            rescueHash.data()
             try Utils.tokenIdToBytes(swap.feeToken)
+            try Utils.feeToBytes(swap.feeInteger)
             try Utils.amountPackedToBytes(swap.amounts.0)
             try Utils.amountPackedToBytes(swap.amounts.1)
-            try Utils.feeToBytes(swap.feeInteger)
         }
-            
-        swap.orders.0.signature = try sign(message: order1Data)
-        swap.orders.1.signature = try sign(message: order2Data)
         
         return swap
     }
