@@ -43,7 +43,7 @@ public extension Wallet {
         return Promise { self.transferNFT(to: to, token: token, fee: fee, nonce: nonce, timeRange: timeRange, completion: $0.resolve) }
     }
     
-    func swap(fee: TransactionFee, nonce: UInt32?) -> Promise<String> {
-        return Promise { self.swap(fee: fee, nonce: nonce, completion: $0.resolve) }
+    func swap(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, nonce: UInt32?) -> Promise<String> {
+        return Promise { self.swap(order1: order1, order2: order2, amount1: amount1, amount2: amount2, fee: fee, nonce: nonce, completion: $0.resolve)}
     }
 }
