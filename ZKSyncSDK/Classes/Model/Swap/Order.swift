@@ -8,7 +8,8 @@
 import Foundation
 import BigInt
 
-struct Order: Encodable {
+public struct Order: Encodable {
+    
     let accountId: UInt32
     let recepientAddress: String
     let nonce: UInt32
@@ -22,8 +23,19 @@ struct Order: Encodable {
     
     let timeRange: TimeRange
     
-    var ethereumSugnature: EthSignature?
+    var ethereumSignature: EthSignature?
     
+    internal init(accountId: UInt32, recepientAddress: String, nonce: UInt32, tokenBuy: UInt32, tokenSell: UInt32, ratio: (BigUInt, BigUInt), amount: BigUInt, timeRange: TimeRange) {
+        self.accountId = accountId
+        self.recepientAddress = recepientAddress
+        self.nonce = nonce
+        self.tokenBuy = tokenBuy
+        self.tokenSell = tokenSell
+        self.ratio = ratio
+        self.amount = amount
+        self.timeRange = timeRange
+    }
+
     enum CodingKeys: String, CodingKey {
         case accountId
         case recepientAddress = "recepient"
@@ -37,7 +49,7 @@ struct Order: Encodable {
         case validUntil
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(accountId, forKey: .accountId)
