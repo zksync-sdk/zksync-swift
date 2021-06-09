@@ -17,6 +17,7 @@ enum ZkSignerError: Error {
 public class ZkSigner {
     
     private static let Message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
+    private static let TransactionVersion: UInt8 = 0x01
     
     let privateKey: ZKPrivateKey
     let publicKey: ZKPackedPublicKey
@@ -78,7 +79,8 @@ public class ZkSigner {
     
     public func sign<T: ChangePubKeyVariant>(changePubKey: ChangePubKey<T>) throws -> ChangePubKey<T> {
         changePubKey.signature = try compileSignature {
-            0x07
+            0xff - 0x07
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(changePubKey.accountId)
             try Utils.addressToBytes(changePubKey.account)
             try Utils.addressToBytes(changePubKey.newPkHash)
@@ -93,7 +95,8 @@ public class ZkSigner {
     
     public func sign(transfer: Transfer) throws -> Transfer {
         transfer.signature = try compileSignature {
-            0x05
+            0xff - 0x05
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(transfer.accountId)
             try Utils.addressToBytes(transfer.from)
             try Utils.addressToBytes(transfer.to)
@@ -109,7 +112,8 @@ public class ZkSigner {
 
     public func sign(withdraw: Withdraw) throws -> Withdraw {
         withdraw.signature = try self.compileSignature {
-            0x03
+            0xff - 0x03
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(withdraw.accountId)
             try Utils.addressToBytes(withdraw.from)
             try Utils.addressToBytes(withdraw.to)
@@ -125,7 +129,8 @@ public class ZkSigner {
 
     public func sign(forcedExit: ForcedExit) throws -> ForcedExit {
         forcedExit.signature = try compileSignature {
-            0x08
+            0xff - 0x08
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(forcedExit.initiatorAccountId)
             try Utils.addressToBytes(forcedExit.target)
             try Utils.tokenIdToBytes(forcedExit.token)
@@ -139,7 +144,8 @@ public class ZkSigner {
     
     public func sign(mintNFT: MintNFT) throws -> MintNFT {
         mintNFT.signature = try compileSignature {
-            0x09
+            0xff - 0x09
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(mintNFT.creatorId)
             try Utils.addressToBytes(mintNFT.creatorAddress)
             Data.fromHex(mintNFT.contentHash)!
@@ -153,7 +159,8 @@ public class ZkSigner {
     
     public func sign(withdrawNFT: WithdrawNFT) throws -> WithdrawNFT {
         withdrawNFT.signature = try compileSignature {
-            0x0a
+            0xff - 0x0a
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(withdrawNFT.accountId)
             try Utils.addressToBytes(withdrawNFT.from)
             try Utils.addressToBytes(withdrawNFT.to)
@@ -173,7 +180,8 @@ public class ZkSigner {
         let order2Data = try self.data(from: swap.orders.1)
         
         swap.signature = try compileSignature {
-            0x0b
+            0xff - 0x0b
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(swap.submitterId)
             try Utils.addressToBytes(swap.submitterAddress)
             Utils.nonceToBytes(swap.nonce)
@@ -193,7 +201,8 @@ public class ZkSigner {
     
     func data(from order: Order) throws -> Data {
         return try compileMessage {
-            0x30
+            0x6f
+            ZkSigner.TransactionVersion
             try Utils.accountIdToBytes(order.accountId)
             try Utils.addressToBytes(order.recepientAddress)
             Utils.nonceToBytes(order.nonce)
@@ -201,7 +210,7 @@ public class ZkSigner {
             try Utils.tokenIdToBytes(order.tokenBuy)
             Utils.numberToBytesBE(order.ratio.0, numBytes: 15)
             Utils.numberToBytesBE(order.ratio.1, numBytes: 15)
-            Utils.amountFullToBytes(order.amount)
+            try Utils.amountPackedToBytes(order.amount)
             Utils.numberToBytesBE(order.timeRange.validFrom, numBytes: 8)
             Utils.numberToBytesBE(order.timeRange.validUntil, numBytes: 8)
         }
