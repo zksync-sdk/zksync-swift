@@ -22,9 +22,11 @@ struct Order: Encodable {
     
     let timeRange: TimeRange
     
+    var ethereumSugnature: EthSignature?
+    
     enum CodingKeys: String, CodingKey {
         case accountId
-        case recepientAddress
+        case recepientAddress = "recepient"
         case nonce
         case tokenBuy
         case tokenSell
@@ -43,8 +45,7 @@ struct Order: Encodable {
         try container.encode(nonce, forKey: .nonce)
         try container.encode(tokenBuy, forKey: .tokenBuy)
         try container.encode(tokenSell, forKey: .tokenSell)
-        try container.encode(ratio.0, forKey: .ratio)
-        try container.encode(ratio.1, forKey: .ratio)
+        try container.encode([ratio.0, ratio.1], forKey: .ratio)
         try container.encode(amount, forKey: .amount)
         try container.encode(signature, forKey: .signature)
         try container.encode(timeRange.validFrom, forKey: .validFrom)
