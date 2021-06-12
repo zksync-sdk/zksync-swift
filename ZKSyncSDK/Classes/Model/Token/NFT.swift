@@ -22,6 +22,6 @@ public struct NFT: TokenId, Decodable {
     
     public func intoDecimal(_ amount: BigUInt) -> Decimal {
         let sourceDecimal = Decimal(string: "\(amount)")!
-        return  sourceDecimal / pow(Decimal(10), 1)
+        return  sourceDecimal / pow(Decimal(1), 1)
     }
 }
