@@ -8,20 +8,22 @@
 import Foundation
 import BigInt
 
-public struct AccountState: Codable {
-    public struct Balance: Codable {
+public struct AccountState: Decodable {
+    public struct Balance: Decodable {
         public var amount: String
         public var expectedAcceptBlock: UInt64
     }
     
-    public struct Depositing: Codable {
+    public struct Depositing: Decodable {
         public var balances: [String: Balance]
     }
     
-    public struct State: Codable {
+    public struct State: Decodable {
         public var nonce: UInt32
         public var pubKeyHash: String
         public var balances: [String: String]
+        public var nfts: [String: NFT]?
+        public var mintedNfts: [String: NFT]?
     }
     
     public var address: String

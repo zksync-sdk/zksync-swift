@@ -15,7 +15,7 @@ public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
     let accountId: UInt32
     let account: String
     let newPkHash: String
-    let feeToken: UInt16
+    let feeToken: UInt32
     let fee: String
     let nonce: UInt32
     let timeRange: TimeRange
@@ -25,7 +25,7 @@ public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt16, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash

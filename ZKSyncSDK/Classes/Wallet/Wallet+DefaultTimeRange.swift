@@ -24,4 +24,12 @@ public extension Wallet {
     func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
         self.forcedExit(target: target, fee: fee, nonce: nonce, timeRange: .max, completion: completion)
     }
+    
+    func withdrawNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+        self.withdrawNFT(to: to, token: token, fee: fee, nonce: nonce, timeRange: .max, completion: completion)
+    }
+    
+    func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<[String], Error>) -> Void) {
+        self.transferNFT(to: to, token: token, fee: fee, nonce: nonce, timeRange: .max, completion: completion)
+    }
 }

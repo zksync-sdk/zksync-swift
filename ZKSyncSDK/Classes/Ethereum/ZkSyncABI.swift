@@ -79,9 +79,9 @@ extension Web3.Utils {
             },
             {
               "indexed": true,
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "indexed": false,
@@ -147,9 +147,9 @@ extension Web3.Utils {
             },
             {
               "indexed": true,
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "indexed": false,
@@ -209,9 +209,9 @@ extension Web3.Utils {
             },
             {
               "indexed": true,
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "indexed": false,
@@ -240,9 +240,9 @@ extension Web3.Utils {
             },
             {
               "indexed": true,
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "indexed": false,
@@ -271,9 +271,9 @@ extension Web3.Utils {
             },
             {
               "indexed": true,
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "indexed": false,
@@ -728,9 +728,9 @@ extension Web3.Utils {
               "type": "uint32"
             },
             {
-              "internalType": "uint16",
+              "internalType": "uint32",
               "name": "_tokenId",
-              "type": "uint16"
+              "type": "uint32"
             },
             {
               "internalType": "uint128",

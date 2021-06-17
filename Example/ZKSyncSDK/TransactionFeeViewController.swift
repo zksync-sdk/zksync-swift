@@ -42,7 +42,7 @@ class TransactionFeeViewController: UIViewController, WalletConsumer {
     }
     
     @IBAction func changePubKey(_ sender: Any) {
-        wallet.provider.transactionFee(for: .changePubKey, address: wallet.address, tokenIdentifier: Token.ETH.address) { (result) in
+        wallet.provider.transactionFee(for: .legacyChangePubKey, address: wallet.address, tokenIdentifier: Token.ETH.address) { (result) in
             self.titleLabel.text = "Change Pub Key"
             self.processResult(result)
         }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ZKSync'
-    s.version          = '0.0.2'
+    s.version          = '0.0.3'
     s.summary          = 'Swift SDK for zkSync'
 
     s.description      = <<-DESC
@@ -19,7 +19,7 @@ zkSync is a scaling and privacy engine for Ethereum. Its current functionality s
     
 
     s.dependency 'BigInt'
-    s.dependency 'ZKSyncCrypto', '0.0.7'
+    s.dependency 'ZKSyncCrypto', '0.0.9'
     s.dependency 'Alamofire', '~> 5.0'
     s.dependency 'web3swift'
     s.source_files = 'ZKSyncSDK/Classes/**/*', 'ZKSyncSDK/Headers/*.h'

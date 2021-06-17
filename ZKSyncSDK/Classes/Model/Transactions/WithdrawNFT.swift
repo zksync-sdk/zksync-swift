@@ -1,22 +1,22 @@
 //
-//  Withdraw.swift
-//  ZKSyncSDK
+//  WithdrawNFT.swift
+//  ZKSync
 //
-//  Created by Eugene Belyakov on 12/01/2021.
+//  Created by Eugene Belyakov on 20/05/2021.
 //
 
 import Foundation
 import BigInt
 
-public class Withdraw: ZkSyncTransaction {
+public class WithdrawNFT: ZkSyncTransaction {
 
-    override public var type: String { "Withdraw" }
+    override public var type: String { "WithdrawNFT" }
 
     let accountId: UInt32
     let from: String
     let to: String
     let token: UInt32
-    let amount: BigUInt
+    let feeToken: UInt32
     let fee: String
     let nonce: UInt32
     let timeRange: TimeRange
@@ -25,12 +25,12 @@ public class Withdraw: ZkSyncTransaction {
 
     var feeInteger: BigUInt { BigUInt(fee)! }
 
-    public init(accountId: UInt32, from: String, to: String, token: UInt32, amount: BigUInt, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(accountId: UInt32, from: String, to: String, token: UInt32, feeToken: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
         self.accountId = accountId
         self.from = from
         self.to = to
         self.token = token
-        self.amount = amount
+        self.feeToken = feeToken
         self.fee = fee
         self.nonce = nonce
         self.timeRange = timeRange
@@ -41,7 +41,7 @@ public class Withdraw: ZkSyncTransaction {
         case from
         case to
         case token
-        case amount
+        case feeToken
         case fee
         case nonce
         case type
@@ -60,9 +60,8 @@ public class Withdraw: ZkSyncTransaction {
         try container.encode(nonce, forKey: .nonce)
         try container.encode(type, forKey: .type)
         try container.encode(signature, forKey: .signature)
-        try container.encode(amount.description, forKey: .amount)
+        try container.encode(feeToken, forKey: .feeToken)
         try container.encode(timeRange.validFrom, forKey: .validFrom)
         try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
 }
-

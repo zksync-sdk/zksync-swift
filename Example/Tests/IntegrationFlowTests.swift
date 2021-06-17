@@ -25,10 +25,11 @@ class IntegrationFlowTests: XCTestCase {
     
     override func setUpWithError() throws {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
-        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .rinkeby)
+        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
         
-        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(chainId: .rinkeby))
-        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRinkebyWeb3())
+        let provider = DefaultProvider(chainId: .ropsten)
+        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+        ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
     }
     
     override func tearDownWithError() throws {
@@ -53,7 +54,7 @@ class IntegrationFlowTests: XCTestCase {
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.provider.transactionFeePromise(for: .changePubKey, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+            self.wallet.provider.transactionFeePromise(for: .changePubKeyECDSA, address: self.wallet.address, tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -285,8 +286,115 @@ class IntegrationFlowTests: XCTestCase {
             break
         }
     }
+  
+    func test_09_MintNFT() throws {
+        let exp = expectation(description: "mintNFT")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { state in
+            self.wallet.provider.transactionFeePromise(for: .mintNFT,
+                                                       address: state.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<String> in
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            
+            var bytes = [UInt8](repeating: 0, count: 32)
+            let _ = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
+            return self.wallet.mintNFT(recepient: state.address,
+                                       contentHash: "0x" + bytes.toHexString(),
+                                       fee: fee,
+                                       nonce: state.committed.nonce)
+        }.pipe {
+            finalResult = $0
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+
+    func test_10_WithdrawNFT() throws {
+        let exp = expectation(description: "withdrawNFT")
+        
+        var finalResult: PromiseKit.Result<String>? = nil
+        
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { state in
+            self.wallet.provider.transactionFeePromise(for: .withdrawNFT,
+                                                       address: state.address,
+                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<String> in
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            return self.wallet.withdrawNFT(to: state.address,
+                                           token: state.committed.nfts!.first!.value,
+                                           fee: fee,
+                                           nonce: nil)
+        }.pipe {
+            finalResult = $0
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
+
+    func test_11_TransferNFT() throws {
+        let exp = expectation(description: "withdrawNFT")
+        
+        var finalResult: PromiseKit.Result<[String]>? = nil
+        
+        firstly {
+            self.wallet.getAccountStatePromise()
+        }.then(on: queue) { (state) -> Promise<(TransactionFeeDetails, AccountState)> in
+            
+            let pairs = [
+                TransactionTypeAddressPair(transactionType: .transfer, address: state.address),
+                TransactionTypeAddressPair(transactionType: .transfer, address: state.address)
+            ]
+            let batchRequest = TransactionFeeBatchRequest(transactionsAndAddresses: pairs,
+                                                          tokenIdentifier: Token.ETH.address)
+            return self.wallet.provider.transactionFeePromise(request: batchRequest).map { ($0, state) }
+        }.then(on: queue) { (feeDetails, state) -> Promise<[String]> in
+            let fee = TransactionFee(feeToken: Token.ETH.address,
+                                     fee: feeDetails.totalFeeInteger)
+            return self.wallet.transferNFT(to: state.address,
+                                           token: state.committed.nfts!.first!.value,
+                                           fee: fee,
+                                           nonce: nil)
+        }.pipe {
+            finalResult = $0
+            exp.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+        
+        switch finalResult {
+        case .rejected(let error):
+            XCTFail("\(error)")
+        default:
+            break
+        }
+    }
     
-    func test_09_FullExit() throws {
+    func test_12_FullExit() throws {
         let exp = expectation(description: "fullExit")
         
         var finalResult: PromiseKit.Result<TransactionSendingResult>? = nil
@@ -310,13 +418,13 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_10_GetTransactionFeeBatch() throws {
+    func test_13_GetTransactionFeeBatch() throws {
         
         let transactions = [
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0xC8568F373484Cd51FDc1FE3675E46D8C0dc7D246"),
             TransactionTypeAddressPair(transactionType: .transfer, address: "0x98122427eE193fAcbb9Fbdbf6BDE7d9042A95a0f"),
-            TransactionTypeAddressPair(transactionType: .changePubKey, address: ethSigner.address)
+            TransactionTypeAddressPair(transactionType: .changePubKeyECDSA, address: ethSigner.address)
         ]
         let batch = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
                                                tokenIdentifier: Token.ETH.address)
@@ -341,7 +449,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_11_GetTokenPrice() {
+    func test_14_GetTokenPrice() {
         let exp = expectation(description: "getTokenPrice")
         
         var finalResult: Swift.Result<Decimal, Error>? = nil
@@ -359,7 +467,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
     
-    func test_12_GetConfirmationsForEthOpAmount() {
+    func test_15_GetConfirmationsForEthOpAmount() {
         let exp = expectation(description: "getConfirmationsForEthOpAmount")
         var finalResult: Swift.Result<UInt64, Error>? = nil
         self.wallet.provider.confirmationsForEthOpAmount { (result) in

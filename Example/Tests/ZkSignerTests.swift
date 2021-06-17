@@ -18,10 +18,10 @@ class ZkSignerTests: XCTestCase {
     static let PubKeyHash = "sync:4f3015a1d2b93239f9510d8bc2cf49376a78a08e"
     static let PubKeyHashEth = "sync:18e8446d7748f2de52b28345bdbc76160e6b35eb"
     static let Signature = "5462c3083d92b832d540c9068eed0a0450520f6dd2e4ab169de1a46585b394a4292896a2ebca3c0378378963a6bc1710b64c573598e73de3a33d6cec2f5d7403"
-
     
     func testCreationFromSeed() throws {
         let signer = try ZkSigner(seed: ZkSignerTests.Seed)
+        
         XCTAssertEqual(signer.publicKey.hexEncodedString().addHexPrefix().lowercased(),
                        ZkSignerTests.PubKey)
     }
@@ -29,17 +29,27 @@ class ZkSignerTests: XCTestCase {
     func testCreationFromEthSigner() throws {
         let ethSigner = try DefaultEthSigner(privateKey: ZkSignerTests.PrivateKey)
         let signer = try ZkSigner(ethSigner: ethSigner, chainId: .mainnet)
+        
         XCTAssertEqual(signer.publicKeyHash, ZkSignerTests.PubKeyHashEth)
     }
     
     func testSigningMessage() throws {
         let signer = try ZkSigner(seed: ZkSignerTests.Seed)
         let signature = try signer.sign(message: ZkSignerTests.Message)
+        
         XCTAssertEqual(signature.signature.lowercased(), ZkSignerTests.Signature)
+    }
+    
+    func testPublicKeyGeneration() throws {
+        let signer = try ZkSigner(seed: ZkSignerTests.Seed)
+        
+        XCTAssertEqual(signer.publicKey.hexEncodedString().lowercased(),
+                       ZkSignerTests.PubKey.stripHexPrefix())
     }
 
     func testPublicKeyHashGeneration() throws {
         let signer = try ZkSigner(seed: ZkSignerTests.Seed)
+        
         XCTAssertEqual(signer.publicKeyHash,
                        ZkSignerTests.PubKeyHash)
     }
