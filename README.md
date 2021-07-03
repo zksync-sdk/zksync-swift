@@ -1,4 +1,4 @@
-# ZKSyncSDK for Swift
+# ZKSync for Swift
 
   Cryptographical primitives used in zkSync network.
 

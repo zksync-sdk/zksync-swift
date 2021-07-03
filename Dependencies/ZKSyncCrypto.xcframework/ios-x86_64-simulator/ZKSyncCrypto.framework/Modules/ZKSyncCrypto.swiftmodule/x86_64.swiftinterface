@@ -1,0 +1,64 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.1 (swiftlang-1200.0.41 clang-1200.0.32.8)
+// swift-module-flags: -target x86_64-apple-ios13.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ZKSyncCrypto
+import Foundation
+import Swift
+@_exported import ZKSyncCrypto
+@objc @_inheritsConvenienceInitializers public class ZKSyncCrypto : ObjectiveC.NSObject {
+  public static func generatePrivateKey(seed: Foundation.Data) -> Swift.Result<ZKPrivateKey, ZKSyncCryptoError>
+  public static func getPublicKey(privateKey: ZKPrivateKey) -> Swift.Result<ZKPackedPublicKey, ZKSyncCryptoError>
+  public static func getPublicKeyHash(publicKey: ZKPackedPublicKey) -> Swift.Result<ZKPublicHash, ZKSyncCryptoError>
+  public static func signMessage(privateKey: ZKPrivateKey, message: Swift.String) -> Swift.Result<ZKSignature, ZKSyncCryptoError>
+  public static func signMessage(privateKey: ZKPrivateKey, message: Foundation.Data) -> Swift.Result<ZKSignature, ZKSyncCryptoError>
+  public static func rescueHashOrders(message: Foundation.Data) -> ZKResqueHash
+  @objc deinit
+  @objc override dynamic public init()
+}
+public class ZKPrimitive {
+  public init(_ content: Foundation.Data)
+  convenience public init(_ content: [Swift.UInt8])
+  public func data() -> Foundation.Data
+  public func base64String() -> Swift.String
+  public func hexEncodedString() -> Swift.String
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class ZKPackedPublicKey : ZKPrimitive {
+  override public init(_ content: Foundation.Data)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class ZKPrivateKey : ZKPrimitive {
+  public class var bytesLength: Swift.Int {
+    get
+  }
+  override public init(_ content: Foundation.Data)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class ZKPublicHash : ZKPrimitive {
+  override public init(_ content: Foundation.Data)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class ZKSignature : ZKPrimitive {
+  override public init(_ content: Foundation.Data)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class ZKResqueHash : ZKPrimitive {
+  override public init(_ content: Foundation.Data)
+  @objc deinit
+}
+public enum ZKSyncCryptoError : Swift.Error {
+  case musigTooLongError
+  case seedTooShortError
+  case unsupportedOperation
+  public static func == (a: ZKSyncCryptoError, b: ZKSyncCryptoError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public typealias CLibZksPrivateKey = ZksPrivateKey
+public typealias CLibZksPackedPublicKey = ZksPackedPublicKey
+public typealias CLibZksPubkeyHash = ZksPubkeyHash
+public typealias CLibZksSignature = ZksSignature
+public typealias CLibZksResqueHash = ZksResqueHash
+extension ZKSyncCryptoError : Swift.Equatable {}
+extension ZKSyncCryptoError : Swift.Hashable {}

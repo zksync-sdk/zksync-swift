@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		380D91C941169690952DB8D8 /* Pods_ZKSyncExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD97EC8DA29277BABEA0B4E4 /* Pods_ZKSyncExampleTests.framework */; };
+		443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */; };
+		443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */; };
+		44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */; };
+		57E5048503FD0CE2FAD9DB48 /* Pods_ZKSyncExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F174EC994B8F39BF71D99A6 /* Pods_ZKSyncExample.framework */; };
+		8A9CAE4D2690A6FB00DABC41 /* ZKSync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */; };
+		8A9CAE4E2690A6FB00DABC41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4C2690A6FA00DABC41 /* README.md */; };
+		8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE672690AA9000DABC41 /* TransferViewController.swift */; };
+		8A9CAE7E2690AA9000DABC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE682690AA9000DABC41 /* ViewController.swift */; };
+		8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */; };
+		8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */; };
+		8A9CAE812690AA9000DABC41 /* TransactionFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */; };
+		8A9CAE822690AA9000DABC41 /* DepositViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */; };
+		8A9CAE832690AA9000DABC41 /* AccountStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */; };
+		8A9CAE842690AA9000DABC41 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */; };
+		8A9CAE852690AA9000DABC41 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6F2690AA9000DABC41 /* LaunchScreen.xib */; };
+		8A9CAE862690AA9000DABC41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE712690AA9000DABC41 /* Main.storyboard */; };
+		8A9CAE872690AA9000DABC41 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */; };
+		8A9CAE882690AA9000DABC41 /* StateSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */; };
+		8A9CAE892690AA9000DABC41 /* MethodSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */; };
+		8A9CAE8A2690AA9000DABC41 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE762690AA9000DABC41 /* Images.xcassets */; };
+		8A9CAE8B2690AA9000DABC41 /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */; };
+		8A9CAE8C2690AA9000DABC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE782690AA9000DABC41 /* AppDelegate.swift */; };
+		8A9CAE8D2690AA9000DABC41 /* TokenPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */; };
+		8A9CAE8E2690AA9000DABC41 /* WalletConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */; };
+		8A9CAE8F2690AA9000DABC41 /* StateSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		607FACE61AFB9204008FA782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
+			remoteInfo = ZKSyncSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F174EC994B8F39BF71D99A6 /* Pods_ZKSyncExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2982254753DB1AAE2DABE522 /* Pods-ZKSyncExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncExampleTests.release.xcconfig"; path = "Target Support Files/Pods-ZKSyncExampleTests/Pods-ZKSyncExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZkSignerTests.swift; sourceTree = "<group>"; };
+		443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletTests.swift; sourceTree = "<group>"; };
+		44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationFlowTests.swift; sourceTree = "<group>"; };
+		4C3C624F3C39C15665764F2A /* Pods-ZKSyncExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-ZKSyncExampleTests/Pods-ZKSyncExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		607FACD01AFB9204008FA782 /* ZKSyncExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* ZKSyncExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKSyncExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZKSync.podspec; path = ../../ZKSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8A9CAE4C2690A6FA00DABC41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		8A9CAE672690AA9000DABC41 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		8A9CAE682690AA9000DABC41 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositingBalanceTableViewCell.swift; sourceTree = "<group>"; };
+		8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
+		8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewController.swift; sourceTree = "<group>"; };
+		8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositViewController.swift; sourceTree = "<group>"; };
+		8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStateViewController.swift; sourceTree = "<group>"; };
+		8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
+		8A9CAE702690AA9000DABC41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8A9CAE722690AA9000DABC41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddressViewController.swift; sourceTree = "<group>"; };
+		8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateSectionHeaderView.swift; sourceTree = "<group>"; };
+		8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodSelectionTableViewController.swift; sourceTree = "<group>"; };
+		8A9CAE762690AA9000DABC41 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
+		8A9CAE782690AA9000DABC41 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPriceViewController.swift; sourceTree = "<group>"; };
+		8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConsumer.swift; sourceTree = "<group>"; };
+		8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateSectionHeaderView.xib; sourceTree = "<group>"; };
+		8A9CAE7C2690AA9000DABC41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91946EDCC7AA66ED1F337C9D /* Pods-ZKSyncExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncExample.debug.xcconfig"; path = "Target Support Files/Pods-ZKSyncExample/Pods-ZKSyncExample.debug.xcconfig"; sourceTree = "<group>"; };
+		AF37215B9FF2B83EA0479C88 /* Pods-ZKSyncExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKSyncExample.release.xcconfig"; path = "Target Support Files/Pods-ZKSyncExample/Pods-ZKSyncExample.release.xcconfig"; sourceTree = "<group>"; };
+		BD97EC8DA29277BABEA0B4E4 /* Pods_ZKSyncExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		607FACCD1AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57E5048503FD0CE2FAD9DB48 /* Pods_ZKSyncExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE21AFB9204008FA782 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				380D91C941169690952DB8D8 /* Pods_ZKSyncExampleTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E906D6DA2122053999C8AD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91946EDCC7AA66ED1F337C9D /* Pods-ZKSyncExample.debug.xcconfig */,
+				AF37215B9FF2B83EA0479C88 /* Pods-ZKSyncExample.release.xcconfig */,
+				4C3C624F3C39C15665764F2A /* Pods-ZKSyncExampleTests.debug.xcconfig */,
+				2982254753DB1AAE2DABE522 /* Pods-ZKSyncExampleTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		607FACC71AFB9204008FA782 = {
+			isa = PBXGroup;
+			children = (
+				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				8A9CAE662690AA9000DABC41 /* ZKSyncExample */,
+				607FACE81AFB9204008FA782 /* Tests */,
+				607FACD11AFB9204008FA782 /* Products */,
+				5E906D6DA2122053999C8AD4 /* Pods */,
+				6A30D7885AC471674D357124 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		607FACD11AFB9204008FA782 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD01AFB9204008FA782 /* ZKSyncExample.app */,
+				607FACE51AFB9204008FA782 /* ZKSyncExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		607FACE81AFB9204008FA782 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */,
+				443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */,
+				44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */,
+				607FACE91AFB9204008FA782 /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		607FACE91AFB9204008FA782 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				607FACEA1AFB9204008FA782 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				8A9CAE4C2690A6FA00DABC41 /* README.md */,
+				8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */,
+			);
+			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		6A30D7885AC471674D357124 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F174EC994B8F39BF71D99A6 /* Pods_ZKSyncExample.framework */,
+				BD97EC8DA29277BABEA0B4E4 /* Pods_ZKSyncExampleTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A9CAE662690AA9000DABC41 /* ZKSyncExample */ = {
+			isa = PBXGroup;
+			children = (
+				8A9CAE972690AAAA00DABC41 /* ViewControllers */,
+				8A9CAE782690AA9000DABC41 /* AppDelegate.swift */,
+				8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */,
+				8A9CAE6F2690AA9000DABC41 /* LaunchScreen.xib */,
+				8A9CAE712690AA9000DABC41 /* Main.storyboard */,
+				8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */,
+				8A9CAE762690AA9000DABC41 /* Images.xcassets */,
+				8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */,
+				8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */,
+				8A9CAE7C2690AA9000DABC41 /* Info.plist */,
+			);
+			path = ZKSyncExample;
+			sourceTree = "<group>";
+		};
+		8A9CAE972690AAAA00DABC41 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A9CAE682690AA9000DABC41 /* ViewController.swift */,
+				8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */,
+				8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */,
+				8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */,
+				8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */,
+				8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */,
+				8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */,
+				8A9CAE672690AA9000DABC41 /* TransferViewController.swift */,
+				8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */,
+				8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */,
+				8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		607FACCF1AFB9204008FA782 /* ZKSyncExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ZKSyncExample" */;
+			buildPhases = (
+				50A72D85AB84BD439EA40A79 /* [CP] Check Pods Manifest.lock */,
+				607FACCC1AFB9204008FA782 /* Sources */,
+				607FACCD1AFB9204008FA782 /* Frameworks */,
+				607FACCE1AFB9204008FA782 /* Resources */,
+				9033E752AEA4EF94BE6D9EA1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZKSyncExample;
+			productName = ZKSyncSDK;
+			productReference = 607FACD01AFB9204008FA782 /* ZKSyncExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		607FACE41AFB9204008FA782 /* ZKSyncExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ZKSyncExampleTests" */;
+			buildPhases = (
+				1100E7785085AA1899E010BB /* [CP] Check Pods Manifest.lock */,
+				607FACE11AFB9204008FA782 /* Sources */,
+				607FACE21AFB9204008FA782 /* Frameworks */,
+				607FACE31AFB9204008FA782 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
+			);
+			name = ZKSyncExampleTests;
+			productName = Tests;
+			productReference = 607FACE51AFB9204008FA782 /* ZKSyncExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		607FACC81AFB9204008FA782 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 1220;
+				ORGANIZATIONNAME = CocoaPods;
+				TargetAttributes = {
+					607FACCF1AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 1230;
+					};
+					607FACE41AFB9204008FA782 = {
+						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0900;
+						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+				};
+			};
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ZKSyncExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 607FACC71AFB9204008FA782;
+			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				607FACCF1AFB9204008FA782 /* ZKSyncExample */,
+				607FACE41AFB9204008FA782 /* ZKSyncExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		607FACCE1AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A9CAE4E2690A6FB00DABC41 /* README.md in Resources */,
+				8A9CAE8A2690AA9000DABC41 /* Images.xcassets in Resources */,
+				8A9CAE852690AA9000DABC41 /* LaunchScreen.xib in Resources */,
+				8A9CAE8F2690AA9000DABC41 /* StateSectionHeaderView.xib in Resources */,
+				8A9CAE4D2690A6FB00DABC41 /* ZKSync.podspec in Resources */,
+				8A9CAE862690AA9000DABC41 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE31AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1100E7785085AA1899E010BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZKSyncExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50A72D85AB84BD439EA40A79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZKSyncExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9033E752AEA4EF94BE6D9EA1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZKSyncExample/Pods-ZKSyncExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/ZKSync/ZKSync.framework",
+				"${BUILT_PRODUCTS_DIR}/ZKSyncCrypto/ZKSyncCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.c/secp256k1.framework",
+				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZKSyncExample/Pods-ZKSyncExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		607FACCC1AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A9CAE812690AA9000DABC41 /* TransactionFeeViewController.swift in Sources */,
+				8A9CAE832690AA9000DABC41 /* AccountStateViewController.swift in Sources */,
+				8A9CAE842690AA9000DABC41 /* UIAlertController+Extensions.swift in Sources */,
+				8A9CAE882690AA9000DABC41 /* StateSectionHeaderView.swift in Sources */,
+				8A9CAE8D2690AA9000DABC41 /* TokenPriceViewController.swift in Sources */,
+				8A9CAE872690AA9000DABC41 /* ContractAddressViewController.swift in Sources */,
+				8A9CAE822690AA9000DABC41 /* DepositViewController.swift in Sources */,
+				8A9CAE8E2690AA9000DABC41 /* WalletConsumer.swift in Sources */,
+				8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */,
+				8A9CAE8B2690AA9000DABC41 /* NetworkSelectionTableViewController.swift in Sources */,
+				8A9CAE8C2690AA9000DABC41 /* AppDelegate.swift in Sources */,
+				8A9CAE7E2690AA9000DABC41 /* ViewController.swift in Sources */,
+				8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */,
+				8A9CAE892690AA9000DABC41 /* MethodSelectionTableViewController.swift in Sources */,
+				8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		607FACE11AFB9204008FA782 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */,
+				443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */,
+				44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 607FACCF1AFB9204008FA782 /* ZKSyncExample */;
+			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8A9CAE6F2690AA9000DABC41 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A9CAE702690AA9000DABC41 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		8A9CAE712690AA9000DABC41 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A9CAE722690AA9000DABC41 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		607FACED1AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		607FACEE1AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		607FACF01AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91946EDCC7AA66ED1F337C9D /* Pods-ZKSyncExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZKSyncExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		607FACF11AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF37215B9FF2B83EA0479C88 /* Pods-ZKSyncExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZKSyncExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		607FACF31AFB9204008FA782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C3C624F3C39C15665764F2A /* Pods-ZKSyncExampleTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZKSyncExample.app/ZKSyncExample";
+			};
+			name = Debug;
+		};
+		607FACF41AFB9204008FA782 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2982254753DB1AAE2DABE522 /* Pods-ZKSyncExampleTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZKSyncExample.app/ZKSyncExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "ZKSyncExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACED1AFB9204008FA782 /* Debug */,
+				607FACEE1AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ZKSyncExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF01AFB9204008FA782 /* Debug */,
+				607FACF11AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "ZKSyncExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				607FACF31AFB9204008FA782 /* Debug */,
+				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
+}
