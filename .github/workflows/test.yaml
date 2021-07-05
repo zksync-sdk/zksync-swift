@@ -20,9 +20,9 @@ jobs:
       run: gem install cocoapods
 
     - name: Install deps
-      working-directory: ./Example
+      working-directory: ./Examples/CocoaPods
       run: pod install
 
     - name: Run tests
-      working-directory: ./Example
-      run: xcodebuild -workspace ZKSyncSDK.xcworkspace -scheme ZKSyncSDK-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' test
+      working-directory: ./Examples/CocoaPods
+      run: xcodebuild -workspace ZKSyncExample.xcworkspace -scheme ZKSyncExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' test
