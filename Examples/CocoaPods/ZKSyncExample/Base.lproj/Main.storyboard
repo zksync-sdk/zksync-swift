@@ -11,7 +11,7 @@
         <!--Network-->
         <scene sceneID="EMe-eF-And">
             <objects>
-                <tableViewController id="MEj-0P-ygz" customClass="NetworkSelectionTableViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="MEj-0P-ygz" customClass="NetworkSelectionTableViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5f8-4l-yJt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,7 +112,7 @@
         <!--Contract Address View Controller-->
         <scene sceneID="UmO-Br-w3q">
             <objects>
-                <viewController id="orw-Fw-7P1" customClass="ContractAddressViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="orw-Fw-7P1" customClass="ContractAddressViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0pK-Mx-Lv2"/>
                         <viewControllerLayoutGuide type="bottom" id="RcI-2L-r5C"/>
@@ -178,7 +178,7 @@
         <!--Send Deposit-->
         <scene sceneID="tiU-zp-RzI">
             <objects>
-                <viewController id="0Gp-My-hdg" customClass="DepositViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Gp-My-hdg" customClass="DepositViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mcm-Rq-vqQ"/>
                         <viewControllerLayoutGuide type="bottom" id="qzb-qO-LFD"/>
@@ -243,7 +243,7 @@
         <!--Method Selection Table View Controller-->
         <scene sceneID="W2F-eC-Kcu">
             <objects>
-                <tableViewController id="U1i-LY-vcA" customClass="MethodSelectionTableViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="U1i-LY-vcA" customClass="MethodSelectionTableViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="U46-0d-plh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -497,7 +497,7 @@
         <!--Token Price View Controller-->
         <scene sceneID="Zhj-Vz-Pxz">
             <objects>
-                <viewController id="ti3-rv-2by" customClass="TokenPriceViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ti3-rv-2by" customClass="TokenPriceViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ljf-XL-SPM"/>
                         <viewControllerLayoutGuide type="bottom" id="dQa-DI-kFI"/>
@@ -550,7 +550,7 @@
         <!--Transaction Fee View Controller-->
         <scene sceneID="c9m-Fs-IhG">
             <objects>
-                <viewController id="0qX-D5-G4p" customClass="TransactionFeeViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0qX-D5-G4p" customClass="TransactionFeeViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0QX-k9-63h"/>
                         <viewControllerLayoutGuide type="bottom" id="sy4-kC-k55"/>
@@ -732,7 +732,7 @@
         <!--Account State View Controller-->
         <scene sceneID="Q7S-z9-XLZ">
             <objects>
-                <viewController id="cbn-2e-WFc" customClass="AccountStateViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cbn-2e-WFc" customClass="AccountStateViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kda-ts-X1H"/>
                         <viewControllerLayoutGuide type="bottom" id="Tro-0e-1Rk"/>
@@ -762,7 +762,7 @@
                                 <rect key="frame" x="0.0" y="132" width="375" height="535"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Depositing" id="1q6-d2-aOy" customClass="DepositingBalanceTableViewCell" customModule="ZKSyncSDK_Example" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Depositing" id="1q6-d2-aOy" customClass="DepositingBalanceTableViewCell" customModule="ZKSyncExample" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="78.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1q6-d2-aOy" id="Sg3-3A-vVC">
@@ -851,7 +851,7 @@
         <!--Send Withdraw-->
         <scene sceneID="Sak-ay-G9z">
             <objects>
-                <viewController id="aRk-Cc-Ibr" customClass="WithdrawViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aRk-Cc-Ibr" customClass="WithdrawViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DDI-2W-9p7"/>
                         <viewControllerLayoutGuide type="bottom" id="Yjv-SF-feQ"/>
@@ -916,7 +916,7 @@
         <!--Send Transfer-->
         <scene sceneID="Ecp-0H-vR0">
             <objects>
-                <viewController id="09R-OI-qAN" customClass="TransferViewController" customModule="ZKSyncSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="09R-OI-qAN" customClass="TransferViewController" customModule="ZKSyncExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yeF-63-lHe"/>
                         <viewControllerLayoutGuide type="bottom" id="XJG-K6-grT"/>
