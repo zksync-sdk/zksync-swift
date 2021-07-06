@@ -1,6 +1,6 @@
 //
 //  DefaultProvider+TransactionDetails.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 16/01/2021.
 //

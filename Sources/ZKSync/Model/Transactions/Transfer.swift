@@ -1,6 +1,6 @@
 //
 //  Transfer.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 12/01/2021.
 //

@@ -1,6 +1,6 @@
 //
 //  DefaultEthSigner.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 22/01/2021.
 //

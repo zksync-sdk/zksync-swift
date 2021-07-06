@@ -1,6 +1,6 @@
 //
 //  DefaultProvider+Tokens.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 13/01/2021.
 //

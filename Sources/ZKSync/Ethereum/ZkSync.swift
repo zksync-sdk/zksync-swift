@@ -1,6 +1,6 @@
 //
 //  ZkSync.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 19/01/2021.
 //
