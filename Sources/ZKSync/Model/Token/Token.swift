@@ -7,7 +7,6 @@
 
 import Foundation
 import BigInt
-import web3swift
 
 public struct Token: TokenId, Decodable {
     
