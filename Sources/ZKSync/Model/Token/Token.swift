@@ -1,13 +1,12 @@
 //
 //  Token.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 06/01/2021.
 //
 
 import Foundation
 import BigInt
-import web3swift
 
 public struct Token: TokenId, Decodable {
     

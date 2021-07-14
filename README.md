@@ -5,14 +5,14 @@
 
 ## Requirements
 
-- iOS 11.0+ / macOS 10.12+ / tvOS 10.0+ / watchOS 3.0+
+- iOS 11.0+
 - Xcode 11+
 - Swift 5.0+
 
 
 ## Installation
 
-* CocoaPods: `pod 'ZKSync'`
+- CocoaPods: `pod 'ZKSync'`
 
 ## License
 

@@ -1,6 +1,6 @@
 //
 //  DefaultWallet.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 06/01/2021.
 //
@@ -19,7 +19,7 @@ enum DefaultWalletError: Error {
 public class DefaultWallet: Wallet {
     
     private let group = DispatchGroup()
-    private let deliveryQueue = DispatchQueue(label: "com.zksyncsdk.wallet")
+    private let deliveryQueue = DispatchQueue(label: "com.zksync.wallet")
     
     public let provider: Provider
     internal let ethSigner: EthSigner

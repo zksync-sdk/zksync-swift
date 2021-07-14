@@ -1,6 +1,6 @@
 //
 //  Signature.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 11/01/2021.
 //

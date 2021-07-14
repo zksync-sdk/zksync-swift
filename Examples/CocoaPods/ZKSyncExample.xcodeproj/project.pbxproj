@@ -41,7 +41,7 @@
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
-			remoteInfo = ZKSyncSDK;
+			remoteInfo = ZKSync;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -224,7 +224,7 @@
 			dependencies = (
 			);
 			name = ZKSyncExample;
-			productName = ZKSyncSDK;
+			productName = ZKSync;
 			productReference = 607FACD01AFB9204008FA782 /* ZKSyncExample.app */;
 			productType = "com.apple.product-type.application";
 		};

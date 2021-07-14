@@ -1,6 +1,6 @@
 //
 //  ContractAddress.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 06/01/2021.
 //

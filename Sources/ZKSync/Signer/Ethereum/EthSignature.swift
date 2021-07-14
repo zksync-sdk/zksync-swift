@@ -1,6 +1,6 @@
 //
 //  EthSignature.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 09/01/2021.
 //

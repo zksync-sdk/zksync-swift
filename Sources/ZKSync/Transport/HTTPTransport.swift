@@ -1,6 +1,6 @@
 //
 //  HTTPTransport.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 04/01/2021.
 //

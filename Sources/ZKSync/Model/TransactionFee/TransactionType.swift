@@ -1,6 +1,6 @@
 //
 //  TransactionType.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 08/01/2021.
 //

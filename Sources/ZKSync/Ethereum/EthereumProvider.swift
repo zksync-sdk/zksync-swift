@@ -1,6 +1,6 @@
 //
 //  EthereumProvider.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Created by Eugene Belyakov on 17/01/2021.
 //

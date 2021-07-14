@@ -1,6 +1,6 @@
 //
 //  Provider.swift
-//  ZKSyncSDK
+//  ZKSync
 //
 //  Made with ❤️ by Matter Labs on 10/23/20
 //
