@@ -21,7 +21,6 @@ PODS:
     - Starscream (~> 3.1.0)
   - ZKSync (0.0.3):
     - Alamofire (~> 5.0)
-    - BigInt
     - web3swift
     - ZKSyncCrypto (= 0.0.9-spm)
   - ZKSyncCrypto (0.0.9-spm)
@@ -52,7 +51,7 @@ SPEC CHECKSUMS:
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   web3swift: 0f097eafe1d08f478694b882581b85a01afb6633
-  ZKSync: 03c1084e51816b08c9937e546234ac7e5f62c488
+  ZKSync: f681734a3d5e81834a895fcad9c468fe9724e659
   ZKSyncCrypto: ff0662eb0cff69ab3e40564a45a07cbcafe1ccf0
 
 PODFILE CHECKSUM: 19f2bc7b77d611151be6a9850baac7dbb61b1e85
