@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ZKSync
+@testable import ZKSync
 import web3swift
 import PromiseKit
 import BigInt
@@ -20,6 +20,7 @@ class IntegrationFlowTests: XCTestCase {
     
     var ethSigner: EthSigner!
     var zkSigner: ZkSigner!
+    var pollingTransactionReceiptProcessor: PollingTransactionReceiptProcessor!
     
     let queue = DispatchQueue.global(qos: .default)
     
@@ -30,6 +31,8 @@ class IntegrationFlowTests: XCTestCase {
         let provider = DefaultProvider(chainId: .ropsten)
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
+        
+        pollingTransactionReceiptProcessor = PollingTransactionReceiptProcessor(provider, sleepDuration: 1.0, attempts: 50)
     }
     
     override func tearDownWithError() throws {
@@ -156,6 +159,33 @@ class IntegrationFlowTests: XCTestCase {
             XCTFail("\(error)")
         default:
             break
+        }
+        
+        if let txHash = try? finalResult?.result.get() {
+            var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>? = nil
+            
+            let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+            firstly {
+                self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
+            }.pipe {
+                transactionDetailsResult = $0
+                pollingTransactionReceiptProcessorExpectation.fulfill()
+            }
+            
+            wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+            
+            switch transactionDetailsResult {
+            case .fulfilled(let transactionDetails):
+                XCTAssertTrue(transactionDetails.executed)
+                XCTAssertTrue(transactionDetails.success)
+                break
+            case .rejected(let error):
+                XCTFail("\(error)")
+                break
+            default:
+                XCTFail()
+                break
+            }
         }
     }
     
