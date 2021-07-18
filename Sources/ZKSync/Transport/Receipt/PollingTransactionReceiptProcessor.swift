@@ -8,28 +8,48 @@
 import Foundation
 import PromiseKit
 
+/// Helper class, which allows to wait until transaction is completed.
 public class PollingTransactionReceiptProcessor {
+    
+    /// Time interval between polls.
+    public let pollInterval: DispatchTimeInterval
+    
+    /// Amount of attempts, which will be used by `PollingTransactionReceiptProcessor` to verify whether
+    /// transaction was commited or not.
+    public let attempts: Int
     
     let provider: Provider
     
-    let sleepDuration: Double
-    
-    let attempts: Int
-    
     let semaphore = DispatchSemaphore(value: 0)
     
-    public init(_ provider: Provider, sleepDuration: Double, attempts: Int) {
+    /// Initializer, which allows to create `PollingTransactionReceiptProcessor` instance, based on `Provider` instance.
+    /// - Parameters:
+    ///   - provider: Provider instance.
+    ///   - pollInterval: Time interval between polls.
+    ///   - attempts: Amount of attempts.
+    public init(_ provider: Provider, pollInterval: DispatchTimeInterval, attempts: Int) {
         self.provider = provider
-        self.sleepDuration = sleepDuration
+        self.pollInterval = pollInterval
         self.attempts = attempts
     }
     
-    public init(_ wallet: Wallet, sleepDuration: Double, attempts: Int) {
+    /// Convenience initializer, which allows to create `PollingTransactionReceiptProcessor` instance, which is based on
+    /// `Provider`, which is retrieved from `Wallet`.
+    /// - Parameters:
+    ///   - wallet: `Wallet` instance, which contains `Provider`.
+    ///   - pollInterval: Time interval between polls.
+    ///   - attempts: Amount of attempts.
+    public init(_ wallet: Wallet, pollInterval: DispatchTimeInterval, attempts: Int) {
         self.provider = wallet.provider
-        self.sleepDuration = sleepDuration
+        self.pollInterval = pollInterval
         self.attempts = attempts
     }
     
+    /// Method, which allows to wait till transaction is completed.
+    /// - Parameters:
+    ///   - txHash: Hash of transaction.
+    ///   - transactionStatus: Transaction status.
+    /// - Returns: Promise, which contains `TransactionDetails`.
     public func waitForTransaction(_ txHash: String, transactionStatus: TransactionStatus) -> Promise<TransactionDetails> {
         return Promise<TransactionDetails> { seal in
             DispatchQueue.global().async { [weak self] in
@@ -40,7 +60,7 @@ public class PollingTransactionReceiptProcessor {
                         switch result {
                         case .success(let transactionDetails):
                             if !transactionDetails.executed {
-                                DispatchQueue.global().asyncAfter(deadline: .now() + self.sleepDuration) {
+                                DispatchQueue.global().asyncAfter(deadline: .now() + self.pollInterval) {
                                     self.semaphore.signal()
                                 }
                             } else {

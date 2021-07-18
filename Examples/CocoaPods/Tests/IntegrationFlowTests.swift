@@ -32,7 +32,9 @@ class IntegrationFlowTests: XCTestCase {
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
         
-        pollingTransactionReceiptProcessor = PollingTransactionReceiptProcessor(provider, sleepDuration: 1.0, attempts: 50)
+        pollingTransactionReceiptProcessor = PollingTransactionReceiptProcessor(provider,
+                                                                                pollInterval: DispatchTimeInterval.milliseconds(100),
+                                                                                attempts: 50)
     }
     
     override func tearDownWithError() throws {
@@ -161,31 +163,34 @@ class IntegrationFlowTests: XCTestCase {
             break
         }
         
-        if let txHash = try? finalResult?.result.get() {
-            var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>? = nil
-            
-            let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
-            firstly {
-                self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
-            }.pipe {
-                transactionDetailsResult = $0
-                pollingTransactionReceiptProcessorExpectation.fulfill()
-            }
-            
-            wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
-            
-            switch transactionDetailsResult {
-            case .fulfilled(let transactionDetails):
-                XCTAssertTrue(transactionDetails.executed)
-                XCTAssertTrue(transactionDetails.success)
-                break
-            case .rejected(let error):
-                XCTFail("\(error)")
-                break
-            default:
-                XCTFail()
-                break
-            }
+        guard let txHash = try? finalResult?.result.get() else {
+            XCTFail()
+            return
+        }
+        
+        var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>? = nil
+        
+        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        firstly {
+            self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
+        }.pipe {
+            transactionDetailsResult = $0
+            pollingTransactionReceiptProcessorExpectation.fulfill()
+        }
+        
+        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        
+        switch transactionDetailsResult {
+        case .fulfilled(let transactionDetails):
+            XCTAssertTrue(transactionDetails.executed)
+            XCTAssertTrue(transactionDetails.success)
+            break
+        case .rejected(let error):
+            XCTFail("\(error)")
+            break
+        default:
+            XCTFail()
+            break
         }
     }
     
@@ -249,6 +254,38 @@ class IntegrationFlowTests: XCTestCase {
             XCTFail("\(error)")
         default:
             break
+        }
+        
+        guard let txHashes = try? finalResult?.result.get().compactMap({ $0 }) else {
+            XCTFail()
+            return
+        }
+
+        for txHash in txHashes {
+            var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>? = nil
+            
+            let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+            firstly {
+                self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
+            }.pipe {
+                transactionDetailsResult = $0
+                pollingTransactionReceiptProcessorExpectation.fulfill()
+            }
+            
+            wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+            
+            switch transactionDetailsResult {
+            case .fulfilled(let transactionDetails):
+                XCTAssertTrue(transactionDetails.executed)
+                XCTAssertTrue(transactionDetails.success)
+                break
+            case .rejected(let error):
+                XCTFail("\(error)")
+                break
+            default:
+                XCTFail()
+                break
+            }
         }
     }
     
