@@ -27,7 +27,7 @@ public class PollingTransactionReceiptProcessor {
     ///   - provider: Provider instance.
     ///   - pollInterval: Time interval between polls.
     ///   - attempts: Amount of attempts.
-    public init(_ provider: Provider, pollInterval: DispatchTimeInterval, attempts: Int) {
+    public init(_ provider: Provider, pollInterval: DispatchTimeInterval = .milliseconds(100), attempts: Int = .max) {
         self.provider = provider
         self.pollInterval = pollInterval
         self.attempts = attempts
@@ -39,7 +39,7 @@ public class PollingTransactionReceiptProcessor {
     ///   - wallet: `Wallet` instance, which contains `Provider`.
     ///   - pollInterval: Time interval between polls.
     ///   - attempts: Amount of attempts.
-    public init(_ wallet: Wallet, pollInterval: DispatchTimeInterval, attempts: Int) {
+    public init(_ wallet: Wallet, pollInterval: DispatchTimeInterval = .milliseconds(100), attempts: Int = .max) {
         self.provider = wallet.provider
         self.pollInterval = pollInterval
         self.attempts = attempts
