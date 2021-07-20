@@ -32,12 +32,6 @@ class AccountStateViewController: UIViewController, WalletConsumer {
         self.tableView.estimatedSectionHeaderHeight = 60;
     }
     
-    func getInfo(transaction: String) {
-        wallet.provider.transactionDetails(txHash: transaction) { (result) in
-            print(result)
-        }
-    }
-    
     @IBAction func getAccountState(_ sender: Any) {
         
         wallet.getAccountState { (result) in
