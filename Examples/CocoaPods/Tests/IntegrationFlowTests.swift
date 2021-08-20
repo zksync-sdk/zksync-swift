@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import ZKSync
-import web3swift
+import web3swift_zksync
 import PromiseKit
 import BigInt
 

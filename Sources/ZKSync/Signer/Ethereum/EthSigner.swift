@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import web3swift
+import web3swift_zksync
 import CryptoSwift
 import BigInt
 

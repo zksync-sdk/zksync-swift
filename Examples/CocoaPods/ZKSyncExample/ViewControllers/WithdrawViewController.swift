@@ -8,7 +8,7 @@
 
 import UIKit
 import ZKSync
-import web3swift
+import web3swift_zksync
 import BigInt
 import PromiseKit
 
