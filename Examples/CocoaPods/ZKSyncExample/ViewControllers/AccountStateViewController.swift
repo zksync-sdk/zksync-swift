@@ -16,24 +16,24 @@ class AccountStateViewController: UIViewController, WalletConsumer {
     var wallet: Wallet!
 
     var accountState: AccountState?
-    
+
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addressLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.register(UINib(nibName: "StateSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "StateHeader")
-        
-        self.tableView.sectionHeaderHeight = UITableView.automaticDimension;
-        self.tableView.estimatedSectionHeaderHeight = 60;
+
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 60
     }
-    
+
     @IBAction func getAccountState(_ sender: Any) {
-        
+
         wallet.getAccountState { (result) in
             switch result {
             case .success(let state):
@@ -43,7 +43,7 @@ class AccountStateViewController: UIViewController, WalletConsumer {
             }
         }
     }
-    
+
     private func update(state: AccountState) {
         self.accountState = state
         self.tableView.reloadData()
@@ -53,11 +53,11 @@ class AccountStateViewController: UIViewController, WalletConsumer {
 }
 
 extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return accountState != nil ? 3 : 0
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -70,7 +70,7 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0, 1:
@@ -94,7 +94,7 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
         }
         return UITableViewCell()
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0, 1:

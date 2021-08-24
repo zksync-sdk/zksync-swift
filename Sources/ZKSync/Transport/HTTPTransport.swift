@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import BigInt
 
 public class HTTPTransport: Transport {
     

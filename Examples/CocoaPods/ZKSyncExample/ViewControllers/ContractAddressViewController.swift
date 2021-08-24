@@ -9,12 +9,12 @@ import UIKit
 import ZKSync
 
 class ContractAddressViewController: UIViewController, WalletConsumer {
-    
+
     var wallet: Wallet!
-    
+
     @IBOutlet weak var mainContractLabel: UILabel!
     @IBOutlet weak var govContractLabel: UILabel!
-        
+
     @IBAction func getContractAddress(_ sender: Any) {
         self.wallet.provider.contractAddress { result in
             switch result {
@@ -24,7 +24,7 @@ class ContractAddressViewController: UIViewController, WalletConsumer {
                 self.display(error: error)
             }
         }
-        
+
 //        let typesAndAddresses = [
 //            TransactionTypeAddressPair(transactionType: .forcedExit, address: "0x98122427eE193fAcbb9Fbdbf6BDE7d9042A95a0f"),
 //            TransactionTypeAddressPair(transactionType: .transfer, address: "0xC8568F373484Cd51FDc1FE3675E46D8C0dc7D246"),
@@ -37,14 +37,13 @@ class ContractAddressViewController: UIViewController, WalletConsumer {
 //            
 //        }
     }
-    
+
     private func display(contractAddress: ContractAddress) {
         self.mainContractLabel.text = contractAddress.mainContract
         self.govContractLabel.text = contractAddress.govContract
     }
-    
+
     private func display(error: Error) {
-        
+
     }
 }
-
