@@ -17,7 +17,7 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         return alert
     }
-    
+
     static func `for`(message: String) -> UIAlertController {
         let alert = UIAlertController(title: nil,
                                       message: message,
@@ -25,7 +25,7 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         return alert
     }
-    
+
     static func forIncorrectAmount() -> UIAlertController {
         let alert = UIAlertController(title: "Error",
                                       message: "Incorrect amount",
