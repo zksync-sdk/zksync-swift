@@ -348,6 +348,7 @@ class MockProvider: Provider {
     func contractAddress(queue: DispatchQueue, completion: @escaping (ZKSyncResult<ContractAddress>) -> Void) {
     }
 
+    // swiftlint:disable:next identifier_name
     func submitTx<TX>(_ tx: TX,
                       ethereumSignature: EthSignature?,
                       fastProcessing: Bool,
@@ -428,18 +429,18 @@ extension ChangePubKey: Equatable where T == ChangePubKeyOnchain {
     }
 
     static var defaultTX: ChangePubKey<ChangePubKeyOnchain> {
-        let tx = ChangePubKey<ChangePubKeyOnchain>(accountId: 55,
-                                                   account: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
-                                                   newPkHash: "sync:18e8446d7748f2de52b28345bdbc76160e6b35eb",
-                                                   feeToken: 0,
-                                                   fee: "1000000000",
-                                                   nonce: 13,
-                                                   timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 // swiftlint:disable:next line_length
-                                 signature: "85782959384c1728192b0fe9466a4273b6d0e78e913eea894b780e0236fc4c9d673d3833e895bce992fc113a4d16bba47ef73fed9c4fca2af09ed06cd6885802")
-        tx.ethAuthData = ChangePubKeyOnchain()
-        return tx
+        let changePubKey = ChangePubKey<ChangePubKeyOnchain>(accountId: 55,
+                                                             account: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                                                             newPkHash: "sync:18e8446d7748f2de52b28345bdbc76160e6b35eb",
+                                                             feeToken: 0,
+                                                             fee: "1000000000",
+                                                             nonce: 13,
+                                                             timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
+        changePubKey.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                           // swiftlint:disable:next line_length
+                                           signature: "85782959384c1728192b0fe9466a4273b6d0e78e913eea894b780e0236fc4c9d673d3833e895bce992fc113a4d16bba47ef73fed9c4fca2af09ed06cd6885802")
+        changePubKey.ethAuthData = ChangePubKeyOnchain()
+        return changePubKey
     }
 }
 
@@ -457,16 +458,16 @@ extension ForcedExit: Equatable {
     }
 
     static var defaultTX: ForcedExit {
-        let tx = ForcedExit(initiatorAccountId: 44,
-                            target: "0x19aa2ed8712072e918632259780e587698ef58df",
-                            token: 0,
-                            fee: "1000000",
-                            nonce: 12,
-                            timeRange: .max)
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 // swiftlint:disable:next line_length
-                                 signature: "b1b82f7ac37e2d4bd675e4a5cd5e48d9fad1739282db8a979c3e4d9e39d794915667ee2c125ba24f4fe81ad6d19491eef0be849a823ea6567517b7e207214705")
-        return tx
+        let forcedExit = ForcedExit(initiatorAccountId: 44,
+                                    target: "0x19aa2ed8712072e918632259780e587698ef58df",
+                                    token: 0,
+                                    fee: "1000000",
+                                    nonce: 12,
+                                    timeRange: .max)
+        forcedExit.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                         // swiftlint:disable:next line_length
+                                         signature: "b1b82f7ac37e2d4bd675e4a5cd5e48d9fad1739282db8a979c3e4d9e39d794915667ee2c125ba24f4fe81ad6d19491eef0be849a823ea6567517b7e207214705")
+        return forcedExit
     }
 }
 
@@ -486,17 +487,18 @@ extension Transfer: Equatable {
     }
 
     static var defaultTX: Transfer {
-        let tx = Transfer(accountId: 44,
-                          from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
-                          to: "0x19aa2ed8712072e918632259780e587698ef58df",
-                          token: 0,
-                          amount: 1000000000000,
-                          fee: "1000000",
-                          nonce: 12,
-                          timeRange: .max)
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 signature: "b3211c7e15d31d64619e0c7f65fce8c6e45637b5cfc8711478c5a151e6568d875ec7f48e040225fe3cc7f1e7294625cad6d98b4595d007d36ef62122de16ae01")
-        return tx
+        let defaultTX = Transfer(accountId: 44,
+                                 from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                                 to: "0x19aa2ed8712072e918632259780e587698ef58df",
+                                 token: 0,
+                                 amount: 1000000000000,
+                                 fee: "1000000",
+                                 nonce: 12,
+                                 timeRange: .max)
+        defaultTX.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                        // swiftlint:disable:next line_length
+                                        signature: "b3211c7e15d31d64619e0c7f65fce8c6e45637b5cfc8711478c5a151e6568d875ec7f48e040225fe3cc7f1e7294625cad6d98b4595d007d36ef62122de16ae01")
+        return defaultTX
     }
 }
 
@@ -517,18 +519,18 @@ extension Withdraw: Equatable {
     }
 
     static var defaultTX: Withdraw {
-        let tx = Withdraw(accountId: 44,
-                          from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
-                          to: "0x19aa2ed8712072e918632259780e587698ef58df",
-                          token: 0,
-                          amount: 1000000000000,
-                          fee: "1000000",
-                          nonce: 12,
-                          timeRange: .max)
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 // swiftlint:disable:next line_length
-                                 signature: "11dc47fced9e6ffabe33112a4280c02d0c1ffa649ba3843eec256d427b90ed82e495c0cee2138d5a9e20328d31cb97b70d7e2ede0d8d967678803f4b5896f701")
-        return tx
+        let withdraw = Withdraw(accountId: 44,
+                                from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                                to: "0x19aa2ed8712072e918632259780e587698ef58df",
+                                token: 0,
+                                amount: 1000000000000,
+                                fee: "1000000",
+                                nonce: 12,
+                                timeRange: .max)
+        withdraw.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                       // swiftlint:disable:next line_length
+                                       signature: "11dc47fced9e6ffabe33112a4280c02d0c1ffa649ba3843eec256d427b90ed82e495c0cee2138d5a9e20328d31cb97b70d7e2ede0d8d967678803f4b5896f701")
+        return withdraw
     }
 }
 
@@ -547,17 +549,17 @@ extension MintNFT: Equatable {
     }
 
     static var defaultTX: MintNFT {
-        let tx = MintNFT(creatorId: 44,
-                         creatorAddress: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
-                         contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123",
-                         recipient: "0x19aa2ed8712072e918632259780e587698ef58df",
-                         fee: "1000000",
-                         feeToken: 0,
-                         nonce: 12)
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 // swiftlint:disable:next line_length
-                                 signature: "5cf4ef4680d58e23ede08cc2f8dd33123c339788721e307a813cdf82bc0bac1c10bc861c68d0b5328e4cb87b610e4dfdc13ddf8a444a4a2ac374ac3c73dbec05")
-        return tx
+        let mintNFT = MintNFT(creatorId: 44,
+                              creatorAddress: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                              contentHash: "0x0000000000000000000000000000000000000000000000000000000000000123",
+                              recipient: "0x19aa2ed8712072e918632259780e587698ef58df",
+                              fee: "1000000",
+                              feeToken: 0,
+                              nonce: 12)
+        mintNFT.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                      // swiftlint:disable:next line_length
+                                      signature: "5cf4ef4680d58e23ede08cc2f8dd33123c339788721e307a813cdf82bc0bac1c10bc861c68d0b5328e4cb87b610e4dfdc13ddf8a444a4a2ac374ac3c73dbec05")
+        return mintNFT
     }
 }
 
@@ -578,17 +580,18 @@ extension WithdrawNFT: Equatable {
     }
 
     static var defaultTX: WithdrawNFT {
-        let tx = WithdrawNFT(accountId: 44,
-                             from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
-                             to: "0x19aa2ed8712072e918632259780e587698ef58df",
-                             token: 100000,
-                             feeToken: 0,
-                             fee: "1000000",
-                             nonce: 12,
-                             timeRange: .max)
-        tx.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
-                                 signature: "1236180fe01b42c0c3c084d152b0582e714fa19da85900777e811f484a5b3ea434af320f66c7c657a33024d7be22cea44b7406d0af88c097a9d7d6b5d7154d02")
-        return tx
+        let withdrawNFT = WithdrawNFT(accountId: 44,
+                                      from: "0xede35562d3555e61120a151b3c8e8e91d83a378a",
+                                      to: "0x19aa2ed8712072e918632259780e587698ef58df",
+                                      token: 100000,
+                                      feeToken: 0,
+                                      fee: "1000000",
+                                      nonce: 12,
+                                      timeRange: .max)
+        withdrawNFT.signature = Signature(pubKey: "40771354dc314593e071eaf4d0f42ccb1fad6c7006c57464feeb7ab5872b7490",
+                                          // swiftlint:disable:next line_length
+                                          signature: "1236180fe01b42c0c3c084d152b0582e714fa19da85900777e811f484a5b3ea434af320f66c7c657a33024d7be22cea44b7406d0af88c097a9d7d6b5d7154d02")
+        return withdrawNFT
     }
 }
 
@@ -683,4 +686,5 @@ extension EthSignature: Equatable {
         return lhs.signature == rhs.signature &&
             lhs.type == lhs.type
     }
+    // swiftlint:disable:next file_length
 }

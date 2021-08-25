@@ -26,7 +26,8 @@ class AccountStateViewController: UIViewController, WalletConsumer {
         super.viewDidLoad()
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
-        self.tableView.register(UINib(nibName: "StateSectionHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "StateHeader")
+        self.tableView.register(UINib(nibName: "StateSectionHeaderView", bundle: nil),
+                                forHeaderFooterViewReuseIdentifier: "StateHeader")
 
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60
@@ -74,14 +75,20 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0, 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceCell") ?? UITableViewCell.init(style: .subtitle, reuseIdentifier: "BalanceCell")
-            let balances = indexPath.section == 0 ? self.accountState!.committed.balances : self.accountState!.verified.balances
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceCell")
+                ?? UITableViewCell.init(style: .subtitle, reuseIdentifier: "BalanceCell")
+            let balances = indexPath.section == 0
+                ? self.accountState!.committed.balances
+                : self.accountState!.verified.balances
             let key = Array(balances)[indexPath.row].key
             cell.textLabel?.text = key
             cell.detailTextLabel?.text = balances[key]
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Depositing", for: indexPath) as! DepositingBalanceTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Depositing",
+                                                           for: indexPath) as? DepositingBalanceTableViewCell else {
+                return UITableViewCell()
+            }
             let balances = self.accountState!.depositing.balances
             let key = Array(balances)[indexPath.row].key
             let balance = balances[key]!
@@ -98,7 +105,8 @@ extension AccountStateViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0, 1:
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "StateHeader") as? StateSectionHeaderView
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "StateHeader")
+                as? StateSectionHeaderView
             let state = section == 0 ? self.accountState?.committed : accountState?.verified
             headerView?.nonceLabel.text = "\(state?.nonce ?? 0)"
             headerView?.pubKeyHashLabel.text = state?.pubKeyHash

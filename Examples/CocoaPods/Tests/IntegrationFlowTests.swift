@@ -12,6 +12,7 @@ import web3swift_zksync
 import PromiseKit
 import BigInt
 
+// swiftlint:disable:next type_body_length
 class IntegrationFlowTests: XCTestCase {
     static let PrivateKey = "0x543b4b129b397dd460fe417276a0f6b83ae65f0d6d747ec1ea310e7adca2dc49"
     //static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
@@ -32,8 +33,9 @@ class IntegrationFlowTests: XCTestCase {
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
 
+        let pollInterval = DispatchTimeInterval.milliseconds(100)
         pollingTransactionReceiptProcessor = PollingTransactionReceiptProcessor(provider,
-                                                                                pollInterval: DispatchTimeInterval.milliseconds(100),
+                                                                                pollInterval: pollInterval,
                                                                                 attempts: 50)
     }
 
@@ -61,7 +63,8 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .changePubKeyECDSA,
                                                        address: self.wallet.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -133,6 +136,7 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_05_TransferFunds() throws {
         let exp = expectation(description: "transfer")
 
@@ -143,7 +147,8 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .transfer,
                                                        address: self.ethSigner.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, _) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -166,21 +171,21 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHash = try? finalResult?.result.get() else {
-            XCTFail()
+            XCTFail("Hash should be valid.")
             return
         }
 
         var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        let transactionReceiptExpectation = expectation(description: "Transaction expectation")
         firstly {
             self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
         }.pipe {
             transactionDetailsResult = $0
-            pollingTransactionReceiptProcessorExpectation.fulfill()
+            transactionReceiptExpectation.fulfill()
         }
 
-        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
@@ -189,10 +194,11 @@ class IntegrationFlowTests: XCTestCase {
         case .rejected(let error):
             XCTFail("\(error)")
         default:
-            XCTFail()
+            XCTFail("Unknown result.")
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_06_BatchTransferFunds() throws {
         let exp = expectation(description: "transfer")
 
@@ -215,8 +221,8 @@ class IntegrationFlowTests: XCTestCase {
 
             return self.wallet.provider.transactionFeePromise(request: request)
                 .map(on: self.queue) { ($0, state) }
+            // swiftlint:disable:next line_length
         }.then(on: queue) { (feeDetails, state) -> Promise<(SignedTransaction<Transfer>, TransactionFee, AccountState)> in
-
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.buildSignedTransferTx(to: self.ethSigner.address,
@@ -227,7 +233,8 @@ class IntegrationFlowTests: XCTestCase {
                                                      nonce: state.committed.nonce,
                                                      timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
                 .map(on: self.queue) { ($0, fee, state) }
-        }.then(on: queue) { (tx, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
+            // swiftlint:disable:next line_length
+        }.then(on: queue) { (signedTransaction, fee, state) -> Promise<(SignedTransaction<Withdraw>, SignedTransaction<Transfer>, TransactionFee, AccountState)> in
             self.wallet.buildSignedWithdrawTx(to: self.ethSigner.address,
                                               tokenIdentifier: fee.feeToken,
                                               amount: Web3.Utils.parseToBigUInt("2000000", units: .Gwei)!,
@@ -235,12 +242,19 @@ class IntegrationFlowTests: XCTestCase {
                                               accountId: state.id!,
                                               nonce: state.committed.nonce,
                                               timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
-                .map(on: self.queue) { ($0, tx, fee, state) }
+                .map(on: self.queue) { ($0, signedTransaction, fee, state) }
         }.then(on: queue) { (tx1, tx2, _, _) -> Promise<[String]> in
-            let t1 = TransactionSignaturePair(tx: tx1.transaction, signature: tx1.ethereumSignature)
-            let t2 = TransactionSignaturePair(tx: tx2.transaction, signature: tx2.ethereumSignature)
+            let firstTransactionSignaturePair = TransactionSignaturePair(tx: tx1.transaction,
+                                                                         signature: tx1.ethereumSignature)
 
-            return self.wallet.provider.submitTxBatchPromise(txs: [t1, t2])
+            let secondTransactionSignaturePair = TransactionSignaturePair(tx: tx2.transaction,
+                                                                          signature: tx2.ethereumSignature)
+
+            let transactionSignaturePairs = [
+                firstTransactionSignaturePair,
+                secondTransactionSignaturePair
+            ]
+            return self.wallet.provider.submitTxBatchPromise(txs: transactionSignaturePairs)
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -256,22 +270,22 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHashes = try? finalResult?.result.get().compactMap({ $0 }) else {
-            XCTFail()
+            XCTFail("Hashes should be valid.")
             return
         }
 
         for txHash in txHashes {
             var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-            let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+            let transactionReceiptExpectation = expectation(description: "Transaction expectation")
             firstly {
                 self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
             }.pipe {
                 transactionDetailsResult = $0
-                pollingTransactionReceiptProcessorExpectation.fulfill()
+                transactionReceiptExpectation.fulfill()
             }
 
-            wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+            wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
             switch transactionDetailsResult {
             case .fulfilled(let transactionDetails):
@@ -280,11 +294,12 @@ class IntegrationFlowTests: XCTestCase {
             case .rejected(let error):
                 XCTFail("\(error)")
             default:
-                XCTFail()
+                XCTFail("Unknown result.")
             }
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_07_Withdraw() throws {
         let exp = expectation(description: "withdraw")
 
@@ -294,7 +309,8 @@ class IntegrationFlowTests: XCTestCase {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .withdraw, address: self.wallet.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -318,21 +334,21 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHash = try? finalResult?.result.get() else {
-            XCTFail()
+            XCTFail("Hash should be valid.")
             return
         }
 
         var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        let transactionReceiptExpectation = expectation(description: "Transaction expectation")
         firstly {
             self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
         }.pipe {
             transactionDetailsResult = $0
-            pollingTransactionReceiptProcessorExpectation.fulfill()
+            transactionReceiptExpectation.fulfill()
         }
 
-        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
@@ -341,10 +357,11 @@ class IntegrationFlowTests: XCTestCase {
         case .rejected(let error):
             XCTFail("\(error)")
         default:
-            XCTFail()
+            XCTFail("Unknown result.")
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_08_ForcedExit() throws {
         let exp = expectation(description: "forcedExit")
 
@@ -355,7 +372,8 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .forcedExit,
                                                        address: self.ethSigner.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -377,21 +395,21 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHash = try? finalResult?.result.get() else {
-            XCTFail()
+            XCTFail("Hash should be valid.")
             return
         }
 
         var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        let transactionReceiptExpectation = expectation(description: "Transaction expectation")
         firstly {
             self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
         }.pipe {
             transactionDetailsResult = $0
-            pollingTransactionReceiptProcessorExpectation.fulfill()
+            transactionReceiptExpectation.fulfill()
         }
 
-        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
@@ -400,10 +418,11 @@ class IntegrationFlowTests: XCTestCase {
         case .rejected(let error):
             XCTFail("\(error)")
         default:
-            XCTFail()
+            XCTFail("Unknown result.")
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_09_MintNFT() throws {
         let exp = expectation(description: "mintNFT")
 
@@ -414,7 +433,8 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .mintNFT,
                                                        address: state.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -440,21 +460,21 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHash = try? finalResult?.result.get() else {
-            XCTFail()
+            XCTFail("Hash should be valid.")
             return
         }
 
         var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        let transactionReceiptExpectation = expectation(description: "Transaction expectation")
         firstly {
             self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
         }.pipe {
             transactionDetailsResult = $0
-            pollingTransactionReceiptProcessorExpectation.fulfill()
+            transactionReceiptExpectation.fulfill()
         }
 
-        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
@@ -463,10 +483,11 @@ class IntegrationFlowTests: XCTestCase {
         case .rejected(let error):
             XCTFail("\(error)")
         default:
-            XCTFail()
+            XCTFail("Unknown result.")
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_10_WithdrawNFT() throws {
         let exp = expectation(description: "withdrawNFT")
 
@@ -477,7 +498,8 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { state in
             self.wallet.provider.transactionFeePromise(for: .withdrawNFT,
                                                        address: state.address,
-                                                       tokenIdentifier: Token.ETH.address).map(on: self.queue) { ($0, state) }
+                                                       tokenIdentifier: Token.ETH.address)
+                .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
@@ -500,21 +522,21 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHash = try? finalResult?.result.get() else {
-            XCTFail()
+            XCTFail("Hash should be valid.")
             return
         }
 
         var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-        let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+        let transactionReceiptExpectation = expectation(description: "Transaction expectation")
         firstly {
             self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
         }.pipe {
             transactionDetailsResult = $0
-            pollingTransactionReceiptProcessorExpectation.fulfill()
+            transactionReceiptExpectation.fulfill()
         }
 
-        wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+        wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
@@ -523,10 +545,11 @@ class IntegrationFlowTests: XCTestCase {
         case .rejected(let error):
             XCTFail("\(error)")
         default:
-            XCTFail()
+            XCTFail("Unknown result.")
         }
     }
 
+    // swiftlint:disable:next function_body_length
     func test_11_TransferNFT() throws {
         let exp = expectation(description: "withdrawNFT")
 
@@ -565,22 +588,22 @@ class IntegrationFlowTests: XCTestCase {
         }
 
         guard let txHashes = try? finalResult?.result.get().compactMap({ $0 }) else {
-            XCTFail()
+            XCTFail("Hashes should be valid.")
             return
         }
 
         for txHash in txHashes {
             var transactionDetailsResult: PromiseKit.Result<ZKSync.TransactionDetails>?
 
-            let pollingTransactionReceiptProcessorExpectation = expectation(description: "Transaction expectation")
+            let transactionReceiptExpectation = expectation(description: "Transaction expectation")
             firstly {
                 self.pollingTransactionReceiptProcessor.waitForTransaction(txHash, transactionStatus: .commited)
             }.pipe {
                 transactionDetailsResult = $0
-                pollingTransactionReceiptProcessorExpectation.fulfill()
+                transactionReceiptExpectation.fulfill()
             }
 
-            wait(for: [pollingTransactionReceiptProcessorExpectation], timeout: 60.0)
+            wait(for: [transactionReceiptExpectation], timeout: 60.0)
 
             switch transactionDetailsResult {
             case .fulfilled(let transactionDetails):
@@ -589,7 +612,7 @@ class IntegrationFlowTests: XCTestCase {
             case .rejected(let error):
                 XCTFail("\(error)")
             default:
-                XCTFail()
+                XCTFail("Unknown result.")
             }
         }
     }
@@ -619,7 +642,6 @@ class IntegrationFlowTests: XCTestCase {
     }
 
     func test_13_GetTransactionFeeBatch() throws {
-
         let transactions = [
             TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
             TransactionTypeAddressPair(transactionType: .transfer,
@@ -685,4 +707,5 @@ class IntegrationFlowTests: XCTestCase {
             break
         }
     }
+    // swiftlint:disable:next file_length
 }
