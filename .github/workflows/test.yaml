@@ -14,7 +14,12 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: fwal/setup-swift@v1
+      with:
+        swift-version: "5.4.2"
+
+    - name: Get swift version
+      run: swift --version
 
     - name: Install Cocoapods
       run: gem install cocoapods
