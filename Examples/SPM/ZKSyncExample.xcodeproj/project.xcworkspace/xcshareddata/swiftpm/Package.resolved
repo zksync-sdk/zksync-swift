@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "4e31051c63cc0ddf10a25cf5318856c510cf77f4",
-          "version": "1.4.0"
+          "revision": "8d4f6384e0a8cc41f2005247241dd553963a492a",
+          "version": "1.4.1"
         }
       },
       {
@@ -59,8 +59,8 @@
         "package": "ZKSync",
         "repositoryURL": "https://github.com/zksync-sdk/zksync-swift.git",
         "state": {
-          "branch": "mm/add-spm-support",
-          "revision": "56479f6ca98e6619cd78676ed115951cf7cd4fb5",
+          "branch": "master",
+          "revision": "21a52ec1d0d6c841bba26da828cd607a40396e69",
           "version": null
         }
       }

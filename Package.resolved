@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "4e31051c63cc0ddf10a25cf5318856c510cf77f4",
-          "version": "1.4.0"
+          "revision": "8d4f6384e0a8cc41f2005247241dd553963a492a",
+          "version": "1.4.1"
         }
       },
       {
@@ -48,10 +48,10 @@
       },
       {
         "package": "Web3swift",
-        "repositoryURL": "https://github.com/skywinder/web3swift.git",
+        "repositoryURL": "https://github.com/zksync-sdk/web3swift.git",
         "state": {
           "branch": "develop",
-          "revision": "262d48bc248d97aa53f25719acadb49c8527b25b",
+          "revision": "b7f162ce6c289589b465c739997d5c5a11be5120",
           "version": null
         }
       }
