@@ -7,7 +7,7 @@
 
 import Foundation
 import BigInt
-import web3swift
+import web3swift_zksync
 import PromiseKit
 
 public typealias ZKSyncCompletion<T> = (ZKSyncResult<T>) -> Void

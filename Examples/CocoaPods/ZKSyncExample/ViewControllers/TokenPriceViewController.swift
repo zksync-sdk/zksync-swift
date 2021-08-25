@@ -12,9 +12,9 @@ import ZKSync
 class TokenPriceViewController: UIViewController, WalletConsumer {
 
     var wallet: Wallet!
-    
+
     @IBOutlet weak var tokenPriceLabel: UILabel!
-    
+
     @IBAction func getTokenPRice(_ sender: Any) {
         wallet.provider.tokenPrice(token: Token.ETH) { (result) in
             switch result {

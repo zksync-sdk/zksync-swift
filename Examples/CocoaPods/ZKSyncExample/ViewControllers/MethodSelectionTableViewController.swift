@@ -9,36 +9,35 @@
 import UIKit
 import ZKSync
 import PromiseKit
-import web3swift
+import web3swift_zksync
 
 class MethodSelectionTableViewController: UITableViewController, WalletConsumer {
     var wallet: Wallet!
-    
+
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var ethBalanceLabel: UILabel!
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if var destination = segue.destination as? WalletConsumer {
             destination.wallet = wallet
         }
     }
-    
-    
+
     override func viewDidLoad() {
-        
+
         self.wallet.getAccountState { (result) in
             self.updateBalances(state: try? result.get())
         }
     }
-    
+
     private func weiToETH(string: String) -> String? {
         guard let value = Web3.Utils.parseToBigUInt(string, units: .wei) else {
             return nil
         }
         return Web3.Utils.formatToEthereumUnits(value)
     }
-    
+
     private func updateBalances(state: AccountState?) {
         self.addressLabel.text = state?.address
         self.balanceLabel.text = weiToETH(string: state?.committed.balances["ETH"] ?? "0")
@@ -49,7 +48,7 @@ class MethodSelectionTableViewController: UITableViewController, WalletConsumer 
             self.present(UIAlertController.for(error: error), animated: true, completion: nil)
         }
     }
-    
+
     @IBAction func copyAddress(_ sender: Any) {
         UIPasteboard.general.string = self.addressLabel.text
     }

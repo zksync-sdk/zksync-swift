@@ -8,20 +8,20 @@
 
 import UIKit
 import ZKSync
-import web3swift
+import web3swift_zksync
 import BigInt
 import PromiseKit
 
 class WithdrawViewController: UIViewController, WalletConsumer {
 
     var wallet: Wallet!
-    
+
     @IBOutlet weak var amountTextField: UITextField!
-    
+
     @IBAction func withdraw(_ sender: Any) {
-        
+
         amountTextField.resignFirstResponder()
-            
+
         guard let amountText = amountTextField.text,
               let amount = Web3.Utils.parseToBigUInt(amountText, units: .eth),
               amount > 0 else {
@@ -45,13 +45,13 @@ class WithdrawViewController: UIViewController, WalletConsumer {
                                                nonce: state.committed.nonce,
                                                fastProcessing: false,
                                                timeRange: TimeRange(validFrom: 0, validUntil: 4294967295))
-        }.done { (result) in
+        }.done { (_) in
             self.present(UIAlertController.for(message: "Successfully withdrawn"), animated: true, completion: nil)
         }.catch { (error) in
             self.present(UIAlertController.for(error: error), animated: true, completion: nil)
         }
     }
-    
+
     func showAmountError() {
         self.present(UIAlertController.forIncorrectAmount(), animated: true, completion: nil)
     }

@@ -13,7 +13,7 @@
 		8A2A29C7268914AE0021FFC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A2A29C5268914AE0021FFC4 /* Main.storyboard */; };
 		8A2A29C9268914B00021FFC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A2A29C8268914B00021FFC4 /* Assets.xcassets */; };
 		8A2A29CC268914B00021FFC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A2A29CA268914B00021FFC4 /* LaunchScreen.storyboard */; };
-		8A2A29D6268915B10021FFC4 /* ZKSync in Frameworks */ = {isa = PBXBuildFile; productRef = 8A2A29D5268915B10021FFC4 /* ZKSync */; };
+		8A9B298B26D5C829001A7ECE /* ZKSync in Frameworks */ = {isa = PBXBuildFile; productRef = 8A9B298A26D5C829001A7ECE /* ZKSync */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A2A29D6268915B10021FFC4 /* ZKSync in Frameworks */,
+				8A9B298B26D5C829001A7ECE /* ZKSync in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 			);
 			name = ZKSyncExample;
 			packageProductDependencies = (
-				8A2A29D5268915B10021FFC4 /* ZKSync */,
+				8A9B298A26D5C829001A7ECE /* ZKSync */,
 			);
 			productName = ZKSyncTest;
 			productReference = 8A2A29BC268914AE0021FFC4 /* ZKSyncExample.app */;
@@ -116,7 +116,7 @@
 			);
 			mainGroup = 8A2A29B3268914AE0021FFC4;
 			packageReferences = (
-				8A2A29D4268915B10021FFC4 /* XCRemoteSwiftPackageReference "zksync-swift" */,
+				8A9B298926D5C829001A7ECE /* XCRemoteSwiftPackageReference "zksync-swift" */,
 			);
 			productRefGroup = 8A2A29BD268914AE0021FFC4 /* Products */;
 			projectDirPath = "";
@@ -351,20 +351,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8A2A29D4268915B10021FFC4 /* XCRemoteSwiftPackageReference "zksync-swift" */ = {
+		8A9B298926D5C829001A7ECE /* XCRemoteSwiftPackageReference "zksync-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/zksync-sdk/zksync-swift.git";
 			requirement = {
-				branch = "mm/add-spm-support";
+				branch = master;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8A2A29D5268915B10021FFC4 /* ZKSync */ = {
+		8A9B298A26D5C829001A7ECE /* ZKSync */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8A2A29D4268915B10021FFC4 /* XCRemoteSwiftPackageReference "zksync-swift" */;
+			package = 8A9B298926D5C829001A7ECE /* XCRemoteSwiftPackageReference "zksync-swift" */;
 			productName = ZKSync;
 		};
 /* End XCSwiftPackageProductDependency section */

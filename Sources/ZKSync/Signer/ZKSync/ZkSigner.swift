@@ -235,7 +235,7 @@ public class ZkSigner {
 }
 
 
-@_functionBuilder
+@resultBuilder
 struct MessageBuilder {
     static func buildBlock(_ components: Data...) -> Data {
         components.reduce(into: Data()) { (result, data) in
