@@ -25,4 +25,4 @@ jobs:
 
     - name: Run tests
       working-directory: ./Examples/CocoaPods
-      run: xcodebuild -workspace ZKSyncExample.xcworkspace -scheme ZKSyncExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' test
+      run: xcodebuild -workspace ZKSyncExample.xcworkspace -scheme ZKSyncExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max,OS=14.5' test
