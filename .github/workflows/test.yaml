@@ -11,15 +11,10 @@ on:
 
 jobs:
   test:
-    runs-on: macOS-latest
+    runs-on: macos-11
 
     steps:
-    - uses: fwal/setup-swift@v1
-      with:
-        swift-version: "5.4.2"
-
-    - name: Get swift version
-      run: swift --version
+    - uses: actions/checkout@v1
 
     - name: Install Cocoapods
       run: gem install cocoapods
