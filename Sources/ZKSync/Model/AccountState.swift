@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import BigInt
 
 public struct AccountState: Decodable {
     public struct Balance: Decodable {

@@ -381,6 +381,9 @@ class MockProvider: Provider {
 
     func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void) {
     }
+
+    func toggle2FA(toggle2FA: Toggle2FA, completion: @escaping (ZKSyncResult<Bool>) -> Void) {
+    }
 }
 
 extension AccountState: Equatable {

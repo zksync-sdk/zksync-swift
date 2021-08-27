@@ -6,6 +6,5 @@
 //
 
 import Foundation
-import BigInt
 
 public typealias ZKSyncResult<T> = Result<T, Error>

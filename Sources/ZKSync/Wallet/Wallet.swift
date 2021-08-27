@@ -47,6 +47,10 @@ public protocol Wallet {
     
     func createEthereumProvider(web3: web3) throws -> EthereumProvider
     
+    func enable2FA(completion: @escaping (ZKSyncResult<Bool>) -> Void) throws
+    
+    func disable2FA(completion: @escaping (ZKSyncResult<Bool>) -> Void) throws
+    
     func buildSignedChangePubKeyTxOnchain(fee: TransactionFee,
                                           accountId: UInt32,
                                           nonce: UInt32,

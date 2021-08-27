@@ -84,4 +84,8 @@ public extension Provider {
     func ethTxForWithdrawal(withdrawalHash: String) -> Promise<String> {
         return Promise { ethTxForWithdrawal(withdrawalHash: withdrawalHash, completion: $0.resolve) }
     }
+    
+    func toggle2FA(toggle2FA: Toggle2FA) -> Promise<Bool> {
+        return Promise { self.toggle2FA(toggle2FA: toggle2FA, completion: $0.resolve) }
+    }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import BigInt
 
 extension DefaultProvider {
     public func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void) {

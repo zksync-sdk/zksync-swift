@@ -10,7 +10,10 @@ import XCTest
 @testable import ZKSync
 import web3swift_zksync
 import PromiseKit
-import BigInt
+
+enum InternalError: LocalizedError {
+    case invalidToken
+}
 
 // swiftlint:disable:next type_body_length
 class IntegrationFlowTests: XCTestCase {
@@ -503,8 +506,14 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
+
+            guard let token = state.committed.nfts?.first?.value else {
+                XCTFail("Token not available")
+                return .init(error: InternalError.invalidToken)
+            }
+
             return self.wallet.withdrawNFT(to: state.address,
-                                           token: state.committed.nfts!.first!.value,
+                                           token: token,
                                            fee: fee,
                                            nonce: nil)
         }.pipe {
@@ -705,6 +714,50 @@ class IntegrationFlowTests: XCTestCase {
             XCTFail("\(error)")
         default:
             break
+        }
+    }
+
+    func test_16_Enable2FA() {
+        let exp = expectation(description: "enable2FA")
+        var finalResult: Swift.Result<Bool, Error>?
+
+        do {
+            try self.wallet.enable2FA { result in
+                finalResult = result
+                exp.fulfill()
+            }
+            waitForExpectations(timeout: 60, handler: nil)
+
+            switch finalResult {
+            case .failure(let error):
+                XCTFail("\(error)")
+            default:
+                break
+            }
+        } catch {
+            XCTFail("Failed with error: \(error.localizedDescription)")
+        }
+    }
+
+    func test_16_Disable2FA() {
+        let exp = expectation(description: "disable2FA")
+        var finalResult: Swift.Result<Bool, Error>?
+
+        do {
+            try self.wallet.disable2FA { result in
+                finalResult = result
+                exp.fulfill()
+            }
+            waitForExpectations(timeout: 60, handler: nil)
+
+            switch finalResult {
+            case .failure(let error):
+                XCTFail("\(error)")
+            default:
+                break
+            }
+        } catch {
+            XCTFail("Failed with error: \(error.localizedDescription)")
         }
     }
     // swiftlint:disable:next file_length

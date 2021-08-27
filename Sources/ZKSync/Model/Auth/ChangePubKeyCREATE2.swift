@@ -9,7 +9,7 @@ import Foundation
 
 public struct ChangePubKeyCREATE2: ChangePubKeyVariant {
     
-    public let type: ChangePubKeyAuthType = .CREATE2;
+    public let type: ChangePubKeyAuthType = .CREATE2
 
     public var creatorAddress: String
     public var saltArg: String
