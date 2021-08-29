@@ -13,7 +13,7 @@ public struct Toggle2FA: Encodable {
     
     public var accountId: UInt32
     
-    public var timestamp: TimeInterval
+    public var timestamp: Int64
     
-    public var ethSignature: EthSignature
+    public var signature: EthSignature
 }

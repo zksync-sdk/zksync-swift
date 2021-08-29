@@ -46,11 +46,11 @@ public extension Wallet {
         return Promise { self.swap(order1: order1, order2: order2, amount1: amount1, amount2: amount2, fee: fee, nonce: nonce, completion: $0.resolve)}
     }
     
-    func enable2FA() throws -> Promise<Bool> {
+    func enable2FA() throws -> Promise<Toggle2FAInfo> {
         return Promise { try enable2FA(completion: $0.resolve) }
     }
     
-    func disable2FA() throws -> Promise<Bool> {
+    func disable2FA() throws -> Promise<Toggle2FAInfo> {
         return Promise { try disable2FA(completion: $0.resolve) }
     }
 }

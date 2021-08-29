@@ -40,5 +40,5 @@ public protocol EthSigner {
 
     func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool
     
-    func signToggle(_ enable: Bool, timestamp: TimeInterval) throws -> EthSignature
+    func signToggle(_ enable: Bool, timestamp: Int64) throws -> EthSignature
 }

@@ -32,7 +32,7 @@ class IntegrationFlowTests: XCTestCase {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
         zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
 
-        let provider = DefaultProvider(chainId: .ropsten)
+        let provider = DefaultProvider(chainId: .rinkeby)
         wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
         ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
 
@@ -719,7 +719,7 @@ class IntegrationFlowTests: XCTestCase {
 
     func test_16_Enable2FA() {
         let exp = expectation(description: "enable2FA")
-        var finalResult: Swift.Result<Bool, Error>?
+        var finalResult: Swift.Result<Toggle2FAInfo, Error>?
 
         do {
             try self.wallet.enable2FA { result in
@@ -739,9 +739,9 @@ class IntegrationFlowTests: XCTestCase {
         }
     }
 
-    func test_16_Disable2FA() {
+    func test_17_Disable2FA() {
         let exp = expectation(description: "disable2FA")
-        var finalResult: Swift.Result<Bool, Error>?
+        var finalResult: Swift.Result<Toggle2FAInfo, Error>?
 
         do {
             try self.wallet.disable2FA { result in
