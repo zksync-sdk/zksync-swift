@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import BigInt
 
 extension DefaultProvider {
     public func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void) {

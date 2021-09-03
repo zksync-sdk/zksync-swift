@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import BigInt
 
 public protocol Provider {
     
@@ -42,6 +41,8 @@ public protocol Provider {
     func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void)
     
     func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void)
+    
+    func toggle2FA(toggle2FA: Toggle2FA, completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void)
 }
 
 public extension Provider {

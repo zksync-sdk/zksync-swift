@@ -145,4 +145,10 @@ public class DefaultEthSigner: EthSigner {
         
         return publicKeyData == keystorePublicKeyData
     }
+    
+    public func signToggle(_ enable: Bool, timestamp: Int64) throws -> EthSignature {
+        let message = createToggle2FAMessage(require2FA: enable, timestamp: timestamp)
+        
+        return try sign(message: message.data(using: .utf8)!)
+    }
 }

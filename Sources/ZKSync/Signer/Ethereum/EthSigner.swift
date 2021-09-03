@@ -39,4 +39,6 @@ public protocol EthSigner {
     func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature
 
     func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool
+    
+    func signToggle(_ enable: Bool, timestamp: Int64) throws -> EthSignature
 }

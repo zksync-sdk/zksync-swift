@@ -14,8 +14,7 @@ public extension Wallet {
         return Promise { self.getAccountState(completion: $0.resolve) }
     }
     
-    func setSigningKeyPromise(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange = .max
-    ) -> Promise<String> {
+    func setSigningKeyPromise(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange = .max) -> Promise<String> {
         return Promise { self.setSigningKey(fee: fee, nonce: nonce, oncahinAuth: oncahinAuth, timeRange: timeRange, completion: $0.resolve) }
     }
     
@@ -45,5 +44,13 @@ public extension Wallet {
     
     func swap(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, nonce: UInt32?) -> Promise<String> {
         return Promise { self.swap(order1: order1, order2: order2, amount1: amount1, amount2: amount2, fee: fee, nonce: nonce, completion: $0.resolve)}
+    }
+    
+    func enable2FA() throws -> Promise<Toggle2FAInfo> {
+        return Promise { try enable2FA(completion: $0.resolve) }
+    }
+    
+    func disable2FA() throws -> Promise<Toggle2FAInfo> {
+        return Promise { try disable2FA(completion: $0.resolve) }
     }
 }

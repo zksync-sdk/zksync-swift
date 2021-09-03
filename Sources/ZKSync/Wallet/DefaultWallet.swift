@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import BigInt
 import PromiseKit
 import web3swift_zksync
 
@@ -123,5 +122,43 @@ public class DefaultWallet: Wallet {
                             contractAddress: address,
                             walletAddress: ethSigner.ethereumAddress)
         return EthereumProvider(web3: web3, ethSigner: ethSigner, zkSync: zkSync)
+    }
+    
+    public func enable2FA(completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void) throws {
+        guard let accountId = accountId else {
+            throw DefaultWalletError.noAccountId
+        }
+        
+        let timestamp = Utils.currentTimeMillis()
+        
+        let ethSignature = try ethSigner.signToggle(true, timestamp: timestamp)
+        
+        let toggle2FA = Toggle2FA(enable: true,
+                                  accountId: accountId,
+                                  timestamp: timestamp,
+                                  signature: ethSignature)
+        
+        provider.toggle2FA(toggle2FA: toggle2FA) { result in
+            completion(result)
+        }
+    }
+    
+    public func disable2FA(completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void) throws {
+        guard let accountId = accountId else {
+            throw DefaultWalletError.noAccountId
+        }
+        
+        let timestamp = Utils.currentTimeMillis()
+        
+        let ethSignature = try ethSigner.signToggle(false, timestamp: timestamp)
+        
+        let toggle2FA = Toggle2FA(enable: false,
+                                  accountId: accountId,
+                                  timestamp: timestamp,
+                                  signature: ethSignature)
+        
+        provider.toggle2FA(toggle2FA: toggle2FA) { result in
+            completion(result)
+        }
     }
 }

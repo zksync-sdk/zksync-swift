@@ -213,4 +213,10 @@ struct Utils {
     static func format(_ value: Decimal) -> String {
         return Utils.Formatter.string(from: value as NSDecimalNumber)!
     }
+    
+    static func currentTimeMillis() -> Int64 {
+        var darwinTime: timeval = timeval(tv_sec: 0, tv_usec: 0)
+        gettimeofday(&darwinTime, nil)
+        return (Int64(darwinTime.tv_sec) * 1000) + Int64(darwinTime.tv_usec / 1000)
+    }
 }

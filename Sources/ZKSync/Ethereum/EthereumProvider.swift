@@ -19,7 +19,7 @@ public enum EthereumProviderError: Error {
 public class EthereumProvider {
     
     static let MaxApproveAmount = BigUInt.two.power(256) - 1
-    static let DefaultThreshold = BigUInt.two.power(255);
+    static let DefaultThreshold = BigUInt.two.power(255)
     
     let web3: web3
     let ethSigner: EthSigner
