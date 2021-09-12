@@ -20,7 +20,6 @@ class TransferViewController: UIViewController, WalletConsumer {
     @IBOutlet weak var amountTextField: UITextField!
 
     @IBAction func transfer(_ sender: Any) {
-
         amountTextField.resignFirstResponder()
 
         guard let amountText = amountTextField.text,

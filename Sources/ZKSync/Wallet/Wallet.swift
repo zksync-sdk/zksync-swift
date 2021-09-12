@@ -25,23 +25,68 @@ public protocol Wallet {
     
     func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void)
     
-    func setSigningKey(fee: TransactionFee, nonce: UInt32?, oncahinAuth: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
-
-    func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func setSigningKey(fee: TransactionFee,
+                       nonce: UInt32?,
+                       onchainAuth: Bool,
+                       timeRange: TimeRange,
+                       completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func transfer(to: String,
+                  amount: BigUInt,
+                  fee: TransactionFee,
+                  nonce: UInt32?,
+                  timeRange: TimeRange,
+                  completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func withdraw(ethAddress: String,
+                  amount: BigUInt,
+                  fee: TransactionFee,
+                  nonce: UInt32?,
+                  fastProcessing: Bool,
+                  timeRange: TimeRange,
+                  completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func mintNFT(recepient: String, contentHash: String, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func forcedExit(target: String,
+                    fee: TransactionFee,
+                    nonce: UInt32?,
+                    timeRange: TimeRange,
+                    completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func withdrawNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func mintNFT(recepient: String,
+                 contentHash: String,
+                 fee: TransactionFee,
+                 nonce: UInt32?,
+                 completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<[String], Error>) -> Void)
+    func withdrawNFT(to: String,
+                     token: NFT,
+                     fee: TransactionFee,
+                     nonce: UInt32?,
+                     timeRange: TimeRange,
+                     completion: @escaping (Swift.Result<String, Error>) -> Void)
     
-    func swap(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void)
+    func transferNFT(to: String,
+                     token: NFT,
+                     fee: TransactionFee,
+                     nonce: UInt32?,
+                     timeRange: TimeRange,
+                     completion: @escaping (Swift.Result<[String], Error>) -> Void)
     
-    func buildSignedOrder(recepient: String, sell: Token, buy: Token, ratio: (BigUInt, BigUInt), amount: BigUInt, nonce: UInt32, timeRange: TimeRange) throws -> Order
+    func swap(order1: Order,
+              order2: Order,
+              amount1: BigUInt,
+              amount2: BigUInt,
+              fee: TransactionFee,
+              nonce: UInt32?,
+              completion: @escaping (Swift.Result<String, Error>) -> Void)
+    
+    func buildSignedOrder(recepient: String,
+                          sell: Token,
+                          buy: Token,
+                          ratio: (BigUInt, BigUInt),
+                          amount: BigUInt,
+                          nonce: UInt32,
+                          timeRange: TimeRange) throws -> Order
     
     var isSigningKeySet: Bool { get }
     
@@ -51,37 +96,36 @@ public protocol Wallet {
     
     func disable2FA(completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void) throws
     
-    func buildSignedChangePubKeyTxOnchain(fee: TransactionFee,
-                                          accountId: UInt32,
-                                          nonce: UInt32,
-                                          timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyOnchain>>>
-    
-    func buildSignedChangePubKeyTxSigned(fee: TransactionFee,
-                                          accountId: UInt32,
-                                          nonce: UInt32,
-                                          timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyECDSA>>>
-    
-    func buildSignedForcedExitTx(target: String,
-                                 tokenIdentifier: String,
-                                 fee: BigUInt,
-                                 accountId: UInt32,
-                                 nonce: UInt32,
-                                 timeRange: TimeRange) -> Promise<SignedTransaction<ForcedExit>>
-    
-    func buildSignedTransferTx(to: String,
-                               tokenIdentifier: String,
-                               amount: BigUInt,
-                               fee: BigUInt,
-                               accountId: UInt32,
-                               nonce: UInt32,
-                               timeRange: TimeRange) -> Promise<SignedTransaction<Transfer>>
-
-    func buildSignedWithdrawTx(to: String,
-                               tokenIdentifier: String,
-                               amount: BigUInt,
-                               fee: BigUInt,
-                               accountId: UInt32,
-                               nonce: UInt32,
-                               timeRange: TimeRange) -> Promise<SignedTransaction<Withdraw>>
+//    func buildSignedChangePubKeyTxOnchain(fee: TransactionFee,
+//                                          accountId: UInt32,
+//                                          nonce: UInt32,
+//                                          timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyOnchain>>>
+//    
+//    func buildSignedChangePubKeyTx(fee: TransactionFee,
+//                                   accountId: UInt32,
+//                                   nonce: UInt32,
+//                                   timeRange: TimeRange) -> Promise<SignedTransaction<ChangePubKey<ChangePubKeyECDSA>>>
+//    
+//    func buildSignedForcedExitTx(target: String,
+//                                 tokenIdentifier: String,
+//                                 fee: BigUInt,
+//                                 accountId: UInt32,
+//                                 nonce: UInt32,
+//                                 timeRange: TimeRange) -> Promise<SignedTransaction<ForcedExit>>
+//    
+//    func buildSignedTransferTx(to: String,
+//                               tokenIdentifier: String,
+//                               amount: BigUInt,
+//                               fee: BigUInt,
+//                               accountId: UInt32,
+//                               nonce: UInt32,
+//                               timeRange: TimeRange) -> Promise<SignedTransaction<Transfer>>
+//    
+//    func buildSignedWithdrawTx(to: String,
+//                               tokenIdentifier: String,
+//                               amount: BigUInt,
+//                               fee: BigUInt,
+//                               accountId: UInt32,
+//                               nonce: UInt32,
+//                               timeRange: TimeRange) -> Promise<SignedTransaction<Withdraw>>
 }
-

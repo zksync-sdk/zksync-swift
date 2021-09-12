@@ -11,11 +11,20 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func forcedExit(target: String, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    public func forcedExit(target: String,
+                           fee: TransactionFee,
+                           nonce: UInt32?,
+                           timeRange: TimeRange,
+                           completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId: UInt32)  in
-            self.buildSignedForcedExitTx(target: target, tokenIdentifier: fee.feeToken, fee: fee.fee, accountId: accountId, nonce: nonce, timeRange: timeRange)
+            self.buildSignedForcedExitTx(target: target,
+                                         tokenIdentifier: fee.feeToken,
+                                         fee: fee.fee,
+                                         accountId: accountId,
+                                         nonce: nonce,
+                                         timeRange: timeRange)
         }.then { signedTransaction in
             self.submitSignedTransaction(signedTransaction.transaction,
                                          ethereumSignature: signedTransaction.ethereumSignature,
@@ -41,8 +50,15 @@ extension DefaultWallet {
                                         fee: fee.description,
                                         nonce: nonce,
                                         timeRange: timeRange)
-            let ethSignature = try self.ethSigner.signForcedExit(to: target, nonce: nonce, token: token, fee: fee)
-            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(forcedExit: forcedExit), ethereumSignature: ethSignature)
+            
+            let ethSignature = try self.ethSigner.signTransaction(transaction: forcedExit,
+                                                                  nonce: nonce,
+                                                                  token: token,
+                                                                  fee: fee)
+            
+            let transaction = try self.zkSigner.sign(forcedExit: forcedExit)
+            let signedTransaction = SignedTransaction(transaction: transaction,
+                                                      ethereumSignature: ethSignature)
             return signedTransaction
         }
     }

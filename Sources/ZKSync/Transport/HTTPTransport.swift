@@ -81,9 +81,9 @@ public class HTTPTransport: Transport {
 
 class JRPCDecoder: DataDecoder {
     func decode<D>(_ type: D.Type, from data: Data) throws -> D where D : Decodable {
-        let decoder = JSONDecoder()
+        NSLog("Response data: \(D.Type.self) \(String(decoding: data, as: UTF8.self)) ")
         
-        let response = try decoder.decode(JRPCResponse<D>.self, from: data)
+        let response = try JSONDecoder().decode(JRPCResponse<D>.self, from: data)
         
         guard let result = response.result else {
             guard let error = response.error else {

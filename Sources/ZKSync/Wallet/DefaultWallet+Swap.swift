@@ -11,8 +11,13 @@ import PromiseKit
 
 extension DefaultWallet {
 
-    public func swap(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, nonce: UInt32?, completion: @escaping (Swift.Result<String, Error>) -> Void) {
-        
+    public func swap(order1: Order,
+                     order2: Order,
+                     amount1: BigUInt,
+                     amount2: BigUInt,
+                     fee: TransactionFee,
+                     nonce: UInt32?,
+                     completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId) in
@@ -32,7 +37,13 @@ extension DefaultWallet {
         }
     }
 
-    public func buildSignedSwapTx(order1: Order, order2: Order, amount1: BigUInt, amount2: BigUInt, fee: TransactionFee, accountId: UInt32, nonce: UInt32) -> Promise<SignedTransaction<Swap>> {
+    public func buildSignedSwapTx(order1: Order,
+                                  order2: Order,
+                                  amount1: BigUInt,
+                                  amount2: BigUInt,
+                                  fee: TransactionFee,
+                                  accountId: UInt32,
+                                  nonce: UInt32) -> Promise<SignedTransaction<Swap>> {
         return firstly {
             self.getTokens()
         }.map { tokens in
@@ -44,8 +55,15 @@ extension DefaultWallet {
                             amounts: (amount1, amount2),
                             fee: fee.fee.description,
                             feeToken: feeToken.id)
-            let ethSignature = try self.ethSigner.signSwap(nonce: nonce, token: feeToken, fee: fee.fee)
-            return SignedTransaction(transaction: try self.zkSigner.sign(swap: swap), ethereumSignature: ethSignature)
+            
+            let ethSignature = try self.ethSigner.signTransaction(transaction: swap,
+                                                                  nonce: nonce,
+                                                                  token: feeToken,
+                                                                  fee: fee.fee)
+            
+            let transaction = try self.zkSigner.sign(swap: swap)
+            return SignedTransaction(transaction: transaction,
+                                     ethereumSignature: ethSignature)
         }
     }
 }

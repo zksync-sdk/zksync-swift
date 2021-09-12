@@ -70,13 +70,13 @@ public class PollingTransactionReceiptProcessor {
                                     break
                                     
                                 case .commited:
-                                    if transactionDetails.block.committed {
+                                    if let block = transactionDetails.block, block.committed {
                                         seal.fulfill(transactionDetails)
                                     }
                                     break
                                     
                                 case .verified:
-                                    if transactionDetails.block.verified {
+                                    if let block = transactionDetails.block, block.verified {
                                         seal.fulfill(transactionDetails)
                                     }
                                     break

@@ -24,7 +24,14 @@ public class MintNFT: ZkSyncTransaction {
 
     var feeInteger: BigUInt { BigUInt(fee)! }
 
-    public init(creatorId: UInt32, creatorAddress: String, contentHash: String, recipient: String, fee: String, feeToken: UInt32, nonce: UInt32, signature: Signature? = nil) {
+    public init(creatorId: UInt32,
+                creatorAddress: String,
+                contentHash: String,
+                recipient: String,
+                fee: String,
+                feeToken: UInt32,
+                nonce: UInt32,
+                signature: Signature? = nil) {
         self.creatorId = creatorId
         self.creatorAddress = creatorAddress
         self.contentHash = contentHash

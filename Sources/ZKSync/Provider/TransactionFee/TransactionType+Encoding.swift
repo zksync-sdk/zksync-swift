@@ -8,6 +8,7 @@
 import Foundation
 
 extension TransactionType {
+
     var feeIdentifier: String {
         switch self {
         case .withdraw, .forcedExit:

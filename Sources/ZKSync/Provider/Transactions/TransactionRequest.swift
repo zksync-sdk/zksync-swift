@@ -8,6 +8,7 @@
 import Foundation
 
 struct TransactionRequest<Transaction: Encodable>: Encodable {
+
     let tx: Transaction
     let ethereumSignature: EthSignature?
     let fastProcessing: Bool

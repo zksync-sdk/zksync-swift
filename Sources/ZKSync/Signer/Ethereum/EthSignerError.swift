@@ -13,4 +13,5 @@ public enum EthSignerError: Error {
     case invalidMnemonic
     case signingFailed
     case invalidTransactionType(String)
+    case unsupportedOperation
 }

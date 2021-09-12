@@ -18,22 +18,28 @@ public enum EthereumProviderError: Error {
 
 public class EthereumProvider {
     
-    static let MaxApproveAmount = BigUInt.two.power(256) - 1
-    static let DefaultThreshold = BigUInt.two.power(255)
-    
     let web3: web3
-    let ethSigner: EthSigner
+
     let zkSync: ZkSync
     
-    init(web3: web3, ethSigner: EthSigner, zkSync: ZkSync) {
+    var ethereumAddress: EthereumAddress
+    
+    var keystore: AbstractKeystore
+    
+    init(web3: web3,
+         keystore: AbstractKeystore,
+         ethereumAddress: EthereumAddress,
+         zkSync: ZkSync) {
         self.web3 = web3
-        self.ethSigner = ethSigner
         self.zkSync = zkSync
         
-        if let keystore = ethSigner.keystore as? EthereumKeystoreV3 {
+        self.keystore = keystore
+        self.ethereumAddress = ethereumAddress
+        
+        if let keystore = keystore as? EthereumKeystoreV3 {
             let keystoreManager = KeystoreManager([keystore])
             self.web3.addKeystoreManager(keystoreManager)
-        } else if let keystore = ethSigner.keystore as? BIP32Keystore {
+        } else if let keystore = keystore as? BIP32Keystore {
             let keystoreManager = KeystoreManager([keystore])
             self.web3.addKeystoreManager(keystoreManager)
         }
@@ -44,11 +50,12 @@ public class EthereumProvider {
             return .init(error: EthereumProviderError.invalidTokenAddress)
         }
         let erc20 = ERC20(web3: self.web3, provider: web3.provider, address: erc20ContractAddress)
-        let amount = limit?.description ?? EthereumProvider.MaxApproveAmount.description
+        let maxApproveAmount = BigUInt.two.power(256) - 1
+        let amount = limit?.description ?? maxApproveAmount.description
         
         do {
-            let tx = try erc20.approve(from: self.ethSigner.ethereumAddress,
-                                       spender: self.ethSigner.ethereumAddress,
+            let tx = try erc20.approve(from: ethereumAddress,
+                                       spender: ethereumAddress,
                                        amount: amount)
             return tx.sendPromise()
         } catch {
@@ -57,7 +64,6 @@ public class EthereumProvider {
     }
     
     public func transfer(token: Token, amount: BigUInt, to: String) -> Promise<TransactionSendingResult> {
-        
         let tx: WriteTransaction
         do {
             if token.isETH {
@@ -75,7 +81,7 @@ public class EthereumProvider {
         guard let toAddress = EthereumAddress(to) else {
             throw EthereumProviderError.invalidAddress
         }
-        guard let tx = web3.eth.sendETH(from: ethSigner.ethereumAddress,
+        guard let tx = web3.eth.sendETH(from: ethereumAddress,
                                         to: toAddress,
                                         amount: amount.description,
                                         units: .wei) else {
@@ -91,10 +97,10 @@ public class EthereumProvider {
         guard let erc20ContractAddress = EthereumAddress(token.address) else {
             throw EthereumProviderError.invalidTokenAddress
         }
-        guard let tx =  web3.eth.sendERC20tokensWithKnownDecimals(tokenAddress: erc20ContractAddress,
-                                                                  from: ethSigner.ethereumAddress,
-                                                                  to: toAddress,
-                                                                  amount: amount) else {
+        guard let tx = web3.eth.sendERC20tokensWithKnownDecimals(tokenAddress: erc20ContractAddress,
+                                                                 from: ethereumAddress,
+                                                                 to: toAddress,
+                                                                 amount: amount) else {
             throw EthereumProviderError.internalError
         }
         return tx
@@ -131,29 +137,31 @@ public class EthereumProvider {
             throw EthereumProviderError.invalidTokenAddress
         }
         let erc20 = ERC20(web3: self.web3, provider: web3.provider, address: erc20ContractAddress)
-        let allowance = try erc20.getAllowance(originalOwner: ethSigner.ethereumAddress, delegate: zkSync.contractAddress)
-        return allowance > (threshold ?? EthereumProvider.DefaultThreshold)
+        let allowance = try erc20.getAllowance(originalOwner: ethereumAddress,
+                                               delegate: zkSync.contractAddress)
+        let defaultThreshold = BigUInt.two.power(255)
+        return allowance > (threshold ?? defaultThreshold)
     }
     
     public func getBalance() -> Promise<BigUInt> {
-        web3.eth.getBalancePromise(address: ethSigner.ethereumAddress)
+        web3.eth.getBalancePromise(address: ethereumAddress)
     }
     
     public func getNonce() -> Promise<BigUInt> {
-        web3.eth.getTransactionCountPromise(address: ethSigner.ethereumAddress)
+        web3.eth.getTransactionCountPromise(address: ethereumAddress)
     }
     
     public func isOnChainAuthPubkeyHashSet(nonce: UInt32) -> Promise<Bool> {
         firstly {
-            zkSync.authFacts(senderAddress: ethSigner.ethereumAddress, nonce: nonce)
+            zkSync.authFacts(senderAddress: ethereumAddress, nonce: nonce)
         }.map(on: web3.requestDispatcher.queue) { (data) in
             !data.isEmpty
         }
     }
 }
 
-
 extension TransactionOptions {
+    
     init(amount: BigUInt, from: EthereumAddress) {
         self = TransactionOptions.defaultOptions
         self.value = amount

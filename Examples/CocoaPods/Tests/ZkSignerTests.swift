@@ -29,8 +29,17 @@ class ZkSignerTests: XCTestCase {
     }
 
     func testCreationFromEthSigner() throws {
+        var message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
+        let chainId: ChainId = .mainnet
+
+        if chainId != .mainnet {
+            message = "\(message)\nChain ID: \(chainId.id)."
+        }
+
         let ethSigner = try DefaultEthSigner(privateKey: ZkSignerTests.PrivateKey)
-        let signer = try ZkSigner(ethSigner: ethSigner, chainId: .mainnet)
+        let signature = try ethSigner.sign(message: message.data(using: .utf8)!)
+
+        let signer = try ZkSigner(signature: signature)
 
         XCTAssertEqual(signer.publicKeyHash, ZkSignerTests.PubKeyHashEth)
     }

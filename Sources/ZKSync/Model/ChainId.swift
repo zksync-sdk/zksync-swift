@@ -13,5 +13,5 @@ public enum ChainId: Int {
     case ropsten = 3
     case localhost = 9
     
-    var id: Int { rawValue }
+    public var id: Int { rawValue }
 }

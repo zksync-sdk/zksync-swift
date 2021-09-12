@@ -15,25 +15,23 @@ enum DefaultWalletError: Error {
     case noAccountId
 }
 
-public class DefaultWallet: Wallet {
+public class DefaultWallet<A: ChangePubKeyVariant, S: EthSigner>: Wallet {
     
     private let group = DispatchGroup()
     private let deliveryQueue = DispatchQueue(label: "com.zksync.wallet")
     
     public let provider: Provider
-    internal let ethSigner: EthSigner
+    internal let ethSigner: S
     internal let zkSigner: ZkSigner
     
     internal var accountId: UInt32?
     internal var pubKeyHash: String = ""
     
-    public var address: String { self.ethSigner.address }
-    
-    public convenience init(ethSigner: EthSigner, zkSigner: ZkSigner, transport: Transport) throws {
-        try self.init(ethSigner: ethSigner, zkSigner: zkSigner, provider: DefaultProvider(transport: transport))
+    public var address: String {
+        self.ethSigner.address
     }
 
-    public init(ethSigner: EthSigner, zkSigner: ZkSigner, provider: Provider) throws {
+    public init(ethSigner: S, zkSigner: ZkSigner, provider: Provider) throws {
         self.provider = provider
         self.ethSigner = ethSigner
         self.zkSigner = zkSigner
@@ -44,12 +42,23 @@ public class DefaultWallet: Wallet {
         self.pubKeyHash = accountState.committed.pubKeyHash
     }
     
+    public convenience init(ethSigner: S,
+                            zkSigner: ZkSigner,
+                            transport: Transport) throws {
+        try self.init(ethSigner: ethSigner,
+                      zkSigner: zkSigner,
+                      provider: DefaultProvider(transport: transport))
+    }
+    
     public func getAccountState(completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
         self.getAccountState(queue: .main, completion: completion)
     }
     
-    private func getAccountState(queue: DispatchQueue, completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
-        self.provider.accountState(address: self.ethSigner.address, queue: queue, completion: completion)
+    private func getAccountState(queue: DispatchQueue,
+                                 completion: @escaping (Swift.Result<AccountState, Error>) -> Void) {
+        self.provider.accountState(address: self.ethSigner.address,
+                                   queue: queue,
+                                   completion: completion)
     }
     
     public var isSigningKeySet: Bool {
@@ -70,7 +79,9 @@ public class DefaultWallet: Wallet {
                                     ethereumSignature: EthSignature,
                                     completion: @escaping (ZKSyncResult<[String]>) -> Void) {
         let pairs = transactions.map { TransactionSignaturePair(tx: $0, signature: nil) }
-        self.provider.submitTxBatch(txs: pairs, ethereumSignature: ethereumSignature, completion: completion)
+        self.provider.submitTxBatch(txs: pairs,
+                                    ethereumSignature: ethereumSignature,
+                                    completion: completion)
     }
     
     internal func getNonce(completion: @escaping (Swift.Result<UInt32, Error>) -> Void) {
@@ -82,7 +93,6 @@ public class DefaultWallet: Wallet {
     }
     
     private func getAccountStateSync() throws -> AccountState {
-        
         var callResult: Swift.Result<AccountState, Error>? = nil
         self.group.enter()
         self.getAccountState(queue: self.deliveryQueue) { (result) in
@@ -121,7 +131,10 @@ public class DefaultWallet: Wallet {
         let zkSync = ZkSync(web3: web3,
                             contractAddress: address,
                             walletAddress: ethSigner.ethereumAddress)
-        return EthereumProvider(web3: web3, ethSigner: ethSigner, zkSync: zkSync)
+        return EthereumProvider(web3: web3,
+                                keystore: ethSigner.keystore,
+                                ethereumAddress: ethSigner.ethereumAddress,
+                                zkSync: zkSync)
     }
     
     public func enable2FA(completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void) throws {

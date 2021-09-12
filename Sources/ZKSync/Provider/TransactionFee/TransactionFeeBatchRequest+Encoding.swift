@@ -8,6 +8,7 @@
 import Foundation
 
 extension TransactionFeeBatchRequest: Encodable {
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(self.transactionsAndAddresses.map { $0.transactionType } )

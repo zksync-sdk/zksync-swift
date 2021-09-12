@@ -23,7 +23,12 @@ public class ForcedExit: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(initiatorAccountId: UInt32, target: String, token: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(initiatorAccountId: UInt32,
+                target: String,
+                token: UInt32,
+                fee: String,
+                nonce: UInt32,
+                timeRange: TimeRange) {
         self.initiatorAccountId = initiatorAccountId
         self.target = target
         self.token = token
@@ -56,5 +61,4 @@ public class ForcedExit: ZkSyncTransaction {
         try container.encode(timeRange.validFrom, forKey: .validFrom)
         try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
-    
 }

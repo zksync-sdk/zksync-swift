@@ -9,6 +9,7 @@ import Foundation
 import BigInt
 
 public struct TransactionFeeDetails: Codable {
+
     public var gasTxAmount: String?
     public var gasPriceWei: String?
     public var gasFee: String?

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BigInt
 
 extension String {
 
@@ -30,6 +31,7 @@ extension String {
 }
 
 extension String {
+
     func hasPubKeyHashPrefix() -> Bool {
         return self.hasPrefix("sync:")
     }
@@ -47,8 +49,27 @@ extension String {
 }
 
 extension String {
+
     func deletingPrefix(_ prefix: String) -> String {
         guard self.hasPrefix(prefix) else { return self }
         return String(self.dropFirst(prefix.count))
+    }
+}
+
+extension String {
+
+    func attaching(fee: BigUInt, with token: TokenId) -> String {
+        if fee > 0 {
+            let separator = self.isEmpty ? "" : "\n"
+            return self + separator + String(format:"Fee: %@ %@",
+                                             Utils.format(token.intoDecimal(fee)),
+                                             token.symbol);
+        } else {
+            return self
+        }
+    }
+
+    func attaching(nonce: UInt32) -> String {
+        return self + String(format: "\nNonce: %d", nonce)
     }
 }

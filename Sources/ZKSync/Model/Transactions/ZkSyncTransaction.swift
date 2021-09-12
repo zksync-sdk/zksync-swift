@@ -8,5 +8,8 @@
 import Foundation
 
 public class ZkSyncTransaction: Encodable {
-    public var type: String { fatalError("Subclasses mst override 'type' property") }
+
+    public var type: String {
+        fatalError("Subclasses mst override 'type' property")
+    }
 }
