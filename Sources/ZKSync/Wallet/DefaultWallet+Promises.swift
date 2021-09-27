@@ -11,27 +11,34 @@ import PromiseKit
 extension DefaultWallet {
     
     func getNonce() -> Promise<UInt32> {
-        return Promise { getNonce(completion: $0.resolve )}
+        return Promise {
+            getNonce(completion: $0.resolve)
+        }
     }
     
     func getTokens() -> Promise<Tokens> {
-        return Promise { provider.tokens(completion: $0.resolve ) }
+        return Promise {
+            provider.tokens(completion: $0.resolve)
+        }
     }
     
     func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                         ethereumSignature: EthSignature?,
                                                         fastProcessing: Bool) -> Promise<String> {
-        return Promise { provider.submitTx(transaction,
-                                           ethereumSignature: ethereumSignature,
-                                           fastProcessing: fastProcessing,
-                                           completion: $0.resolve )
+        return Promise {
+            provider.submitTx(transaction,
+                              ethereumSignature: ethereumSignature,
+                              fastProcessing: fastProcessing,
+                              completion: $0.resolve)
         }
     }
     
     func submitSignedBatch(transactions: [ZkSyncTransaction],
-                                    ethereumSignature: EthSignature) -> Promise<[String]> {
+                           ethereumSignature: EthSignature) -> Promise<[String]> {
         return Promise {
-            self.submitSignedBatch(transactions: transactions, ethereumSignature: ethereumSignature, completion: $0.resolve)
+            self.submitSignedBatch(transactions: transactions,
+                                   ethereumSignature: ethereumSignature,
+                                   completion: $0.resolve)
         }
     }
     

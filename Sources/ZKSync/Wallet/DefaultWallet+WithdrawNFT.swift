@@ -29,7 +29,12 @@ extension DefaultWallet {
         }
     }
     
-    func buildSignedWithdrawNFTTx(to: String, token: NFT, fee: TransactionFee, accountId: UInt32, nonce: UInt32, timeRange: TimeRange) -> Promise<SignedTransaction<WithdrawNFT>> {
+    func buildSignedWithdrawNFTTx(to: String,
+                                  token: NFT,
+                                  fee: TransactionFee,
+                                  accountId: UInt32,
+                                  nonce: UInt32,
+                                  timeRange: TimeRange) -> Promise<SignedTransaction<WithdrawNFT>> {
         return firstly {
             self.getTokens()
         }.map { tokens in
@@ -42,11 +47,12 @@ extension DefaultWallet {
                                           fee: fee.fee.description,
                                           nonce: nonce,
                                           timeRange: timeRange)
-            let ethSignature = try self.ethSigner.signWithdrawNFT(to: to,
-                                                                  tokenId: token.id,
+            
+            let ethSignature = try self.ethSigner.signTransaction(transaction: withdrawNFT,
                                                                   nonce: nonce,
                                                                   token: feeToken,
                                                                   fee: fee.fee)
+            
             let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(withdrawNFT: withdrawNFT), ethereumSignature: ethSignature)
             return signedTransaction
         }

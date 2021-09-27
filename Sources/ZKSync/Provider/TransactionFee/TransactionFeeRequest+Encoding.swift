@@ -8,6 +8,7 @@
 import Foundation
 
 extension TransactionFeeRequest: Encodable {
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(transactionType)

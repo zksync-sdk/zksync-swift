@@ -39,6 +39,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "IntegrationCreate2ShortFlowTests">
+               </Test>
+               <Test
                   Identifier = "IntegrationFlowTests">
                </Test>
             </SkippedTests>

@@ -12,10 +12,22 @@
 		443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */; };
 		44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */; };
 		56AA71BB4AA87D3D74F326D2 /* Pods_ZKSyncExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDF95587ABAE1B9D20870B8 /* Pods_ZKSyncExample.framework */; };
+		8A179E9926E2A21E0079299B /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179E9726E2A1CC0079299B /* AccountState.swift */; };
+		8A179E9C26E2A2630079299B /* ChangePubKey+ChangePubKeyOnchain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179E9A26E2A2600079299B /* ChangePubKey+ChangePubKeyOnchain.swift */; };
+		8A179E9F26E2A3B80079299B /* ProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179E9D26E2A39B0079299B /* ProviderMock.swift */; };
+		8A179EA226E2A9820079299B /* ChangePubKey+ChangePubKeyCREATE2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EA026E2A97E0079299B /* ChangePubKey+ChangePubKeyCREATE2.swift */; };
+		8A179EA526E2A9B10079299B /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EA326E2A9AF0079299B /* Order.swift */; };
+		8A179EA726E2AA940079299B /* EthSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EA626E2AA940079299B /* EthSignature.swift */; };
+		8A179EA926E2AAB90079299B /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EA826E2AAB90079299B /* Swap.swift */; };
+		8A179EAB26E2AAEB0079299B /* WithdrawNFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EAA26E2AAEB0079299B /* WithdrawNFT.swift */; };
+		8A179EAD26E2AB280079299B /* MintNFT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EAC26E2AB280079299B /* MintNFT.swift */; };
+		8A179EAF26E2AB540079299B /* Withdraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EAE26E2AB540079299B /* Withdraw.swift */; };
+		8A179EB126E2AB800079299B /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EB026E2AB800079299B /* Transfer.swift */; };
+		8A179EB326E2ABD10079299B /* ForcedExit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A179EB226E2ABD10079299B /* ForcedExit.swift */; };
+		8A7A53ED26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */; };
 		8A9CAE4D2690A6FB00DABC41 /* ZKSync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */; };
 		8A9CAE4E2690A6FB00DABC41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4C2690A6FA00DABC41 /* README.md */; };
 		8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE672690AA9000DABC41 /* TransferViewController.swift */; };
-		8A9CAE7E2690AA9000DABC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE682690AA9000DABC41 /* ViewController.swift */; };
 		8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */; };
 		8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */; };
 		8A9CAE812690AA9000DABC41 /* TransactionFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */; };
@@ -53,11 +65,23 @@
 		607FACD01AFB9204008FA782 /* ZKSyncExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKSyncExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* ZKSyncExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKSyncExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A179E9726E2A1CC0079299B /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
+		8A179E9A26E2A2600079299B /* ChangePubKey+ChangePubKeyOnchain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangePubKey+ChangePubKeyOnchain.swift"; sourceTree = "<group>"; };
+		8A179E9D26E2A39B0079299B /* ProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderMock.swift; sourceTree = "<group>"; };
+		8A179EA026E2A97E0079299B /* ChangePubKey+ChangePubKeyCREATE2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangePubKey+ChangePubKeyCREATE2.swift"; sourceTree = "<group>"; };
+		8A179EA326E2A9AF0079299B /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		8A179EA626E2AA940079299B /* EthSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthSignature.swift; sourceTree = "<group>"; };
+		8A179EA826E2AAB90079299B /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
+		8A179EAA26E2AAEB0079299B /* WithdrawNFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawNFT.swift; sourceTree = "<group>"; };
+		8A179EAC26E2AB280079299B /* MintNFT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintNFT.swift; sourceTree = "<group>"; };
+		8A179EAE26E2AB540079299B /* Withdraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdraw.swift; sourceTree = "<group>"; };
+		8A179EB026E2AB800079299B /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
+		8A179EB226E2ABD10079299B /* ForcedExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcedExit.swift; sourceTree = "<group>"; };
+		8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationCreate2ShortFlowTests.swift; sourceTree = "<group>"; };
 		8A9B298626D5AD5E001A7ECE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZKSync.podspec; path = ../../ZKSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A9CAE4C2690A6FA00DABC41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		8A9CAE672690AA9000DABC41 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
-		8A9CAE682690AA9000DABC41 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositingBalanceTableViewCell.swift; sourceTree = "<group>"; };
 		8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewController.swift; sourceTree = "<group>"; };
@@ -138,10 +162,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8A179E9626E2A1BA0079299B /* Extensions */,
 				443FFA2425B8DD8B000CDA8D /* ZkSignerTests.swift */,
 				443FFA2825B8E1B8000CDA8D /* DefaultWalletTests.swift */,
 				44E17F6E25B968C200ED4CED /* IntegrationFlowTests.swift */,
+				8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				8A179E9D26E2A39B0079299B /* ProviderMock.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -161,6 +188,24 @@
 				8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		8A179E9626E2A1BA0079299B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8A179E9726E2A1CC0079299B /* AccountState.swift */,
+				8A179E9A26E2A2600079299B /* ChangePubKey+ChangePubKeyOnchain.swift */,
+				8A179EA026E2A97E0079299B /* ChangePubKey+ChangePubKeyCREATE2.swift */,
+				8A179EA326E2A9AF0079299B /* Order.swift */,
+				8A179EA626E2AA940079299B /* EthSignature.swift */,
+				8A179EA826E2AAB90079299B /* Swap.swift */,
+				8A179EAA26E2AAEB0079299B /* WithdrawNFT.swift */,
+				8A179EAC26E2AB280079299B /* MintNFT.swift */,
+				8A179EAE26E2AB540079299B /* Withdraw.swift */,
+				8A179EB026E2AB800079299B /* Transfer.swift */,
+				8A179EB226E2ABD10079299B /* ForcedExit.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		8A9CAE662690AA9000DABC41 /* ZKSyncExample */ = {
@@ -184,7 +229,6 @@
 		8A9CAE972690AAAA00DABC41 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8A9CAE682690AA9000DABC41 /* ViewController.swift */,
 				8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */,
 				8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */,
 				8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */,
@@ -428,7 +472,6 @@
 				8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */,
 				8A9CAE8B2690AA9000DABC41 /* NetworkSelectionTableViewController.swift in Sources */,
 				8A9CAE8C2690AA9000DABC41 /* AppDelegate.swift in Sources */,
-				8A9CAE7E2690AA9000DABC41 /* ViewController.swift in Sources */,
 				8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */,
 				8A9CAE892690AA9000DABC41 /* MethodSelectionTableViewController.swift in Sources */,
 				8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */,
@@ -439,9 +482,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A179EA726E2AA940079299B /* EthSignature.swift in Sources */,
+				8A179E9F26E2A3B80079299B /* ProviderMock.swift in Sources */,
+				8A179EAF26E2AB540079299B /* Withdraw.swift in Sources */,
 				443FFA2525B8DD8C000CDA8D /* ZkSignerTests.swift in Sources */,
+				8A179EA526E2A9B10079299B /* Order.swift in Sources */,
+				8A179EAB26E2AAEB0079299B /* WithdrawNFT.swift in Sources */,
+				8A7A53ED26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift in Sources */,
+				8A179EB326E2ABD10079299B /* ForcedExit.swift in Sources */,
+				8A179EA926E2AAB90079299B /* Swap.swift in Sources */,
 				443FFA2925B8E1B8000CDA8D /* DefaultWalletTests.swift in Sources */,
+				8A179EB126E2AB800079299B /* Transfer.swift in Sources */,
+				8A179E9C26E2A2630079299B /* ChangePubKey+ChangePubKeyOnchain.swift in Sources */,
+				8A179EAD26E2AB280079299B /* MintNFT.swift in Sources */,
+				8A179EA226E2A9820079299B /* ChangePubKey+ChangePubKeyCREATE2.swift in Sources */,
 				44E17F6F25B968C200ED4CED /* IntegrationFlowTests.swift in Sources */,
+				8A179E9926E2A21E0079299B /* AccountState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

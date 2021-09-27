@@ -8,6 +8,7 @@
 import Foundation
 
 public struct TransactionFeeRequest {
+
     var transactionType: TransactionType
     var address: String
     var tokenIdentifier: String

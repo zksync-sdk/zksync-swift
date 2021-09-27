@@ -9,7 +9,7 @@ import Foundation
 
 public struct TransactionDetails: Decodable {
     let executed: Bool
-    let success: Bool
+    let success: Bool?
     let failReason: String?
-    let block: BlockInfo
+    let block: BlockInfo?
 }

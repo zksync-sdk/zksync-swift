@@ -27,45 +27,62 @@ class ZkSync {
     }
 
     lazy var contract: web3.web3contract = {
-        let contract = self.web3.contract(Web3.Utils.zkSyncABI, at: self.contractAddress, abiVersion: 2)
+        let contract = self.web3.contract(Web3.Utils.zkSyncABI,
+                                          at: self.contractAddress,
+                                          abiVersion: 2)
         precondition(contract != nil)
         return contract!
     }()
     
     func depositETH(address: EthereumAddress, value: BigUInt) -> Promise<TransactionSendingResult> {
-        guard let tx = self.contract.write("depositETH", parameters: [address] as [AnyObject] , transactionOptions: createOptions(value: value)) else {
+        guard let tx = self.contract.write("depositETH",
+                                           parameters: [address] as [AnyObject],
+                                           transactionOptions: createOptions(value: value)) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
+
         return tx.sendPromise()
     }
 
-    func depositERC20(tokenAddress: EthereumAddress, amount: BigUInt, userAddress: EthereumAddress) -> Promise<TransactionSendingResult> {
-        
-        guard let tx = self.contract.write("depositERC20", parameters: [tokenAddress, amount, userAddress] as [AnyObject], transactionOptions: createOptions()) else {
+    func depositERC20(tokenAddress: EthereumAddress,
+                      amount: BigUInt,
+                      userAddress: EthereumAddress) -> Promise<TransactionSendingResult> {
+        guard let tx = self.contract.write("depositERC20",
+                                           parameters: [tokenAddress, amount, userAddress] as [AnyObject],
+                                           transactionOptions: createOptions()) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
+
         return tx.sendPromise()
     }
 
     func requestFullExit(tokenAddress: EthereumAddress, accountId: UInt32) -> Promise<TransactionSendingResult> {
-        guard let tx = self.contract.write("requestFullExit", parameters: [accountId, tokenAddress] as [AnyObject], transactionOptions: createOptions()) else {
+        guard let tx = self.contract.write("requestFullExit",
+                                           parameters: [accountId, tokenAddress] as [AnyObject],
+                                           transactionOptions: createOptions()) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
+
         return tx.sendPromise()
     }
     
     func setAuthPubkeyHash(pubKeyHash: Data, nonce: UInt32) -> Promise<TransactionSendingResult> {
-        guard let tx = self.contract.write("setAuthPubkeyHash", parameters: [pubKeyHash, nonce] as [AnyObject], transactionOptions: createOptions()) else {
+        guard let tx = self.contract.write("setAuthPubkeyHash",
+                                           parameters: [pubKeyHash, nonce] as [AnyObject],
+                                           transactionOptions: createOptions()) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
+
         return tx.sendPromise()
     }
 
     func authFacts(senderAddress: EthereumAddress, nonce: UInt32) -> Promise<Data> {
-        
-        guard let tx = self.contract.read("authFacts", parameters: [senderAddress, nonce] as [AnyObject], transactionOptions: createReadOptions()) else {
+        guard let tx = self.contract.read("authFacts",
+                                          parameters: [senderAddress, nonce] as [AnyObject],
+                                          transactionOptions: createReadOptions()) else {
             return Promise(error: ZkSyncContractError.invalidParameters)
         }
+
         return firstly {
             tx.callPromise()
         }.map(on: web3.requestDispatcher.queue) { (result) in
@@ -75,7 +92,7 @@ class ZkSync {
             return data
         }
     }
-    
+
     private func createOptions(value: BigUInt? = nil) -> TransactionOptions {
         var options = TransactionOptions()
         options.from = walletAddress

@@ -8,6 +8,7 @@
 import Foundation
 
 public struct TransactionTypeAddressPair {
+
     let transactionType: TransactionType
     let address: String
     

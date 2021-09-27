@@ -8,6 +8,7 @@
 import Foundation
 
 public struct TransactionFeeBatchRequest {
+
     let transactionsAndAddresses: [TransactionTypeAddressPair]
     let tokenIdentifier: String
     

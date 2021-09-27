@@ -19,10 +19,10 @@ enum InternalError: LocalizedError {
 class IntegrationFlowTests: XCTestCase {
     static let PrivateKey = "0x543b4b129b397dd460fe417276a0f6b83ae65f0d6d747ec1ea310e7adca2dc49"
     //static let PrivateKey = "0xc5720cedfd30efcad48ecd5f393dde90f7a6b966f883da383154a5ed21c58747";
-    var wallet: Wallet!
+    var wallet: DefaultWallet<ChangePubKeyECDSA, DefaultEthSigner>!
     var ethereum: EthereumProvider!
 
-    var ethSigner: EthSigner!
+    var ethSigner: DefaultEthSigner!
     var zkSigner: ZkSigner!
     var pollingTransactionReceiptProcessor: PollingTransactionReceiptProcessor!
 
@@ -30,10 +30,21 @@ class IntegrationFlowTests: XCTestCase {
 
     override func setUpWithError() throws {
         ethSigner = try DefaultEthSigner(privateKey: IntegrationFlowTests.PrivateKey)
-        zkSigner = try ZkSigner(ethSigner: ethSigner, chainId: .ropsten)
+
+        var message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
+        let chainId: ChainId = .mainnet
+
+        if chainId != .mainnet {
+            message = "\(message)\nChain ID: \(chainId.id)."
+        }
+
+        let signature = try ethSigner.sign(message: message.data(using: .utf8)!)
+        zkSigner = try ZkSigner(signature: signature)
 
         let provider = DefaultProvider(chainId: .rinkeby)
-        wallet = try DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider)
+        wallet = try DefaultWallet<ChangePubKeyECDSA, DefaultEthSigner>(ethSigner: ethSigner,
+                                                                        zkSigner: zkSigner,
+                                                                        provider: provider)
         ethereum = try wallet.createEthereumProvider(web3: Web3.InfuraRopstenWeb3())
 
         let pollInterval = DispatchTimeInterval.milliseconds(100)
@@ -73,7 +84,7 @@ class IntegrationFlowTests: XCTestCase {
                                      fee: feeDetails.totalFeeInteger)
             return self.wallet.setSigningKeyPromise(fee: fee,
                                                     nonce: state.committed.nonce,
-                                                    oncahinAuth: false)
+                                                    onchainAuth: false)
         }.pipe {
             finalResult = $0
             exp.fulfill()
@@ -82,6 +93,8 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
 
         switch finalResult {
+        case .fulfilled(let result):
+            NSLog("Result: \(result)")
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -193,7 +206,11 @@ class IntegrationFlowTests: XCTestCase {
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
             XCTAssertTrue(transactionDetails.executed)
-            XCTAssertTrue(transactionDetails.success)
+            if let success = transactionDetails.success {
+                XCTAssertTrue(success)
+            } else {
+                XCTFail("Success should be valid.")
+            }
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -293,7 +310,12 @@ class IntegrationFlowTests: XCTestCase {
             switch transactionDetailsResult {
             case .fulfilled(let transactionDetails):
                 XCTAssertTrue(transactionDetails.executed)
-                XCTAssertTrue(transactionDetails.success)
+                if let success = transactionDetails.success {
+                    NSLog("Transaction details: \(transactionDetails).")
+                    XCTAssertTrue(success)
+                } else {
+                    XCTFail("Success should be valid.")
+                }
             case .rejected(let error):
                 XCTFail("\(error)")
             default:
@@ -311,7 +333,8 @@ class IntegrationFlowTests: XCTestCase {
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { state in
-            self.wallet.provider.transactionFeePromise(for: .withdraw, address: self.wallet.address,
+            self.wallet.provider.transactionFeePromise(for: .withdraw,
+                                                       address: self.wallet.address,
                                                        tokenIdentifier: Token.ETH.address)
                 .map(on: self.queue) { ($0, state) }
         }.then(on: queue) { (feeDetails, state) -> Promise<String> in
@@ -356,7 +379,11 @@ class IntegrationFlowTests: XCTestCase {
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
             XCTAssertTrue(transactionDetails.executed)
-            XCTAssertTrue(transactionDetails.success)
+            if let success = transactionDetails.success {
+                XCTAssertTrue(success)
+            } else {
+                XCTFail("Success should be valid.")
+            }
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -417,7 +444,12 @@ class IntegrationFlowTests: XCTestCase {
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
             XCTAssertTrue(transactionDetails.executed)
-            XCTAssertTrue(transactionDetails.success)
+            if let success = transactionDetails.success {
+                NSLog("Transaction details: \(transactionDetails).")
+                XCTAssertTrue(success)
+            } else {
+                XCTFail("Success should be valid.")
+            }
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -482,7 +514,11 @@ class IntegrationFlowTests: XCTestCase {
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
             XCTAssertTrue(transactionDetails.executed)
-            XCTAssertTrue(transactionDetails.success)
+            if let success = transactionDetails.success {
+                XCTAssertTrue(success)
+            } else {
+                XCTFail("Success should be valid.")
+            }
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -550,7 +586,11 @@ class IntegrationFlowTests: XCTestCase {
         switch transactionDetailsResult {
         case .fulfilled(let transactionDetails):
             XCTAssertTrue(transactionDetails.executed)
-            XCTAssertTrue(transactionDetails.success)
+            if let success = transactionDetails.success {
+                XCTAssertTrue(success)
+            } else {
+                XCTFail("Success should be valid.")
+            }
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -567,7 +607,6 @@ class IntegrationFlowTests: XCTestCase {
         firstly {
             self.wallet.getAccountStatePromise()
         }.then(on: queue) { (state) -> Promise<(TransactionFeeDetails, AccountState)> in
-
             let pairs = [
                 TransactionTypeAddressPair(transactionType: .transfer, address: state.address),
                 TransactionTypeAddressPair(transactionType: .transfer, address: state.address)
@@ -578,8 +617,14 @@ class IntegrationFlowTests: XCTestCase {
         }.then(on: queue) { (feeDetails, state) -> Promise<[String]> in
             let fee = TransactionFee(feeToken: Token.ETH.address,
                                      fee: feeDetails.totalFeeInteger)
+
+            guard let token = state.committed.nfts?.first?.value else {
+                XCTFail("Token not available")
+                return .init(error: InternalError.invalidToken)
+            }
+
             return self.wallet.transferNFT(to: state.address,
-                                           token: state.committed.nfts!.first!.value,
+                                           token: token,
                                            fee: fee,
                                            nonce: nil)
         }.pipe {
@@ -617,7 +662,11 @@ class IntegrationFlowTests: XCTestCase {
             switch transactionDetailsResult {
             case .fulfilled(let transactionDetails):
                 XCTAssertTrue(transactionDetails.executed)
-                XCTAssertTrue(transactionDetails.success)
+                if let success = transactionDetails.success {
+                    XCTAssertTrue(success)
+                } else {
+                    XCTFail("Success should be valid.")
+                }
             case .rejected(let error):
                 XCTFail("\(error)")
             default:
@@ -652,13 +701,16 @@ class IntegrationFlowTests: XCTestCase {
 
     func test_13_GetTransactionFeeBatch() throws {
         let transactions = [
-            TransactionTypeAddressPair(transactionType: .forcedExit, address: ethSigner.address),
+            TransactionTypeAddressPair(transactionType: .forcedExit,
+                                       address: ethSigner.address),
             TransactionTypeAddressPair(transactionType: .transfer,
                                        address: "0xC8568F373484Cd51FDc1FE3675E46D8C0dc7D246"),
             TransactionTypeAddressPair(transactionType: .transfer,
                                        address: "0x98122427eE193fAcbb9Fbdbf6BDE7d9042A95a0f"),
-            TransactionTypeAddressPair(transactionType: .changePubKeyECDSA, address: ethSigner.address)
+            TransactionTypeAddressPair(transactionType: .changePubKeyECDSA,
+                                       address: ethSigner.address)
         ]
+
         let batch = TransactionFeeBatchRequest(transactionsAndAddresses: transactions,
                                                tokenIdentifier: Token.ETH.address)
 
@@ -675,6 +727,8 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
 
         switch finalResult {
+        case .fulfilled(let transactionFeeDetails):
+            NSLog("Transaction fee details: \(transactionFeeDetails).")
         case .rejected(let error):
             XCTFail("\(error)")
         default:
@@ -693,6 +747,8 @@ class IntegrationFlowTests: XCTestCase {
         waitForExpectations(timeout: 60, handler: nil)
 
         switch finalResult {
+        case .success(let tokenPrice):
+            NSLog("Token price: \(tokenPrice).")
         case .failure(let error):
             XCTFail("\(error)")
         default:

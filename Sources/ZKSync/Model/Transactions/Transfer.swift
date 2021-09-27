@@ -28,7 +28,15 @@ public class Transfer: ZkSyncTransaction {
 
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: UInt32, from: String, to: String, token: UInt32, amount: BigUInt, fee: String, nonce: UInt32, tokenId: TokenId? = nil, timeRange: TimeRange) {
+    public init(accountId: UInt32,
+                from: String,
+                to: String,
+                token: UInt32,
+                amount: BigUInt,
+                fee: String,
+                nonce: UInt32,
+                tokenId: TokenId? = nil,
+                timeRange: TimeRange) {
         self.accountId = accountId
         self.from = from
         self.to = to
@@ -67,5 +75,17 @@ public class Transfer: ZkSyncTransaction {
         try container.encode(amount.description, forKey: .amount)
         try container.encode(timeRange.validFrom, forKey: .validFrom)
         try container.encode(timeRange.validUntil, forKey: .validUntil)
+    }
+    
+    var description: String {
+        let mirror = Mirror(reflecting: self)
+        var objectDescription: String = ""
+        for attribute in mirror.children {
+            if let property = attribute.label as String? {
+                objectDescription += "\(property): \(attribute.value) "
+            }
+        }
+
+        return objectDescription
     }
 }

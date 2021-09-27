@@ -11,8 +11,12 @@ import BigInt
 
 extension DefaultWallet {
     
-    public func transfer(to: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void) {
-        
+    public func transfer(to: String,
+                         amount: BigUInt,
+                         fee: TransactionFee,
+                         nonce: UInt32?,
+                         timeRange: TimeRange,
+                         completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId) in
@@ -51,8 +55,15 @@ extension DefaultWallet {
                                     fee: fee.description,
                                     nonce: nonce,
                                     timeRange: timeRange)
-            let ethSignature = try self.ethSigner.signTransfer(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee)
-            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(transfer: transfer), ethereumSignature: ethSignature)
+            
+            let ethSignature = try self.ethSigner.signTransaction(transaction: transfer,
+                                                                  nonce: nonce,
+                                                                  token: token,
+                                                                  fee: fee)
+            
+            let transaction = try self.zkSigner.sign(transfer: transfer)
+            let signedTransaction = SignedTransaction(transaction: transaction,
+                                                      ethereumSignature: ethSignature)
             return signedTransaction
         }
     }

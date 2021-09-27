@@ -13,15 +13,19 @@ public protocol Provider {
                       queue: DispatchQueue,
                       completion: @escaping (ZKSyncResult<AccountState>) -> Void)
     
-    func transactionFee(request: TransactionFeeRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
+    func transactionFee(request: TransactionFeeRequest,
+                        completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
     
-    func transactionFee(request: TransactionFeeBatchRequest, completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
+    func transactionFee(request: TransactionFeeBatchRequest,
+                        completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void)
     
     func tokens(completion: @escaping (ZKSyncResult<Tokens>) -> Void)
     
-    func tokenPrice(token: Token, completion: @escaping (ZKSyncResult<Decimal>) -> Void)
+    func tokenPrice(token: Token,
+                    completion: @escaping (ZKSyncResult<Decimal>) -> Void)
     
-    func contractAddress(queue: DispatchQueue, completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
+    func contractAddress(queue: DispatchQueue,
+                         completion: @escaping (ZKSyncResult<ContractAddress>) -> Void)
     
     func submitTx(_ tx: ZkSyncTransaction,
                   ethereumSignature: EthSignature?,
@@ -40,15 +44,20 @@ public protocol Provider {
     
     func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void)
     
-    func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void)
+    func ethTxForWithdrawal(withdrawalHash: String,
+                            completion: @escaping (ZKSyncResult<String>) -> Void)
     
-    func toggle2FA(toggle2FA: Toggle2FA, completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void)
+    func toggle2FA(toggle2FA: Toggle2FA,
+                   completion: @escaping (ZKSyncResult<Toggle2FAInfo>) -> Void)
 }
 
 public extension Provider {
     
-    func accountState(address: String, completion: @escaping (ZKSyncResult<AccountState>) -> Void) {
-        self.accountState(address: address, queue: .main, completion: completion)
+    func accountState(address: String,
+                      completion: @escaping (ZKSyncResult<AccountState>) -> Void) {
+        self.accountState(address: address,
+                          queue: .main,
+                          completion: completion)
     }
 
     func transactionFee(for transactionType:TransactionType,
@@ -76,6 +85,8 @@ public extension Provider {
     
     func submitTxBatch(txs: [TransactionSignaturePair],
                        completion: @escaping (ZKSyncResult<[String]>) -> Void) {
-        self.submitTxBatch(txs: txs, ethereumSignature: nil, completion: completion)
+        self.submitTxBatch(txs: txs,
+                           ethereumSignature: nil,
+                           completion: completion)
     }
 }

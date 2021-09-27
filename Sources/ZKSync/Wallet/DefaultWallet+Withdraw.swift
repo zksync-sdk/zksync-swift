@@ -11,8 +11,13 @@ import BigInt
 
 extension DefaultWallet {
 
-    public func withdraw(ethAddress: String, amount: BigUInt, fee: TransactionFee, nonce: UInt32?, fastProcessing: Bool, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void) {
-        
+    public func withdraw(ethAddress: String,
+                         amount: BigUInt,
+                         fee: TransactionFee,
+                         nonce: UInt32?,
+                         fastProcessing: Bool,
+                         timeRange: TimeRange,
+                         completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId) in
@@ -39,7 +44,6 @@ extension DefaultWallet {
                                       accountId: UInt32,
                                       nonce: UInt32,
                                       timeRange: TimeRange) -> Promise<SignedTransaction<Withdraw>> {
-
         return firstly {
             self.getTokens()
         }.map { tokens in
@@ -52,8 +56,15 @@ extension DefaultWallet {
                                     fee: fee.description,
                                     nonce: nonce,
                                     timeRange: timeRange)
-            let ethSignature = try self.ethSigner.signWithdraw(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee)
-            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(withdraw: withdraw), ethereumSignature: ethSignature)
+            
+            let ethSignature = try self.ethSigner.signTransaction(transaction: withdraw,
+                                                                  nonce: nonce,
+                                                                  token: token,
+                                                                  fee: fee)
+            
+            let transaction = try self.zkSigner.sign(withdraw: withdraw)
+            let signedTransaction = SignedTransaction(transaction: transaction,
+                                                      ethereumSignature: ethSignature)
             return signedTransaction
         }
     }

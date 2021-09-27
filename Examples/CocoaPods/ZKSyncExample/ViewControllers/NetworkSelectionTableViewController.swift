@@ -32,18 +32,26 @@ class NetworkSelectionTableViewController: UITableViewController {
     }
 
     private func createWallet(_ chainId: ChainId) -> Wallet {
-
         guard let ethSigner = try? DefaultEthSigner(privateKey: self.privateKey) else {
             fatalError()
         }
 
-        guard let zkSigner = try? ZkSigner(ethSigner: ethSigner, chainId: chainId) else {
+        var message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
+
+        if chainId != .mainnet {
+            message = "\(message)\nChain ID: \(chainId.id)."
+        }
+
+        guard let signature = try? ethSigner.sign(message: message.data(using: .utf8)!),
+              let zkSigner = try? ZkSigner(signature: signature) else {
             fatalError()
         }
 
         let provider = DefaultProvider(chainId: chainId)
 
-        guard let wallet = try? DefaultWallet(ethSigner: ethSigner, zkSigner: zkSigner, provider: provider) else {
+        guard let wallet = try? DefaultWallet<ChangePubKeyECDSA, DefaultEthSigner>(ethSigner: ethSigner,
+                                                                                   zkSigner: zkSigner,
+                                                                                   provider: provider) else {
             fatalError()
         }
 

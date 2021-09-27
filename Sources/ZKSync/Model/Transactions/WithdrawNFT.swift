@@ -25,7 +25,14 @@ public class WithdrawNFT: ZkSyncTransaction {
 
     var feeInteger: BigUInt { BigUInt(fee)! }
 
-    public init(accountId: UInt32, from: String, to: String, token: UInt32, feeToken: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(accountId: UInt32,
+                from: String,
+                to: String,
+                token: UInt32,
+                feeToken: UInt32,
+                fee: String,
+                nonce: UInt32,
+                timeRange: TimeRange) {
         self.accountId = accountId
         self.from = from
         self.to = to

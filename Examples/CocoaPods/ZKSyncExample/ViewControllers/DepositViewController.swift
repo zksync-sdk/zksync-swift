@@ -12,6 +12,7 @@ import web3swift_zksync
 import PromiseKit
 
 class DepositViewController: UIViewController, WalletConsumer {
+
     var wallet: Wallet!
 
     @IBOutlet weak var amountTextField: UITextField!

@@ -8,6 +8,7 @@
 import Foundation
 
 struct TransactionBatchRequest: Encodable {
+
     let txs: [TransactionSignaturePair]
     let ethereumSignature: EthSignature?
     

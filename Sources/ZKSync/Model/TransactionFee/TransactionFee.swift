@@ -9,6 +9,7 @@ import Foundation
 import BigInt
 
 public struct TransactionFee {
+
     public let feeToken: String
     public let fee: BigUInt
     

@@ -57,13 +57,7 @@ public class ZkSigner {
         try self.init(privateKey: ZKPrivateKey(rawPrivateKey))
     }
     
-    public convenience init(ethSigner: EthSigner, chainId: ChainId) throws {
-        var message = ZkSigner.Message
-        if chainId != .mainnet {
-            message = "\(message)\nChain ID: \(chainId.id)."
-        }
-        let signature = try ethSigner.sign(message: message.data(using: .utf8)!)
-        
+    public convenience init(signature: EthSignature) throws {
         try self.init(seed: Data(hex: signature.signature))
     }
     

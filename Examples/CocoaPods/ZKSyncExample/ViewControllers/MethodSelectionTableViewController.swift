@@ -12,6 +12,7 @@ import PromiseKit
 import web3swift_zksync
 
 class MethodSelectionTableViewController: UITableViewController, WalletConsumer {
+
     var wallet: Wallet!
 
     @IBOutlet weak var addressLabel: UILabel!
@@ -25,6 +26,7 @@ class MethodSelectionTableViewController: UITableViewController, WalletConsumer 
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
 
         self.wallet.getAccountState { (result) in
             self.updateBalances(state: try? result.get())

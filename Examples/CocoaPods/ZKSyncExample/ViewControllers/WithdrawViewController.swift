@@ -18,7 +18,6 @@ class WithdrawViewController: UIViewController, WalletConsumer {
     @IBOutlet weak var amountTextField: UITextField!
 
     @IBAction func withdraw(_ sender: Any) {
-
         amountTextField.resignFirstResponder()
 
         guard let amountText = amountTextField.text,

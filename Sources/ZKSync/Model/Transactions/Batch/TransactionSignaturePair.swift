@@ -8,6 +8,7 @@
 import Foundation
 
 public struct TransactionSignaturePair: Encodable {
+
     let tx: ZkSyncTransaction
     let signature: EthSignature?
     

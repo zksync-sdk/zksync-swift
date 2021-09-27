@@ -12,6 +12,7 @@ public enum TokensError: Error {
 }
 
 public struct Tokens: Decodable {
+
     private var tokens: [String: Token]
 
     public func tokenBySymbol(_ symbol: String) -> Token? {

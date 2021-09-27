@@ -25,7 +25,13 @@ public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
     
     var feeInteger: BigUInt { BigUInt(fee)! }
     
-    public init(accountId: UInt32, account: String, newPkHash: String, feeToken: UInt32, fee: String, nonce: UInt32, timeRange: TimeRange) {
+    public init(accountId: UInt32,
+                account: String,
+                newPkHash: String,
+                feeToken: UInt32,
+                fee: String,
+                nonce: UInt32,
+                timeRange: TimeRange) {
         self.accountId = accountId
         self.account = account
         self.newPkHash = newPkHash
@@ -62,5 +68,17 @@ public class ChangePubKey<T: ChangePubKeyVariant>: ZkSyncTransaction {
         try container.encode(ethAuthData, forKey: .ethAuthData)
         try container.encode(timeRange.validFrom, forKey: .validFrom)
         try container.encode(timeRange.validUntil, forKey: .validUntil)
+    }
+    
+    var description: String {
+        let mirror = Mirror(reflecting: self)
+        var objectDescription: String = ""
+        for attribute in mirror.children {
+            if let property = attribute.label as String? {
+                objectDescription += "\(property): \(attribute.value) "
+            }
+        }
+
+        return objectDescription
     }
 }

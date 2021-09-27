@@ -12,8 +12,18 @@ import CryptoSwift
 import BigInt
 
 public class DefaultEthSigner: EthSigner {
+
+    public typealias A = ChangePubKeyECDSA
     
     public let keystore: AbstractKeystore
+    
+    public var address: String {
+        return ethereumAddress.address.lowercased()
+    }
+    
+    public var ethereumAddress: EthereumAddress {
+        return keystore.addresses!.first!
+    }
     
     public init(privateKey: String) throws {
         let privatKeyData = Data(hex: privateKey)
@@ -30,70 +40,164 @@ public class DefaultEthSigner: EthSigner {
         self.keystore = keystore
     }
     
-    public var address: String {
-        return ethereumAddress.address.lowercased()
-    }
-    
-    public var ethereumAddress: EthereumAddress {
-        return keystore.addresses!.first!
-    }
-    
-    public func signChangePubKey(pubKeyHash: String, nonce: UInt32, accountId: UInt32, changePubKeyVariant: ChangePubKeyVariant) throws -> EthSignature {
-        return try self.sign(message: self.createChangePubKeyMessage(pubKeyHash: pubKeyHash, nonce: nonce, accountId: accountId, changePubKeyVariant: changePubKeyVariant))
-    }
-    
-    public func signTransfer(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: TokenId, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullTransferMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
-    }
-    
-    public func signWithdraw(to: String, accountId: UInt32, nonce: UInt32, amount: BigUInt, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullWithdrawMessage(to: to, accountId: accountId, nonce: nonce, amount: amount, token: token, fee: fee))
-    }
-    
-    public func signForcedExit(to: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullForcedExitMessage(to: to, nonce: nonce, token: token, fee: fee))
-    }
-    
-    public func signMintNFT(contentHash: String, recepient: String, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullMintNFTMessage(contentHash: contentHash, recepient: recepient, nonce: nonce, token: token, fee: fee))
-    }
-    
-    public func signWithdrawNFT(to: String, tokenId: UInt32, nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullWithdrawNFTMessage(to: to, tokenId: tokenId, nonce: nonce, token: token, fee: fee))
-    }
-    
-    public func signSwap(nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
-        return try self.sign(message: self.createFullSwapMessage(nonce: nonce, token: token, fee: fee))
-    }
-    
-    public func signOrder(_ order: Order, tokenSell: Token, tokenBuy: Token) throws -> EthSignature {
-        let message = self.createFullOrderMessage(recepient: order.recepientAddress,
-                                                  amount: order.amount,
-                                                  tokenSell: tokenSell,
-                                                  tokenBuy: tokenBuy,
-                                                  ratio: order.ratio,
-                                                  nonce: order.nonce)
-        return try self.sign(message: message)
-    }
-    
-    public func signBatch(transactions: [ZkSyncTransaction], nonce: UInt32, token: Token, fee: BigUInt) throws -> EthSignature {
+    public func signAuth(changePubKey: ChangePubKey<ChangePubKeyECDSA>) throws -> ChangePubKey<ChangePubKeyECDSA> {
+        let batchHash = Data(repeating: 0, count: 32).toHexString().addHexPrefix()
+        var auth = ChangePubKeyECDSA(ethSignature: nil, batchHash: batchHash)
         
+        let message = try createChangePubKeyMessage(pubKeyHash: changePubKey.newPkHash,
+                                                    nonce: changePubKey.nonce,
+                                                    accountId: changePubKey.accountId,
+                                                    changePubKeyVariant: auth)
+        
+        let ethSignature = try sign(message: message)
+        
+        auth.ethSignature = ethSignature.signature
+        changePubKey.ethAuthData = auth
+        
+        return changePubKey
+    }
+    
+    public func signTransaction<T>(transaction: T,
+                                   nonce: UInt32,
+                                   token: Token,
+                                   fee: BigUInt) throws -> EthSignature? where T : ZkSyncTransaction {
+        switch transaction.type {
+        case "ChangePubKey":
+            guard let transaction = transaction as? ChangePubKey<ChangePubKeyECDSA> else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = try createChangePubKeyMessage(pubKeyHash: transaction.newPkHash,
+                                                        nonce: nonce,
+                                                        accountId: transaction.accountId,
+                                                        changePubKeyVariant: transaction.ethAuthData!)
+            
+            return try sign(message: message)
+        case "ForcedExit":
+            guard let transaction = transaction as? ForcedExit else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullForcedExitMessage(to: transaction.target,
+                                                      nonce: nonce,
+                                                      token: token,
+                                                      fee: fee)
+            
+            return try sign(message: message)
+        case "MintNFT":
+            guard let transaction = transaction as? MintNFT else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullMintNFTMessage(contentHash: transaction.contentHash,
+                                                   recepient: transaction.recipient,
+                                                   nonce: nonce,
+                                                   token: token,
+                                                   fee: fee)
+            
+            return try sign(message: message)
+        case "Transfer":
+            guard let transaction = transaction as? Transfer else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullTransferMessage(to: transaction.to,
+                                                    accountId: transaction.accountId,
+                                                    nonce: nonce,
+                                                    amount: transaction.amount,
+                                                    token: token,
+                                                    fee: fee)
+            
+            return try sign(message: message)
+        case "Withdraw":
+            guard let transaction = transaction as? Withdraw else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullWithdrawMessage(to: transaction.to,
+                                                    accountId: transaction.accountId,
+                                                    nonce: nonce,
+                                                    amount: transaction.amount,
+                                                    token: token,
+                                                    fee: fee)
+            
+            return try sign(message: message)
+        case "WithdrawNFT":
+            guard let transaction = transaction as? WithdrawNFT else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullWithdrawNFTMessage(to: transaction.to,
+                                                       tokenId: transaction.token,
+                                                       nonce: nonce,
+                                                       token: token,
+                                                       fee: fee)
+            
+            return try sign(message: message)
+        case "Swap":
+            guard let _ = transaction as? Swap else {
+                throw EthSignerError.invalidTransactionType("Unexpected transaction type: \(transaction.type).")
+            }
+            
+            let message = createFullSwapMessage(nonce: nonce,
+                                                token: token,
+                                                fee: fee)
+            
+            return try sign(message: message)
+        default:
+            throw EthSignerError.invalidTransactionType("Transaction type \(transaction.type) is not supported.")
+        }
+    }
+
+    public func signOrder(_ order: Order,
+                          tokenSell: Token,
+                          tokenBuy: Token) throws -> EthSignature {
+        let message = createFullOrderMessage(recepient: order.recepientAddress,
+                                             amount: order.amount,
+                                             tokenSell: tokenSell,
+                                             tokenBuy: tokenBuy,
+                                             ratio: order.ratio,
+                                             nonce: order.nonce)
+        return try sign(message: message)
+    }
+    
+    public func signBatch(transactions: [ZkSyncTransaction],
+                          nonce: UInt32,
+                          token: Token,
+                          fee: BigUInt) throws -> EthSignature {
         let message =
             try transactions.map { (tx) -> String in
                 switch tx {
                 case let forcedExitTx as ForcedExit:
-                    return self.createForcedExitMessagePart(to: forcedExitTx.target, token: token, fee: fee)
+                    return createForcedExitMessagePart(to: forcedExitTx.target,
+                                                       token: token,
+                                                       fee: fee)
                 case let mintNFTTx as MintNFT:
-                    return self.createMintNFTMessagePart(contentHash: mintNFTTx.contentHash, recepient: mintNFTTx.recipient, token: token, fee: fee)
+                    return createMintNFTMessagePart(contentHash: mintNFTTx.contentHash,
+                                                    recepient: mintNFTTx.recipient,
+                                                    token: token,
+                                                    fee: fee)
                 case let transferTx as Transfer:
                     let tokenId = transferTx.tokenId ?? token
-                    return self.createTransferMessagePart(to: transferTx.to, accountId: transferTx.accountId, amount: transferTx.amount, token: tokenId, fee: BigUInt(stringLiteral: transferTx.fee))
+                    return createTransferMessagePart(to: transferTx.to,
+                                                     accountId: transferTx.accountId,
+                                                     amount: transferTx.amount,
+                                                     token: tokenId,
+                                                     fee: BigUInt(stringLiteral: transferTx.fee))
                 case let withdrawTx as Withdraw:
-                    return self.createWithdrawMessagePart(to: withdrawTx.to, accountId: withdrawTx.accountId, amount: withdrawTx.amount, token: token, fee: fee)
+                    return createWithdrawMessagePart(to: withdrawTx.to,
+                                                     accountId: withdrawTx.accountId,
+                                                     amount: withdrawTx.amount,
+                                                     token: token,
+                                                     fee: fee)
                 case let withdrawNFTTx as WithdrawNFT:
-                    return self.createWithdrawNFTMessagePart(to: withdrawNFTTx.to, tokenId: withdrawNFTTx.token, token: token, fee: fee)
+                    return createWithdrawNFTMessagePart(to: withdrawNFTTx.to,
+                                                        tokenId: withdrawNFTTx.token,
+                                                        token: token,
+                                                        fee: fee)
                 case is Swap:
-                    return self.createSwapMessagePart(token: token, fee: fee)
+                    return createSwapMessagePart(token: token,
+                                                 fee: fee)
                 default:
                     throw EthSignerError.invalidTransactionType("Transaction type \(tx.type) is not supported by batch")
                 }
@@ -102,9 +206,8 @@ public class DefaultEthSigner: EthSigner {
             .attaching(nonce: nonce)
             .data(using: .utf8)!
         
-        return try self.sign(message: message)
+        return try sign(message: message)
     }
-    
     
     public func sign(message: Data) throws -> EthSignature {
         
@@ -138,7 +241,8 @@ public class DefaultEthSigner: EthSigner {
         
         let publicKeyData = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
         
-        var privateKey = try keystore.UNSAFE_getPrivateKeyData(password: "web3swift", account: self.ethereumAddress)
+        var privateKey = try keystore.UNSAFE_getPrivateKeyData(password: "web3swift",
+                                                               account: ethereumAddress)
         defer { Data.zero(&privateKey) }
         
         let keystorePublicKeyData = Web3Utils.privateToPublic(privateKey)
