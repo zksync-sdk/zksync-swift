@@ -21,7 +21,8 @@ public extension DefaultEthSigner {
         data.append(changePubKeyVariant.bytes)
         return data
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     func createFullTransferMessage(to: String,
                                    accountId: UInt32,
                                    nonce: UInt32,
@@ -36,7 +37,7 @@ public extension DefaultEthSigner {
             .attaching(nonce: nonce)
             .data(using: .utf8)!
     }
-    
+
     func createTransferMessagePart(to: String,
                                    accountId: UInt32,
                                    amount: BigUInt,
@@ -53,6 +54,7 @@ public extension DefaultEthSigner {
             .attaching(fee: fee, with: token)
     }
 
+    // swiftlint:disable:next function_parameter_count
     func createFullWithdrawMessage(to: String,
                                    accountId: UInt32,
                                    nonce: UInt32,
@@ -73,13 +75,13 @@ public extension DefaultEthSigner {
                                    amount: BigUInt,
                                    token: Token,
                                    fee: BigUInt) -> String {
-        return String(format:"Withdraw %@ %@ to: %@",
+        return String(format: "Withdraw %@ %@ to: %@",
                       Utils.format(token.intoDecimal(amount)),
                       token.symbol,
                       to.lowercased())
             .attaching(fee: fee, with: token)
     }
-    
+
     func createFullForcedExitMessage(to: String,
                                      nonce: UInt32,
                                      token: Token,
@@ -145,20 +147,21 @@ public extension DefaultEthSigner {
                       to.lowercased())
             .attaching(fee: fee, with: token)
     }
-    
+
     func createFullSwapMessage(nonce: UInt32, token: Token, fee: BigUInt) -> Data {
         return createSwapMessagePart(token: token, fee: fee)
             .attaching(nonce: nonce)
             .data(using: .utf8)!
     }
-    
+
     func createSwapMessagePart(token: Token,
                                fee: BigUInt) -> String {
         return String(format: "Swap fee: %@ %@",
                       Utils.format(token.intoDecimal(fee)),
                       token.symbol)
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     func createFullOrderMessage(recepient: String,
                                 amount: BigUInt,
                                 tokenSell: Token,
@@ -180,26 +183,28 @@ public extension DefaultEthSigner {
                          ratio.0.description,
                          ratio.1.description,
                          recepient.lowercased())
-        
+
         return result.attaching(nonce: nonce).data(using: .utf8)!
     }
-    
+
     func createToggle2FAMessage(require2FA: Bool, timestamp: Int64) -> String {
         var message = ""
-        
+
         if require2FA {
             message = String(format:
-                                "By signing this message, you are opting into Two-factor Authentication protection by the zkSync Server.\n" +
+                                "By signing this message, you are opting into Two-factor Authentication" +
+                                "protection by the zkSync Server.\n" +
                                 "Transactions now require signatures by both your L1 and L2 private key.\n" +
                                 "Timestamp: %lu", timestamp)
         } else {
             message = String(format:
                                 "You are opting out of Two-factor Authentication protection by the zkSync Server.\n" +
                                 "Transactions now only require signatures by your L2 private key.\n" +
-                                "BY SIGNING THIS MESSAGE, YOU ARE TRUSTING YOUR WALLET CLIENT TO KEEP YOUR L2 PRIVATE KEY SAFE!\n" +
+                                "BY SIGNING THIS MESSAGE, YOU ARE TRUSTING YOUR WALLET CLIENT TO KEEP" +
+                                "YOUR L2 PRIVATE KEY SAFE!\n" +
                                 "Timestamp: %lu", timestamp)
         }
-        
+
         return message
     }
 }

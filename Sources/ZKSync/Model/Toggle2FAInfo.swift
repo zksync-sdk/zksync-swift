@@ -8,6 +8,6 @@
 import Foundation
 
 public struct Toggle2FAInfo: Decodable {
-    
+
     var success: Bool
 }

@@ -38,9 +38,11 @@ extension TransactionType {
 }
 
 extension TransactionType: Encodable {
-    
+
     private struct ChangePubKeyIdentifier: Encodable {
-        let changePubKey: [String : Bool]
+        let changePubKey: [String: Bool]
+
+        // swiftlint:disable:next nesting
         enum CodingKeys: String, CodingKey {
             case changePubKey = "ChangePubKey"
         }
@@ -54,7 +56,7 @@ extension TransactionType: Encodable {
             let identifier = ChangePubKeyIdentifier(changePubKey: ["onchainPubkeyAuth": value])
             try container.encode(identifier)
         case .changePubKeyOnchain, .changePubKeyECDSA, .changePubKeyCREATE2:
-            try container.encode(["ChangePubKey" : feeIdentifier])
+            try container.encode(["ChangePubKey": feeIdentifier])
         default:
             try container.encode(feeIdentifier)
         }

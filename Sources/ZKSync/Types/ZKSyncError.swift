@@ -10,9 +10,9 @@ import Foundation
 public enum ZKSyncError: LocalizedError {
     case emptyResponse
     case invalidStatusCode(code: Int)
-    
+
     case rpcError(code: Int, message: String)
-    
+
     public var errorDescription: String? {
         switch self {
         case .rpcError(let code, let message):

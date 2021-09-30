@@ -18,9 +18,9 @@ public struct Tokens: Decodable {
     public func tokenBySymbol(_ symbol: String) -> Token? {
         return tokens[symbol]
     }
-    
+
     public func tokenByAddress(_ address: String) throws -> Token {
-        let record = tokens.first { (key, token) -> Bool in
+        let record = tokens.first { (_, token) -> Bool in
             return token.address == address
         }
         guard let token = record?.value else {
@@ -28,14 +28,14 @@ public struct Tokens: Decodable {
         }
         return token
     }
-    
+
     public func tokenByTokenIdentifier(_ identifier: String) throws -> Token {
         guard let symbol = tokenBySymbol(identifier) else {
             return try tokenByAddress(identifier)
         }
         return symbol
     }
-    
+
     public init(from decoder: Decoder) throws {
         tokens = [:]
         let container = try decoder.container(keyedBy: DynamicKey.self)
@@ -43,7 +43,7 @@ public struct Tokens: Decodable {
             tokens[key.stringValue] = try container.decode(Token.self, forKey: key)
         }
     }
-    
+
     internal init(tokens: [String: Token]) {
         self.tokens = tokens
     }

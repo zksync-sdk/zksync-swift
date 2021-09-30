@@ -21,7 +21,7 @@ extension String {
         }
         return self
     }
-    
+
     func addHexPrefix() -> String {
         if !self.hasPrefix("0x") {
             return "0x" + self
@@ -39,7 +39,7 @@ extension String {
     func stripPubKeyHashPrefix() -> String {
         return self.deletingPrefix("sync:")
     }
-    
+
     func addPubKeyHashPrefix() -> String {
         if !self.hasPrefix("sync:") {
             return "sync:" + self
@@ -61,9 +61,9 @@ extension String {
     func attaching(fee: BigUInt, with token: TokenId) -> String {
         if fee > 0 {
             let separator = self.isEmpty ? "" : "\n"
-            return self + separator + String(format:"Fee: %@ %@",
+            return self + separator + String(format: "Fee: %@ %@",
                                              Utils.format(token.intoDecimal(fee)),
-                                             token.symbol);
+                                             token.symbol)
         } else {
             return self
         }

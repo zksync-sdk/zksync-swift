@@ -78,7 +78,6 @@
 		8A179EB026E2AB800079299B /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		8A179EB226E2ABD10079299B /* ForcedExit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcedExit.swift; sourceTree = "<group>"; };
 		8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationCreate2ShortFlowTests.swift; sourceTree = "<group>"; };
-		8A9B298626D5AD5E001A7ECE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZKSync.podspec; path = ../../ZKSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A9CAE4C2690A6FA00DABC41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		8A9CAE672690AA9000DABC41 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
@@ -221,7 +220,6 @@
 				8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */,
 				8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */,
 				8A9CAE7C2690AA9000DABC41 /* Info.plist */,
-				8A9B298626D5AD5E001A7ECE /* .swiftlint.yml */,
 			);
 			path = ZKSyncExample;
 			sourceTree = "<group>";
@@ -408,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n    cd ../../\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		B2D0C8FFE2F37CE484778D51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

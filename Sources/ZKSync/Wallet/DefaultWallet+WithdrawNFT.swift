@@ -10,7 +10,13 @@ import PromiseKit
 
 extension DefaultWallet {
 
-    public func withdrawNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    // swiftlint:disable:next function_parameter_count
+    public func withdrawNFT(to: String,
+                            token: NFT,
+                            fee: TransactionFee,
+                            nonce: UInt32?,
+                            timeRange: TimeRange,
+                            completion: @escaping (Swift.Result<String, Error>) -> Void) {
         firstly {
             getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId) in
@@ -28,7 +34,8 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     func buildSignedWithdrawNFTTx(to: String,
                                   token: NFT,
                                   fee: TransactionFee,
@@ -47,13 +54,15 @@ extension DefaultWallet {
                                           fee: fee.fee.description,
                                           nonce: nonce,
                                           timeRange: timeRange)
-            
+
             let ethSignature = try self.ethSigner.signTransaction(transaction: withdrawNFT,
                                                                   nonce: nonce,
                                                                   token: feeToken,
                                                                   fee: fee.fee)
-            
-            let signedTransaction = SignedTransaction(transaction: try self.zkSigner.sign(withdrawNFT: withdrawNFT), ethereumSignature: ethSignature)
+
+            let transaction = try self.zkSigner.sign(withdrawNFT: withdrawNFT)
+            let signedTransaction = SignedTransaction(transaction: transaction,
+                                                      ethereumSignature: ethSignature)
             return signedTransaction
         }
     }

@@ -11,6 +11,7 @@ import BigInt
 
 extension DefaultWallet {
 
+    // swiftlint:disable:next function_parameter_count
     public func withdraw(ethAddress: String,
                          amount: BigUInt,
                          fee: TransactionFee,
@@ -36,7 +37,8 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     public func buildSignedWithdrawTx(to: String,
                                       tokenIdentifier: String,
                                       amount: BigUInt,
@@ -56,12 +58,12 @@ extension DefaultWallet {
                                     fee: fee.description,
                                     nonce: nonce,
                                     timeRange: timeRange)
-            
+
             let ethSignature = try self.ethSigner.signTransaction(transaction: withdraw,
                                                                   nonce: nonce,
                                                                   token: token,
                                                                   fee: fee)
-            
+
             let transaction = try self.zkSigner.sign(withdraw: withdraw)
             let signedTransaction = SignedTransaction(transaction: transaction,
                                                       ethereumSignature: ethSignature)

@@ -12,6 +12,6 @@ public protocol TokenId {
 
     var id: UInt32 { get }
     var symbol: String { get }
-    
+
     func intoDecimal(_ amount: BigUInt) -> Decimal
 }

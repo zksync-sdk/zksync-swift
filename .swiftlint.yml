@@ -1,0 +1,14 @@
+included:
+    - Sources/ZKSync/
+    - Examples/CocoaPods/ZKSyncExample
+    - Examples/SPM/ZKSyncExample
+
+identifier_name:
+    allowed_symbols: "_"
+    min_length: 2
+    max_length: 50
+    warning: 30
+    error: 60
+    excluded:
+        - id
+        - tx

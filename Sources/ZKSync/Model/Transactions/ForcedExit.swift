@@ -9,9 +9,9 @@ import Foundation
 import BigInt
 
 public class ForcedExit: ZkSyncTransaction {
-    
+
     override public var type: String { "ForcedExit" }
-    
+
     let initiatorAccountId: UInt32
     let target: String
     let token: UInt32
@@ -20,9 +20,9 @@ public class ForcedExit: ZkSyncTransaction {
     let timeRange: TimeRange
 
     var signature: Signature?
-    
+
     var feeInteger: BigUInt { BigUInt(fee)! }
-    
+
     public init(initiatorAccountId: UInt32,
                 target: String,
                 token: UInt32,
@@ -36,7 +36,7 @@ public class ForcedExit: ZkSyncTransaction {
         self.nonce = nonce
         self.timeRange = timeRange
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case initiatorAccountId
         case target
@@ -48,7 +48,7 @@ public class ForcedExit: ZkSyncTransaction {
         case validFrom
         case validUntil
     }
-    
+
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(initiatorAccountId, forKey: .initiatorAccountId)

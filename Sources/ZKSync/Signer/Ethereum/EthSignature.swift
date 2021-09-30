@@ -13,10 +13,10 @@ public struct EthSignature: Encodable {
         case ethereumSignature = "EthereumSignature"
         case EIP1271Signature
     }
-    
+
     let signature: String
     let type: SignatureType
-    
+
     public init(signature: String, type: SignatureType) {
         self.signature = signature
         self.type = type

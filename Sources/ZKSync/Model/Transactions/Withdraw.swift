@@ -42,7 +42,7 @@ public class Withdraw: ZkSyncTransaction {
         self.nonce = nonce
         self.timeRange = timeRange
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case accountId
         case from
@@ -56,7 +56,7 @@ public class Withdraw: ZkSyncTransaction {
         case validFrom
         case validUntil
     }
-    
+
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accountId, forKey: .accountId)
@@ -72,4 +72,3 @@ public class Withdraw: ZkSyncTransaction {
         try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
 }
-

@@ -11,21 +11,21 @@ import BigInt
 extension BigUInt {
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        
+
         let stringValue = try container.decode(String.self)
-        
+
         self.init(stringValue.stripHexPrefix(), radix: 16)!
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(String(self, radix: 16).addHexPrefix())
     }
-    
+
     static var ten: BigUInt {
         return BigUInt(10)
     }
-    
+
     static var two: BigUInt {
         return BigUInt(2)
     }
@@ -33,11 +33,11 @@ extension BigUInt {
     static var one: BigUInt {
         return BigUInt(1)
     }
-    
+
     static var zero: BigUInt {
         return BigUInt(0)
     }
-    
+
     var isZero: Bool {
         return self == BigUInt.zero
     }
@@ -54,17 +54,17 @@ extension BigInt {
 
             var data = Data(count: byteCount)
             data.withUnsafeMutableBytes { buffPtr in
-                let p = buffPtr.bindMemory(to: UInt8.self)
-                var i = byteCount - 1
+                let pointer = buffPtr.bindMemory(to: UInt8.self)
+                var index = byteCount - 1
                 for var word in self.words {
                     for _ in 0 ..< Word.bitWidth / 8 {
-                        p[i] = UInt8(word & 0xFF)
+                        pointer[index] = UInt8(word & 0xFF)
                         word >>= 8
-                        if i == 0 {
+                        if index == 0 {
                             assert(word == 0)
                             break
                         }
-                        i -= 1
+                        index -= 1
                     }
                 }
             }

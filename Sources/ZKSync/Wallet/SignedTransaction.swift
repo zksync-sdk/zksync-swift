@@ -13,7 +13,7 @@ public struct SignedTransaction<T> where T: ZkSyncTransaction {
 }
 
 extension SignedTransaction: Encodable {
-    
+
     enum CodingKeys: String, CodingKey {
         case transaction = "tx"
         case ethereumSignature = "signature"

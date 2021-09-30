@@ -9,7 +9,7 @@ import Foundation
 import PromiseKit
 
 extension DefaultWallet {
-    
+
     public func mintNFT(recepient: String,
                         contentHash: String,
                         fee: TransactionFee,
@@ -31,7 +31,7 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-    
+
     func buildSignedMintNFTTx(recepient: String,
                               contentHash: String,
                               fee: TransactionFee,
@@ -48,12 +48,12 @@ extension DefaultWallet {
                                   fee: fee.fee.description,
                                   feeToken: token.id,
                                   nonce: nonce)
-            
+
             let ethSignature = try self.ethSigner.signTransaction(transaction: mintNFT,
                                                                   nonce: nonce,
                                                                   token: token,
                                                                   fee: fee.fee)
-            
+
             let transaction = try self.zkSigner.sign(mintNFT: mintNFT)
             let signedTransaction = SignedTransaction(transaction: transaction,
                                                       ethereumSignature: ethSignature)

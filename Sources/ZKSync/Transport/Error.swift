@@ -10,4 +10,4 @@ import Foundation
 struct JRPCError: Codable {
     public let code: Int
     public let message: String
-} 
+}

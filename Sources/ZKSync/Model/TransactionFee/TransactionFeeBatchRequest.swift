@@ -11,11 +11,10 @@ public struct TransactionFeeBatchRequest {
 
     let transactionsAndAddresses: [TransactionTypeAddressPair]
     let tokenIdentifier: String
-    
+
     public init(transactionsAndAddresses: [TransactionTypeAddressPair],
                 tokenIdentifier: String) {
         self.transactionsAndAddresses = transactionsAndAddresses
         self.tokenIdentifier = tokenIdentifier
     }
 }
-

@@ -11,8 +11,8 @@ extension TransactionFeeBatchRequest: Encodable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
-        try container.encode(self.transactionsAndAddresses.map { $0.transactionType } )
-        try container.encode(self.transactionsAndAddresses.map { $0.address } )
+        try container.encode(transactionsAndAddresses.map({ $0.transactionType }))
+        try container.encode(transactionsAndAddresses.map({ $0.address }))
         try container.encode(tokenIdentifier)
     }
 }

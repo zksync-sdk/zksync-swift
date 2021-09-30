@@ -9,9 +9,9 @@ import Foundation
 import BigInt
 
 public class Transfer: ZkSyncTransaction {
-    
+
     override public var type: String { "Transfer" }
-    
+
     let accountId: UInt32
     let from: String
     let to: String
@@ -20,14 +20,14 @@ public class Transfer: ZkSyncTransaction {
     let fee: String
     let nonce: UInt32
     let timeRange: TimeRange
-        
+
     var signature: Signature?
 
     // Ignored when generating JSON
     let tokenId: TokenId?
 
     var feeInteger: BigUInt { BigUInt(fee)! }
-    
+
     public init(accountId: UInt32,
                 from: String,
                 to: String,
@@ -47,7 +47,7 @@ public class Transfer: ZkSyncTransaction {
         self.timeRange = timeRange
         self.tokenId = tokenId
     }
- 
+
     enum CodingKeys: String, CodingKey {
         case accountId
         case from
@@ -61,7 +61,7 @@ public class Transfer: ZkSyncTransaction {
         case validFrom
         case validUntil
     }
-    
+
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accountId, forKey: .accountId)
@@ -76,7 +76,7 @@ public class Transfer: ZkSyncTransaction {
         try container.encode(timeRange.validFrom, forKey: .validFrom)
         try container.encode(timeRange.validUntil, forKey: .validUntil)
     }
-    
+
     var description: String {
         let mirror = Mirror(reflecting: self)
         var objectDescription: String = ""

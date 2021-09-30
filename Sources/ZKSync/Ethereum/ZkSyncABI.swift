@@ -1092,4 +1092,5 @@ extension Web3.Utils {
         }
       ]
 """
+// swiftlint:disable:next file_length
 }

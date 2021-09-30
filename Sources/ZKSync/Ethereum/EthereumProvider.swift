@@ -17,25 +17,25 @@ public enum EthereumProviderError: Error {
 }
 
 public class EthereumProvider {
-    
+
     let web3: web3
 
     let zkSync: ZkSync
-    
+
     var ethereumAddress: EthereumAddress
-    
+
     var keystore: AbstractKeystore
-    
+
     init(web3: web3,
          keystore: AbstractKeystore,
          ethereumAddress: EthereumAddress,
          zkSync: ZkSync) {
         self.web3 = web3
         self.zkSync = zkSync
-        
+
         self.keystore = keystore
         self.ethereumAddress = ethereumAddress
-        
+
         if let keystore = keystore as? EthereumKeystoreV3 {
             let keystoreManager = KeystoreManager([keystore])
             self.web3.addKeystoreManager(keystoreManager)
@@ -44,7 +44,7 @@ public class EthereumProvider {
             self.web3.addKeystoreManager(keystoreManager)
         }
     }
-    
+
     public func approveDeposits(token: Token, limit: BigUInt?) -> Promise<TransactionSendingResult> {
         guard let erc20ContractAddress = EthereumAddress(token.address) else {
             return .init(error: EthereumProviderError.invalidTokenAddress)
@@ -52,7 +52,7 @@ public class EthereumProvider {
         let erc20 = ERC20(web3: self.web3, provider: web3.provider, address: erc20ContractAddress)
         let maxApproveAmount = BigUInt.two.power(256) - 1
         let amount = limit?.description ?? maxApproveAmount.description
-        
+
         do {
             let tx = try erc20.approve(from: ethereumAddress,
                                        spender: ethereumAddress,
@@ -62,7 +62,7 @@ public class EthereumProvider {
             return .init(error: error)
         }
     }
-    
+
     public func transfer(token: Token, amount: BigUInt, to: String) -> Promise<TransactionSendingResult> {
         let tx: WriteTransaction
         do {
@@ -76,7 +76,7 @@ public class EthereumProvider {
             return .init(error: error)
         }
     }
-    
+
     private func transferEth(amount: BigUInt, to: String) throws -> WriteTransaction {
         guard let toAddress = EthereumAddress(to) else {
             throw EthereumProviderError.invalidAddress
@@ -89,7 +89,7 @@ public class EthereumProvider {
         }
         return tx
     }
-    
+
     private func transferERC20(token: Token, amount: BigUInt, to: String) throws -> WriteTransaction {
         guard let toAddress = EthereumAddress(to) else {
             throw EthereumProviderError.invalidAddress
@@ -105,7 +105,7 @@ public class EthereumProvider {
         }
         return tx
     }
-    
+
     public func deposit(token: Token, amount: BigUInt, userAddress: String) -> Promise<TransactionSendingResult> {
         guard let userAddress = EthereumAddress(userAddress) else {
             return .init(error: EthereumProviderError.invalidAddress)
@@ -119,7 +119,7 @@ public class EthereumProvider {
             return zkSync.depositERC20(tokenAddress: tokenAddress, amount: amount, userAddress: userAddress)
         }
     }
-    
+
     public func fullExit(token: Token, accountId: UInt32) -> Promise<TransactionSendingResult> {
         guard let tokenAddress = EthereumAddress(token.address) else {
             return .init(error: EthereumProviderError.invalidTokenAddress)
@@ -131,7 +131,7 @@ public class EthereumProvider {
         let data = Data(hex: pubKeyhash)
         return zkSync.setAuthPubkeyHash(pubKeyHash: data, nonce: nonce)
     }
-    
+
     public func isDepositApproved(token: Token, threshold: BigUInt?) throws -> Bool {
         guard let erc20ContractAddress = EthereumAddress(token.address) else {
             throw EthereumProviderError.invalidTokenAddress
@@ -142,15 +142,15 @@ public class EthereumProvider {
         let defaultThreshold = BigUInt.two.power(255)
         return allowance > (threshold ?? defaultThreshold)
     }
-    
+
     public func getBalance() -> Promise<BigUInt> {
         web3.eth.getBalancePromise(address: ethereumAddress)
     }
-    
+
     public func getNonce() -> Promise<BigUInt> {
         web3.eth.getTransactionCountPromise(address: ethereumAddress)
     }
-    
+
     public func isOnChainAuthPubkeyHashSet(nonce: UInt32) -> Promise<Bool> {
         firstly {
             zkSync.authFacts(senderAddress: ethereumAddress, nonce: nonce)
@@ -161,7 +161,7 @@ public class EthereumProvider {
 }
 
 extension TransactionOptions {
-    
+
     init(amount: BigUInt, from: EthereumAddress) {
         self = TransactionOptions.defaultOptions
         self.value = amount

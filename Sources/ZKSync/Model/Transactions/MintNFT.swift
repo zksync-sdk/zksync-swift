@@ -19,7 +19,7 @@ public class MintNFT: ZkSyncTransaction {
     let fee: String
     let feeToken: UInt32
     let nonce: UInt32
-    
+
     var signature: Signature?
 
     var feeInteger: BigUInt { BigUInt(fee)! }
@@ -41,7 +41,7 @@ public class MintNFT: ZkSyncTransaction {
         self.nonce = nonce
         self.signature = signature
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case creatorId
         case creatorAddress
@@ -53,7 +53,7 @@ public class MintNFT: ZkSyncTransaction {
         case signature
         case type
     }
-    
+
     public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(creatorId, forKey: .creatorId)

@@ -10,7 +10,7 @@ import PromiseKit
 import BigInt
 
 extension DefaultWallet {
-    
+
     public func forcedExit(target: String,
                            fee: TransactionFee,
                            nonce: UInt32?,
@@ -33,7 +33,8 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     public func buildSignedForcedExitTx(target: String,
                                         tokenIdentifier: String,
                                         fee: BigUInt,
@@ -50,12 +51,12 @@ extension DefaultWallet {
                                         fee: fee.description,
                                         nonce: nonce,
                                         timeRange: timeRange)
-            
+
             let ethSignature = try self.ethSigner.signTransaction(transaction: forcedExit,
                                                                   nonce: nonce,
                                                                   token: token,
                                                                   fee: fee)
-            
+
             let transaction = try self.zkSigner.sign(forcedExit: forcedExit)
             let signedTransaction = SignedTransaction(transaction: transaction,
                                                       ethereumSignature: ethSignature)

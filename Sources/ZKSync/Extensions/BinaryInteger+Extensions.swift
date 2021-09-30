@@ -11,7 +11,7 @@ extension BinaryInteger {
     func bytes() -> Data {
         return withUnsafeBytes(of: self) { Data($0) }
     }
-    
+
 }
 
 extension FixedWidthInteger {
