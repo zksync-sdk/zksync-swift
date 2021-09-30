@@ -20,7 +20,7 @@ public struct NFT: TokenId, Decodable {
     let serialId: UInt32
 
     let address: String
-    
+
     public func intoDecimal(_ amount: BigUInt) -> Decimal {
         let sourceDecimal = Decimal(string: "\(amount)")!
         return  sourceDecimal / pow(Decimal(1), 1)

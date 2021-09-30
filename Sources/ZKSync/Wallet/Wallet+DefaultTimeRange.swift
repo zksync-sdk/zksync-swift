@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 
 public extension Wallet {
-    
+
     func setSigningKey(fee: TransactionFee,
                        nonce: UInt32?,
                        onchainAuth: Bool,
@@ -33,7 +33,8 @@ public extension Wallet {
                       timeRange: .max,
                       completion: completion)
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     func withdraw(ethAddress: String,
                   amount: BigUInt,
                   fee: TransactionFee,
@@ -48,7 +49,7 @@ public extension Wallet {
                       timeRange: .max,
                       completion: completion)
     }
-    
+
     func forcedExit(target: String,
                     fee: TransactionFee,
                     nonce: UInt32?,
@@ -59,7 +60,7 @@ public extension Wallet {
                         timeRange: .max,
                         completion: completion)
     }
-    
+
     func withdrawNFT(to: String,
                      token: NFT,
                      fee: TransactionFee,
@@ -72,7 +73,7 @@ public extension Wallet {
                          timeRange: .max,
                          completion: completion)
     }
-    
+
     func transferNFT(to: String,
                      token: NFT,
                      fee: TransactionFee,

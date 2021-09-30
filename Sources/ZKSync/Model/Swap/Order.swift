@@ -9,22 +9,22 @@ import Foundation
 import BigInt
 
 public struct Order: Encodable {
-    
+
     let accountId: UInt32
     let recepientAddress: String
     let nonce: UInt32
     let tokenBuy: UInt32
     let tokenSell: UInt32
-    
+
     let ratio: (BigUInt, BigUInt)
-    
+
     let amount: BigUInt
     var signature: Signature?
-    
+
     let timeRange: TimeRange
-    
+
     var ethereumSignature: EthSignature?
-    
+
     internal init(accountId: UInt32,
                   recepientAddress: String,
                   nonce: UInt32,
@@ -55,10 +55,10 @@ public struct Order: Encodable {
         case validFrom
         case validUntil
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(accountId, forKey: .accountId)
         try container.encode(recepientAddress, forKey: .recepientAddress)
         try container.encode(nonce, forKey: .nonce)

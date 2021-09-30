@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CryptoSwift
 import ZKSyncCrypto
 
 enum ZkSignerError: Error {
@@ -15,24 +14,24 @@ enum ZkSignerError: Error {
 }
 
 public class ZkSigner {
-    
+
     private static let Message = "Access zkSync account.\n\nOnly sign this message for a trusted client!"
     private static let TransactionVersion: UInt8 = 0x01
-    
+
     let privateKey: ZKPrivateKey
     let publicKey: ZKPackedPublicKey
     public let publicKeyHash: String
-    
+
     public init(privateKey: ZKPrivateKey) throws {
         self.privateKey = privateKey
-        
+
         switch ZKSyncCrypto.getPublicKey(privateKey: privateKey) {
         case .success(let key):
             self.publicKey = key
         default:
             throw ZkSignerError.invalidPrivateKey
         }
-        
+
         switch ZKSyncCrypto.getPublicKeyHash(publicKey: self.publicKey) {
         case .success(let hash):
             self.publicKeyHash = hash.hexEncodedString().addPubKeyHashPrefix().lowercased()
@@ -40,7 +39,7 @@ public class ZkSigner {
             throw ZkSignerError.invalidPrivateKey
         }
     }
-    
+
     public convenience init(seed: Data) throws {
         switch ZKSyncCrypto.generatePrivateKey(seed: seed) {
         case .success(let privateKey):
@@ -49,18 +48,18 @@ public class ZkSigner {
             throw error
         }
     }
-    
+
     public convenience init(rawPrivateKey: Data) throws {
         if rawPrivateKey.count != ZKPrivateKey.bytesLength {
             throw ZkSignerError.incorrectDataLength
         }
         try self.init(privateKey: ZKPrivateKey(rawPrivateKey))
     }
-    
+
     public convenience init(signature: EthSignature) throws {
         try self.init(seed: Data(hex: signature.signature))
     }
-    
+
     public func sign(message: Data) throws -> Signature {
         switch ZKSyncCrypto.signMessage(privateKey: self.privateKey, message: message) {
         case .success(let signature):
@@ -70,7 +69,7 @@ public class ZkSigner {
             throw error
         }
     }
-    
+
     public func sign<T: ChangePubKeyVariant>(changePubKey: ChangePubKey<T>) throws -> ChangePubKey<T> {
         changePubKey.signature = try compileSignature {
             0xff - 0x07
@@ -86,7 +85,7 @@ public class ZkSigner {
         }
         return changePubKey
     }
-    
+
     public func sign(transfer: Transfer) throws -> Transfer {
         transfer.signature = try compileSignature {
             0xff - 0x05
@@ -135,7 +134,7 @@ public class ZkSigner {
         }
         return forcedExit
     }
-    
+
     public func sign(mintNFT: MintNFT) throws -> MintNFT {
         mintNFT.signature = try compileSignature {
             0xff - 0x09
@@ -150,7 +149,7 @@ public class ZkSigner {
         }
         return mintNFT
     }
-    
+
     public func sign(withdrawNFT: WithdrawNFT) throws -> WithdrawNFT {
         withdrawNFT.signature = try compileSignature {
             0xff - 0x0a
@@ -167,18 +166,18 @@ public class ZkSigner {
         }
         return withdrawNFT
     }
-    
+
     public func sign(swap: Swap) throws -> Swap {
-        
+
         let order1Data = try self.data(from: swap.orders.0)
         let order2Data = try self.data(from: swap.orders.1)
-        
+
         var orderMessage = Data()
         orderMessage.append(order1Data)
         orderMessage.append(order2Data)
-        
+
         let rescueHash = ZKSyncCrypto.rescueHashOrders(message: orderMessage)
-        
+
         swap.signature = try compileSignature {
             0xff - 0x0b
             ZkSigner.TransactionVersion
@@ -191,17 +190,17 @@ public class ZkSigner {
             try Utils.amountPackedToBytes(swap.amounts.0)
             try Utils.amountPackedToBytes(swap.amounts.1)
         }
-        
+
         return swap
     }
-    
+
     func sign(order: Order) throws -> Order {
         var mutableOrder = order
         let message = try self.data(from: order)
         mutableOrder.signature = try self.sign(message: message)
         return mutableOrder
     }
-    
+
     func data(from order: Order) throws -> Data {
         return try compileMessage {
             0x6f
@@ -218,16 +217,15 @@ public class ZkSigner {
             Utils.numberToBytesBE(order.timeRange.validUntil, numBytes: 8)
         }
     }
-    
+
     func compileMessage(@MessageBuilder content: () throws -> Data) rethrows -> Data {
         return try content()
     }
-    
+
     func compileSignature(@MessageBuilder content: () throws -> Data) throws -> Signature {
         return try self.sign(message: try content())
     }
 }
-
 
 @resultBuilder
 struct MessageBuilder {
@@ -236,11 +234,11 @@ struct MessageBuilder {
             result.append(data)
         }
     }
-    
+
     static func buildExpression(_ element: UInt8) -> Data {
         return Data([element])
     }
-    
+
     static func buildExpression(_ element: Data) -> Data {
         return element
     }

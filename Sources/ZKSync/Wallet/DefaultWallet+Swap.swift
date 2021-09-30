@@ -11,6 +11,7 @@ import PromiseKit
 
 extension DefaultWallet {
 
+    // swiftlint:disable:next function_parameter_count
     public func swap(order1: Order,
                      order2: Order,
                      amount1: BigUInt,
@@ -37,6 +38,7 @@ extension DefaultWallet {
         }
     }
 
+    // swiftlint:disable:next function_parameter_count
     public func buildSignedSwapTx(order1: Order,
                                   order2: Order,
                                   amount1: BigUInt,
@@ -55,12 +57,12 @@ extension DefaultWallet {
                             amounts: (amount1, amount2),
                             fee: fee.fee.description,
                             feeToken: feeToken.id)
-            
+
             let ethSignature = try self.ethSigner.signTransaction(transaction: swap,
                                                                   nonce: nonce,
                                                                   token: feeToken,
                                                                   fee: fee.fee)
-            
+
             let transaction = try self.zkSigner.sign(swap: swap)
             return SignedTransaction(transaction: transaction,
                                      ethereumSignature: ethSignature)

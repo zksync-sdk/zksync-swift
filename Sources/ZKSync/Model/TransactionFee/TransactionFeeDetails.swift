@@ -15,6 +15,6 @@ public struct TransactionFeeDetails: Codable {
     public var gasFee: String?
     public var zkpFee: String?
     public var totalFee: String
-    
+
     public var totalFeeInteger: BigUInt { BigUInt(totalFee)! }
 }

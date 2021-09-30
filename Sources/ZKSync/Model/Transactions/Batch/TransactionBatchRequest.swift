@@ -11,7 +11,7 @@ struct TransactionBatchRequest: Encodable {
 
     let txs: [TransactionSignaturePair]
     let ethereumSignature: EthSignature?
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(txs)

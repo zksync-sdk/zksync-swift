@@ -11,7 +11,7 @@ import BigInt
 public class Swap: ZkSyncTransaction {
 
     override public var type: String { "Swap" }
-    
+
     let submitterId: UInt32
     let submitterAddress: String
     let nonce: UInt32
@@ -22,7 +22,7 @@ public class Swap: ZkSyncTransaction {
 
     var signature: Signature?
     var feeInteger: BigUInt { BigUInt(fee)! }
-    
+
     internal init(submitterId: UInt32,
                   submitterAddress: String,
                   nonce: UInt32,
@@ -40,7 +40,7 @@ public class Swap: ZkSyncTransaction {
         self.feeToken = feeToken
         self.signature = signature
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case submitterId
         case submitterAddress

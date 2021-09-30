@@ -8,9 +8,9 @@
 import Foundation
 
 extension DefaultProvider {
+
     public func transactionDetails(txHash: String,
                                    completion: @escaping (ZKSyncResult<TransactionDetails>) -> Void) {
         transport.send(method: "tx_info", params: [txHash], completion: completion)
     }
 }
-

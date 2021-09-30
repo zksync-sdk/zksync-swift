@@ -15,7 +15,7 @@ extension DefaultProvider {
                             params: request,
                             completion: completion)
     }
-    
+
     public func transactionFee(request: TransactionFeeBatchRequest,
                                completion: @escaping (ZKSyncResult<TransactionFeeDetails>) -> Void) {
         self.transport.send(method: "get_txs_batch_fee_in_wei",

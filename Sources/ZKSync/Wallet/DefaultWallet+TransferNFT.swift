@@ -10,17 +10,23 @@ import BigInt
 import PromiseKit
 
 extension DefaultWallet {
-    
-    public func transferNFT(to: String, token: NFT, fee: TransactionFee, nonce: UInt32?, timeRange: TimeRange, completion: @escaping (Swift.Result<[String], Error>) -> Void) {
-        
+
+    // swiftlint:disable:next function_parameter_count
+    public func transferNFT(to: String,
+                            token: NFT,
+                            fee: TransactionFee,
+                            nonce: UInt32?,
+                            timeRange: TimeRange,
+                            completion: @escaping (Swift.Result<[String], Error>) -> Void) {
+
         firstly {
             return self.getNonceAccountIdPair(for: nonce)
         }.then { (nonce, accountId) in
             return self.getTokens().map { return ($0, nonce, accountId) }
         }.then { (tokens, nonce, accountId) -> Promise<[String]> in
-            
+
             let feeToken = try tokens.tokenByTokenIdentifier(fee.feeToken)
-            
+
             let transferNFT = Transfer(accountId: accountId,
                                        from: self.ethSigner.address,
                                        to: to,
@@ -30,7 +36,7 @@ extension DefaultWallet {
                                        nonce: nonce,
                                        tokenId: token,
                                        timeRange: timeRange)
-            
+
             let transferFee = Transfer(accountId: accountId,
                                        from: self.ethSigner.address,
                                        to: self.ethSigner.address,
@@ -40,7 +46,7 @@ extension DefaultWallet {
                                        nonce: nonce + 1,
                                        tokenId: feeToken,
                                        timeRange: timeRange)
-            
+
             let ethSignature = try self.ethSigner.signBatch(transactions: [transferNFT, transferFee],
                                                    nonce: nonce,
                                                    token: feeToken,
@@ -53,6 +59,4 @@ extension DefaultWallet {
             completion(result.result)
         }
     }
-    
 }
-

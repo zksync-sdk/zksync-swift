@@ -10,13 +10,13 @@ import PromiseKit
 import BigInt
 
 public extension Wallet {
-    
+
     func getAccountStatePromise() -> Promise<AccountState> {
         return Promise {
             self.getAccountState(completion: $0.resolve)
         }
     }
-    
+
     func setSigningKeyPromise(fee: TransactionFee,
                               nonce: UInt32?,
                               onchainAuth: Bool,
@@ -29,7 +29,7 @@ public extension Wallet {
                                completion: $0.resolve)
         }
     }
-    
+
     func transferPromise(to: String,
                          amount: BigUInt,
                          fee: TransactionFee,
@@ -44,7 +44,7 @@ public extension Wallet {
                           completion: $0.resolve)
         }
     }
-    
+
     func withdrawPromise(ethAddress: String,
                          amount: BigUInt,
                          fee: TransactionFee,
@@ -61,7 +61,7 @@ public extension Wallet {
                           completion: $0.resolve)
         }
     }
-    
+
     func forcedExitPromise(target: String,
                            fee: TransactionFee,
                            nonce: UInt32?,
@@ -74,7 +74,7 @@ public extension Wallet {
                             completion: $0.resolve)
         }
     }
-    
+
     func mintNFT(recepient: String,
                  contentHash: String,
                  fee: TransactionFee,
@@ -87,7 +87,7 @@ public extension Wallet {
                          completion: $0.resolve)
         }
     }
-    
+
     func withdrawNFT(to: String,
                      token: NFT,
                      fee: TransactionFee,
@@ -102,7 +102,7 @@ public extension Wallet {
                              completion: $0.resolve)
         }
     }
-    
+
     func transferNFT(to: String,
                      token: NFT,
                      fee: TransactionFee,
@@ -117,7 +117,8 @@ public extension Wallet {
                              completion: $0.resolve)
         }
     }
-    
+
+    // swiftlint:disable:next function_parameter_count
     func swap(order1: Order,
               order2: Order,
               amount1: BigUInt,
@@ -134,11 +135,11 @@ public extension Wallet {
                       completion: $0.resolve)
         }
     }
-    
+
     func enable2FA() throws -> Promise<Toggle2FAInfo> {
         return Promise { try enable2FA(completion: $0.resolve) }
     }
-    
+
     func disable2FA() throws -> Promise<Toggle2FAInfo> {
         return Promise { try disable2FA(completion: $0.resolve) }
     }

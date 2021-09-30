@@ -9,19 +9,19 @@ import Foundation
 import PromiseKit
 
 extension DefaultWallet {
-    
+
     func getNonce() -> Promise<UInt32> {
         return Promise {
             getNonce(completion: $0.resolve)
         }
     }
-    
+
     func getTokens() -> Promise<Tokens> {
         return Promise {
             provider.tokens(completion: $0.resolve)
         }
     }
-    
+
     func submitSignedTransaction<TX: ZkSyncTransaction>(_ transaction: TX,
                                                         ethereumSignature: EthSignature?,
                                                         fastProcessing: Bool) -> Promise<String> {
@@ -32,7 +32,7 @@ extension DefaultWallet {
                               completion: $0.resolve)
         }
     }
-    
+
     func submitSignedBatch(transactions: [ZkSyncTransaction],
                            ethereumSignature: EthSignature) -> Promise<[String]> {
         return Promise {
@@ -41,7 +41,7 @@ extension DefaultWallet {
                                    completion: $0.resolve)
         }
     }
-    
+
     func getNonceAccountIdPair(for nonce: UInt32?) -> Promise<(UInt32, UInt32)> {
         if let nonce = nonce, let accountId = self.accountId {
             return Promise.value((nonce, accountId))

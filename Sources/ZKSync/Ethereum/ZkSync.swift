@@ -15,11 +15,11 @@ enum ZkSyncContractError: Error {
 }
 
 class ZkSync {
-    
+
     var web3: web3
     var contractAddress: EthereumAddress
     var walletAddress: EthereumAddress
-    
+
     init(web3: web3, contractAddress: EthereumAddress, walletAddress: EthereumAddress) {
         self.web3 = web3
         self.contractAddress = contractAddress
@@ -33,7 +33,7 @@ class ZkSync {
         precondition(contract != nil)
         return contract!
     }()
-    
+
     func depositETH(address: EthereumAddress, value: BigUInt) -> Promise<TransactionSendingResult> {
         guard let tx = self.contract.write("depositETH",
                                            parameters: [address] as [AnyObject],
@@ -65,7 +65,7 @@ class ZkSync {
 
         return tx.sendPromise()
     }
-    
+
     func setAuthPubkeyHash(pubKeyHash: Data, nonce: UInt32) -> Promise<TransactionSendingResult> {
         guard let tx = self.contract.write("setAuthPubkeyHash",
                                            parameters: [pubKeyHash, nonce] as [AnyObject],

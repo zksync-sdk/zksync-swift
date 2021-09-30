@@ -8,34 +8,40 @@
 import Foundation
 
 public class DefaultProvider: Provider {
-    
+
     let transport: Transport
-    
+
     internal var tokensCache: Tokens?
-    
+
     public init(transport: Transport) {
         self.transport = transport
     }
-    
+
     public convenience init(chainId: ChainId) {
         switch chainId {
         case .mainnet:
-            self.init(transport: HTTPTransport(networkURL: URL(string: "https://api.zksync.io/jsrpc")!))
+            let url = URL(string: "https://api.zksync.io/jsrpc")!
+            self.init(transport: HTTPTransport(networkURL: url))
         case .localhost:
-            self.init(transport: HTTPTransport(networkURL: URL(string: "http://127.0.0.1:3030")!))
+            let url = URL(string: "http://127.0.0.1:3030")!
+            self.init(transport: HTTPTransport(networkURL: url))
         case .rinkeby:
-            self.init(transport: HTTPTransport(networkURL: URL(string: "https://rinkeby-api.zksync.io/jsrpc")!))
+            let url = URL(string: "https://rinkeby-api.zksync.io/jsrpc")!
+            self.init(transport: HTTPTransport(networkURL: url))
         case .ropsten:
-            self.init(transport: HTTPTransport(networkURL: URL(string: "https://ropsten-api.zksync.io/jsrpc")!))
+            let url = URL(string: "https://ropsten-api.zksync.io/jsrpc")!
+            self.init(transport: HTTPTransport(networkURL: url))
         }
     }
-    
+
     public static func betaProvider(chainId: ChainId) -> Provider {
         switch chainId {
         case .rinkeby:
-            return DefaultProvider(transport: HTTPTransport(networkURL: URL(string: "https://rinkeby-beta-api.zksync.io/jsrpc")!))
+            let url = URL(string: "https://rinkeby-beta-api.zksync.io/jsrpc")!
+            return DefaultProvider(transport: HTTPTransport(networkURL: url))
         case .ropsten:
-            return DefaultProvider(transport: HTTPTransport(networkURL: URL(string: "https://ropsten-beta-api.zksync.io/jsrpc")!))
+            let url = URL(string: "https://ropsten-beta-api.zksync.io/jsrpc")!
+            return DefaultProvider(transport: HTTPTransport(networkURL: url))
         default:
             fatalError("Unsupported beta network for given chain id")
         }
