@@ -7,7 +7,6 @@
 
 import Foundation
 import PromiseKit
-import web3swift_zksync
 
 enum DefaultWalletError: Error {
     case internalError

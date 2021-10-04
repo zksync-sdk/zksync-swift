@@ -7,7 +7,6 @@
 
 import Foundation
 import BigInt
-import web3swift_zksync
 import PromiseKit
 
 enum ZkSyncContractError: Error {
