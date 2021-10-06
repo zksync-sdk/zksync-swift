@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CryptoSwift
 import BigInt
 
 public class Create2EthSigner: EthSigner {
@@ -17,14 +17,6 @@ public class Create2EthSigner: EthSigner {
     let authData: A
 
     public var address: String
-
-    public var ethereumAddress: EthereumAddress {
-        preconditionFailure("Not supported.")
-    }
-
-    public var keystore: AbstractKeystore {
-        preconditionFailure("Not supported.")
-    }
 
     init(zkSigner: ZkSigner, create2Data: A) throws {
         self.address = ""

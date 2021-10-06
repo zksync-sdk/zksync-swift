@@ -13,12 +13,6 @@ public protocol EthSigner {
     // swiftlint:disable:next type_name
     associatedtype A: ChangePubKeyVariant
 
-    var address: String { get }
-
-    var ethereumAddress: EthereumAddress { get }
-
-    var keystore: AbstractKeystore { get }
-
     func signAuth(changePubKey: ChangePubKey<A>) throws -> ChangePubKey<A>
 
     func signTransaction<T: ZkSyncTransaction>(transaction: T,
