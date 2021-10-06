@@ -38,21 +38,12 @@
         }
       },
       {
-        "package": "Starscream",
-        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
+        "package": "secp256k1",
+        "repositoryURL": "https://github.com/Boilertalk/secp256k1.swift",
         "state": {
           "branch": null,
-          "revision": "df8d82047f6654d8e4b655d1b1525c64e1059d21",
-          "version": "4.0.4"
-        }
-      },
-      {
-        "package": "Web3swift",
-        "repositoryURL": "https://github.com/zksync-sdk/web3swift.git",
-        "state": {
-          "branch": "develop",
-          "revision": "b7f162ce6c289589b465c739997d5c5a11be5120",
-          "version": null
+          "revision": "823281fe9def21b384099b72a9a53ca988317b20",
+          "version": "0.1.4"
         }
       },
       {
@@ -60,7 +51,7 @@
         "repositoryURL": "https://github.com/zksync-sdk/zksync-swift.git",
         "state": {
           "branch": "mm/remove-web3swift-dependency",
-          "revision": "ad3f591d6f5e850c672f55ba9d7afec22fa13b14",
+          "revision": "6af884afed0503601185cfc9a862f255ced274a9",
           "version": null
         }
       }

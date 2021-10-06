@@ -15,7 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Make sure that `ZKSync` symbols are available.
-        let _: Wallet? = nil
+        // TODO: Uncomment after moving away from `web3swift`.
+        // let _: Wallet? = nil
 
         // Make sure that `ZKSyncCrypto` symbols are available.
         _ = ZKSyncCrypto.generatePrivateKey(seed: Data())
