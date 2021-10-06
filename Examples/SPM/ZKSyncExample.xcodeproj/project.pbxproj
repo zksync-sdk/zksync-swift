@@ -355,7 +355,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/zksync-sdk/zksync-swift.git";
 			requirement = {
-				branch = master;
+				branch = "mm/remove-web3swift-dependency";
 				kind = branch;
 			};
 		};

@@ -17,14 +17,29 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            name: "Web3swift",
-            url: "https://github.com/zksync-sdk/web3swift.git",
-            .branch("develop")
-        ),
-        .package(
             name: "Alamofire",
             url: "https://github.com/Alamofire/Alamofire.git",
             from: "5.4.3"
+        ),
+        .package(
+            name: "BigInt",
+            url: "https://github.com/attaswift/BigInt.git",
+            from: "5.2.0"
+        ),
+        .package(
+            name: "CryptoSwift",
+            url: "https://github.com/krzyzanowskim/CryptoSwift.git",
+            from: "1.4.1"
+        ),
+        .package(
+            name: "PromiseKit",
+            url: "https://github.com/mxcl/PromiseKit.git",
+            from: "6.16.0"
+        ),
+        .package(
+            name: "secp256k1",
+            url: "https://github.com/Boilertalk/secp256k1.swift",
+            from: "0.1.0"
         )
     ],
     targets: [
@@ -32,8 +47,11 @@ let package = Package(
             name: "ZKSync",
             dependencies: [
                 "ZKSyncCrypto",
-                .product(name: "web3swift", package: "Web3swift"),
-                "Alamofire"
+                "Alamofire",
+                "BigInt",
+                "CryptoSwift",
+                "PromiseKit",
+                "secp256k1"
             ],
             path: "Sources/ZKSync"),
         .binaryTarget(
