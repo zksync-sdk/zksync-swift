@@ -8,6 +8,7 @@
 import Foundation
 
 extension DefaultProvider {
+
     public func tokens(completion: @escaping (ZKSyncResult<Tokens>) -> Void) {
         if let tokens = self.tokensCache {
             completion(.success(tokens))

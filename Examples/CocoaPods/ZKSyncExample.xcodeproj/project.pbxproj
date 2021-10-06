@@ -27,24 +27,10 @@
 		8A7A53ED26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */; };
 		8A9CAE4D2690A6FB00DABC41 /* ZKSync.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */; };
 		8A9CAE4E2690A6FB00DABC41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE4C2690A6FA00DABC41 /* README.md */; };
-		8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE672690AA9000DABC41 /* TransferViewController.swift */; };
-		8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */; };
-		8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */; };
-		8A9CAE812690AA9000DABC41 /* TransactionFeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */; };
-		8A9CAE822690AA9000DABC41 /* DepositViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */; };
-		8A9CAE832690AA9000DABC41 /* AccountStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */; };
-		8A9CAE842690AA9000DABC41 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */; };
 		8A9CAE852690AA9000DABC41 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE6F2690AA9000DABC41 /* LaunchScreen.xib */; };
 		8A9CAE862690AA9000DABC41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE712690AA9000DABC41 /* Main.storyboard */; };
-		8A9CAE872690AA9000DABC41 /* ContractAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */; };
-		8A9CAE882690AA9000DABC41 /* StateSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */; };
-		8A9CAE892690AA9000DABC41 /* MethodSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */; };
 		8A9CAE8A2690AA9000DABC41 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE762690AA9000DABC41 /* Images.xcassets */; };
-		8A9CAE8B2690AA9000DABC41 /* NetworkSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */; };
 		8A9CAE8C2690AA9000DABC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE782690AA9000DABC41 /* AppDelegate.swift */; };
-		8A9CAE8D2690AA9000DABC41 /* TokenPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */; };
-		8A9CAE8E2690AA9000DABC41 /* WalletConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */; };
-		8A9CAE8F2690AA9000DABC41 /* StateSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,24 +66,10 @@
 		8A7A53EC26E7DCD9002242DA /* IntegrationCreate2ShortFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationCreate2ShortFlowTests.swift; sourceTree = "<group>"; };
 		8A9CAE4B2690A6FA00DABC41 /* ZKSync.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZKSync.podspec; path = ../../ZKSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A9CAE4C2690A6FA00DABC41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
-		8A9CAE672690AA9000DABC41 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
-		8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositingBalanceTableViewCell.swift; sourceTree = "<group>"; };
-		8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
-		8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFeeViewController.swift; sourceTree = "<group>"; };
-		8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositViewController.swift; sourceTree = "<group>"; };
-		8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStateViewController.swift; sourceTree = "<group>"; };
-		8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		8A9CAE702690AA9000DABC41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8A9CAE722690AA9000DABC41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractAddressViewController.swift; sourceTree = "<group>"; };
-		8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateSectionHeaderView.swift; sourceTree = "<group>"; };
-		8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodSelectionTableViewController.swift; sourceTree = "<group>"; };
 		8A9CAE762690AA9000DABC41 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSelectionTableViewController.swift; sourceTree = "<group>"; };
 		8A9CAE782690AA9000DABC41 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPriceViewController.swift; sourceTree = "<group>"; };
-		8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletConsumer.swift; sourceTree = "<group>"; };
-		8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StateSectionHeaderView.xib; sourceTree = "<group>"; };
 		8A9CAE7C2690AA9000DABC41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CDF95587ABAE1B9D20870B8 /* Pods_ZKSyncExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32A403170B6D034173CC57B /* Pods_ZKSyncExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKSyncExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,35 +182,13 @@
 		8A9CAE662690AA9000DABC41 /* ZKSyncExample */ = {
 			isa = PBXGroup;
 			children = (
-				8A9CAE972690AAAA00DABC41 /* ViewControllers */,
 				8A9CAE782690AA9000DABC41 /* AppDelegate.swift */,
-				8A9CAE6E2690AA9000DABC41 /* UIAlertController+Extensions.swift */,
 				8A9CAE6F2690AA9000DABC41 /* LaunchScreen.xib */,
 				8A9CAE712690AA9000DABC41 /* Main.storyboard */,
-				8A9CAE742690AA9000DABC41 /* StateSectionHeaderView.swift */,
 				8A9CAE762690AA9000DABC41 /* Images.xcassets */,
-				8A9CAE7A2690AA9000DABC41 /* WalletConsumer.swift */,
-				8A9CAE7B2690AA9000DABC41 /* StateSectionHeaderView.xib */,
 				8A9CAE7C2690AA9000DABC41 /* Info.plist */,
 			);
 			path = ZKSyncExample;
-			sourceTree = "<group>";
-		};
-		8A9CAE972690AAAA00DABC41 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				8A9CAE732690AA9000DABC41 /* ContractAddressViewController.swift */,
-				8A9CAE772690AA9000DABC41 /* NetworkSelectionTableViewController.swift */,
-				8A9CAE752690AA9000DABC41 /* MethodSelectionTableViewController.swift */,
-				8A9CAE792690AA9000DABC41 /* TokenPriceViewController.swift */,
-				8A9CAE692690AA9000DABC41 /* DepositingBalanceTableViewCell.swift */,
-				8A9CAE6A2690AA9000DABC41 /* WithdrawViewController.swift */,
-				8A9CAE672690AA9000DABC41 /* TransferViewController.swift */,
-				8A9CAE6D2690AA9000DABC41 /* AccountStateViewController.swift */,
-				8A9CAE6B2690AA9000DABC41 /* TransactionFeeViewController.swift */,
-				8A9CAE6C2690AA9000DABC41 /* DepositViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		EF3FD0B33F0703515F55602B /* Frameworks */ = {
@@ -340,7 +290,6 @@
 				8A9CAE4E2690A6FB00DABC41 /* README.md in Resources */,
 				8A9CAE8A2690AA9000DABC41 /* Images.xcassets in Resources */,
 				8A9CAE852690AA9000DABC41 /* LaunchScreen.xib in Resources */,
-				8A9CAE8F2690AA9000DABC41 /* StateSectionHeaderView.xib in Resources */,
 				8A9CAE4D2690A6FB00DABC41 /* ZKSync.podspec in Resources */,
 				8A9CAE862690AA9000DABC41 /* Main.storyboard in Resources */,
 			);
@@ -365,17 +314,21 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ZKSyncExample/Pods-ZKSyncExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ZKSync/ZKSync.framework",
 				"${BUILT_PRODUCTS_DIR}/ZKSyncCrypto/ZKSyncCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.c/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSync.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZKSyncCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -451,20 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A9CAE812690AA9000DABC41 /* TransactionFeeViewController.swift in Sources */,
-				8A9CAE832690AA9000DABC41 /* AccountStateViewController.swift in Sources */,
-				8A9CAE842690AA9000DABC41 /* UIAlertController+Extensions.swift in Sources */,
-				8A9CAE882690AA9000DABC41 /* StateSectionHeaderView.swift in Sources */,
-				8A9CAE8D2690AA9000DABC41 /* TokenPriceViewController.swift in Sources */,
-				8A9CAE872690AA9000DABC41 /* ContractAddressViewController.swift in Sources */,
-				8A9CAE822690AA9000DABC41 /* DepositViewController.swift in Sources */,
-				8A9CAE8E2690AA9000DABC41 /* WalletConsumer.swift in Sources */,
-				8A9CAE802690AA9000DABC41 /* WithdrawViewController.swift in Sources */,
-				8A9CAE8B2690AA9000DABC41 /* NetworkSelectionTableViewController.swift in Sources */,
 				8A9CAE8C2690AA9000DABC41 /* AppDelegate.swift in Sources */,
-				8A9CAE7D2690AA9000DABC41 /* TransferViewController.swift in Sources */,
-				8A9CAE892690AA9000DABC41 /* MethodSelectionTableViewController.swift in Sources */,
-				8A9CAE7F2690AA9000DABC41 /* DepositingBalanceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
