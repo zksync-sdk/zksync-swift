@@ -205,9 +205,8 @@ public class DefaultEthSigner: EthSigner {
     }
 
     public func sign(message: Data) throws -> EthSignature {
-
         guard let hash = hashPersonalMessage(message) else {
-            throw EthSignerError.signingFailed
+            throw EthSignerError.invalidMessage
         }
 
         let (compressedSignature, _) = SECP256K1.signForRecovery(hash: hash,
