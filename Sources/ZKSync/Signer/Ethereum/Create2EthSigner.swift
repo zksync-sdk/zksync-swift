@@ -84,8 +84,8 @@ public class Create2EthSigner: EthSigner {
         throw EthSignerError.unsupportedOperation
     }
 
-    public func verifySignature(_ signature: EthSignature,
-                                message: Data) throws -> Bool {
+    public func verify(_ signature: EthSignature,
+                       message: Data) throws -> Bool {
         throw EthSignerError.unsupportedOperation
     }
 

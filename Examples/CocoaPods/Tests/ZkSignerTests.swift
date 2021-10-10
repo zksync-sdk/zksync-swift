@@ -36,8 +36,20 @@ class ZkSignerTests: XCTestCase {
             message = "\(message)\nChain ID: \(chainId.id)."
         }
 
+        guard let messageData = message.data(using: .utf8) else {
+            XCTFail("Failed to convert message to data.")
+            return
+        }
+
         let ethSigner = try DefaultEthSigner(privateKey: ZkSignerTests.PrivateKey)
-        let signature = try ethSigner.sign(message: message.data(using: .utf8)!)
+        let signature = try ethSigner.sign(message: messageData)
+
+        do {
+            let success = try ethSigner.verify(signature, message: messageData)
+            XCTAssert(success, "Verification should be successful.")
+        } catch {
+            XCTFail("Failed signature verification with error: \(error.localizedDescription)")
+        }
 
         let signer = try ZkSigner(signature: signature)
 

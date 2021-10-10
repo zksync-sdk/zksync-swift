@@ -13,24 +13,8 @@ public class DefaultEthSigner: EthSigner {
     // swiftlint:disable:next type_name
     public typealias A = ChangePubKeyECDSA
 
-//    public init(privateKey: String) throws {
-//        let privatKeyData = Data(hex: privateKey)
-//        guard let keystore = try EthereumKeystoreV3(privateKey: privatKeyData) else {
-//            throw EthSignerError.invalidKey
-//        }
-//        self.keystore = keystore
-//    }
-//
-//    public init(mnemonic: String) throws {
-//        guard let keystore = try BIP32Keystore(mnemonics: mnemonic) else {
-//            throw EthSignerError.invalidMnemonic
-//        }
-//        self.keystore = keystore
-//    }
-
     var privateKey: Data
 
-    // TODO: Make sure that initializer is suitable
     public init(privateKey: String) throws {
         self.privateKey = Data(hex: privateKey)
     }
@@ -205,78 +189,50 @@ public class DefaultEthSigner: EthSigner {
         return try sign(message: message)
     }
 
-//    public func sign(message: Data) throws -> EthSignature {
-//
-//        var signatureData: Data?
-//
-//        if let keystore = keystore as? EthereumKeystoreV3 {
-//            signatureData = try Web3Signer.signPersonalMessage(message,
-//                                                               keystore: keystore,
-//                                                               account: ethereumAddress,
-//                                                               password: "web3swift")
-//        } else if let keystore = keystore as? BIP32Keystore {
-//            signatureData = try Web3Signer.signPersonalMessage(message,
-//                                                               keystore: keystore,
-//                                                               account: ethereumAddress,
-//                                                               password: "web3swift")
-//        }
-//
-//        guard let validSignatureData = signatureData else {
-//            throw EthSignerError.signingFailed
-//        }
-//
-//        return EthSignature(signature: validSignatureData.toHexString().addHexPrefix(),
-//                            type: .ethereumSignature)
-//    }
-//
-//    public func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool {
-//        let signatureData = Data(hex: signature.signature)
-//        guard let hash = Web3Utils.hashPersonalMessage(message) else {
-//            throw EthSignerError.invalidMessage
-//        }
-//
-//        let publicKeyData = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
-//
-//        var privateKey = try keystore.UNSAFE_getPrivateKeyData(password: "web3swift",
-//                                                               account: ethereumAddress)
-//        defer { Data.zero(&privateKey) }
-//
-//        let keystorePublicKeyData = Web3Utils.privateToPublic(privateKey)
-//
-//        return publicKeyData == keystorePublicKeyData
-//    }
-
-    // TODO: Implement signing.
-    public func sign(message: Data) throws -> EthSignature {
-        throw EthSignerError.signingFailed
+    func hashPersonalMessage(_ personalMessage: Data) -> Data? {
+        var prefix = "\u{19}Ethereum Signed Message:\n"
+        prefix += String(personalMessage.count)
+        guard let prefixData = prefix.data(using: .ascii) else {return nil}
+        var data = Data()
+        if personalMessage.count >= prefixData.count && prefixData == personalMessage[0 ..< prefixData.count] {
+            data.append(personalMessage)
+        } else {
+            data.append(prefixData)
+            data.append(personalMessage)
+        }
+        let hash = data.sha3(.keccak256)
+        return hash
     }
 
-    // TODO: Implement verification.
-    public func verifySignature(_ signature: EthSignature, message: Data) throws -> Bool {
-        let signatureData = Data(hex: signature.signature)
+    public func sign(message: Data) throws -> EthSignature {
 
-        func hashPersonalMessage(_ personalMessage: Data) -> Data? {
-            var prefix = "\u{19}Ethereum Signed Message:\n"
-            prefix += String(personalMessage.count)
-            guard let prefixData = prefix.data(using: .ascii) else {return nil}
-            var data = Data()
-            if personalMessage.count >= prefixData.count && prefixData == personalMessage[0 ..< prefixData.count] {
-                data.append(personalMessage)
-            } else {
-                data.append(prefixData)
-                data.append(personalMessage)
-            }
-            let hash = data.sha3(.keccak256)
-            return hash
+        guard let hash = hashPersonalMessage(message) else {
+            throw EthSignerError.signingFailed
         }
+
+        let (compressedSignature, _) = SECP256K1.signForRecovery(hash: hash,
+                                                                 privateKey: privateKey)
+
+        guard let validSignatureData = compressedSignature else {
+            throw EthSignerError.signingFailed
+        }
+
+        return EthSignature(signature: validSignatureData.toHexString().addHexPrefix(),
+                            type: .ethereumSignature)
+    }
+
+    public func verify(_ signature: EthSignature, message: Data) throws -> Bool {
+        let signatureData = Data(hex: signature.signature)
 
         guard let hash = hashPersonalMessage(message) else {
             throw EthSignerError.invalidMessage
         }
 
-        _ = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
+        let publicKeyData = SECP256K1.recoverPublicKey(hash: hash, signature: signatureData)
 
-        return false
+        let keystorePublicKeyData = SECP256K1.privateToPublic(privateKey: privateKey)
+
+        return publicKeyData == keystorePublicKeyData
     }
 
     public func signToggle(_ enable: Bool, timestamp: Int64) throws -> EthSignature {

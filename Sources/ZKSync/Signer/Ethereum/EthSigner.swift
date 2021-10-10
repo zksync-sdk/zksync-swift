@@ -31,8 +31,8 @@ public protocol EthSigner {
                    token: Token,
                    fee: BigUInt) throws -> EthSignature
 
-    func verifySignature(_ signature: EthSignature,
-                         message: Data) throws -> Bool
+    func verify(_ signature: EthSignature,
+                message: Data) throws -> Bool
 
     func signToggle(_ enable: Bool,
                     timestamp: Int64) throws -> EthSignature
