@@ -8,19 +8,21 @@
 import Foundation
 
 extension BinaryInteger {
+
     func bytes() -> Data {
         return withUnsafeBytes(of: self) { Data($0) }
     }
-
 }
 
 extension FixedWidthInteger {
+
     func bytesBE() -> Data {
         return self.bigEndian.bytes()
     }
 }
 
 extension UInt8 {
+
     var bitReversed: UInt8 {
         var byte = self
         byte = ((byte & 0xf0) >> 4) | ((byte & 0x0f) << 4)
