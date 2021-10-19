@@ -206,10 +206,6 @@ struct Utils {
         return bits
     }
 
-    static func reverseBytes(_ data: Data) -> Data {
-        return Data(data.reversed())
-    }
-
     static func removeAddressPrefix(_ address: String) throws -> String {
         if address.hasHexPrefix() {
             return address.stripHexPrefix()
