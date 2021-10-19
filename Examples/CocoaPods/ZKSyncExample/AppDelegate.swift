@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ZKSync
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        // Verify whether public initializers are available.
+        _ = ChangePubKeyCREATE2(creatorAddress: "", saltArg: "", codeHash: "")
+        _ = ChangePubKeyOnchain()
+        _ = ChangePubKeyECDSA(ethSignature: nil, batchHash: "")
+
         return true
     }
 }
