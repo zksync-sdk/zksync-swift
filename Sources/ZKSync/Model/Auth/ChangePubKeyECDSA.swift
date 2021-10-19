@@ -23,4 +23,9 @@ public struct ChangePubKeyECDSA: ChangePubKeyVariant {
         case ethSignature
         case batchHash
     }
+
+    public init(ethSignature: String?, batchHash: String) {
+        self.ethSignature = ethSignature
+        self.batchHash = batchHash
+    }
 }
