@@ -18,8 +18,8 @@ let package = Package(
     dependencies: [
         .package(
             name: "Web3swift",
-            url: "https://github.com/zksync-sdk/web3swift.git",
-            .branch("develop")
+            url: "https://github.com/skywinder/web3swift.git",
+            from: "2.5.0"
         ),
         .package(
             name: "Alamofire",
