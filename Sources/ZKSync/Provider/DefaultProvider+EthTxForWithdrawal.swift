@@ -8,7 +8,11 @@
 import Foundation
 
 extension DefaultProvider {
-    public func ethTxForWithdrawal(withdrawalHash: String, completion: @escaping (ZKSyncResult<String>) -> Void) {
-        return transport.send(method: "get_eth_tx_for_withdrawal", params: [withdrawalHash], completion: completion)
+
+    public func ethTxForWithdrawal(withdrawalHash: String,
+                                   completion: @escaping (ZKSyncResult<String>) -> Void) {
+        return transport.send(method: "get_eth_tx_for_withdrawal",
+                              params: [withdrawalHash],
+                              completion: completion)
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import BigInt
 
 extension BigUInt {
+
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
 
@@ -44,6 +45,7 @@ extension BigUInt {
 }
 
 extension BigInt {
+
     public func serialize() -> Data {
             // This assumes Digit is binary.
             precondition(Word.bitWidth % 8 == 0)

@@ -8,11 +8,14 @@
 import Foundation
 
 public struct ChangePubKeyOnchain: ChangePubKeyVariant {
-
-    public let type: ChangePubKeyAuthType = .onchain
+    public let type: ChangePubKeyAuthType = .Onchain
     public let bytes: Data = Data(repeating: 0, count: 32)
 
     enum CodingKeys: String, CodingKey {
         case type
+    }
+
+    public init() {
+
     }
 }

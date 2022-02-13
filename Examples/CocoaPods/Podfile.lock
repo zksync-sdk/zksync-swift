@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (5.4.3)
+  - Alamofire (5.4.4)
   - BigInt (5.2.0)
-  - CryptoSwift (1.4.1)
+  - CryptoSwift (1.4.2)
   - PromiseKit (6.15.3):
     - PromiseKit/CorePromise (= 6.15.3)
     - PromiseKit/Foundation (= 6.15.3)
@@ -12,16 +12,12 @@ PODS:
   - PromiseKit/UIKit (6.15.3):
     - PromiseKit/CorePromise
   - secp256k1.c (0.1.2)
-  - Starscream (4.0.4)
-  - web3swift-zksync (2.4.0-zksync):
+  - ZKSync (0.0.3):
+    - Alamofire (~> 5.0)
     - BigInt (~> 5.2)
     - CryptoSwift (~> 1.4.0)
     - PromiseKit (~> 6.15.3)
     - secp256k1.c (~> 0.1)
-    - Starscream (~> 4.0.4)
-  - ZKSync (0.0.3):
-    - Alamofire (~> 5.0)
-    - web3swift-zksync (= 2.4.0-zksync)
     - ZKSyncCrypto (= 0.0.9-spm)
   - ZKSyncCrypto (0.0.9-spm)
 
@@ -35,8 +31,6 @@ SPEC REPOS:
     - CryptoSwift
     - PromiseKit
     - secp256k1.c
-    - Starscream
-    - web3swift-zksync
     - ZKSyncCrypto
 
 EXTERNAL SOURCES:
@@ -44,16 +38,14 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
-  CryptoSwift: 0bc800a7e6a24c4fc9ebeab97d44b0d5f73a78bd
+  CryptoSwift: a532e74ed010f8c95f611d00b8bbae42e9fe7c17
   PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
-  web3swift-zksync: f069cac51c03dd98e28fc4480d64b4e9b91e2aff
-  ZKSync: 2c3a7a3ca241473fea02b6fc6275a84484536c11
+  ZKSync: 098c259807304a37ff1111f0ca8ac4699bef6cf2
   ZKSyncCrypto: ff0662eb0cff69ab3e40564a45a07cbcafe1ccf0
 
 PODFILE CHECKSUM: 19f2bc7b77d611151be6a9850baac7dbb61b1e85
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.2

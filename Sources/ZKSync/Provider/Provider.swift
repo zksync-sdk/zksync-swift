@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias ZKSyncCompletion<T> = (ZKSyncResult<T>) -> Void
+
 public protocol Provider {
 
     func accountState(address: String,

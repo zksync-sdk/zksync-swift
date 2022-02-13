@@ -11,6 +11,8 @@ extension DefaultProvider {
 
     public func ethOpInfo(priority: Int,
                           completion: @escaping (ZKSyncResult<EthOpInfo>) -> Void) {
-        self.transport.send(method: "ethop_info", params: [priority], completion: completion)
+        self.transport.send(method: "ethop_info",
+                            params: [priority],
+                            completion: completion)
     }
 }

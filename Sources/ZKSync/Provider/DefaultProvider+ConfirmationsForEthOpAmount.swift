@@ -8,7 +8,10 @@
 import Foundation
 
 extension DefaultProvider {
+
     public func confirmationsForEthOpAmount(completion: @escaping (ZKSyncResult<UInt64>) -> Void) {
-        transport.send(method: "get_confirmations_for_eth_op_amount", params: [String](), completion: completion)
+        transport.send(method: "get_confirmations_for_eth_op_amount",
+                       params: [String](),
+                       completion: completion)
     }
 }

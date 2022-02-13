@@ -23,4 +23,10 @@ public struct ChangePubKeyCREATE2: ChangePubKeyVariant {
         case saltArg
         case codeHash
     }
+
+    public init(creatorAddress: String, saltArg: String, codeHash: String) {
+        self.creatorAddress = creatorAddress
+        self.saltArg = saltArg
+        self.codeHash = codeHash
+    }
 }

@@ -6,8 +6,7 @@
 //
 
 import Foundation
-
-import web3swift_zksync
+import CryptoSwift
 import BigInt
 
 public class Create2EthSigner: EthSigner {
@@ -18,14 +17,6 @@ public class Create2EthSigner: EthSigner {
     let authData: A
 
     public var address: String
-
-    public var ethereumAddress: EthereumAddress {
-        preconditionFailure("Not supported.")
-    }
-
-    public var keystore: AbstractKeystore {
-        preconditionFailure("Not supported.")
-    }
 
     init(zkSigner: ZkSigner, create2Data: A) throws {
         self.address = ""
@@ -93,8 +84,8 @@ public class Create2EthSigner: EthSigner {
         throw EthSignerError.unsupportedOperation
     }
 
-    public func verifySignature(_ signature: EthSignature,
-                                message: Data) throws -> Bool {
+    public func verify(_ signature: EthSignature,
+                       message: Data) throws -> Bool {
         throw EthSignerError.unsupportedOperation
     }
 

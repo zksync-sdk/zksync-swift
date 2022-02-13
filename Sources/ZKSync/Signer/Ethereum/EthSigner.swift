@@ -6,19 +6,12 @@
 //
 
 import Foundation
-import web3swift_zksync
 import BigInt
 
 public protocol EthSigner {
 
     // swiftlint:disable:next type_name
     associatedtype A: ChangePubKeyVariant
-
-    var address: String { get }
-
-    var ethereumAddress: EthereumAddress { get }
-
-    var keystore: AbstractKeystore { get }
 
     func signAuth(changePubKey: ChangePubKey<A>) throws -> ChangePubKey<A>
 
@@ -38,8 +31,8 @@ public protocol EthSigner {
                    token: Token,
                    fee: BigUInt) throws -> EthSignature
 
-    func verifySignature(_ signature: EthSignature,
-                         message: Data) throws -> Bool
+    func verify(_ signature: EthSignature,
+                message: Data) throws -> Bool
 
     func signToggle(_ enable: Bool,
                     timestamp: Int64) throws -> EthSignature

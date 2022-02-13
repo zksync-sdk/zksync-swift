@@ -35,20 +35,6 @@ public class PollingTransactionReceiptProcessor {
         self.attempts = attempts
     }
 
-    /// Convenience initializer, which allows to create `PollingTransactionReceiptProcessor` instance, which is based on
-    /// `Provider`, which is retrieved from `Wallet`.
-    /// - Parameters:
-    ///   - wallet: `Wallet` instance, which contains `Provider`.
-    ///   - pollInterval: Time interval between polls.
-    ///   - attempts: Amount of attempts.
-    public init(_ wallet: Wallet,
-                pollInterval: DispatchTimeInterval = .milliseconds(100),
-                attempts: Int = .max) {
-        self.provider = wallet.provider
-        self.pollInterval = pollInterval
-        self.attempts = attempts
-    }
-
     /// Method, which allows to wait till transaction is completed.
     /// - Parameters:
     ///   - txHash: Hash of transaction.
