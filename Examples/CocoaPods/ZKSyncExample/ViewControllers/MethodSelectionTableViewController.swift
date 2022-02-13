@@ -9,7 +9,7 @@
 import UIKit
 import ZKSync
 import PromiseKit
-import web3swift_zksync
+import web3swift
 
 class MethodSelectionTableViewController: UITableViewController, WalletConsumer {
 

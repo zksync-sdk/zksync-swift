@@ -7,7 +7,7 @@
 
 import Foundation
 
-import web3swift_zksync
+import web3swift
 import BigInt
 
 public class Create2EthSigner: EthSigner {
