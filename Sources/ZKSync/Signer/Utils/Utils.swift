@@ -32,6 +32,7 @@ struct Utils {
 
     private static var Formatter: NumberFormatter = {
         let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 18
         return formatter

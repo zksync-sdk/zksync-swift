@@ -8,7 +8,7 @@
 import Foundation
 
 public enum ChangePubKeyAuthType: String, Encodable {
-    case onchain
+    case Onchain
     case ECDSA
     case CREATE2
 }
