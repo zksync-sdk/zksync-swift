@@ -25,7 +25,7 @@ public struct Order: Encodable {
 
     var ethereumSignature: EthSignature?
 
-    internal init(accountId: UInt32,
+    public init(accountId: UInt32,
                   recepientAddress: String,
                   nonce: UInt32,
                   tokenBuy: UInt32,

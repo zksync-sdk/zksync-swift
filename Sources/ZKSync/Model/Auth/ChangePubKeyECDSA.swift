@@ -18,6 +18,14 @@ public struct ChangePubKeyECDSA: ChangePubKeyVariant {
         return Data(hex: batchHash)
     }
 
+    public init(
+        ethSignature: String?,
+        batchHash: String
+    ) {
+        self.ethSignature = ethSignature
+        self.batchHash = batchHash
+    }
+
     enum CodingKeys: String, CodingKey {
         case type
         case ethSignature

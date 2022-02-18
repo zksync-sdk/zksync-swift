@@ -17,6 +17,16 @@ public struct ChangePubKeyCREATE2: ChangePubKeyVariant {
 
     public let bytes = Data(repeating: 0, count: 32)
 
+    public init(
+        creatorAddress: String,
+        saltArg: String,
+        codeHash: String
+    ) {
+        self.creatorAddress = creatorAddress
+        self.saltArg = saltArg
+        self.codeHash = codeHash
+    }
+
     enum CodingKeys: String, CodingKey {
         case type
         case creatorAddress
