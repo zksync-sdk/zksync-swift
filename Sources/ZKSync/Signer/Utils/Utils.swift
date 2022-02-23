@@ -19,7 +19,7 @@ public enum SignerError: Error {
     case amountNotPackable
 }
 
-struct Utils {
+public struct Utils {
 
     private static let MaxNumberOfAccounts: Int = 1 << 24
     private static let MaxNumberOfTokens = UInt32.max
@@ -104,7 +104,7 @@ struct Utils {
         return try packAmount(amount)
     }
 
-    static func closestPackableTransactionFee(_ fee: BigUInt) throws -> BigUInt {
+    public static func closestPackableTransactionFee(_ fee: BigUInt) throws -> BigUInt {
         let packedFee = try packFee(fee)
         return try decimalByteArrayToInteger(packedFee,
                                              expBits: FeeExponentBitWidth,
@@ -112,7 +112,7 @@ struct Utils {
                                              expBase: 10)
     }
 
-    static func closestPackableTransactionAmount(_ amount: BigUInt) throws -> BigUInt {
+    public static func closestPackableTransactionAmount(_ amount: BigUInt) throws -> BigUInt {
         let packedAmount = try packAmount(amount)
         return try decimalByteArrayToInteger(packedAmount,
                                              expBits: AmountExponentBitWidth,
