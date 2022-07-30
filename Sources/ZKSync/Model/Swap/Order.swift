@@ -26,13 +26,13 @@ public struct Order: Encodable {
     var ethereumSignature: EthSignature?
 
     public init(accountId: UInt32,
-                  recepientAddress: String,
-                  nonce: UInt32,
-                  tokenBuy: UInt32,
-                  tokenSell: UInt32,
-                  ratio: (BigUInt, BigUInt),
-                  amount: BigUInt,
-                  timeRange: TimeRange) {
+                recepientAddress: String,
+                nonce: UInt32,
+                tokenBuy: UInt32,
+                tokenSell: UInt32,
+                ratio: (BigUInt, BigUInt),
+                amount: BigUInt,
+                timeRange: TimeRange) {
         self.accountId = accountId
         self.recepientAddress = recepientAddress
         self.nonce = nonce

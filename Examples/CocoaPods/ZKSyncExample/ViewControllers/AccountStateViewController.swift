@@ -38,8 +38,8 @@ class AccountStateViewController: UIViewController, WalletConsumer {
             switch result {
             case .success(let state):
                 self.update(state: state)
-            case .failure(_):
-                break
+            case .failure(let error):
+                print("Error occured: \(error.localizedDescription)")
             }
         }
     }

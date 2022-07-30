@@ -31,6 +31,12 @@ public class DefaultProvider: Provider {
         case .ropsten:
             let url = URL(string: "https://ropsten-api.zksync.io/jsrpc")!
             self.init(transport: HTTPTransport(networkURL: url))
+        case .goerli:
+            let url = URL(string: "https://goerli-api.zksync.io/jsrpc")!
+            self.init(transport: HTTPTransport(networkURL: url))
+        case .sepolia:
+            let url = URL(string: "https://sepolia-api.zksync.io/jsrpc")!
+            self.init(transport: HTTPTransport(networkURL: url))
         }
     }
 

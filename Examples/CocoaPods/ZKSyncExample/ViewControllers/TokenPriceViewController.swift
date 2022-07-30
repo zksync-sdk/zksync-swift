@@ -20,8 +20,8 @@ class TokenPriceViewController: UIViewController, WalletConsumer {
             switch result {
             case .success(let price):
                 self.tokenPriceLabel.text = "\(price)"
-            case .failure(_):
-                break
+            case .failure(let error):
+                print("Error occured: \(error.localizedDescription)")
             }
         }
     }
