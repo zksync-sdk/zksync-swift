@@ -1,70 +1,68 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "f82c23a8a7ef8dc1a49a8bfc6a96883e79121864",
-          "version": "5.5.0"
-        }
-      },
-      {
-        "package": "BigInt",
-        "repositoryURL": "https://github.com/attaswift/BigInt.git",
-        "state": {
-          "branch": null,
-          "revision": "0ed110f7555c34ff468e72e1686e59721f2b0da6",
-          "version": "5.3.0"
-        }
-      },
-      {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
-          "version": "1.4.3"
-        }
-      },
-      {
-        "package": "PromiseKit",
-        "repositoryURL": "https://github.com/mxcl/PromiseKit.git",
-        "state": {
-          "branch": null,
-          "revision": "7b07b214dacecb22ca4b680531c7e981d52483f9",
-          "version": "6.16.3"
-        }
-      },
-      {
-        "package": "Starscream",
-        "repositoryURL": "https://github.com/daltoniam/Starscream.git",
-        "state": {
-          "branch": null,
-          "revision": "df8d82047f6654d8e4b655d1b1525c64e1059d21",
-          "version": "4.0.4"
-        }
-      },
-      {
-        "package": "Web3swift",
-        "repositoryURL": "https://github.com/zksync-sdk/web3swift.git",
-        "state": {
-          "branch": "develop",
-          "revision": "b7f162ce6c289589b465c739997d5c5a11be5120",
-          "version": null
-        }
-      },
-      {
-        "package": "ZKSync",
-        "repositoryURL": "https://github.com/zksync-sdk/zksync-swift.git",
-        "state": {
-          "branch": "master",
-          "revision": "6ccc483a6ca6c936d32404c76b8caa1e90876d78",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
+        "version" : "5.4.4"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt.git",
+      "state" : {
+        "revision" : "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+        "version" : "5.3.0"
+      }
+    },
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
+      "state" : {
+        "revision" : "039f56c5d7960f277087a0be51f5eb04ed0ec073",
+        "version" : "1.5.1"
+      }
+    },
+    {
+      "identity" : "promisekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/PromiseKit.git",
+      "state" : {
+        "revision" : "7b07b214dacecb22ca4b680531c7e981d52483f9",
+        "version" : "6.16.3"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream.git",
+      "state" : {
+        "revision" : "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+        "version" : "4.0.4"
+      }
+    },
+    {
+      "identity" : "web3swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/skywinder/web3swift.git",
+      "state" : {
+        "revision" : "e269630c161df72b18ab10511382feb91d65d965",
+        "version" : "2.6.5"
+      }
+    },
+    {
+      "identity" : "zksync-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zksync-sdk/zksync-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "778b14d0c5656aa11b1901c8b5f270568758b0bc"
+      }
+    }
+  ],
+  "version" : 2
 }

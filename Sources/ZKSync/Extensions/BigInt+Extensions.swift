@@ -44,30 +44,32 @@ extension BigUInt {
 }
 
 extension BigInt {
+
     public func serialize() -> Data {
-            // This assumes Digit is binary.
-            precondition(Word.bitWidth % 8 == 0)
+        // This assumes Digit is binary.
+        precondition(Word.bitWidth % 8 == 0)
 
-            let byteCount = (self.bitWidth + 7) / 8
+        let byteCount = (self.bitWidth + 7) / 8
 
-            guard byteCount > 0 else { return Data() }
+        guard byteCount > 0 else { return Data() }
 
-            var data = Data(count: byteCount)
-            data.withUnsafeMutableBytes { buffPtr in
-                let pointer = buffPtr.bindMemory(to: UInt8.self)
-                var index = byteCount - 1
-                for var word in self.words {
-                    for _ in 0 ..< Word.bitWidth / 8 {
-                        pointer[index] = UInt8(word & 0xFF)
-                        word >>= 8
-                        if index == 0 {
-                            assert(word == 0)
-                            break
-                        }
-                        index -= 1
+        var data = Data(count: byteCount)
+        data.withUnsafeMutableBytes { buffPtr in
+            let pointer = buffPtr.bindMemory(to: UInt8.self)
+            var index = byteCount - 1
+            for var word in self.words {
+                for _ in 0 ..< Word.bitWidth / 8 {
+                    pointer[index] = UInt8(word & 0xFF)
+                    word >>= 8
+                    if index == 0 {
+                        assert(word == 0)
+                        break
                     }
+                    index -= 1
                 }
             }
-            return data
         }
+
+        return data
+    }
 }

@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "f82c23a8a7ef8dc1a49a8bfc6a96883e79121864",
-          "version": "5.5.0"
+          "revision": "8dd85aee02e39dd280c75eef88ffdb86eed4b07b",
+          "version": "5.6.2"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "12f2389aca4a07e0dd54c86ec23d0721ed88b8db",
-          "version": "1.4.3"
+          "revision": "039f56c5d7960f277087a0be51f5eb04ed0ec073",
+          "version": "1.5.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/skywinder/web3swift.git",
         "state": {
           "branch": null,
-          "revision": "ff538e874cf2f6ca0f5736bfd7deb89f4a0bd624",
-          "version": "2.5.0"
+          "revision": "4312a7178e1255c3ef65ac909657d29f6dd81bb6",
+          "version": "2.6.6"
         }
       }
     ]
